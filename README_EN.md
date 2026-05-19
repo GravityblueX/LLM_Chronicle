@@ -8,10 +8,10 @@ This project does one thing: **assemble a chronicle of large language models, wr
 
 ## Format
 
-A mix of annals and biographies.
+**Annals first, biographies second.**
 
-- **Annals (编年)** — a chronological timeline. What happened, when, backed by sources.
-- **Biographies (纪传)** — key people, companies, and model families get their own entries. Full story, not just a date.
+- **Annals (编年)** are the backbone. One file per year, organized by month. What happened, when, with sources. Read the annals and you know the whole story.
+- **Biographies (纪传)** are supplements. Some people, companies, and model families need more than a timeline entry — they get their own piece, telling the full story.
 - Every claim cites a source: paper URL, news link, PR number. Traceable.
 - Uncertain claims are marked as such. No fabrication.
 
@@ -26,12 +26,18 @@ LLM_Chronicle/
 ├── README.md
 ├── README_EN.md
 ├── 00_体例.md          # Editorial standards
-├── 01_本纪/            # Companies & key figures
-├── 02_世家/            # Model families
-├── 03_列传/            # Individual models & architectures
-├── 04_表/              # Timelines & tables
-├── 05_书/              # Thematic treatises
-├── 06_太史公曰/        # Commentary
+├── 编年/               # ← Main line: year-by-year annals
+│   ├── 2017.md
+│   ├── 2018.md
+│   ├── ...
+│   └── 2026.md
+├── 纪传/               # ← Supplements: deep dives
+│   ├── 本纪/            #    Companies & key figures
+│   ├── 世家/            #    Model families
+│   └── 列传/            #    Models & architectures
+├── 志/                 # Thematic treatises
+├── 表/                 # Reference tables
+├── 论/                 # Commentary ("太史公曰")
 └── sources/            # Raw materials
 ```
 
