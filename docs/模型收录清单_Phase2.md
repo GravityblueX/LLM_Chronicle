@@ -1,6 +1,6 @@
-# 模型收录清单 — Phase 2（交叉索引版）
+# 模型收录清单 — Phase 3（出处补全版）
 
-> 编纂团队 @ LLM_Chronicle，2026-05-25（Phase 3 更新：庄方宜大规模增补后）。
+> 编纂团队 @ LLM_Chronicle，2026-05-25（Phase 3 更新：2025 年待写模型出处整理 + 纪传规划明确）。
 > **编年状态**：✅ 已收录 / 📝 待写 / 🔜 规划中（本里程碑不写）
 > **负责史官**：庄方宜为主力编纂，凯尔希统筹调度。
 
@@ -209,15 +209,14 @@
 | 类别 | 候选 | 状态 | 文件 |
 |------|------|------|------|
 | 本纪 | **OpenAI 本纪** | ✅ 已发布 | `纪传/本纪/OpenAI.md` |
-| 本纪 | DeepMind / Google AI | 🔜 规划中 | — |
-| 本纪 | Anthropic | 🔜 规划中 | — |
-| 本纪 | Meta AI | 🔜 规划中 | — |
-| 本纪 | 深度求索 | 🔜 规划中 | — |
-| 本纪 | 智谱 AI | 🔜 规划中 | — |
+| 本纪 | **DeepSeek 本纪** | 🔜 规划中 | — |
+| 本纪 | **Anthropic 本纪** | 🔜 规划中 | — |
+| 本纪 | Meta AI 本纪 | 🔜 规划中 | — |
+| 本纪 | 智谱 AI 本纪 | 🔜 规划中 | — |
 | 世家 | **GPT 世家** | ✅ 已发布 | `纪传/世家/GPT.md` |
-| 世家 | Llama 世家 | 📝 待写 | — |
-| 世家 | Gemini 世家 | 📝 待写 | — |
+| 世家 | **Llama 世家** | 🔜 规划中 | — |
 | 世家 | Claude 世家 | 📝 待写 | — |
+| 世家 | Gemini 世家 | 📝 待写 | — |
 | 世家 | DeepSeek 世家 | 📝 待写 | — |
 | 世家 | Qwen 世家 | 🔜 规划中 | — |
 | 世家 | Stable Diffusion 世家 | 🔜 规划中 | — |
@@ -263,7 +262,67 @@
 
 ---
 
-## 八、编年条目 ↔ 模型 交叉索引
+## 八、2025 年剩余模型出处整理
+
+> 以下 9 个模型尚未编年，但已整理好官方出处，庄方宜可以直接引用。
+
+### Kimi K1.5（2025-01）
+- **开发方**：月之暗面（Moonshot AI）
+- **关键意义**：对标 o1 的中国推理模型，采用长上下文强化学习（long-CoT RL）
+- **出处**：[月之暗面官方博客](https://www.moonshot.cn/) ；[arXiv 论文（如有）]
+- **出处状态**：⚠️ 需确认官方技术博客具体 URL
+
+### GPT-4.5（2025-02-27）
+- **开发方**：OpenAI
+- **关键意义**：「非思维链模型的终点」（Sam Altman 语），更自然对话、更少幻觉
+- **出处**：[OpenAI Blog: Introducing GPT-4.5](https://openai.com/index/introducing-gpt-4-5/)
+- **出处状态**：✅ 官方博客可访问
+
+### Claude 3.7 Sonnet（2025-02-24）
+- **开发方**：Anthropic
+- **关键意义**：首个混合推理模型——同一模型中同时支持即时回答和扩展思考（extended thinking）
+- **出处**：[Anthropic Blog: Claude 3.7 Sonnet](https://www.anthropic.com/news/claude-3-7-sonnet)
+- **出处状态**：✅ 官方博客可访问
+
+### Gemini 2.5 Pro（2025-03-25）
+- **开发方**：Google DeepMind
+- **关键意义**：「思考模型」（thinking model），1M token 上下文，LMArena 登顶
+- **出处**：[Google Blog: Gemini 2.5](https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/)
+- **出处状态**：✅ 官方博客可访问
+
+### Llama 4（2025-04-05）
+- **开发方**：Meta AI
+- **关键意义**：首个 Llama MoE 架构（Scout 109B / Maverick 400B MoE）。评测被指「耍花招」——用优化实验版提交排行榜，社区信任受损
+- **出处**：[Meta AI Blog: Llama 4](https://ai.meta.com/blog/llama-4-multimodal-intelligence/)
+- **出处状态**：✅ 官方博客可访问
+
+### o3（2025-04）
+- **开发方**：OpenAI
+- **关键意义**：o1 继任者，推理新高度。但高昂推理成本使其不适合所有场景
+- **出处**：[OpenAI Blog](https://openai.com/index/) — ⚠️ 需确认 o3 是否有独立博客文章，目前已知信息主要来自 2024 年 12 月「12 Days of OpenAI」活动预告及后续发布
+- **出处状态**：⚠️ 建议查阅 OpenAI 官方博客确认最新 URL
+
+### Qwen 3（2025-04-29）
+- **开发方**：阿里云
+- **关键意义**：「思考/非思考」双模式混合推理模型，旗舰版 235B MoE（激活 22B）。Apache 2.0 开源
+- **出处**：[GitHub: QwenLM/Qwen3](https://github.com/QwenLM/Qwen3) ；[Qwen 官方博客](https://qwenlm.github.io/blog/qwen3/)
+- **出处状态**：✅ GitHub + 官方博客可访问
+
+### Claude 4 / Claude Max（2025-05-22）
+- **开发方**：Anthropic
+- **关键意义**：Claude Max 订阅计划（Pro $200 + Max $100/月），透明思考功能。标志着 AI 商业模式从「订阅制」转向「用量制」
+- **出处**：[Anthropic Blog](https://www.anthropic.com/) — ⚠️ 需确认 Claude 4 发布的具体博客 URL
+- **出处状态**：⚠️ 待确认
+
+### Muse Spark（2026-04）
+- **开发方**：Meta Superintelligence Labs
+- **关键意义**：Llama 的继任者，Meta 超级智能实验室发布，标志着 Llama 系列终结和新路线开启
+- **出处**：[Meta AI Blog](https://ai.meta.com/) — ⚠️ 需确认具体博客 URL
+- **出处状态**：⚠️ 待确认
+
+---
+
+## 九、编年条目 ↔ 模型 交叉索引
 
 | 编年条目 | 覆盖模型 | 模型 # |
 |----------|----------|--------|

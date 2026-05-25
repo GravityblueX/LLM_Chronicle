@@ -160,9 +160,9 @@ GPT 的遗产是双重的。在技术上，它定义了每一个阶段的"不可
 
 ---
 
-[^1]: Radford et al., "Improving Language Understanding by Generative Pre-Training", OpenAI, 2018-06-11.
-[^2]: Radford et al., "Language Models are Unsupervised Multitask Learners", OpenAI, 2019-02-14.
-[^3]: Brown et al., "Language Models are Few-Shot Learners", arXiv:2005.14165, 2020-05-28.
-[^4]: Ouyang et al., "Training language models to follow instructions with human feedback", arXiv:2203.02155, 2022-03-04.
-[^5]: OpenAI, "GPT-4 Technical Report", arXiv:2303.08774, 2023-03-27.
-[^6]: OpenAI Blog, "Learning to Reason with LLMs", 2024-09-12.
+[^1]: Radford et al., "Improving Language Understanding by Generative Pre-Training", OpenAI, 2018-06-11. https://openai.com/research/language-unsupervised
+[^2]: Radford et al., "Language Models are Unsupervised Multitask Learners", OpenAI, 2019-02-14. https://openai.com/research/better-language-models
+[^3]: Brown et al., "Language Models are Few-Shot Learners", arXiv:2005.14165, 2020-05-28. https://arxiv.org/abs/2005.14165
+[^4]: Ouyang et al., "Training language models to follow instructions with human feedback", arXiv:2203.02155, 2022-03-04. https://arxiv.org/abs/2203.02155
+[^5]: OpenAI, "GPT-4 Technical Report", arXiv:2303.08774, 2023-03-27. https://arxiv.org/abs/2303.08774
+[^6]: OpenAI Blog, "Learning to Reason with LLMs", 2024-09-12. https://openai.com/research/learning-to-reason-with-llms

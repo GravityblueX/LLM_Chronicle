@@ -1,0 +1,19 @@
+{
+  "month": "2024-03",
+  "sources": [
+    {
+      "ref": "^1",
+      "url": "https://www.anthropic.com/news/claude-3-family",
+      "title": null,
+      "snapshot": "anthropic-com-news-claude-3-family.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 166723,
+      "file_size_human": "162.8 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

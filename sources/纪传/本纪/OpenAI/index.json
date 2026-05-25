@@ -1,0 +1,55 @@
+{
+  "collection": "纪传/本纪/OpenAI",
+  "archived_at": "2026-05-25",
+  "sources": [
+    {
+      "url": "https://openai.com/blog/introducing-openai",
+      "slug": "openai-com-blog-introducing-openai.html",
+      "status": "403",
+      "size": 9748,
+      "ok": false
+    },
+    {
+      "url": "https://openai.com/blog/openai-supporters",
+      "slug": "openai-com-blog-openai-supporters.html",
+      "status": "403",
+      "size": 9745,
+      "ok": false
+    },
+    {
+      "url": "https://openai.com/research/better-language-models",
+      "slug": "openai-com-research-better-language-models.html",
+      "status": "403",
+      "size": 9794,
+      "ok": false
+    },
+    {
+      "url": "https://openai.com/blog/openai-lp",
+      "slug": "openai-com-blog-openai-lp.html",
+      "status": "403",
+      "size": 9700,
+      "ok": false
+    },
+    {
+      "url": "https://news.microsoft.com/2019/07/22/microsoft-invests-in-and-partners-with-openai/",
+      "slug": "news-microsoft-com-2019-07-22-microsoft-invests-in-and-partners-with-openai.html",
+      "status": "404",
+      "size": 123313,
+      "ok": false
+    },
+    {
+      "url": "https://openai.com/blog/chatgpt",
+      "slug": "openai-com-blog-chatgpt.html",
+      "status": "403",
+      "size": 9694,
+      "ok": false
+    },
+    {
+      "url": "https://openai.com/blog/openai-announces-leadership-transition",
+      "slug": "openai-com-blog-openai-announces-leadership-transition.html",
+      "status": "403",
+      "size": 9830,
+      "ok": false
+    }
+  ]
+}
