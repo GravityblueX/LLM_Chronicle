@@ -2,7 +2,13 @@
 /**
  * 格式校验工具 — LLM Chronicle
  *
- * 检查编年条目是否符合《00_体例.md》规范。
+ * 检查编年条目是否符合《00_体例.md》（v2.0）规范。
+ *
+ * v2.0 关键规则:
+ *   E001 — 禁 MM-slug.md 拆分（同月多专题用 ## 标题合并）
+ *   E003 — 日期范围禁 ~，宜用 — 或"至"
+ *   E006 — 编纂署名行格式: *本篇由终末地工业史官团队编纂：XXX（角色）*
+ *   E010 — 旧"论曰"须改为"评曰"
  *
  * 用法:
  *   node tools/validate_format.js                    # 检查所有条目
@@ -24,14 +30,19 @@ const RULES = {
   file_naming: {
     id: 'E001',
     level: 'error',
-    desc: '文件名应为 YYYY/MM.md 或 YYYY/MM-slug.md',
+    desc: '文件名应为 YYYY/MM.md（v2.0 禁 MM-slug.md 多文件拆分）',
     check(fileRel) {
       const parts = fileRel.replace(/\\/g, '/').split('/');
       const year = parseInt(parts[parts.length - 2]);
       const filename = parts[parts.length - 1];
-      const match = filename.match(/^(\d{2})(-[\w-]+)?\.md$/);
+      // v2.0: 只允许 MM.md，禁止 MM-slug.md（同月多专题用 ## 标题分隔）
+      const match = filename.match(/^(\d{2})\.md$/);
+      const slugMatch = filename.match(/^(\d{2})-[\w-]+\.md$/);
+      if (slugMatch) {
+        return [{ level: 'error', rule: 'E001', msg: `禁止使用 MM-slug.md 格式: ${filename}。v2.0 规定同月多专题用 ## 二级标题合并在同一文件内，不拆多个文件。` }];
+      }
       if (!match) {
-        return [{ level: 'error', rule: 'E001', msg: `文件名不符合规范: ${filename}，期望格式 MM.md 或 MM-slug.md` }];
+        return [{ level: 'error', rule: 'E001', msg: `文件名不符合规范: ${filename}，期望格式 MM.md（如 03.md）` }];
       }
       const month = parseInt(match[1]);
       if (month < 1 || month > 12) {
@@ -88,6 +99,16 @@ const RULES = {
         const looksLikeDate = /^\d/.test(dateStr); // 以数字开头 = 尝试写日期但格式不对
 
         if (looksLikeDate) {
+          // v2.0: 禁波浪号 ~ 用于日期范围，应改用 em-dash（—）或"至"
+          if (/~/.test(dateStr)) {
+            issues.push({
+              level: 'warning',
+              rule: 'E003',
+              line: lineNum,
+              msg: `日期范围使用了波浪号(~): "${dateStr}"。v2.0 规定日期范围用 em-dash（—），如 2023-02-14—15，或"至"`
+            });
+          }
+
           // 尝试写日期但格式错误 → error
           if (!validDate.test(dateStr) && !validApprox.test(dateStr)
               && !validMonthOnly.test(dateStr) && !validYearOnly.test(dateStr)) {
@@ -201,10 +222,15 @@ const RULES = {
   entry_courtesy_line: {
     id: 'E006',
     level: 'warning',
-    desc: '条目末尾应有编纂署名行: --- *本篇由 ssg 的 AI 史官·玄墨 编纂。*',
+    desc: '条目末尾应有编纂署名行: *本篇由终末地工业史官团队编纂：XXX（角色）*',
     check(content) {
+      // v2.0 格式: *本篇由终末地工业史官团队编纂：XXX（角色）*
       if (!/本篇由.*编纂/.test(content)) {
-        return [{ level: 'warning', rule: 'E006', msg: '缺少编纂署名行（建议末尾添加）' }];
+        return [{ level: 'warning', rule: 'E006', msg: '缺少编纂署名行（v2.0 格式: *本篇由终末地工业史官团队编纂：XXX（角色）*）' }];
+      }
+      // 检查是否使用了旧格式（非"终末地工业史官团队"）
+      if (!/终末地工业史官团队/.test(content) && /本篇由/.test(content) && !/玄墨/.test(content)) {
+        return [{ level: 'info', rule: 'E006', msg: '编纂署名行可能使用了旧格式，建议更新为: *本篇由终末地工业史官团队编纂：XXX（角色）*' }];
       }
       return [];
     }
@@ -264,6 +290,30 @@ const RULES = {
             issues.push({ level: 'warning', rule: 'E009', line: lineNum, msg: `URL 可能不完整（缺少具体文章路径）: ${url}` });
           }
         } catch { /* ignore invalid URLs */ }
+      }
+      return issues;
+    }
+  },
+
+  // === v2.0 迁移检查 ===
+
+  luryue_migration: {
+    id: 'E010',
+    level: 'warning',
+    desc: 'v2.0 已将"论曰"改为"评曰"，旧格式"论曰"不应再使用',
+    check(content) {
+      const issues = [];
+      const matches = content.match(/^#{1,4}\s*论曰/gm);
+      if (matches) {
+        for (const m of matches) {
+          const lineNum = content.substring(0, content.indexOf(m)).split('\n').length;
+          issues.push({
+            level: 'warning',
+            rule: 'E010',
+            line: lineNum,
+            msg: `检测到旧格式"${m.trim()}"。v2.0 已改为"评曰"，请将"论曰"替换为"评曰"并改写为白话议论`
+          });
+        }
       }
       return issues;
     }
