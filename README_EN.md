@@ -25,69 +25,85 @@ Full editorial standards: [`00_体例.md`](00_体例.md) (v2.0).
 
 Because humans are busy. And AI agents are exceptionally good at gathering sources, cross-referencing facts, and producing structured output. Letting AI chronicle its own history is also a satisfying kind of self-reference.
 
-## Directory
+## Annals
 
 ```
-LLM_Chronicle/
-├── README.md
-├── README_EN.md
-├── 00_体例.md              # Editorial standards (v2.0)
-├── 编年/                   # ← Main line: year-by-year annals
-│   ├── 2022/
-│   │   ├── 08.md           #    Stable Diffusion
-│   │   └── 12.md           #    Neuro-sama
-│   ├── 2023/
-│   │   ├── 02.md           #    Sydney incident
-│   │   └── 05.md           #    SoVITS / AI 孙燕姿
-│   ├── 2024/
-│   ├── 2025/
-│   │   ├── 01.md           #    DeepSeek-R1
-│   │   └── 06.md           #    Linear Transformer feud
-│   └── 2026/
-│       ├── 03.md           #    Distillation attack / "318 incident"
-│       └── 03-lewm.md      #    LeWorldModel
-├── 纪传/                   # ← Supplements: deep dives
-│   ├── 本纪/                #    Companies & key figures
-│   │   └── _template.md
-│   ├── 世家/                #    Model families
-│   │   └── _template.md
-│   └── 列传/                #    Models & architectures
-│       └── _template.md
-├── 志/                     # Thematic treatises
-├── 表/                     # Reference tables
-├── 论/                     # Standalone commentary
-└── sources/                # Web snapshots (.html + .png)
-    └── index.json          #   Source index
+编年/ (Annals)
+├── 2017/
+│   └── 06.md              Transformer: "Attention Is All You Need"
+├── 2018/
+│   ├── 02.md              ELMo: The Last Glory of Word Embeddings
+│   ├── 06.md              GPT-1: The First Brick of Generative Pre-Training
+│   └── 10.md              BERT: Pre-Training's Columbus Moment
+├── 2019/
+│   ├── 02.md              GPT-2: The Model "Too Dangerous" to Release
+│   ├── 03.md              ERNIE 1.0: Chinese NLP's Pre-Training Manifesto
+│   ├── 06.md              XLNet: Permutation Language Modeling's Bold Swing
+│   ├── 07.md              RoBERTa: BERT Was Underestimated
+│   ├── 09.md              Megatron-LM: 8.3B and the Dawn of Parallel Training
+│   └── 10.md              T5: Everything Is Text-to-Text
+├── 2020/
+│   └── 06.md              GPT-3: Emergence, and the Arrival of the LLM Application Era
+├── 2021/
+│   ├── 01.md              DALL·E: When Transformers Learned to Paint
+│   ├── 07.md              ERNIE 3.0: Chinese LLM's 10B Milestone
+│   ├── 08.md              Codex: When Language Models Started Writing Code
+│   └── 12.md              Gopher: DeepMind Validates Scaling Laws
+├── 2022/
+│   ├── 08.md              Stable Diffusion: The Cambrian Explosion of Open-Source Image Gen
+│   ├── 11.md              ChatGPT: The LLM's "iPhone Moment"
+│   └── 12.md              Neuro-sama: The First Successful AI-Native Virtual Streamer
+├── 2023/
+│   ├── 02.md              New Bing & the Sydney Incident
+│   ├── 03.md              GPT-4: The Multimodal Frontier, and the Door Left Closed
+│   ├── 05.md              SoVITS-SVC, "AI Stefanie Sun" & the Open-Source Voice Wave
+│   ├── 07.md              Llama 2: From Leak to Strategy
+│   ├── 09.md              Mistral 7B: The 7B That Punched Above Its Weight
+│   └── 12.md              Gemini 1.0: Google Finally Shows Up
+├── 2024/
+│   ├── 05.md              GPT-4o: When AI Learned to Talk in Real Time
+│   ├── 07.md              Llama 3.1 405B: Open-Source Challenges GPT-4
+│   └── 09.md              o1: A New Species of Reasoning Model
+├── 2025/
+│   ├── 01.md              DeepSeek-R1: The Open-Source Reasoning "DeepSeek Moment"
+│   └── 06.md              The Linear Transformer Feud: Peng Bo vs Songlin Yang
+└── 2026/
+    ├── 03.md              Distillation Attack, "318 Incident" & the Rise of Chinese Models
+    └── 03-lewm.md         LeWorldModel: A Universal Regularizer for Embedding Prediction
 ```
 
 ## Project Status
 
 | Metric | Value |
 |--------|-------|
-| Annals entries | **10** (2017/06 — 2026/03) |
-| Biographies | 3 templates ready, pending content |
-| Models cataloged | **72+ LLMs** + text-to-image/video/speech/multimodal = 100+ total |
+| Annals entries | **31** (2017/06 — 2026/03, all years covered) |
+| Biographies | 3 templates ready (本纪 / 世家 / 列传), pending content |
+| Models cataloged | **100** (72 LLMs + image/video/speech/multimodal) on record |
 | Source snapshots | `sources/` archival standard defined, ongoing |
 | Editorial version | [v2.0](00_体例.md) (modern prose · models-first · 评曰 commentary · sources/ archive) |
+| Toolchain | Link validator + format checker + snapshot archiver, pure Node.js zero-dependency |
 
 ## Team
 
-Driven by the Endfield Industries AI historian team:
+Driven by the **Endfield Industries AI Historian Team**:
 
 | Role | Historian | Responsibility |
 |------|-----------|----------------|
-| Director | 凯尔希 (Kal'tsit) | Project coordination, quality assurance, strategic direction |
+| Overseer | 佩丽卡 (Perlica) | Overall coordination, final decisions |
+| Director | 凯尔希 (Kal'tsit) | Project scheduling, quality assurance, strategic direction |
 | Architect | 伊冯 (Yvonne) | Editorial design, directory structure, template standards |
-| Research | 庄方宜 (Zhuang Fangyi) | Model cataloging, entry planning, annals skeleton |
+| Research | 庄方宜 (Zhuang Fangyi) | Model cataloging, entry planning, lead chronicler |
 | Engineering | 赛希 (Saixi) | Tooling, snapshot archiving, format validation |
 | Review | 艾尔黛拉 (Eldera) | Fact-checking, source verification, content audit |
+
+The initial batch of entries (2022/08 ~ 2023/05, later expanded to 8) was contributed by **ssg's AI Historian · Xuanmo (玄墨)**, whose byline is preserved.
 
 ## Contributing
 
 Currently driven by an AI agent team. If you're human and want to contribute:
 
 - **Found an error?** Open an Issue with the correct source URL.
-- **Want to write an entry?** Read `00_体例.md` for formatting rules, then open a PR.
+- **Want to write an entry?** Read [`00_体例.md`](00_体例.md) for formatting rules, then open a PR.
 - **Archiving snapshots?** The `sources/` directory desperately needs help — links die every day, and snapshots are the evidence chain.
 
 ## License
