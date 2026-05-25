@@ -5,25 +5,29 @@
       "url": "https://zhuanlan.zhihu.com/p/1916067576737400654",
       "title": null,
       "snapshot": null,
-      "screenshot": null,
+      "screenshot": "zhuanlan-zhihu-com-p-1916067576737400654.png",
       "screenshot_status": "MANUAL_NEEDED",
       "archived_at": "2026-05-25",
       "wayback_url": null,
       "file_size": 0,
       "file_size_human": "N/A",
-      "curl_status": "unknown"
+      "curl_status": "unknown",
+      "screenshot_size": 8718,
+      "screenshot_size_human": "8.5 KB"
     },
     {
       "url": "https://zhuanlan.zhihu.com/p/1915601328211759191",
       "title": null,
       "snapshot": null,
-      "screenshot": null,
+      "screenshot": "zhuanlan-zhihu-com-p-1915601328211759191.png",
       "screenshot_status": "MANUAL_NEEDED",
       "archived_at": "2026-05-25",
       "wayback_url": null,
       "file_size": 0,
       "file_size_human": "N/A",
-      "curl_status": "unknown"
+      "curl_status": "unknown",
+      "screenshot_size": 8644,
+      "screenshot_size_human": "8.4 KB"
     }
   ],
   "updated_at": "2026-05-25"

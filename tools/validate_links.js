@@ -24,6 +24,11 @@ const TIMEOUT = parseInt(process.env.LINK_TIMEOUT) || 10000;
 const CONCURRENCY = 5;
 const USER_AGENT = 'LLM_Chronicle_LinkChecker/1.0 (historiography project; contact: github.com/tmzncty/LLM_Chronicle)';
 
+// Cloudflare-protected domains — skip curl, verify via Internet Archive instead
+const CF_DOMAINS = [
+  'openai.com',
+];
+
 // ============================================================
 // URL 提取
 // ============================================================
@@ -63,6 +68,38 @@ function extractUrls(filePath, root) {
   }
 
   return urls;
+}
+
+// ============================================================
+// Internet Archive 可用性检查
+// ============================================================
+
+async function checkWayback(url) {
+  try {
+    const resp = await fetch(`https://archive.org/wayback/available?url=${encodeURIComponent(url)}`, {
+      signal: AbortSignal.timeout(10000),
+    });
+    const data = await resp.json();
+    if (data.archived_snapshots?.closest?.available) {
+      return {
+        ok: true,
+        status: 200,
+        latency: 0,
+        ia_snapshot: data.archived_snapshots.closest.url,
+        ia_timestamp: data.archived_snapshots.closest.timestamp,
+      };
+    }
+    return { ok: false, status: null, error: 'No Wayback Machine archive' };
+  } catch (err) {
+    return { ok: false, status: null, error: `IA check failed: ${err.message}` };
+  }
+}
+
+function isCloudflareDomain(url) {
+  try {
+    const host = new URL(url).hostname.replace(/^www\./, '');
+    return CF_DOMAINS.some(d => host === d || host.endsWith('.' + d));
+  } catch { return false; }
 }
 
 // ============================================================
@@ -128,8 +165,8 @@ async function main() {
   const root = path.resolve(__dirname, '..');
   const mdFiles = findMdFiles(root, onlyDir).filter(f => {
     const rel = path.relative(root, f).replace(/\\/g, '/');
-    // 只扫描编年条目和 00_体例，排除 docs/tools 等工程文件
-    return rel.startsWith('编年/') || rel === '00_体例.md';
+    // 只扫描编年条目、纪传和体例
+    return rel.startsWith('编年/') || rel.startsWith('纪传/') || rel === '00_体例.md';
   });
 
   console.error(`Scanning ${mdFiles.length} markdown files...`);
@@ -149,11 +186,22 @@ async function main() {
   async function worker() {
     while (queue.length > 0) {
       const entry = queue.shift();
-      const result = await checkUrl(entry.url, timeout);
+      let result;
+
+      if (isCloudflareDomain(entry.url)) {
+        // Cloudflare-protected domain → verify via Internet Archive
+        result = await checkWayback(entry.url);
+        const icon = result.ok ? '\x1b[32m✓\x1b[0m' : '\x1b[31m✗\x1b[0m';
+        const detail = result.ok ? `IA snapshot (${result.ia_timestamp})` : result.error;
+        console.error(`  ${icon} ${entry.url}  → ${detail} [cloudflare: IA check]`);
+      } else {
+        result = await checkUrl(entry.url, timeout);
+        const icon = result.ok ? '\x1b[32m✓\x1b[0m' : (result.error ? '\x1b[31m✗\x1b[0m' : '\x1b[33m?\x1b[0m');
+        const detail = result.ok ? `HTTP ${result.status}` : (result.error || `HTTP ${result.status}`);
+        console.error(`  ${icon} ${entry.url}  → ${detail} (${result.latency}ms)`);
+      }
+
       results.push({ ...entry, ...result });
-      const icon = result.ok ? '\x1b[32m✓\x1b[0m' : (result.error ? '\x1b[31m✗\x1b[0m' : '\x1b[33m?\x1b[0m');
-      const detail = result.ok ? `HTTP ${result.status}` : (result.error || `HTTP ${result.status}`);
-      console.error(`  ${icon} ${entry.url}  → ${detail} (${result.latency}ms)`);
     }
   }
 

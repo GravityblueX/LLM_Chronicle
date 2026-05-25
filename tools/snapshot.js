@@ -10,6 +10,7 @@
  *   node tools/snapshot.js 编年/2023/02.md          # 对指定条目 A+B 双路归档
  *   node tools/snapshot.js --text-only 编年/2023/02.md  # 仅 A 路（HTML 快照）
  *   node tools/snapshot.js --ia 编年/2023/02.md           # 仅 B 路（IA 存档）
+ *   node tools/snapshot.js --screenshot                # 仅截图模式（社交媒体页面 PNG）
  *   node tools/snapshot.js                           # 归档 urls.json 中所有编年链接
  *   node tools/snapshot.js --dry-run                  # 试运行
  *   node tools/snapshot.js --update-only              # 仅更新 index.json
@@ -201,6 +202,45 @@ async function archiveToWayback(url) {
 }
 
 // ============================================================
+// S 路：Playwright 自动截图（社交媒体页面）
+// ============================================================
+
+async function screenshotPage(url, outputPath, timeout) {
+  try {
+    const { chromium } = require('playwright');
+    const browser = await chromium.launch({ headless: true });
+    const page = await browser.newPage();
+
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto(url, { waitUntil: 'networkidle', timeout: timeout * 1000 });
+
+    // 等待页面稳定
+    await page.waitForTimeout(2000);
+
+    await page.screenshot({
+      path: outputPath,
+      fullPage: true,
+      type: 'png',
+    });
+
+    await browser.close();
+
+    const stat = fs.statSync(outputPath);
+    return {
+      ok: true,
+      size: stat.size,
+      size_human: formatBytes(stat.size),
+      too_large: stat.size > MAX_FILE_SIZE_MB * 1024 * 1024,
+    };
+  } catch (err) {
+    return {
+      ok: false,
+      error: err.message ? err.message.substring(0, 200) : 'Unknown screenshot error',
+    };
+  }
+}
+
+// ============================================================
 // index.json 管理
 // ============================================================
 
@@ -239,13 +279,15 @@ async function main() {
   const updateOnly = args.includes('--update-only');
   const textOnly = args.includes('--text-only');
   const iaOnly = args.includes('--ia');
+  const screenshotOnly = args.includes('--screenshot');
   const singleUrl = args.indexOf('--url') >= 0 ? args[args.indexOf('--url') + 1] : null;
   const singleMonth = args.indexOf('--month') >= 0 ? args[args.indexOf('--month') + 1] : null;
   // 文件路径参数（非 flag 参数）
   const fileArg = args.find(a => !a.startsWith('--') && a !== singleUrl && a !== singleMonth);
 
-  const doAText = !iaOnly;   // A 路：默认开，--ia 关
-  const doBWayback = !textOnly; // B 路：默认开，--text-only 关
+  const doAText = !iaOnly && !screenshotOnly;   // A 路：默认开，--ia 或 --screenshot 关
+  const doBWayback = !textOnly && !screenshotOnly; // B 路：默认开，--text-only 或 --screenshot 关
+  const doScreenshot = screenshotOnly;
 
   // ---------- 收集 URL ----------
   let entries = [];
@@ -293,14 +335,68 @@ async function main() {
       console.error(`  ${month}: ${urls.length} URLs`);
       for (const u of urls) {
         const slug = slugify(u.url);
-        const scree = needsScreenshot(u.url) ? ' [📸 SCREENSHOT NEEDED]' : '';
+        const scree = needsScreenshot(u.url) ? ' [📸]' : '';
         const modes = [];
         if (doAText) modes.push('A:HTML');
         if (doBWayback) modes.push('B:IA');
+        if (doScreenshot) modes.push('S:PNG');
         console.error(`    → ${slug}.html${scree}  [${modes.join('+')}]`);
         console.error(`      ${u.url}`);
       }
     }
+    return;
+  }
+
+  // ---------- 截图专用模式 ----------
+  if (doScreenshot) {
+    const socialUrls = entries.filter(u => needsScreenshot(u.url));
+    if (socialUrls.length === 0) {
+      console.error('No social media URLs to screenshot.');
+      return;
+    }
+    console.error(`Screenshot mode — ${socialUrls.length} social media pages:\n`);
+    const now = new Date().toISOString().split('T')[0];
+    let totalOk = 0, totalFail = 0;
+
+    for (const entry of socialUrls) {
+      const month = monthFromFilePath(entry.file);
+      if (!month) { console.error(`  ⚠ Cannot determine month for: ${entry.file}`); continue; }
+      const [year, mm] = month.split('-');
+      const monthDir = path.join(SOURCES_DIR, year, mm);
+      const slug = slugify(entry.url);
+      const pngPath = path.join(monthDir, `${slug}.png`);
+
+      fs.mkdirSync(monthDir, { recursive: true });
+
+      console.error(`  📸 ${slug}`);
+      const result = await screenshotPage(entry.url, pngPath, 30);
+
+      if (result.ok) {
+        const icon = result.too_large ? '⚠' : '✅';
+        console.error(`    ${icon} ${result.size_human}`);
+        if (result.too_large) console.error(`    ⚠ >${MAX_FILE_SIZE_MB}MB — consider GitHub Releases`);
+        totalOk++;
+
+        // Update index.json screenshot field
+        let index = loadIndex(monthDir);
+        upsertSource(index, {
+          url: entry.url,
+          screenshot: `${slug}.png`,
+          screenshot_size: result.size,
+          screenshot_size_human: result.size_human,
+        });
+        index.month = month;
+        index.updated_at = now;
+        saveIndex(monthDir, index);
+      } else {
+        console.error(`    ❌ ${result.error}`);
+        totalFail++;
+      }
+    }
+
+    console.error(`\n━━━━━━━━━━━━━━━━━━━━━━━━`);
+    console.error(`  📸 Screenshots: ✅ ${totalOk}  ❌ ${totalFail}`);
+    console.error(`━━━━━━━━━━━━━━━━━━━━━━━━\n`);
     return;
   }
 
