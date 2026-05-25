@@ -1,0 +1,30 @@
+{
+  "month": "2023-12",
+  "sources": [
+    {
+      "url": "https://blog.google/technology/ai/google-gemini-ai/",
+      "title": null,
+      "snapshot": "blog-google-ai-google-gemini-ai.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 414889,
+      "file_size_human": "405.2 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.bloomberg.com/",
+      "title": null,
+      "snapshot": "bloomberg-com.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 8141538,
+      "file_size_human": "7.8 MB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

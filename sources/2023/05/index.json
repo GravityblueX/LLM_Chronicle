@@ -1,0 +1,42 @@
+{
+  "month": "2023-05",
+  "sources": [
+    {
+      "url": "https://github.com/svc-develop-team/so-vits-svc",
+      "title": null,
+      "snapshot": "github-com-svc-develop-team-so-vits-svc.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 611268,
+      "file_size_human": "596.9 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://arxiv.org/abs/2106.06103",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2106.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 46213,
+      "file_size_human": "45.1 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://github.com/RVC-Boss/GPT-SoVITS",
+      "title": null,
+      "snapshot": "github-com-RVC-Boss-GPT-SoVITS.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 489045,
+      "file_size_human": "477.6 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

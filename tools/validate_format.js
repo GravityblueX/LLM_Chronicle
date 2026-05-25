@@ -92,11 +92,15 @@ const RULES = {
         const lineNum = content.substring(0, match.index).split('\n').length;
 
         // 允许的日期格式
+        // v2.0 §1.3: 日期明确到日；仅有月份的写到月；仅有年份的写到年
         const validDate = /^\d{4}-\d{2}-\d{2}$/;
+        const validDateRange = /^\d{4}-\d{2}-\d{2}[—–-]\d{1,2}$/;
+        const validMonthApprox = /^\d{4}-\d{2}\s*[初中下旬末]/;
+        const validMonth = /^\d{4}-\d{2}$/;
         const validApprox = /^约\d{4}年\d{1,2}月/;
         const validMonthOnly = /^\d{4}年\d{1,2}月/;
         const validYearOnly = /^\d{4}年$/;
-        const looksLikeDate = /^\d/.test(dateStr); // 以数字开头 = 尝试写日期但格式不对
+        const looksLikeDate = /^\d/.test(dateStr);
 
         if (looksLikeDate) {
           // v2.0: 禁波浪号 ~ 用于日期范围，应改用 em-dash（—）或"至"
@@ -110,7 +114,7 @@ const RULES = {
           }
 
           // 尝试写日期但格式错误 → error
-          if (!validDate.test(dateStr) && !validMonth.test(dateStr) && !validApprox.test(dateStr)
+          if (!validDate.test(dateStr) && !validDateRange.test(dateStr) && !validMonthApprox.test(dateStr) && !validMonth.test(dateStr) && !validApprox.test(dateStr)
               && !validMonthOnly.test(dateStr) && !validYearOnly.test(dateStr)) {
             issues.push({
               level: 'error',
@@ -447,11 +451,6 @@ function main() {
 
   const hasErrors = results.some(r => r.issues.some(i => i.level === 'error'));
   const hasWarnings = results.some(r => r.issues.some(i => i.level === 'warning'));
-  process.exit(hasErrors ? 1 : (hasWarnings && strict ? 1 : 0));
-}
-
-main();
-ing'));
   process.exit(hasErrors ? 1 : (hasWarnings && strict ? 1 : 0));
 }
 

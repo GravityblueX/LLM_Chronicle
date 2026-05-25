@@ -1,0 +1,162 @@
+{
+  "month": "2023-02",
+  "sources": [
+    {
+      "url": "https://blogs.microsoft.com/blog/2023/02/07/reinventing-search-with-a-new-ai-powered-microsoft-bing-and-edge-your-copilot-for-the-web/",
+      "title": null,
+      "snapshot": "blogs-microsoft-com-07-reinventing-search-with-a-new-ai-powered-microsoft-bing-a.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 142980,
+      "file_size_human": "139.6 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.theverge.com/2023/2/7/23587454/microsoft-bing-edge-chatgpt-ai",
+      "title": null,
+      "snapshot": "theverge-com-23587454-microsoft-bing-edge-chatgpt-ai.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 607836,
+      "file_size_human": "593.6 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://twitter.com/kliu128/status/1623472922374574080",
+      "title": null,
+      "snapshot": "twitter-com-status-1623472922374574080.html",
+      "screenshot": null,
+      "screenshot_status": "MANUAL_NEEDED",
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 270037,
+      "file_size_human": "263.7 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://m.thepaper.cn/newsDetail_forward_21874026",
+      "title": null,
+      "snapshot": "m-thepaper-cn-newsDetail_forward_21874026.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 68477,
+      "file_size_human": "66.9 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.theverge.com/2023/2/15/23599072/microsoft-ai-bing-personality-conversations-spy-employees-webcams",
+      "title": null,
+      "snapshot": "theverge-com-23599072-microsoft-ai-bing-personality-conversations-spy-employees-.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 617806,
+      "file_size_human": "603.3 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://simonwillison.net/2023/Feb/15/bing/",
+      "title": null,
+      "snapshot": "simonwillison-net-15-bing.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 50930,
+      "file_size_human": "49.7 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.nytimes.com/2023/02/16/technology/bing-chatbot-microsoft-chatgpt.html",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://m.huxiu.com/article/819130.html",
+      "title": null,
+      "snapshot": "m-huxiu-com-article-819130.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 110064,
+      "file_size_human": "107.5 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.theverge.com/2023/2/17/23604906/microsoft-bing-ai-limit-chat-conversations-5-chat-sessions-50-per-day",
+      "title": null,
+      "snapshot": "theverge-com-23604906-microsoft-bing-ai-limit-chat-conversations-5-chat-sessions.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 561448,
+      "file_size_human": "548.3 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://blogs.bing.com/search/february-2023/The-new-Bing-Edge-Learning-from-our-first-week",
+      "title": null,
+      "snapshot": "blogs-bing-com-february-2023-The-new-Bing-Edge-Learning-from-our-first-week.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 37492,
+      "file_size_human": "36.6 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://36kr.com/p/2144282153716232",
+      "title": null,
+      "snapshot": "36kr-com-p-2144282153716232.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 134198,
+      "file_size_human": "131.1 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://arxiv.org/abs/2302.13971",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2302.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 45321,
+      "file_size_human": "44.3 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.theverge.com/2023/3/3/23622776/meta-llama-ai-model-leak-online",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

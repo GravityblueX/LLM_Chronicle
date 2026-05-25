@@ -1,0 +1,66 @@
+{
+  "month": "2025-01",
+  "sources": [
+    {
+      "url": "https://api-docs.deepseek.com/zh-cn/news/news250120",
+      "title": null,
+      "snapshot": "api-docs-deepseek-com-news-news250120.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 26119,
+      "file_size_human": "25.5 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://zh.wikipedia.org/wiki/DeepSeek-R1",
+      "title": null,
+      "snapshot": "zh-wikipedia-org-wiki-DeepSeek-R1.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 208949,
+      "file_size_human": "204.1 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://arxiv.org/abs/2501.12948",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2501.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 80029,
+      "file_size_human": "78.2 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://cloud.tencent.com/developer/article/2491379",
+      "title": null,
+      "snapshot": "cloud-tencent-com-article-2491379.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 120189,
+      "file_size_human": "117.4 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
+      "title": null,
+      "snapshot": "huggingface-co-deepseek-ai-DeepSeek-R1-0528.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 312941,
+      "file_size_human": "305.6 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

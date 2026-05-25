@@ -1,0 +1,78 @@
+{
+  "month": "2023-03",
+  "sources": [
+    {
+      "url": "https://openai.com/research/gpt-4",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://www.semianalysis.com/p/gpt-4-architecture-infrastructure",
+      "title": null,
+      "snapshot": "semianalysis-com-p-gpt-4-architecture-infrastructure.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 159237,
+      "file_size_human": "155.5 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://arxiv.org/abs/2303.08774",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2303.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 92966,
+      "file_size_human": "90.8 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.theatlantic.com/",
+      "title": null,
+      "snapshot": "theatlantic-com.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 363143,
+      "file_size_human": "354.6 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://arxiv.org/abs/2212.08073",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2212.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 54000,
+      "file_size_human": "52.7 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.anthropic.com/news/introducing-claude",
+      "title": null,
+      "snapshot": "anthropic-com-news-introducing-claude.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 140275,
+      "file_size_human": "137.0 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}
