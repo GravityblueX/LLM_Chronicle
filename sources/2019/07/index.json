@@ -1,0 +1,18 @@
+{
+  "month": "2019-07",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/1907.11692",
+      "title": null,
+      "snapshot": "arxiv-org-abs-1907.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 46312,
+      "file_size_human": "45.2 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

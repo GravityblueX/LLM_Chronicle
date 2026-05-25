@@ -1,0 +1,54 @@
+{
+  "month": "2020-06",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2005.14165",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2005.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 53364,
+      "file_size_human": "52.1 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://openai.com/blog/openai-api",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://openai.com/blog/microsoft-invests-in-and-partners-with-openai",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/abs/2206.07682",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2206.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 46139,
+      "file_size_human": "45.1 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

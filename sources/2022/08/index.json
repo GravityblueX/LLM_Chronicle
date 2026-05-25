@@ -1,0 +1,66 @@
+{
+  "month": "2022-08",
+  "sources": [
+    {
+      "url": "https://stability.ai/news/stable-diffusion-public-release",
+      "title": null,
+      "snapshot": "stability-ai-news-stable-diffusion-public-release.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 270992,
+      "file_size_human": "264.6 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://zh.wikipedia.org/wiki/Stable_Diffusion",
+      "title": null,
+      "snapshot": "zh-wikipedia-org-wiki-Stable_Diffusion.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 260567,
+      "file_size_human": "254.5 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://reddit.com/r/StableDiffusion",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://view.inews.qq.com",
+      "title": null,
+      "snapshot": "view-inews-qq-com.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 23822,
+      "file_size_human": "23.3 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://www.thepaper.cn/newsDetail_forward/20240223",
+      "title": null,
+      "snapshot": "thepaper-cn-newsDetail_forward-20240223.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 56947,
+      "file_size_human": "55.6 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

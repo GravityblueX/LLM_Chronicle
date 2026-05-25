@@ -110,7 +110,7 @@ const RULES = {
           }
 
           // 尝试写日期但格式错误 → error
-          if (!validDate.test(dateStr) && !validApprox.test(dateStr)
+          if (!validDate.test(dateStr) && !validMonth.test(dateStr) && !validApprox.test(dateStr)
               && !validMonthOnly.test(dateStr) && !validYearOnly.test(dateStr)) {
             issues.push({
               level: 'error',
@@ -447,6 +447,11 @@ function main() {
 
   const hasErrors = results.some(r => r.issues.some(i => i.level === 'error'));
   const hasWarnings = results.some(r => r.issues.some(i => i.level === 'warning'));
+  process.exit(hasErrors ? 1 : (hasWarnings && strict ? 1 : 0));
+}
+
+main();
+ing'));
   process.exit(hasErrors ? 1 : (hasWarnings && strict ? 1 : 0));
 }
 

@@ -1,0 +1,66 @@
+{
+  "month": "2019-02",
+  "sources": [
+    {
+      "url": "https://openai.com/research/better-language-models",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf",
+      "title": null,
+      "snapshot": "cdn-openai-com-better-language-models-language_models_are_unsupervised_multitask.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 582775,
+      "file_size_human": "569.1 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://openai.com/research/gpt-2-1-5b-release",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://www.theguardian.com/technology/2019/feb/14/elon-musk-backed-ai-writes-convincing-news-fiction",
+      "title": null,
+      "snapshot": "theguardian-com-14-elon-musk-backed-ai-writes-convincing-news-fiction.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 391221,
+      "file_size_human": "382.1 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://thegradient.pub/openais-gpt-2-the-model-the-hype-and-the-controversy/（",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

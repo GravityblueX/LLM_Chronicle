@@ -1,0 +1,18 @@
+{
+  "month": "2019-09",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/1909.08053",
+      "title": null,
+      "snapshot": "arxiv-org-abs-1909.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 48775,
+      "file_size_human": "47.6 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

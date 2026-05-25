@@ -1,0 +1,30 @@
+{
+  "month": "2021-08",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2107.03374",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2107.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 56012,
+      "file_size_human": "54.7 KB",
+      "curl_status": 200
+    },
+    {
+      "url": "https://github.blog/news-insights/product-news/github-copilot-is-generally-available-to-all-developers/",
+      "title": null,
+      "snapshot": "github-blog-product-news-github-copilot-is-generally-available-to-all-developers.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 171708,
+      "file_size_human": "167.7 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}

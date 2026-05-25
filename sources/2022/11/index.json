@@ -1,0 +1,42 @@
+{
+  "month": "2022-11",
+  "sources": [
+    {
+      "url": "https://openai.com/blog/chatgpt",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://www.reuters.com/technology/chatgpt-sets-record-fastest-growing-user-base-analyst-note-2023-02-01",
+      "title": null,
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/abs/2203.02155",
+      "title": null,
+      "snapshot": "arxiv-org-abs-2203.html",
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-05-25",
+      "wayback_url": null,
+      "file_size": 49182,
+      "file_size_human": "48.0 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-05-25"
+}
