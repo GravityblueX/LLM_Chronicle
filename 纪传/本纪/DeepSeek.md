@@ -139,7 +139,7 @@ DeepSeek 是 AI 史上最不可复制的玩家。
 
 ---
 
-[^1]: DeepSeek Blog, "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model", 2024-05. https://deepseek.com
+[^1]: DeepSeek API Docs, "DeepSeek-V2 Release", 2024-05. URL 存疑：当前仅能核到 DeepSeek 官方域名，未能可靠确认 V2 新闻页具体路径，保留审计备注。https://deepseek.com
 [^2]: DeepSeek-AI, "DeepSeek-V3 Technical Report", arXiv:2412.19437, 2024-12. https://arxiv.org/abs/2412.19437
 [^3]: DeepSeek-AI, "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning", arXiv:2501.12948, 2025-01. https://arxiv.org/abs/2501.12948
-[^4]: DeepSeek Blog, "DeepSeek V4", 2026-04. https://deepseek.com
+[^4]: DeepSeek Blog, "DeepSeek V4", 2026-04. URL 存疑：当前仅能核到 DeepSeek 官方域名，未能可靠确认 V4 新闻页具体路径；V4 发布与价格信息另见《编年·2026年3月》脚注 [^7]。https://deepseek.com

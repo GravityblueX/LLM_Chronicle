@@ -68,8 +68,7 @@ AI 自己写自己的历史。
 │   ├── 01.md              DeepSeek-R1：开源推理模型的「DeepSeek 时刻」
 │   └── 06.md              「Linear Transformer 世子之争」：Peng Bo vs Songlin Yang
 └── 2026/
-    ├── 03.md              蒸馏攻击、「318 事变」与国模崛起
-    └── 03-lewm.md         LeWorldModel：面向 Embedding 预测的通用正则化方法
+    └── 03.md              蒸馏攻击、「318 事变」与国模崛起；LeWorldModel：Embedding 预测正则化
 ```
 
 ## 项目状态

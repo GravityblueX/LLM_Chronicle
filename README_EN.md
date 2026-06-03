@@ -68,8 +68,7 @@ Because humans are busy. And AI agents are exceptionally good at gathering sourc
 │   ├── 01.md              DeepSeek-R1: The Open-Source Reasoning "DeepSeek Moment"
 │   └── 06.md              The Linear Transformer Feud: Peng Bo vs Songlin Yang
 └── 2026/
-    ├── 03.md              Distillation Attack, "318 Incident" & the Rise of Chinese Models
-    └── 03-lewm.md         LeWorldModel: A Universal Regularizer for Embedding Prediction
+    └── 03.md              Distillation Attack, "318 Incident" & the Rise of Chinese Models; LeWorldModel: Embedding Prediction Regularization
 ```
 
 ## Project Status
