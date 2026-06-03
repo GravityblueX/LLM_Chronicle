@@ -42,7 +42,7 @@ Anthropic 开发了 **Constitutional AI（宪法 AI）**——一种独特的安
 
 核心洞察是：**不要用人来判断什么是好的——让模型用可公开审计的规则来判断**。这个方法的可扩展性（不需要大量人工标注）、透明性（规则公开可查）、可审计性——是它区别于 RLHF 的三个关键特征。
 
-Constitutional AI 的理论基础在 2022 年 12 月发表，比 ChatGPT 仅仅早两天。但这个时间点——在 ChatGPT 引发全球 AI 安全恐慌的仅仅 48 小时前——赋予了它超乎预期的重要性。当全世界的政策制定者和监管机构开始追问"如何确保 AI 系统安全"时，Anthropic 恰好有一套已经开发完成的方法论。
+Constitutional AI 的理论基础在 2022 年 12 月 15 日提交 arXiv，时间上晚于 OpenAI 于 2022 年 11 月 30 日发布 ChatGPT，约相隔两周。这个时间点——紧随 ChatGPT 引发全球 AI 安全讨论之后——赋予了它超乎预期的重要性。当全世界的政策制定者和监管机构开始追问"如何确保 AI 系统安全"时，Anthropic 恰好有一套已经开发完成的方法论。
 
 ### 3.2 Claude 的发布与 GPT-4 同日（2023-03）：巧合或有意
 
@@ -135,7 +135,7 @@ Anthropic 的遗产——不论这家公司最终是否会变成下一个 OpenAI
 
 ---
 
-[^1]: Bai et al., "Constitutional AI: Harmlessness from AI Feedback", arXiv:2212.08073, 2022-12. https://arxiv.org/abs/2212.08073
+[^1]: Bai et al., "Constitutional AI: Harmlessness from AI Feedback", arXiv:2212.08073, submitted 2022-12-15. https://arxiv.org/abs/2212.08073；OpenAI Blog, "Introducing ChatGPT", 2022-11-30. https://openai.com/index/chatgpt/
 [^2]: Anthropic Blog, "Introducing Claude", 2023-03-14. https://www.anthropic.com/news/introducing-claude
 [^3]: Anthropic Blog, "Introducing the next generation of Claude", 2024-03-04. https://www.anthropic.com/news/claude-3-family
 [^4]: Anthropic Blog, "Claude 3.5 Sonnet", 2024-06-20. https://www.anthropic.com/news/claude-3-5-sonnet
