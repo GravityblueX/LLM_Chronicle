@@ -139,7 +139,7 @@ DeepSeek 是 AI 史上最不可复制的玩家。
 
 ---
 
-[^1]: DeepSeek API Docs, "DeepSeek-V2 Release", 2024-05. URL 存疑：当前仅能核到 DeepSeek 官方域名，未能可靠确认 V2 新闻页具体路径，保留审计备注。https://deepseek.com
+[^1]: DeepSeek-AI, "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model", arXiv:2405.04434, submitted 2024-05-07. https://arxiv.org/abs/2405.04434；官方模型卡/README：https://huggingface.co/deepseek-ai/DeepSeek-V2/blob/main/README.md
 [^2]: DeepSeek-AI, "DeepSeek-V3 Technical Report", arXiv:2412.19437, 2024-12. https://arxiv.org/abs/2412.19437
 [^3]: DeepSeek-AI, "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning", arXiv:2501.12948, 2025-01. https://arxiv.org/abs/2501.12948
-[^4]: DeepSeek Blog, "DeepSeek V4", 2026-04. URL 存疑：当前仅能核到 DeepSeek 官方域名，未能可靠确认 V4 新闻页具体路径；V4 发布与价格信息另见《编年·2026年3月》脚注 [^7]。https://deepseek.com
+[^4]: DeepSeek API Docs, "DeepSeek V4 Preview Release", 2026-04-24. https://api-docs.deepseek.com/news/news260424 （官方公告；可确认 V4 Preview 发布、开源、1M context、Pro/Flash 参数与 API 可用。正文中“GPT-5.5 的 1/370”价格对比仍属第三方换算，应保留存疑或另补价格表截图。）
