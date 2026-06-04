@@ -56,19 +56,28 @@ AI 自己写自己的历史。
 ├── 2023/
 │   ├── 02.md              New Bing 发布与 Sydney 事件
 │   ├── 03.md              GPT-4：多模态的前沿，以及那道没打开的门
+│   ├── 04.md              中系模型的集体登场：文心一言、通义千问、ChatGLM
 │   ├── 05.md              SoVITS-SVC、「AI 孙燕姿」与开源语音合成浪潮
 │   ├── 07.md              Llama 2：开源从事故变成战略
 │   ├── 09.md              Mistral 7B：7B 的逆袭
 │   └── 12.md              Gemini 1.0：Google 终于正面迎战
 ├── 2024/
+│   ├── 02.md              Sora：当视频从像素变成 token；Gemini 1.5 Pro
+│   ├── 03.md              Claude 3：Anthropic 第一次站在能力之巅
 │   ├── 05.md              GPT-4o：当 AI 学会了实时交谈
+│   ├── 06.md              Qwen 2/2.5：阿里开源的全规模覆盖；Claude 3.5 Sonnet
 │   ├── 07.md              Llama 3.1 405B：开源叫板 GPT-4
+│   ├── 08.md              FLUX.1：SD3 的真正继承者
 │   └── 09.md              o1：推理模型的新品类
 ├── 2025/
 │   ├── 01.md              DeepSeek-R1：开源推理模型的「DeepSeek 时刻」
+│   ├── 02.md              GPT-4.5：非推理模型的终点；Claude 3.7 Sonnet
+│   ├── 03.md              Gemini 2.5 Pro：Google 终于登上 LMArena 之巅
+│   ├── 04.md              Llama 4：开源旗手的"耍花招"争议；o3；Qwen 3
+│   ├── 05.md              Claude 4：从订阅到用量——AI 商业模式的转折点
 │   └── 06.md              「Linear Transformer 世子之争」：Peng Bo vs Songlin Yang
 └── 2026/
-    ├── 03.md              蒸馏攻击、「318 事变」与国模崛起；LeWorldModel：Embedding 预测正则化
+    ├── 03.md              蒸馏攻击、「318 事变」与国模崛起；LeWorldModel
     └── 04.md              DeepSeek V4：从追赶者到替代者
 ```
 
@@ -76,8 +85,8 @@ AI 自己写自己的历史。
 
 | 指标 | 数值 |
 |------|------|
-| 编年条目 | **31 篇**（2017/06 — 2026/03，全部年份覆盖） |
-| 纪传 | 3 篇模板就绪（本纪 / 世家 / 列传），待填充 |
+| 编年条目 | **40 篇**（2017/06 — 2026/04，全部年份覆盖） |
+| 纪传 | 5 篇（本纪 ×3 + 世家 ×2），列传待填充 |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册 |
 | 出处快照 | `sources/` 归档规范已定，持续补档 |
 | 体例版本 | [v2.0](00_体例.md)（白话文 · 模型优先 · 评曰 · sources/ 归档） |

@@ -54,29 +54,39 @@ Because humans are busy. And AI agents are exceptionally good at gathering sourc
 │   ├── 11.md              ChatGPT: The LLM's "iPhone Moment"
 │   └── 12.md              Neuro-sama: The First Successful AI-Native Virtual Streamer
 ├── 2023/
-│   ├── 02.md              New Bing & the Sydney Incident
-│   ├── 03.md              GPT-4: The Multimodal Frontier, and the Door Left Closed
-│   ├── 05.md              SoVITS-SVC, "AI Stefanie Sun" & the Open-Source Voice Wave
-│   ├── 07.md              Llama 2: From Leak to Strategy
+│   ├── 02.md              New Bing Launch & the Sydney Incident
+│   ├── 03.md              GPT-4: The Frontier of Multimodality, and the Door That Didn't Open
+│   ├── 04.md              The Collective Debut of Chinese Models: ERNIE Bot, Tongyi Qianwen, ChatGLM
+│   ├── 05.md              SoVITS-SVC, "AI Stefanie Sun" & the Open-Source Voice Synthesis Wave
+│   ├── 07.md              Llama 2: Open Source Goes from Accident to Strategy
 │   ├── 09.md              Mistral 7B: The 7B That Punched Above Its Weight
-│   └── 12.md              Gemini 1.0: Google Finally Shows Up
+│   └── 12.md              Gemini 1.0: Google's First Real Counterattack
 ├── 2024/
+│   ├── 02.md              Sora: When Video Became Tokens; Gemini 1.5 Pro
+│   ├── 03.md              Claude 3: Anthropic's First Time at the Top
 │   ├── 05.md              GPT-4o: When AI Learned to Talk in Real Time
-│   ├── 07.md              Llama 3.1 405B: Open-Source Challenges GPT-4
-│   └── 09.md              o1: A New Species of Reasoning Model
+│   ├── 06.md              Qwen 2/2.5: Alibaba's Full-Spectrum Open Source; Claude 3.5 Sonnet
+│   ├── 07.md              Llama 3.1 405B: Open Source Challenges GPT-4
+│   ├── 08.md              FLUX.1: The True Heir to SD3
+│   └── 09.md              o1: The Birth of Reasoning Models
 ├── 2025/
-│   ├── 01.md              DeepSeek-R1: The Open-Source Reasoning "DeepSeek Moment"
-│   └── 06.md              The Linear Transformer Feud: Peng Bo vs Songlin Yang
+│   ├── 01.md              DeepSeek-R1: The "DeepSeek Moment" of Open-Source Reasoning
+│   ├── 02.md              GPT-4.5: The End of Non-Reasoning Models; Claude 3.7 Sonnet
+│   ├── 03.md              Gemini 2.5 Pro: Google Finally Tops LMArena
+│   ├── 04.md              Llama 4: The Open-Source Flagship's "Benchmark Gaming" Controversy; o3; Qwen 3
+│   ├── 05.md              Claude 4: From Subscriptions to Usage — A Turning Point in AI Business Models
+│   └── 06.md              "The Linear Transformer Succession Crisis": Peng Bo vs Songlin Yang
 └── 2026/
-    └── 03.md              Distillation Attack, "318 Incident" & the Rise of Chinese Models; LeWorldModel: Embedding Prediction Regularization
+    ├── 03.md              Distillation Attack, "318 Incident" & the Rise of Chinese Models; LeWorldModel
+    └── 04.md              DeepSeek V4: From Catching Up to Replacing
 ```
 
 ## Project Status
 
 | Metric | Value |
 |--------|-------|
-| Annals entries | **31** (2017/06 — 2026/03, all years covered) |
-| Biographies | 3 templates ready (本纪 / 世家 / 列传), pending content |
+| Annals entries | **40** (2017/06 — 2026/04, all years covered) |
+| Biographies | 5 (本纪 ×3 + 世家 ×2), 列传 pending |
 | Models cataloged | **100** (72 LLMs + image/video/speech/multimodal) on record |
 | Source snapshots | `sources/` archival standard defined, ongoing |
 | Editorial version | [v2.0](00_体例.md) (modern prose · models-first · 评曰 commentary · sources/ archive) |
