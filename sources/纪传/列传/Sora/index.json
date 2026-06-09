@@ -1,0 +1,63 @@
+{
+  "topic": "Sora列传",
+  "archived_at": "2026-06-09",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://openai.com/index/sora/",
+      "title": "OpenAI - Sora: Creating video from text",
+      "snapshot": "openai-sora.html",
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://openai.com/index/video-generation-models-as-world-simulators/",
+      "title": "OpenAI - Video generation models as world simulators (Sora technical report)",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://arxiv.org/abs/2212.09748",
+      "title": "Peebles & Xie, Scalable Diffusion Models with Transformers (DiT), arXiv:2212.09748, 2022-12-19",
+      "snapshot": "arxiv-dit.html",
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^4]",
+      "url": "https://en.wikipedia.org/wiki/Sora_(text-to-video_model)",
+      "title": "维基百科 - Sora (text-to-video model)",
+      "snapshot": "wiki-sora.html",
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^5]",
+      "url": "https://makeavideo.studio/",
+      "title": "Meta AI - Make-A-Video (announced 2022-09-29)",
+      "snapshot": null,
+      "archived_at": "2026-06-09",
+      "note": "Meta 2022年9月发布Make-A-Video论文及项目页面"
+    },
+    {
+      "ref": "[^6]",
+      "url": "https://imagen.research.google/video/",
+      "title": "Google Research - Imagen Video (announced 2022-10-05)",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^7]",
+      "url": "https://research.runwayml.com/gen2",
+      "title": "Runway - Gen-2: Generate novel videos with text, images or video clips (announced 2023-02, released 2023-03)",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^8]",
+      "url": "https://www.nytimes.com/2024/02/15/technology/openai-sora-videos.html",
+      "title": "New York Times - OpenAI Unveils Sora, an A.I. That Generates Eye-Popping Videos (2024-02-15)",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    }
+  ]
+}

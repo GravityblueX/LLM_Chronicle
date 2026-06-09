@@ -166,7 +166,7 @@ async function main() {
   const mdFiles = findMdFiles(root, onlyDir).filter(f => {
     const rel = path.relative(root, f).replace(/\\/g, '/');
     // 只扫描编年条目、纪传和体例
-    return rel.startsWith('编年/') || rel.startsWith('纪传/') || rel === '00_体例.md';
+    return rel.startsWith('编年/') || rel.startsWith('纪传/') || rel.startsWith('志/') || rel.startsWith('论/') || rel === '00_体例.md';
   });
 
   console.error(`Scanning ${mdFiles.length} markdown files...`);

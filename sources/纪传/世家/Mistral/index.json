@@ -1,0 +1,46 @@
+{
+  "series": "Mistral 世家",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://mistral.ai/news/announcing-mistral-7b/",
+      "title": "Announcing Mistral 7B",
+      "snapshot": "mistral-ai-news-announcing-mistral-7b.html",
+      "archived_at": "2026-06-09",
+      "curl_status": 200
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://mistral.ai/news/mixtral-of-experts/",
+      "title": "Mixtral of Experts",
+      "snapshot": "mistral-ai-news-mixtral-of-experts.html",
+      "archived_at": "2026-06-09",
+      "curl_status": 200
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://mistral.ai/news/mistral-large/",
+      "title": "Au Large",
+      "snapshot": "mistral-ai-news-mistral-large.html",
+      "archived_at": "2026-06-09",
+      "curl_status": 200
+    },
+    {
+      "ref": "[^4]",
+      "url": "https://mistral.ai/news/mistral-large-2407/",
+      "title": "Mistral Large 2",
+      "snapshot": "mistral-ai-news-mistral-large-2407.html",
+      "archived_at": "2026-06-09",
+      "curl_status": 200
+    },
+    {
+      "ref": "[^5]",
+      "url": "https://mistral.ai/news/pixtral-12b/",
+      "title": "Pixtral 12B",
+      "snapshot": "mistral-ai-news-pixtral-12b.html",
+      "archived_at": "2026-06-09",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-06-09"
+}
