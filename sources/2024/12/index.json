@@ -1,0 +1,26 @@
+{
+  "month": "2024-12",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://arxiv.org/abs/2412.19437",
+      "title": "DeepSeek-V3 Technical Report",
+      "snapshot": "arxiv-org-abs-2412-19437.html",
+      "archived_at": "2026-06-09",
+      "file_size": 77968,
+      "file_size_human": "76.1 KB",
+      "curl_status": 200
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://github.com/deepseek-ai/DeepSeek-V3",
+      "title": "DeepSeek-V3",
+      "snapshot": "github-com-deepseek-ai-DeepSeek-V3.html",
+      "archived_at": "2026-06-09",
+      "file_size": 410783,
+      "file_size_human": "401.2 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-06-09"
+}

@@ -1,0 +1,26 @@
+{
+  "month": "2023-11",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://github.com/deepseek-ai/DeepSeek-LLM",
+      "title": "DeepSeek-LLM",
+      "snapshot": "github-com-deepseek-ai-DeepSeek-LLM.html",
+      "archived_at": "2026-06-09",
+      "file_size": 428191,
+      "file_size_human": "418.2 KB",
+      "curl_status": 200
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://arxiv.org/abs/2401.02954",
+      "title": "DeepSeek LLM: Scaling Open-Source Language Models with Longtermism",
+      "snapshot": "arxiv-org-abs-2401-02954.html",
+      "archived_at": "2026-06-09",
+      "file_size": 58958,
+      "file_size_human": "57.6 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-06-09"
+}

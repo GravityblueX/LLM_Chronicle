@@ -2,17 +2,32 @@
   "month": "2023-07",
   "sources": [
     {
+      "ref": "[^1]",
       "url": "https://ai.meta.com/blog/llama-2/",
-      "title": null,
+      "title": "Llama 2: Open Foundation and Fine-Tuned Chat Models",
       "snapshot": "ai-meta-com-blog-llama-2.html",
       "screenshot": null,
-      "screenshot_status": null,
       "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 176349,
-      "file_size_human": "172.2 KB",
-      "curl_status": 200
+      "wayback_url": null
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://www.anthropic.com/news/claude-2",
+      "title": "Claude 2",
+      "snapshot": "anthropic-com-claude-2.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": "https://web.archive.org/web/20230711164402/https://www.anthropic.com/index/claude-2",
+      "note": "Anthropic 已迁移博客路径从 /index/ 到 /news/；Wayback 快照保存原始 2023-07-11 页面。"
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://www.anthropic.com/news/100k-context-windows",
+      "title": "Introducing 100K Context Windows",
+      "snapshot": "anthropic-com-100k-context.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null
     }
-  ],
-  "updated_at": "2026-05-25"
+  ]
 }

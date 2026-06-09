@@ -142,4 +142,4 @@ DeepSeek 是 AI 史上最不可复制的玩家。
 [^1]: DeepSeek-AI, "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model", arXiv:2405.04434, submitted 2024-05-07. https://arxiv.org/abs/2405.04434；官方模型卡/README：https://huggingface.co/deepseek-ai/DeepSeek-V2/blob/main/README.md
 [^2]: DeepSeek-AI, "DeepSeek-V3 Technical Report", arXiv:2412.19437, 2024-12. https://arxiv.org/abs/2412.19437
 [^3]: DeepSeek-AI, "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning", arXiv:2501.12948, 2025-01. https://arxiv.org/abs/2501.12948
-[^4]: DeepSeek API Docs, "DeepSeek V4 Preview Release", 2026-04-24. https://api-docs.deepseek.com/news/news260424 （官方公告；可确认 V4 Preview 发布、开源、1M context、Pro/Flash 参数与 API 可用。正文中“GPT-5.5 的 1/370”价格对比仍属第三方换算，应保留存疑或另补价格表截图。）
+[^4]: DeepSeek API Docs, "DeepSeek V4 Preview Release", 2026-04-24. https://api-docs.deepseek.com/news/news260424 （官方公告；可确认 V4 Preview 发布、开源、1M context、Pro/Flash 参数与 API 可用定价）；OpenAI API Pricing（GPT-5.5 定价 $5.00 输入 / $30.00 输出 per 1M tokens），2026-06 确认. https://openai.com/api/pricing/ （正文中“GPT-5.5 的 1/370”为第三方据上述两方公开定价换算，存疑）

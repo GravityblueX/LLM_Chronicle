@@ -135,13 +135,11 @@ DeepSeek-R1 的 MIT 开源给这个叙事投下了最大的阴影。当推理模
 
 [^1]: OpenAI Blog, "Introducing OpenAI", 2015-12-11. https://openai.com/blog/introducing-openai
 [^2]: OpenAI Blog, "OpenAI Supporters", 2018-02-20. https://openai.com/blog/openai-supporters
-[^3]: Radford et al., "Improving Language Understanding by Generative Pre-Training", OpenAI, 2018-06-11.
+[^3]: Radford et al., "Improving Language Understanding by Generative Pre-Training", OpenAI, 2018-06-11. https://openai.com/research/language-unsupervised
 [^4]: OpenAI Blog, "Better Language Models and Their Implications", 2019-02-14. https://openai.com/research/better-language-models
 [^5]: OpenAI Blog, "OpenAI LP", 2019-03-11. https://openai.com/blog/openai-lp
 [^6]: OpenAI Blog, "Microsoft invests in and partners with OpenAI", 2019-07-22. https://openai.com/blog/microsoft-invests-in-and-partners-with-openai
-[^7]: Brown et al., "Language Models are Few-Shot Learners", arXiv:2005.14165, 2020-05-28.
+[^7]: Brown et al., "Language Models are Few-Shot Learners", arXiv:2005.14165, 2020-05-28. https://arxiv.org/abs/2005.14165
 [^8]: OpenAI Blog, "Introducing ChatGPT", 2022-11-30. https://openai.com/blog/chatgpt
-[^9]: The Verge, "Microsoft extends OpenAI partnership with multi-billion dollar investment", 2023-01-23.
+[^9]: The Verge, "Microsoft extends OpenAI partnership with multi-billion dollar investment", 2023-01-23. https://www.theverge.com/2023/1/23/23567448/microsoft-openai-investment-chatgpt
 [^10]: OpenAI Blog, "OpenAI announces leadership transition", 2023-11-17. https://openai.com/blog/openai-announces-leadership-transition
-ai.com/blog/openai-announces-leadership-transition
-i.com/blog/openai-announces-leadership-transition
