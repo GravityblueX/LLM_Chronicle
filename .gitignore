@@ -1,3 +1,5 @@
 node_modules/
 package-lock.json
-package.json
+# 工具链生成产物
+tools/link_report.csv
+tools/urls.json

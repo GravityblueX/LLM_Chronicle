@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "validate": "npm run validate:format && npm run validate:links",
+    "validate:format": "node tools/validate_format.js",
+    "validate:links": "node tools/validate_links.js",
+    "extract-urls": "node tools/extract_urls.js .",
+    "snapshot": "npm run extract-urls && node tools/snapshot.js",
+    "snapshot:dry-run": "node tools/snapshot.js --dry-run",
+    "snapshot:text-only": "node tools/snapshot.js --text-only"
+  },
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}
