@@ -1,0 +1,76 @@
+{
+  "month": "2022-04",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://openai.com/index/dall-e-2/",
+      "title": "DALL·E 2",
+      "snapshot": "openai-dall-e-2.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "curl_status": 200
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://github.com/openai/dalle-2-preview/blob/main/system-card.md",
+      "title": "DALL·E 2 Preview - Risks and Limitations",
+      "snapshot": "github-openai-dalle-2-preview-system-card.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "curl_status": 200
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://openai.com/index/clip/",
+      "title": "CLIP: Connecting text and images",
+      "snapshot": "openai-clip.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "curl_status": 200
+    },
+    {
+      "ref": "[^4]",
+      "url": "https://arxiv.org/abs/2204.06125",
+      "title": "Hierarchical Text-Conditional Image Generation with CLIP Latents",
+      "snapshot": "arxiv-2204-06125.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "curl_status": 200
+    },
+    {
+      "ref": "[^5]",
+      "url": "https://openai.com/index/dall-e-2-update/",
+      "title": "DALL·E 2 research preview update",
+      "snapshot": "openai-dall-e-2-update.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "curl_status": 200
+    },
+    {
+      "ref": "[^6]",
+      "url": "https://openai.com/index/dall-e-now-available-in-beta/",
+      "title": "DALL·E now available in beta",
+      "snapshot": "openai-dall-e-now-available-in-beta.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "curl_status": 200
+    },
+    {
+      "ref": "[^7]",
+      "url": "https://openai.com/index/dall-e-now-available-without-waitlist/",
+      "title": "DALL·E now available without waitlist",
+      "snapshot": "openai-dall-e-now-available-without-waitlist.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-06-09"
+}

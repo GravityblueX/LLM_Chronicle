@@ -82,7 +82,7 @@ Transformer 最早为机器翻译而生，但它真正的生命力在于“token
 
 2021 年，OpenAI 发布 CLIP，用自然语言监督把图像和文本对齐到同一个表示空间。CLIP 本身不是聊天模型，但它让“用文字控制视觉模型”变得可行。后来的文生图系统、图文检索、多模态理解，都大量受益于这种图文对齐思路。[^13]
 
-2022 年以后，扩散模型把图像生成推到公众面前。Stable Diffusion 采用 latent diffusion 路线，文本条件通常依赖 CLIP 文本编码器；它不是纯 Transformer 系统，却显示了一个更大的格局：Transformer 已经从单独模型变成多模态流水线里的关键部件。[^14]
+2022 年以后，扩散模型把图像生成推到公众面前。2022 年 8 月发布的 Stable Diffusion 采用 Rombach 等人提出的 latent diffusion 路线，文本条件通常依赖 CLIP 文本编码器；它不是纯 Transformer 系统，却显示了一个更大的格局：Transformer 已经从单独模型变成多模态流水线里的关键部件。[^14][^19]
 
 2023 年，GPT-4 发布，支持图像输入与文本输出。OpenAI 没有公开模型参数和训练细节，但“语言模型能看图”这件事本身改变了前沿模型的默认定义：只会文字已经不够，模型要能处理图像、图表、截图、手写内容。[^15]
 
@@ -130,3 +130,5 @@ Transformer 的历史地位，不在于它第一次提出了注意力，而在�
 [^16]: Google, "Introducing Gemini: our largest and most capable AI model", 2023-12-06. https://blog.google/technology/ai/google-gemini-ai/
 [^17]: OpenAI, "Hello GPT-4o", 2024-05-13. https://openai.com/research/hello-gpt-4o
 [^18]: OpenAI, "Video generation models as world simulators", 2024-02-15. https://openai.com/research/sora
+[^19]: Stability AI, "Stable Diffusion Public Release", 2022-08-22. https://stability.ai/news/stable-diffusion-public-release
+4-02-15. https://openai.com/research/sora

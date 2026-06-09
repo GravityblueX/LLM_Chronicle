@@ -1,0 +1,33 @@
+{
+  "month": "2022-01",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://openai.com/index/instruction-following/",
+      "title": "Aligning language models to follow instructions",
+      "snapshot": "openai-com-blog-instruction-following.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": "https://web.archive.org/web/20220127203232/https://openai.com/blog/instruction-following/",
+      "note": "Live URL now behind Cloudflare anti-bot (403); Wayback snapshot archived 2022-01-27 preserves original content. Path changed from /blog/ to /index/ at some point after 2022."
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://arxiv.org/abs/2203.02155",
+      "title": "Training language models to follow instructions with human feedback",
+      "snapshot": "arxiv-org-abs-2203-02155.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": "https://web.archive.org/web/20220304190442/https://arxiv.org/abs/2203.02155"
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://arxiv.org/abs/1706.03741",
+      "title": "Deep reinforcement learning from human preferences",
+      "snapshot": "arxiv-org-abs-1706-03741.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": "https://web.archive.org/web/20170612172359/https://arxiv.org/abs/1706.03741"
+    }
+  ]
+}

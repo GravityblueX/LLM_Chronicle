@@ -1,9 +1,21 @@
 {
   "month": "2026-03",
+  "_review_notes": {
+    "date": "2026-06-09",
+    "reviewer": "庄方宜（交叉审阅，Session 9 委托）",
+    "issues_found": [
+      "P0: 80aj.com snapshot 错位 — 80aj-com-AI-20260306.html 实际内容为'AI成人内容市场'，与正文引用的封号潮分析无关，需重新归档。",
+      "P0: [^3] 知乎源 snapshot 缺失（MANUAL_NEEDED），正文大量关键事实（15亿版权和解、30亿音乐索赔、五角大楼施压）仅依赖此单源，已标注'存疑'。",
+      "P1: [^5] Hinton 蒸馏论文 arXiv:1503.02531 未收录于 index.json — 已补。",
+      "P1: 4 条未在正文引用的条目（cloud.tencent.com、80aj.com 首页、news.qq.com、ai-coding.wiselychen.com）可能属于编年/2026/04.md 的前置归档，请确认归属。",
+      "P2: 知乎 URL https://zhuanlan.zhihu.com/p/2010041136933250897 可能因反爬返回 403，已在正文脚注标注。"
+    ]
+  },
   "sources": [
     {
+      "ref": "[^6]",
       "url": "https://arxiv.org/abs/2603.19312",
-      "title": null,
+      "title": "LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels",
       "snapshot": "arxiv-org-abs-2603.html",
       "screenshot": null,
       "screenshot_status": null,
@@ -14,8 +26,9 @@
       "curl_status": 200
     },
     {
+      "ref": "[^1]",
       "url": "https://gitcode.csdn.net/69c880230a2f6a37c59b424c.html",
-      "title": null,
+      "title": "幕后黑手曝光：2.4万马甲、1600万次对话，他们把Claude的路走窄了",
       "snapshot": "gitcode-csdn-net-69c880230a2f6a37c59b424c.html",
       "screenshot": null,
       "screenshot_status": null,
@@ -26,8 +39,9 @@
       "curl_status": 200
     },
     {
+      "ref": "[^2]",
       "url": "https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks",
-      "title": null,
+      "title": "Detecting and preventing distillation attacks",
       "snapshot": "anthropic-com-news-detecting-and-preventing-distillation-attacks.html",
       "screenshot": null,
       "screenshot_status": null,
@@ -38,8 +52,9 @@
       "curl_status": 200
     },
     {
+      "ref": "[^3]",
       "url": "https://zhuanlan.zhihu.com/p/2010041136933250897",
-      "title": null,
+      "title": "Anthropic控告中国AI蒸馏，马斯克和整个互联网都笑了",
       "snapshot": null,
       "screenshot": null,
       "screenshot_status": "MANUAL_NEEDED",
@@ -47,11 +62,13 @@
       "wayback_url": null,
       "file_size": 0,
       "file_size_human": "N/A",
-      "curl_status": "unknown"
+      "curl_status": "unknown",
+      "_note": "⚠ 唯一来源，多处关键事实无法交叉验证；知乎可能返回 403。"
     },
     {
+      "ref": "[^4]",
       "url": "https://www.80aj.com/AI/20260306/",
-      "title": null,
+      "title": "Anthropic 2026 封号潮深度解析：风控升级与社区进化",
       "snapshot": "80aj-com-AI-20260306.html",
       "screenshot": null,
       "screenshot_status": null,
@@ -59,9 +76,25 @@
       "wayback_url": null,
       "file_size": 103685,
       "file_size_human": "101.3 KB",
-      "curl_status": 200
+      "curl_status": 200,
+      "_note": "⚠ P0: snapshot 内容为无关文章（AI成人内容市场），需重新归档。"
     },
     {
+      "ref": "[^5]",
+      "url": "https://arxiv.org/abs/1503.02531",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "snapshot": null,
+      "screenshot": null,
+      "screenshot_status": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "file_size": 0,
+      "file_size_human": "N/A",
+      "curl_status": "unknown",
+      "_note": "交叉审阅补入；原 index.json 缺失此项。"
+    },
+    {
+      "ref": "?",
       "url": "https://cloud.tencent.com/developer/article/20260409",
       "title": null,
       "snapshot": null,
@@ -71,9 +104,11 @@
       "wayback_url": null,
       "file_size": 0,
       "file_size_human": "N/A",
-      "curl_status": "unknown"
+      "curl_status": "unknown",
+      "_note": "⚠ 正文未引用；可能属于编年/2026/04.md。"
     },
     {
+      "ref": "?",
       "url": "https://www.80aj.com/",
       "title": null,
       "snapshot": "80aj-com.html",
@@ -83,9 +118,11 @@
       "wayback_url": null,
       "file_size": 109125,
       "file_size_human": "106.6 KB",
-      "curl_status": 200
+      "curl_status": 200,
+      "_note": "⚠ 正文未引用（80aj 首页）。"
     },
     {
+      "ref": "?",
       "url": "https://news.qq.com/rain/20260424",
       "title": null,
       "snapshot": "news-qq-com-rain-20260424.html",
@@ -95,9 +132,11 @@
       "wayback_url": null,
       "file_size": 4183,
       "file_size_human": "4.1 KB",
-      "curl_status": 200
+      "curl_status": 200,
+      "_note": "⚠ 正文未引用；可能属于编年/2026/04.md。"
     },
     {
+      "ref": "?",
       "url": "https://ai-coding.wiselychen.com/archive",
       "title": null,
       "snapshot": null,
@@ -107,8 +146,9 @@
       "wayback_url": null,
       "file_size": 0,
       "file_size_human": "N/A",
-      "curl_status": "curl: (28) Connection timed out after 30001 milliseconds\r\n"
+      "curl_status": "curl: (28) Connection timed out after 30001 milliseconds\r\n",
+      "_note": "⚠ 正文未引用且链接超时；可能属于编年/2026/04.md。"
     }
   ],
-  "updated_at": "2026-05-25"
+  "updated_at": "2026-06-09"
 }
