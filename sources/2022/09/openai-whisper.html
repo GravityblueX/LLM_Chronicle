@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<!--
+
+
+           .d88888b.             
+         .8P"     "9bd888b.      
+        .8P     .d8P"   `"988.   
+     .8888   .d8P"    ,     98.  
+   .8P" 88   8"    .d98b.    88  
+  .8P   88   8 .d8P"   "98b. 88  
+  88    88   8P"  `"8b.    "98.  
+  88.   88   8       8"8b.    88 
+   88    "98.8       8   88   "88
+    `8b.    "98.,  .d8   88    88
+    88 "98b.   .d8P" 8   88   d8"
+    88    "98bP"    .8   88 .d8" 
+    "8b     `    .d8P"   8888"   
+     "88b.,   .d8P"     d8"      
+       "9888P98b.     .d8"       
+               "988888P"         
+
+
+  Solve Impossible Problems
+  openai.com/careers
+
+
+-->
+<html lang="en">
+<head><script src="https://web-static.archive.org/_static/js/athena.js" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app248.us.archive.org';v.server_ms=287;archive_analytics.send_pageview({});});</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/bundle-playback.js?v=2N_sDSC0" charset="utf-8"></script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/wombat.js?v=o9P2E1FK" charset="utf-8"></script>
+<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden","showSwfDownload":true};</script>
+<script type="text/javascript" src="https://web-static.archive.org/_static/js/ruffle/ruffle.js"></script>
+<script type="text/javascript">
+    __wm.init("https://web.archive.org/web");
+  __wm.wombat("https://openai.com/blog/whisper/","20220921171654","https://web.archive.org/","web","https://web-static.archive.org/_static/",
+	      "1663780614");
+</script>
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3" />
+<link rel="stylesheet" type="text/css" href="https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv" />
+<!-- End Wayback Rewrite JS Include -->
+
+  <script async src="https://web.archive.org/web/20220921171654js_/https://www.googletagmanager.com/gtag/js?id=UA-71156606-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-71156606-1');
+  </script>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Introducing Whisper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="https://web.archive.org/web/20220921171654cs_/https://openai.com/assets/styles/all.css?v=cdd1ea0542"/>
+  
+  <script type="text/javascript">document.documentElement.className = 'js';</script>
+  <link rel="icon" type="image/svg+xml" href="https://web.archive.org/web/20220921171654im_/https://openai.com/assets/images/favicon.svg?v=cdd1ea0542">
+  <link rel="mask-icon" href="https://web.archive.org/web/20220921171654im_/https://openai.com/assets/images/mask-icon.svg?v=cdd1ea0542" color="#000000">
+  <link rel="icon" href="https://web.archive.org/web/20220921171654im_/https://openai.com/content/images/size/w256h256/2020/09/icon-1.png" type="image/png"/>
+    <link rel="canonical" href="https://web.archive.org/web/20220921171654/https://openai.com/blog/whisper/"/>
+    <meta name="referrer" content="no-referrer-when-downgrade"/>
+    
+    <meta property="og:site_name" content="OpenAI"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="Introducing Whisper"/>
+    <meta property="og:description" content="We’ve trained and are open-sourcing a neural net called Whisper that approaches human level robustness and accuracy on English speech recognition.
+
+
+
+
+Read Paper
+
+View Code
+
+View Model Card
+
+
+
+
+
+
+Whisper examples:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reveal Transcript
+
+
+
+
+
+
+
+
+Whisper is an automatic speech recognition (ASR) system trained on 680,000 hours of multilingual and multitask"/>
+    <meta property="og:url" content="https://web.archive.org/web/20220921171654/https://openai.com/blog/whisper/"/>
+    <meta property="og:image" content="https://web.archive.org/web/20220921171654im_/https://openai.com/content/images/2022/09/social.png"/>
+    <meta property="article:published_time" content="2022-09-21T16:00:31.000Z"/>
+    <meta property="article:modified_time" content="2022-09-21T16:00:30.000Z"/>
+    <meta property="article:tag" content="Research"/>
+    
+    <meta property="article:publisher" content="https://www.facebook.com/openai.research"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Introducing Whisper"/>
+    <meta name="twitter:description" content="We’ve trained and are open-sourcing a neural net called Whisper that approaches human level robustness and accuracy on English speech recognition.
+
+
+
+
+Read Paper
+
+View Code
+
+View Model Card
+
+
+
+
+
+
+Whisper examples:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reveal Transcript
+
+
+
+
+
+
+
+
+Whisper is an automatic speech recognition (ASR) system trained on 680,000 hours of multilingual and multitask"/>
+    <meta name="twitter:url" content="https://web.archive.org/web/20220921171654im_/https://openai.com/blog/whisper/"/>
+    <meta name="twitter:image" content="https://web.archive.org/web/20220921171654im_/https://openai.com/content/images/2022/09/social.png"/>
+    <meta name="twitter:label1" content="Written by"/>
+    <meta name="twitter:data1" content="Alec Radford"/>
+    <meta name="twitter:label2" content="Filed under"/>
+    <meta name="twitter:data2" content="Research"/>
+    <meta name="twitter:site" content="@openai"/>
+    <meta property="og:image:width" content="1720"/>
+    <meta property="og:image:height" content="900"/>
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://web.archive.org/web/20220921171654/https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "OpenAI",
+        "url": "https://web.archive.org/web/20220921171654/https://openai.com/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://web.archive.org/web/20220921171654/https://openai.com/content/images/2022/05/openai-avatar.png",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Alec Radford",
+        "url": "https://web.archive.org/web/20220921171654/https://openai.com/blog/authors/alec/",
+        "sameAs": []
+    },
+    "headline": "Introducing Whisper",
+    "url": "https://web.archive.org/web/20220921171654/https://openai.com/blog/whisper/",
+    "datePublished": "2022-09-21T16:00:31.000Z",
+    "dateModified": "2022-09-21T16:00:30.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://web.archive.org/web/20220921171654/https://openai.com/content/images/2022/09/social.png",
+        "width": 1720,
+        "height": 900
+    },
+    "keywords": "Research",
+    "description": "\n\n\nWe’ve trained and are open-sourcing a neural net called Whisper that approaches human level robustness and accuracy on English speech recognition.\n\n\n\n\nRead Paper\n\nView Code\n\nView Model Card\n\n\n\n\n\n\nWhisper examples:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReveal Transcript\n\n\n\n\n\n\n\n\nWhisper is an automatic speech recognition (ASR) system trained on 680,000 hours of multilingual and multitask supervised data collected from the web. We show that the use of such a large and diverse dataset leads to improved robustne",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://web.archive.org/web/20220921171654/https://openai.com/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.15"/>
+    <link rel="alternate" type="application/rss+xml" title="OpenAI" href="https://web.archive.org/web/20220921171654/https://openai.com/blog/rss/"/>
+    <script defer src="https://web.archive.org/web/20220921171654js_/https://cdn.jsdelivr.net/npm/@tryghost/portal@~2.12/umd/portal.min.js" data-ghost="https://openai.com/" data-key="23f7e2ddba37b787ce1ea90e77" data-api="https://openaidev.ghost.io/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://web.archive.org/web/20220921171654js_/https://cdn.jsdelivr.net/npm/@tryghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="23f7e2ddba37b787ce1ea90e77" data-styles="https://cdn.jsdelivr.net/npm/@tryghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://openaidev.ghost.io/" crossorigin="anonymous"></script>
+    <script defer src="/web/20220921171654js_/https://openai.com/public/cards.min.js?v=cdd1ea0542"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+    <link rel="stylesheet" type="text/css" href="/web/20220921171654cs_/https://openai.com/public/cards.min.css?v=cdd1ea0542">
+</head>
+<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script>__wm.rw(0);</script>
+<div id="wm-ipp-base" lang="en" style="display:none;direction:ltr;" toolbar-mode="auto">
+<div id="wm-ipp" style="position:fixed;left:0;top:0;right:0;">
+<div id="donato" style="position:relative;width:100%;height:0;">
+  <div id="donato-base">
+    <iframe id="donato-if" src="https://archive.org/includes/donate.php?as_page=1&amp;platform=wb&amp;referer=https%3A//web.archive.org/web/20220921171654/https%3A//openai.com/blog/whisper/"
+	    scrolling="no" frameborder="0" style="width:100%; height:100%">
+    </iframe>
+  </div>
+</div><div id="wm-ipp-inside">
+  <div id="wm-toolbar" style="position:relative;display:flex;flex-flow:row nowrap;justify-content:space-between;" nav="async">
+    <div id="wm-logo" style="/*width:110px;*/padding-top:12px;">
+      <a href="/web/" title="Wayback Machine home page"><img src="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png" srcset="https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-100.png, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-150.png 1.5x, https://web-static.archive.org/_static/images/toolbar/wayback-toolbar-logo-200.png 2x" alt="Wayback Machine" style="width:100px" border="0" /></a>
+    </div>
+    <div class="c" style="display:flex;flex-flow:column nowrap;justify-content:space-between;flex:1;">
+      <form class="u" style="display:flex;flex-direction:row;flex-wrap:nowrap;" target="_top" method="get" action="/web/submit" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="https://openai.com/blog/whisper/" onfocus="this.focus();this.select();" style="flex:1;"/><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20220921171654" /><input type="submit" value="Go" />
+      </form>
+      <div style="display:flex;flex-flow:row nowrap;align-items:flex-end;">
+                <div class="s" id="wm-nav-captures" style="flex:1;">
+                    <a class="t" href="/web/20220921171654*/https://openai.com/blog/whisper/" title="See a list of every capture for this URL">456 captures</a>
+          <div class="r" title="Timespan for captures of this URL">21 Sep 2022 - 09 May 2026</div>
+          </div>
+        <div class="k">
+          <a href="" id="wm-graph-anchor">
+            <div id="wm-ipp-sparkline" title="Explore captures for this URL" style="position: relative">
+              <canvas id="wm-sparkline-canvas" width="775" height="27" border="0"></canvas>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="n">
+      <table>
+        <tbody>
+          <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+          <tr class="m">
+            <td class="b" nowrap="nowrap">Aug</td>
+            <td class="c" id="displayMonthEl" title="You are here: 17:16:54 Sep 21, 2022">SEP</td>
+            <td class="f" nowrap="nowrap">Oct</td>
+          </tr>
+          <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+          <tr class="d">
+            <td class="b" nowrap="nowrap"><span class="ta"></span></td>
+            <td class="c" id="displayDayEl" style="width:34px;font-size:22px;white-space:nowrap;" title="You are here: 17:16:54 Sep 21, 2022">21</td>
+            <td class="f" nowrap="nowrap"><span class="ta"></span></td>
+          </tr>
+          <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+          <tr class="y">
+            <td class="b" nowrap="nowrap">2021</td>
+            <td class="c" id="displayYearEl" title="You are here: 17:16:54 Sep 21, 2022">2022</td>
+            <td class="f" nowrap="nowrap">2023</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r" style="display:flex;flex-flow:column nowrap;align-items:flex-end;justify-content:space-between;">
+      <div id="wm-btns" style="text-align:right;height:23px;">
+                <span class="xxs">
+          <div id="wm-save-snapshot-success">success</div>
+          <div id="wm-save-snapshot-fail">fail</div>
+          <a id="wm-save-snapshot-open" href="#" title="Share via My Web Archive" >
+            <span class="iconochive-web"></span>
+          </a>
+          <a href="https://archive.org/account/login.php" title="Sign In" id="wm-sign-in">
+            <span class="iconochive-person"></span>
+          </a>
+          <span id="wm-save-snapshot-in-progress" class="iconochive-web"></span>
+        </span>
+                <a class="xxs" href="https://help.archive.org/help/category/the-wayback-machine/" title="Get some help using the Wayback Machine" style="top:-6px;"><span class="iconochive-question" style="color:rgb(87,186,244);font-size:160%;"></span></a>
+        <a id="wm-tb-close" href="#close" style="top:-2px;" title="Close the toolbar"><span class="iconochive-remove-circle" style="color:#888888;font-size:240%;"></span></a>
+      </div>
+      <div id="wm-share" class="xxs">
+        <a href="/web/20220921171654/http://web.archive.org/screenshot/https://openai.com/blog/whisper/"
+           id="wm-screenshot"
+           title="screenshot">
+          <span class="wm-icon-screen-shot"></span>
+        </a>
+        <a href="#" id="wm-video" title="video">
+          <span class="iconochive-movies"></span>
+        </a>
+        <a id="wm-share-facebook" href="#" data-url="https://web.archive.org/web/20220921171654/https://openai.com/blog/whisper/" title="Share on Facebook" style="margin-right:5px;" target="_blank"><span class="iconochive-facebook" style="color:#3b5998;font-size:160%;"></span></a>
+        <a id="wm-share-twitter" href="#" data-url="https://web.archive.org/web/20220921171654/https://openai.com/blog/whisper/" title="Share on Twitter" style="margin-right:5px;" target="_blank"><span class="iconochive-twitter" style="color:#1dcaff;font-size:160%;"></span></a>
+      </div>
+      <div style="padding-right:2px;text-align:right;white-space:nowrap;">
+        <a id="wm-expand" class="wm-btn wm-closed" href="#expand"><span id="wm-expand-icon" class="iconochive-down-solid"></span> <span class="xxs" style="font-size:80%;">About this capture</span></a>
+      </div>
+    </div>
+  </div>
+    <div id="wm-capinfo" style="border-top:1px solid #777;display:none; overflow: hidden">
+        <div id="wm-capinfo-notice" source="api"></div>
+                <div id="wm-capinfo-collected-by">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;">COLLECTED BY</div>
+    <div style="padding:3px;position:relative" id="wm-collected-by-content">
+      <div style="display:inline-block;vertical-align:top;width:49%;">
+			<span class="c-logo" style="background-image:url(https://archive.org/services/img/save-page-now)"></span>
+		<div>Collection: <a style="color:#33f;" href="https://archive.org/details/save-page-now" target="_new"><span class="wm-title">Save Page Now</span></a></div>
+	      </div>
+    </div>
+    </div>
+    <div id="wm-capinfo-timestamps">
+    <div style="background-color:#666;color:#fff;font-weight:bold;text-align:center;padding:2px 0;" title="Timestamps for the elements of this page">TIMESTAMPS</div>
+    <div>
+      <div id="wm-capresources" style="margin:0 5px 5px 5px;max-height:250px;overflow-y:scroll !important"></div>
+      <div id="wm-capresources-loading" style="text-align:left;margin:0 20px 5px 5px;display:none"><img src="https://web-static.archive.org/_static/images/loading.gif" alt="loading" /></div>
+    </div>
+    </div>
+  </div></div></div></div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20220921171654/https://openai.com/blog/whisper/</div>
+<script type="text/javascript">//<![CDATA[
+__wm.bt(775,27,25,2,"web","https://openai.com/blog/whisper/","20220921171654",1996,"https://web-static.archive.org/_static/",["https://web-static.archive.org/_static/css/banner-styles.css?v=1utQkbB3","https://web-static.archive.org/_static/css/iconochive.css?v=3PDvdIFv"], false);
+  __wm.rw(1);
+//]]></script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+ 
+  
+<article class="post" id="post-whisper">
+  <header class="post-header">
+  <nav class="nav container" data-url="/blog/whisper/">
+  <div class="nav-row row align-items-center">
+    <div class="d-none d-sm-block col-sm nav-symbol-wrap">
+      <a href="/web/20220921171654/https://openai.com/" class="nav-symbol"><svg id="openai-symbol" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 51 51"><path d="M47.21,20.92a12.65,12.65,0,0,0-1.09-10.38A12.78,12.78,0,0,0,32.36,4.41,12.82,12.82,0,0,0,10.64,9a12.65,12.65,0,0,0-8.45,6.13,12.78,12.78,0,0,0,1.57,15A12.64,12.64,0,0,0,4.84,40.51a12.79,12.79,0,0,0,13.77,6.13,12.65,12.65,0,0,0,9.53,4.25A12.8,12.8,0,0,0,40.34,42a12.66,12.66,0,0,0,8.45-6.13A12.8,12.8,0,0,0,47.21,20.92ZM28.14,47.57a9.46,9.46,0,0,1-6.08-2.2l.3-.17,10.1-5.83a1.68,1.68,0,0,0,.83-1.44V23.69l4.27,2.47a.15.15,0,0,1,.08.11v11.8A9.52,9.52,0,0,1,28.14,47.57ZM7.72,38.85a9.45,9.45,0,0,1-1.13-6.37l.3.18L17,38.49a1.63,1.63,0,0,0,1.65,0L31,31.37V36.3a.17.17,0,0,1-.07.13L20.7,42.33A9.51,9.51,0,0,1,7.72,38.85Zm-2.66-22a9.48,9.48,0,0,1,5-4.17v12a1.62,1.62,0,0,0,.82,1.43L23.17,33.2,18.9,35.67a.16.16,0,0,1-.15,0L8.54,29.78A9.52,9.52,0,0,1,5.06,16.8ZM40.14,25,27.81,17.84l4.26-2.46a.16.16,0,0,1,.15,0l10.21,5.9A9.5,9.5,0,0,1,41,38.41v-12A1.67,1.67,0,0,0,40.14,25Zm4.25-6.39-.3-.18L34,12.55a1.64,1.64,0,0,0-1.66,0L20,19.67V14.74a.14.14,0,0,1,.06-.13L30.27,8.72a9.51,9.51,0,0,1,14.12,9.85ZM17.67,27.35,13.4,24.89a.17.17,0,0,1-.08-.12V13a9.51,9.51,0,0,1,15.59-7.3l-.3.17-10.1,5.83a1.68,1.68,0,0,0-.83,1.44Zm2.32-5,5.5-3.17L31,22.35v6.34l-5.49,3.17L20,28.69Z"/></svg></a>
+    </div>
+    <div class="col col-sm-auto">
+      <ul class="d-flex flex-row align-items-center justify-content-between small-caps">
+        <div class="d-sm-none nav-symbol-wrap">
+          <a href="/web/20220921171654/https://openai.com/" class="nav-symbol"><svg id="openai-symbol" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 51 51"><path d="M47.21,20.92a12.65,12.65,0,0,0-1.09-10.38A12.78,12.78,0,0,0,32.36,4.41,12.82,12.82,0,0,0,10.64,9a12.65,12.65,0,0,0-8.45,6.13,12.78,12.78,0,0,0,1.57,15A12.64,12.64,0,0,0,4.84,40.51a12.79,12.79,0,0,0,13.77,6.13,12.65,12.65,0,0,0,9.53,4.25A12.8,12.8,0,0,0,40.34,42a12.66,12.66,0,0,0,8.45-6.13A12.8,12.8,0,0,0,47.21,20.92ZM28.14,47.57a9.46,9.46,0,0,1-6.08-2.2l.3-.17,10.1-5.83a1.68,1.68,0,0,0,.83-1.44V23.69l4.27,2.47a.15.15,0,0,1,.08.11v11.8A9.52,9.52,0,0,1,28.14,47.57ZM7.72,38.85a9.45,9.45,0,0,1-1.13-6.37l.3.18L17,38.49a1.63,1.63,0,0,0,1.65,0L31,31.37V36.3a.17.17,0,0,1-.07.13L20.7,42.33A9.51,9.51,0,0,1,7.72,38.85Zm-2.66-22a9.48,9.48,0,0,1,5-4.17v12a1.62,1.62,0,0,0,.82,1.43L23.17,33.2,18.9,35.67a.16.16,0,0,1-.15,0L8.54,29.78A9.52,9.52,0,0,1,5.06,16.8ZM40.14,25,27.81,17.84l4.26-2.46a.16.16,0,0,1,.15,0l10.21,5.9A9.5,9.5,0,0,1,41,38.41v-12A1.67,1.67,0,0,0,40.14,25Zm4.25-6.39-.3-.18L34,12.55a1.64,1.64,0,0,0-1.66,0L20,19.67V14.74a.14.14,0,0,1,.06-.13L30.27,8.72a9.51,9.51,0,0,1,14.12,9.85ZM17.67,27.35,13.4,24.89a.17.17,0,0,1-.08-.12V13a9.51,9.51,0,0,1,15.59-7.3l-.3.17-10.1,5.83a1.68,1.68,0,0,0-.83,1.44Zm2.32-5,5.5-3.17L31,22.35v6.34l-5.49,3.17L20,28.69Z"/></svg></a>
+        </div>
+                    
+          <li class="ml-sm-1.75" style="margin-top:0.5px"><a class="nav-link " href="/web/20220921171654/https://openai.com/api/" data-slug="api">API</a></li>
+          
+          <li class="ml-sm-1.75" style="margin-top:0.5px"><a class="nav-link " href="/web/20220921171654/https://openai.com/research/" data-slug="research">Research</a></li>
+          
+          <li class="ml-sm-1.75" style="margin-top:0.5px"><a class="nav-link active-parent" href="/web/20220921171654/https://openai.com/blog/" data-slug="blog">Blog</a></li>
+          
+          <li class="ml-sm-1.75" style="margin-top:0.5px"><a class="nav-link " href="/web/20220921171654/https://openai.com/about/" data-slug="about">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  
+          <div class="container mt-5">
+    <div class="row">
+              <div class="col-12 col-md-9 col-lg-8 col-xl-6 offset-xl-3">
+          <h1 class="
+   balance-text
+  
+  
+  
+  
+  
+  
+  
+   mb-0.75
+  ">Introducing Whisper</h1>        </div>
+    </div>
+      <div class="row">
+        <div class="col-12 col-md-9 col-lg-8 col-xl-6 order-xl-1">
+            <div class="post-excerpt content no-col js-excerpt-container js-widow">
+  </div>
+        </div>
+        <div class="col-12 col-md-3 col-lg-4 col-xl-3 order-xl-0">
+            <div class="post-header-date small-copy color-fg-50 mb-1.5">
+    <time datetime="2022-09-21">September 21, 2022</time>
+    <div class="reading-time">7 minute read</div>
+  </div>
+        </div>
+      </div>
+
+  </div>
+
+  
+</header>
+
+  <section class="container">
+  <div class="row">
+    <section class="content">
+      
+      
+      <div class="js-post-content">
+        <!--kg-card-begin: markdown--><div class="js-excerpt">
+<p>We’ve trained and are open-sourcing a neural net called Whisper that approaches human level robustness and accuracy on English speech recognition.</p>
+</div>
+<section class="btns">
+  <a href="https://web.archive.org/web/20220921171654/https://cdn.openai.com/papers/whisper.pdf" class="btn btn-ypadded pl-0.125 d-block icon-paper">Read Paper</a>
+  <hr class="my-0">
+  <a href="https://web.archive.org/web/20220921171654/https://github.com/openai/whisper" class="btn btn-ypadded pl-0.125 d-block icon-code">View Code</a>
+  <hr class="my-0">
+  <a href="https://web.archive.org/web/20220921171654/https://github.com/openai/whisper/blob/main/model-card.md" class="btn btn-ypadded pl-0.125 d-block icon-slides">View Model Card</a>
+</section>
+<div class="js-root mt-3 mb-2 d-none">
+  <div class="d-flex align-items-center justify-content-between mb-0.75">
+    <h3 class="font-base font-sans-serif font-bold mb-0">Whisper examples:</h3>
+    <select class="font-sans-serif medium-xsmall-copy js-example-select"></select>
+  </div>
+  <div class="demo">
+    <button class="play-button js-play-button">
+      <div class="layers">
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+      </div>
+      <div class="play-button__inner">
+        <span class="icon icon-play js-play-icon"></span>
+        <span class="icon icon-pause js-pause-icon" style="display: none;"></span>
+      </div>
+    </button>
+    <div class="position-relative w-100">
+      <div class="soundwave soundwave--unplayed js-soundwave"></div>
+      <div class="soundwave soundwave--played js-soundwave"></div>
+    </div>
+    <div class="demo__output font-sans-serif medium-xsmall-copy">
+      <div class="js-output"></div>
+      <button class="small-caps demo__reveal js-reveal">Reveal Transcript</button>
+    </div>
+  </div>
+<p><audio type="audio/wav" class="js-audio"></audio></p>
+</div>
+<p>Whisper is an automatic speech recognition (ASR) system trained on 680,000 hours of multilingual and multitask supervised data collected from the web.   We show that the use of such a large and diverse dataset leads to improved robustness to accents, background noise and technical language. Moreover, it enables transcription in multiple languages, as well as translation from those languages into English. We are open-sourcing models and inference code to serve as a foundation for building useful applications and for further research on robust speech processing.</p>
+<div class="d-md-none">
+<img src="https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220920a/asr-summary-of-model-architecture-mobile.svg" class="w-100">
+</div>
+<div class="d-none d-md-block wide my-1.5"><div class="mx-xl-auto" style="max-width:780px">
+<img src="https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220920a/asr-summary-of-model-architecture-desktop.svg" class="w-100">
+</div></div>
+<p>The Whisper architecture is a simple end-to-end approach, implemented as an encoder-decoder Transformer. Input audio is split into 30-second chunks, converted into a log-Mel spectrogram, and then passed into an encoder. A decoder is trained to predict the corresponding text caption, intermixed with special tokens that direct the single model to perform tasks such as language identification, phrase-level timestamps, multilingual speech transcription, and to-English speech translation.</p>
+<div class="d-lg-none"><div style="max-width:500px">
+<img src="https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220919a/asr-details-mobile.svg" class="w-100">
+</div></div>
+<div class="d-none d-lg-block wide my-2"><div class="mx-xl-auto">
+<img src="https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220919a/asr-details-desktop.svg" class="w-100">
+</div></div>
+<p>Other existing approaches frequently use smaller, more closely paired audio-text training datasets<span class="js-rfref" data-id="simply-mix"></span><span class="js-rfref" data-id="the-peoples-speech"></span><span class="js-rfref" data-id="gigaspeech"></span>, or use broad but unsupervised audio pretraining<span class="js-rfref" data-id="self-supervised-learning"></span><span class="js-rfref" data-id="unsupervised-speech-recognition"></span><span class="js-rfref" data-id="the-frontier"></span>. Because Whisper was trained on a large and diverse dataset and was not fine-tuned to any specific one, it does not beat models that specialize in LibriSpeech performance, a famously competitive benchmark in speech recognition. However, when we measure Whisper’s zero-shot performance across many diverse datasets we find it is much more robust and makes 50% fewer errors than those models.</p>
+<p>About a third of Whisper’s audio dataset is non-English, and it is alternately given the task of transcribing in the original language or translating to English. We find this approach is particularly effective at learning speech to text translation and outperforms the supervised SOTA on CoVoST2 to English translation zero-shot.</p>
+<div class="d-lg-none">
+<img src="https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220920a/asr-training-data-mobile.svg" class="w-100">
+</div>
+<div class="d-none d-lg-block wide my-2"><div class="mx-xl-auto">
+<img src="https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220920a/asr-training-data-desktop.svg" class="w-100">
+</div></div>
+<p>We hope Whisper’s high accuracy and ease of use will allow developers to add voice interfaces to a much wider set of applications. Check out the <a href="https://web.archive.org/web/20220921171654/https://cdn.openai.com/papers/whisper.pdf">paper</a>, <a href="https://web.archive.org/web/20220921171654/https://github.com/openai/whisper/blob/main/model-card.md">model card</a>, and <a href="https://web.archive.org/web/20220921171654/https://github.com/openai/whisper">code</a> to learn more details and to try out Whisper.</p>
+<footer class="post-footer js-post-footer">
+<!-- footer item -->
+<div data-order="-1"><hr><div class="row" id="references">
+<div class="col">References</div>
+<div class="col">
+<ol>
+<li class="js-ref" data-id="simply-mix">
+Chan, W., Park, D., Lee, C., Zhang, Y., Le, Q., and Norouzi, M. SpeechStew: Simply mix all available speech recogni- tion data to train one large neural network. <a href="https://web.archive.org/web/20220921171654/https://arxiv.org/abs/2104.02133">arXiv preprint arXiv:2104.02133, 2021</a>.
+</li>
+<li class="js-ref" data-id="the-peoples-speech">
+Galvez, D., Diamos, G., Torres, J. M. C., Achorn, K., Gopi, A., Kanter, D., Lam, M., Mazumder, M., and Reddi, V. J. The people’s speech: A large-scale diverse english speech recognition dataset for commercial usage. <a href="https://web.archive.org/web/20220921171654/https://arxiv.org/abs/2111.09344">arXiv preprint arXiv:2111.09344, 2021</a>.
+</li>
+<li class="js-ref" data-id="gigaspeech">
+Chen, G., Chai, S., Wang, G., Du, J., Zhang, W.-Q., Weng, C., Su, D., Povey, D., Trmal, J., Zhang, J., et al. Gigaspeech: An evolving, multi-domain asr corpus with 10,000 hours of transcribed audio. <a href="https://web.archive.org/web/20220921171654/https://arxiv.org/abs/2106.06909">arXiv preprint arXiv:2106.06909, 2021</a>.
+</li>
+<li class="js-ref" data-id="self-supervised-learning">
+Baevski, A., Zhou, H., Mohamed, A., and Auli, M. wav2vec 2.0: A framework for self-supervised learning of speech representations. <a href="https://web.archive.org/web/20220921171654/https://arxiv.org/abs/2006.11477">arXiv preprint arXiv:2006.11477, 2020</a>.
+</li>
+<li class="js-ref" data-id="unsupervised-speech-recognition">
+Baevski, A., Hsu, W.N., Conneau, A., and Auli, M. Unsu pervised speech recognition. Advances in Neural Information Processing Systems, 34:27826–27839, 2021.
+</li>
+<li class="js-ref" data-id="the-frontier">
+Zhang, Y., Park, D. S., Han, W., Qin, J., Gulati, A., Shor, J., Jansen, A., Xu, Y., Huang, Y., Wang, S., et al. BigSSL: Exploring the frontier of large-scale semi-supervised learning for automatic speech recognition. <a href="https://web.archive.org/web/20220921171654/https://arxiv.org/abs/2109.13226">arXiv preprint arXiv:2109.13226, 2021</a>.
+</li>
+</ol>
+</div></div></div>
+</footer>
+<style>
+  @keyframes layer1 {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: rotate(180deg) scale(0.98);
+      opacity: 0.44;
+    }
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes layer2 {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: rotate(180deg) scale(0.95);
+      opacity: 0.46;
+    }
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes layer3 {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: rotate(180deg) scale(0.97);
+      opacity: 0.41;
+    }
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes layer4 {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      transform: rotate(180deg) scale(0.96);
+      opacity: 0.46;
+    }
+    100% {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+  }
+
+  .demo {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    grid-gap: 0 32px;
+  }
+
+  .play-button {
+    position: relative;
+    width: 54px;
+    height: 54px;
+  }
+
+  .layers {
+    opacity: 0.4;
+    transition: 300ms all ease;
+  }
+
+  .play-button:hover .layers {
+    opacity: 0.7;
+  }
+
+  .play-button:hover {
+    opacity: 1;
+  }
+
+  .layer {
+    background-color: #51DA4C;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: 500ms all ease;
+  }
+
+  .layer:nth-child(1) {
+    top: -4px;
+    left: -4px;
+    transform-origin: calc(50% + 4px) calc(50% + 4px);
+    animation: layer1 4500ms linear infinite;
+  }
+
+  .layer:nth-child(2) {
+    top: 4px;
+    left: 4px;
+    transform-origin: calc(50% - 4px) calc(50% - 4px);
+    animation: layer2 4500ms linear infinite;
+  }
+
+  .layer:nth-child(3) {
+    top: 4px;
+    left: -4px;
+    transform-origin: calc(50% + 4px) calc(50% - 4px);
+    animation: layer3 4500ms linear infinite;
+  }
+
+  .layer:nth-child(4) {
+    top: -4px;
+    left: 4px;
+    transform-origin: calc(50% - 4px) calc(50% + 4px);
+    animation: layer4 4500ms linear infinite;
+  }
+
+  .playing .layer {
+    animation-duration: 2200ms;
+  }
+
+  .play-button__inner {
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+    line-height: 0.5;
+    color: #51DA4C;
+  }
+
+  .soundwave {
+    height: 44px;
+    width: 100%;
+    mask-image: url('https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220913a/mask-image-black.svg');
+    mask-size: 100% auto;
+    mask-repeat: no-repeat;
+    mask-size: 100% auto;
+    -webkit-mask-image: url('https://web.archive.org/web/20220921171654im_/https://cdn.openai.com/whisper/draft-20220913a/mask-image-black.svg');
+    -webkit-mask-size: 100% auto;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 100% auto;
+  }
+
+  .soundwave--unplayed {
+    background-color: #d6d6d6;
+  }
+
+  .soundwave--played {
+    background-color: #51DA4C;
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+
+  .demo__output {
+    position: relative;
+    margin-top: 24px;
+    background-color: #f2f2f2;
+    border-radius: 2px;
+    padding: 10px 16px 9px;
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  .demo__reveal {
+    color: #51DA4C;
+    text-align: center;
+    width: 100%;
+    padding: 4px 0 2px;
+  }
+</style>
+<script type="module">var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+
+  const EXAMPLES = {
+    'micromachines': {
+      label: 'Speed talking',
+      src: 'https://cdn.openai.com/whisper/draft-20220913a/micro-machines.wav',
+      waveform: 'https://cdn.openai.com/whisper/draft-20220913a/mask-micro-machines.svg',
+      transcript: `This is the Micro Machine Man presenting the most midget miniature motorcade of Micro Machines. Each one has dramatic details, terrific trim, precision paint jobs, plus incredible Micro Machine Pocket Play Sets. There's a police station, fire station, restaurant, service station, and more. Perfect pocket portables to take any place. And there are many miniature play sets to play with, and each one comes with its own special edition Micro Machine vehicle and fun, fantastic features that miraculously move. Raise the boatlift at the airport marina. Man the gun turret at the army base. Clean your car at the car wash. Raise the toll bridge. And these play sets fit together to form a Micro Machine world. Micro Machine Pocket Play Sets, so tremendously tiny, so perfectly precise, so dazzlingly detailed, you'll want to pocket them all. Micro Machines are Micro Machine Pocket Play Sets sold separately from Galoob. The smaller they are, the better they are.`,
+    },
+    'k-pop': {
+      label: 'K-Pop',
+      src: 'https://cdn.openai.com/whisper/draft-20220913a/younha.wav',
+      waveform: 'https://cdn.openai.com/whisper/draft-20220913a/mask-image-black.svg',
+      transcript: `While darkness was my everything
+I ran so hard that I ran out of breath
+Never say time’s up
+Like the end of the boundary
+Because my end is not the end`,
+    },
+    'multilingual': {
+      label: 'French',
+      src: 'https://cdn.openai.com/whisper/draft-20220920a/multilingual.wav',
+      waveform: 'https://cdn.openai.com/whisper/draft-20220920a/multilingual-mask.svg',
+      transcript: `Whisper is an automatic speech recognition system based on 680,000 hours of multilingual and multitasking data collected on the Internet. We establish that the use of such a number of data is such a diversity and the reason why our system is able to understand many accents, regardless of the background noise, to understand technical vocabulary and to successfully translate from various languages into English. We distribute as a free software the source code for our models and for the inference, so that it can serve as a starting point to build useful applications and to help progress research in speech processing.`,
+    },
+    'accent': {
+      label: 'Accent',
+      src: 'https://cdn.openai.com/whisper/draft-20220920a/scottish-accent.wav',
+      waveform: 'https://cdn.openai.com/whisper/draft-20220920a/mask-scottish-accent.svg',
+      transcript: `One of the most famous landmarks on the Borders, it's three hills and the myth is that Merlin, the magician, split one hill into three and left the two hills at the back of us which you can see. The weather's never good though, we stay on the Borders with the mists on the Yildens, we never get the good weather and as you can see today there's no sunshine, it's a typical Scottish Borders day.
+<br /><br />
+<span class="font-italic xsmall-copy">Note: Whisper transcribed “Eildons” as “Yildens”</span>`
+    }
+  }
+
+  const root = document.querySelector('.js-root');
+  const audio = document.querySelector('.js-audio');
+  const reveal = document.querySelector('.js-reveal');
+  const playButton = document.querySelector('.js-play-button');
+  const playIcon = document.querySelector('.js-play-icon');
+  const pauseIcon = document.querySelector('.js-pause-icon');
+  const [unplayedSoundWave, playedSoundWave] = Array.from(document.querySelectorAll('.js-soundwave'));
+  const exampleSelect = document.querySelector('.js-example-select');
+  const output = document.querySelector('.js-output');
+
+  let playing = false;
+
+  const handlePlay = () => {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'block';
+    root.classList.add('playing');
+  }
+
+  const handlePause = () => {
+    playIcon.style.display = 'block';
+    pauseIcon.style.display = 'none';
+    root.classList.remove('playing');
+  }
+
+  playButton.addEventListener('click', () => {
+    if (playing) {
+      audio.pause();
+      playing = false;
+      handlePause();
+    } else {
+      audio.play();
+      playing = true;
+      handlePlay();
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    playing = false;
+    handlePause();
+    output.innerHTML = EXAMPLES[exampleSelect.value]?.transcript;
+    reveal.style.display = 'none';
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const percent = audio.currentTime / audio.duration;
+    playedSoundWave.style.clipPath = `polygon(0 0, ${percent * 100}% 0, ${percent * 100}% 100%, 0 100%)`;
+  });
+
+  exampleSelect.addEventListener('change', () => {
+    // Pause the current example
+    audio.pause(); 
+    playing = false;
+
+    reveal.style.display = 'block';
+    output.innerText = '';
+
+    // Reset mask
+    playedSoundWave.style.clipPath = `polygon(0 0, 0 0, 0 100%, 0 100%)`;
+
+    // Update the player
+    audio.src = EXAMPLES[exampleSelect.value].src;
+
+    handlePause();
+    updateMasks();
+  });
+
+  reveal.addEventListener('click', () => {
+    reveal.style.display = 'none';
+    output.innerHTML = EXAMPLES[exampleSelect.value].transcript;
+  });
+
+  const buildSelect = () => {
+    const fragment = document.createDocumentFragment();
+
+    Object.keys(EXAMPLES).forEach((key) => {
+      const option = document.createElement('option');
+      option.value = key;
+      option.innerText = EXAMPLES[key].label;
+      fragment.appendChild(option);
+    });
+
+    exampleSelect.appendChild(fragment);
+  }
+
+  const updateMasks = () => {
+    const value = exampleSelect.value;
+
+    [unplayedSoundWave, playedSoundWave].forEach((el) => {
+      el.style.maskImage = `url(${EXAMPLES[value].waveform})`;
+      el.style.webkitMaskImage = `url(${EXAMPLES[value].waveform})`;
+    });
+  }
+
+  buildSelect();
+  updateMasks();
+  audio.src = EXAMPLES[exampleSelect.value].src;
+
+  root.classList.remove('d-none');
+</script><!--kg-card-end: markdown-->
+      </div>
+    </section>
+  </div>
+</section>
+  <footer class="post-footer post-footer--authors container js-post-footer-authors">
+  <div data-order="0">
+    <hr>
+    <div class="row" id="authors">
+      <div class="col">Authors</div>
+      <div class="col js-post-footer-authors-list ">
+        <span class="post-author"><a class="fade" href="/web/20220921171654/https://openai.com/blog/authors/alec/">Alec Radford</a></span><span class="post-author"><a class="fade" href="/web/20220921171654/https://openai.com/blog/authors/jong/">Jong Wook Kim</a></span><span class="post-author"><a class="fade" href="/web/20220921171654/https://openai.com/blog/authors/christine/">Christine McLeavey Payne</a></span><span class="post-author"><a class="fade" href="/web/20220921171654/https://openai.com/blog/authors/pamela/">Pamela Mishkin</a></span><span class="post-author"><a class="fade" href="/web/20220921171654/https://openai.com/blog/authors/tao/">Tao Xu</a></span><span class="post-author"><a class="fade" href="/web/20220921171654/https://openai.com/blog/authors/greg/">Greg Brockman</a></span><span class="post-author"><a class="fade" href="/web/20220921171654/https://openai.com/blog/authors/ilya/">Ilya Sutskever</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<footer class="post-footer post-footer--tags container js-post-footer-tags">
+  <div>
+    <hr>
+    <div class="row" id="tags">
+      <div class="col">Filed Under</div>
+      <div class="col js-post-footer-tags-list">
+        <span class="post-tag"><a class="fade" href="/web/20220921171654/https://openai.com/blog/tags/research/">Research</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</article>
+
+
+  
+
+<footer class="footer container medium-xsmall-copy line-height-1.6">
+  <a href="/web/20220921171654/https://openai.com/" class="d-block footer-logo mb-1.75" style="margin-left:-1px"><svg id="openai-horizontal" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 936 232"><path d="M667.21,90.58c-13.76,0-23.58,4.7-28.4,13.6L636.22,109V92.9H613.83v97.86h23.55V132.54c0-13.91,7.56-21.89,20.73-21.89,12.56,0,19.76,7.77,19.76,21.31v58.8h23.56v-63C701.43,104.46,688.64,90.58,667.21,90.58ZM553,90.58c-27.79,0-45,17.34-45,45.25v13.74c0,26.84,17.41,43.51,45.44,43.51,18.75,0,31.89-6.87,40.16-21L579,163.68c-6.11,8.15-15.87,13.2-25.55,13.2-14.19,0-22.66-8.76-22.66-23.44v-3.89h65.73V133.32c0-26-17.07-42.74-43.5-42.74Zm22.09,43.15H530.71v-2.35c0-16.11,7.91-25,22.27-25,13.83,0,22.09,8.76,22.09,23.44ZM935.31,76.79V58.07H853.85V76.79h28.56V172H853.85v18.72h81.46V172H906.74V76.79ZM317.65,55.37c-36.38,0-59,22.67-59,59.18v19.74c0,36.5,22.61,59.18,59,59.18s59-22.68,59-59.18V114.55C376.64,78,354,55.37,317.65,55.37Zm34.66,80.27c0,24.24-12.63,38.14-34.66,38.14S283,159.88,283,135.64V113.19c0-24.24,12.64-38.14,34.66-38.14s34.66,13.9,34.66,38.14Zm98.31-45.06c-12.36,0-23.06,5.12-28.64,13.69l-2.53,3.9V92.9h-22.4V224.43h23.56V176.79l2.52,3.74c5.3,7.86,15.65,12.55,27.69,12.55,20.31,0,40.8-13.27,40.8-42.93V133.51c0-21.37-12.63-42.93-41-42.93ZM468.06,149c0,15.77-9.2,25.57-24,25.57-13.8,0-23.43-10.36-23.43-25.18V134.67c0-15,9.71-25.56,23.63-25.56,14.69,0,23.82,9.79,23.82,25.56ZM766.53,58.08,719,190.76h23.93l9.1-28.44h54.64l.09.28,9,28.16h23.92L792.07,58.07Zm-8.66,85.53,21.44-67.08,21.22,67.08Z"/><path d="M212.59,95.12a57.27,57.27,0,0,0-4.92-47.05,58,58,0,0,0-62.4-27.79A57.29,57.29,0,0,0,102.06,1,57.94,57.94,0,0,0,46.79,41.14,57.31,57.31,0,0,0,8.5,68.93a58,58,0,0,0,7.13,67.94,57.31,57.31,0,0,0,4.92,47A58,58,0,0,0,83,211.72,57.31,57.31,0,0,0,126.16,231a57.94,57.94,0,0,0,55.27-40.14,57.3,57.3,0,0,0,38.28-27.79A57.92,57.92,0,0,0,212.59,95.12ZM126.16,216a42.93,42.93,0,0,1-27.58-10c.34-.19,1-.52,1.38-.77l45.8-26.44a7.43,7.43,0,0,0,3.76-6.51V107.7l19.35,11.17a.67.67,0,0,1,.38.54v53.45A43.14,43.14,0,0,1,126.16,216ZM33.57,176.46a43,43,0,0,1-5.15-28.88c.34.21.94.57,1.36.81l45.81,26.45a7.44,7.44,0,0,0,7.52,0L139,142.52v22.34a.67.67,0,0,1-.27.6L92.43,192.18a43.14,43.14,0,0,1-58.86-15.77Zm-12-100A42.92,42.92,0,0,1,44,57.56V112a7.45,7.45,0,0,0,3.76,6.51l55.9,32.28L84.24,162a.68.68,0,0,1-.65.06L37.3,135.33A43.13,43.13,0,0,1,21.53,76.46Zm159,37-55.9-32.28L144,70a.69.69,0,0,1,.65-.06l46.29,26.73a43.1,43.1,0,0,1-6.66,77.76V120a7.44,7.44,0,0,0-3.74-6.54Zm19.27-29c-.34-.21-.94-.57-1.36-.81L152.67,57.2a7.44,7.44,0,0,0-7.52,0L89.25,89.47V67.14a.73.73,0,0,1,.28-.6l46.29-26.72a43.1,43.1,0,0,1,64,44.65ZM78.7,124.3,59.34,113.13a.73.73,0,0,1-.37-.54V59.14A43.09,43.09,0,0,1,129.64,26c-.34.19-.95.52-1.38.77L82.46,53.21a7.45,7.45,0,0,0-3.76,6.51Zm10.51-22.67,24.9-14.38L139,101.63v28.74L114.1,144.75,89.2,130.37Z"/></svg></a>
+  <div class="row mb-1">
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">Featured</div>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/dall-e-2/">DALL·E 2</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/alignment/">Alignment</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/instruction-following/">Instruction Following</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/summarizing-books/">Summarizing Books</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/openai-codex/">OpenAI Codex</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/fund/">Startup Fund</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">API</div>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/api/">Overview</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/api/pricing/">Pricing</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/api/examples/">Examples</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/api/docs/">Docs</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/api/policies/">Terms &amp; Policies</a></li>
+          
+            <li><a class="fade" href="https://web.archive.org/web/20220921171654/https://status.openai.com/">Status</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/api/login/">Log in</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">Blog</div>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/">Index</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/tags/research/">Research</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/tags/announcements/">Announcements</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/tags/events/">Events</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/blog/tags/milestones/">Milestones</a></li>
+          
+        </ul>
+      </div>
+    
+      <div class="col-6 col-lg">
+        <ul class="mb-2">
+          <div class="small-caps mb-1/3">Information</div>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/about/">About Us</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/charter/">Our Charter</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/research/">Our Research</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/publications/">Publications</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/newsroom/">Newsroom</a></li>
+          
+            <li><a class="fade" href="/web/20220921171654/https://openai.com/careers/">Careers</a></li>
+          
+        </ul>
+      </div>
+    
+  </div>
+  <div class="row align-items-center mb-0.125">
+    <div class="col-12 col-md mb-0.5">
+      <a class="fade" style="margin-top:1px" href="/web/20220921171654/https://openai.com/">OpenAI &copy; 2015–2022</a>&emsp;<wbr><a class="fade" style="margin-top:1px" href="/web/20220921171654/https://openai.com/privacy/">Privacy&nbsp;Policy</a>&emsp;<wbr><a class="fade" style="margin-top:1px" href="/web/20220921171654/https://openai.com/terms/">Terms&nbsp;of&nbsp;Use</a>
+    </div>
+    <div class="col-12 col-md-4 col-lg-4 col-xl-3 mb-0.5">
+      <div class="d-block d-md-none" style="font-size:1.333333rem"> <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://twitter.com/openai">twitter</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://youtube.com/openai">youtube</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://github.com/openai/">github</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://soundcloud.com/openai_audio">soundcloud</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://linkedin.com/company/openai">linkedin</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://facebook.com/openai.research/">facebook</a> </div> <div class="d-none d-md-block" style="font-size:1.166667rem"> <div class="d-flex justify-content-between"> <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://twitter.com/openai">twitter</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://youtube.com/openai">youtube</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://github.com/openai/">github</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://soundcloud.com/openai_audio">soundcloud</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://linkedin.com/company/openai">linkedin</a> &ensp; <a class="fade icon" href="https://web.archive.org/web/20220921171654/https://facebook.com/openai.research/">facebook</a> </div> </div>
+    </div>
+  </div>
+</footer>
+  <script type="text/javascript" src="https://web.archive.org/web/20220921171654js_/https://openai.com/assets/scripts/main.js?v=cdd1ea0542"></script>
+  
+  
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 17:16:54 Sep 21, 2022 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 03:54:55 Jun 09, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.438
+  exclusion.robots: 0.035
+  exclusion.robots.policy: 0.026
+  esindex: 0.007
+  cdx.remote: 6.691
+  LoadShardBlock: 139.679 (3)
+  PetaboxLoader3.datanode: 65.069 (4)
+  PetaboxLoader3.resolve: 65.522 (2)
+  load_resource: 111.599
+  nav: 0.12 (6)
+-->

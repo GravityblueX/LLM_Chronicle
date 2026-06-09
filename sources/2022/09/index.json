@@ -1,0 +1,51 @@
+{
+  "month": "2022-09",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://web.archive.org/web/20220921175339/https://openai.com/blog/whisper/",
+      "title": "Introducing Whisper",
+      "snapshot": "openai-whisper.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": "https://web.archive.org/web/20220921175339/https://openai.com/blog/whisper/",
+      "note": "OpenAI current page is Cloudflare-challenged from this environment; Wayback snapshot preserved the original 2022-09-21 blog content."
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://github.com/openai/whisper",
+      "title": "GitHub - openai/whisper: Robust Speech Recognition via Large-Scale Weak Supervision",
+      "snapshot": "github-openai-whisper.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://arxiv.org/abs/2212.04356",
+      "title": "Robust Speech Recognition via Large-Scale Weak Supervision",
+      "snapshot": "arxiv-2212-04356.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^4]",
+      "url": "https://raw.githubusercontent.com/openai/whisper/main/model-card.md",
+      "title": "Model Card: Whisper",
+      "snapshot": "github-whisper-model-card.md",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^5]",
+      "url": "https://raw.githubusercontent.com/openai/whisper/main/LICENSE",
+      "title": "OpenAI Whisper LICENSE",
+      "snapshot": "github-whisper-license.txt",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null
+    }
+  ]
+}

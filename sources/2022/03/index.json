@@ -1,0 +1,30 @@
+{
+  "month": "2022-03",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://arxiv.org/abs/2203.15556",
+      "title": "Training Compute-Optimal Large Language Models",
+      "snapshot": "arxiv-org-abs-2203-15556.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "file_size": 48919,
+      "file_size_human": "47.8 KB",
+      "curl_status": 200
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://deepmind.google/blog/an-empirical-analysis-of-compute-optimal-large-language-model-training/",
+      "title": "An empirical analysis of compute-optimal large language model training",
+      "snapshot": "deepmind-google-blog-compute-optimal-llm-training.html",
+      "screenshot": null,
+      "archived_at": "2026-06-09",
+      "wayback_url": null,
+      "file_size": 140146,
+      "file_size_human": "136.9 KB",
+      "curl_status": 200
+    }
+  ],
+  "updated_at": "2026-06-09"
+}
