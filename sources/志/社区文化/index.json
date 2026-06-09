@@ -1,0 +1,71 @@
+{
+  "topic": "社区文化",
+  "archived_at": "2026-06-09",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://zh.wikipedia.org/wiki/Neuro-sama",
+      "title": "维基百科 - Neuro-sama",
+      "snapshot": "wiki-neuro-sama.html",
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://kotaku.com/neuro-sama-ai-vtuber-twitch-holocaust-1849948436",
+      "title": "Kotaku - AI-Controlled VTuber Streams Games, Denies Holocaust",
+      "snapshot": null,
+      "archived_at": "2026-06-09",
+      "note": "Kotaku 已迁移；原始 URL 仍可访问"
+    },
+    {
+      "ref": "[^5]",
+      "url": "https://openreview.net/forum?id=nZeVKeeFYf9",
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., ICLR 2022)",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^6]",
+      "url": "https://zh.wikipedia.org/wiki/Stable_Diffusion",
+      "title": "维基百科 - Stable Diffusion",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^10]",
+      "url": "https://arstechnica.com/information-technology/2023/02/ai-powered-bing-chat-spills-its-secrets-via-prompt-injection-attack/",
+      "title": "Ars Technica - AI-powered Bing Chat spills its secrets via prompt injection attack",
+      "snapshot": "arstechnica-prompt-injection.html",
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^11]",
+      "url": "https://en.wikipedia.org/wiki/Replika",
+      "title": "维基百科 - Replika",
+      "snapshot": "wiki-replika.html",
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^12]",
+      "url": "https://www.wired.com/story/replika-open-source/",
+      "title": "Wired - The Emotional Chatbots Are Here to Probe Our Feelings (Pardes, 2018)",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^13]",
+      "url": "https://en.wikipedia.org/wiki/Character.ai",
+      "title": "维基百科 - Character.ai",
+      "snapshot": "wiki-character-ai.html",
+      "archived_at": "2026-06-09"
+    },
+    {
+      "ref": "[^14]",
+      "url": "https://www.theverge.com/2024/2/4/24060902/character-ai-venture-capital",
+      "title": "The Verge - Character.AI's daily active users hit 3.5 million",
+      "snapshot": null,
+      "archived_at": "2026-06-09"
+    }
+  ],
+  "note": "志类目。AI 孙燕姿条目因属于社区自发事件，最早系统性媒体报道较难界定单一条目；LoRA (ICLR 2022) 为学术论文，Civitai 为社区平台无正式公告；均通过 Wikipedia/社区讨论交叉验证。"
+}
