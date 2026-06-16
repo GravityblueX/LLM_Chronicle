@@ -50,9 +50,12 @@ AI 自己写自己的历史。
 │   ├── 08.md              Codex：当语言模型开始写代码
 │   └── 12.md              Gopher：DeepMind 的 Scaling Law 验证
 ├── 2022/
+│   ├── 01.md              InstructGPT：RLHF 的起点
 │   ├── 03.md              Chinchilla：算力最优缩放法则
+│   ├── 04.md              DALL·E 2；PaLM 540B；Stability AI 融资
 │   ├── 08.md              Stable Diffusion：开源文生图的「寒武纪大爆发」
 │   ├── 09.md              Whisper：把语音识别做成开源基础设施
+│   ├── 10.md              Elon Musk 收购 Twitter；Meta Galactica
 │   ├── 11.md              ChatGPT：LLM 的「iPhone 时刻」
 │   └── 12.md              Neuro-sama：第一个成功的 AI 原生虚拟主播
 ├── 2023/
@@ -62,23 +65,37 @@ AI 自己写自己的历史。
 │   ├── 05.md              SoVITS-SVC、「AI 孙燕姿」与开源语音合成浪潮
 │   ├── 07.md              Llama 2：开源从事故变成战略
 │   ├── 09.md              Mistral 7B：7B 的逆袭
+│   ├── 11.md              DeepSeek 初代；Yi；零一万物
 │   └── 12.md              Gemini 1.0：Google 终于正面迎战
 ├── 2024/
+│   ├── 01.md              开年：GLM-4、Kimi、Mistral API
 │   ├── 02.md              Sora：当视频从像素变成 token；Gemini 1.5 Pro
 │   ├── 03.md              Claude 3：Anthropic 第一次站在能力之巅
-│   ├── 05.md              GPT-4o：当 AI 学会了实时交谈
+│   ├── 04.md              Llama 3：开源模型第一次真正可用；Phi-3；OpenELM
+│   ├── 05.md              GPT-4o：当 AI 学会了实时交谈；DeepSeek-V2
 │   ├── 06.md              Qwen 2/2.5：阿里开源的全规模覆盖；Claude 3.5 Sonnet
 │   ├── 07.md              Llama 3.1 405B：开源叫板 GPT-4
 │   ├── 08.md              FLUX.1：SD3 的真正继承者
-│   └── 09.md              o1：推理模型的新品类
+│   ├── 09.md              o1：推理模型的新品类
+│   ├── 10.md              诺贝尔物理学奖（Hopfield & Hinton）；Claude 3.5 Sonnet New + computer use
+│   ├── 11.md              DeepSeek-R1-Lite 预览；Qwen2.5-Coder
+│   └── 12.md              DeepSeek-V3；Gemini 2.0；Sora Turbo；Llama 3.3
 ├── 2025/
 │   ├── 01.md              DeepSeek-R1：开源推理模型的「DeepSeek 时刻」
 │   ├── 02.md              GPT-4.5：非推理模型的终点；Claude 3.7 Sonnet
 │   ├── 03.md              Gemini 2.5 Pro：Google 终于登上 LMArena 之巅
 │   ├── 04.md              Llama 4：开源旗手的"耍花招"争议；o3；Qwen 3
 │   ├── 05.md              Claude 4：从订阅到用量——AI 商业模式的转折点
-│   └── 06.md              「Linear Transformer 世子之争」：Peng Bo vs Songlin Yang
+│   ├── 06.md              「Linear Transformer 世子之争」：Peng Bo vs Songlin Yang
+│   ├── 07.md              Mistral Large 2（123B）
+│   ├── 08.md              GPT-5
+│   ├── 09.md              Anthropic 将中国列为受限地区
+│   ├── 10.md              Claude Haiku 4.5；Claude Code 网页版
+│   ├── 11.md              Grok 4.1 Fast；Claude Code 间谍攻击事件
+│   └── 12.md              （本月无重大事件，按体例不建文件）
 └── 2026/
+    ├── 01.md              （占位：待补）
+    ├── 02.md              Anthropic 蒸馏攻击指控
     ├── 03.md              蒸馏攻击、「318 事变」与国模崛起；LeWorldModel
     └── 04.md              DeepSeek V4：从追赶者到替代者
 ```
@@ -87,11 +104,11 @@ AI 自己写自己的历史。
 
 | 指标 | 数值 |
 |------|------|
-| 编年条目 | **49 篇**（2017/06 — 2026/04，全部年份覆盖） |
-| 纪传 | **15 篇**（本纪 ×3 + 世家 ×3 + 列传 ×9） |
-| 志 | **8 篇**（参数竞赛、地缘与封锁、多模态融合、开源运动、数据之争、社区文化、算力变迁、评价基准演化） |
-| 论 | **5 篇**（Scaling Law 的终结与重生、价格战、开源与闭源、开源与闭源辩证、推理模型的分水岭） |
-| 表 | **3 篇**（大模型价格沿革表、开源模型许可证对照表、模型版本沿革表） |
+| 编年条目 | **58 篇**（2017/06 — 2026/04，全部年份覆盖） |
+| 纪传 | **25 篇**（本纪 ×3 + 世家 ×7 + 列传 ×15） |
+| 志 | **9 篇**（参数竞赛、地缘与封锁、多模态融合、开源运动、数据之争、社区文化、算力变迁、评价基准演化、音频AI） |
+| 论 | **8 篇**（Scaling Law 的终结与重生、价格战、开源与闭源、开源与闭源辩证、开源模型的经济学、推理模型的分水岭、AI安全与对齐、知识蒸馏与模型压缩） |
+| 表 | **4 篇**（大事年表、大模型价格沿革表、开源模型许可证对照表、模型版本沿革表） |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册，待写清单见 `review/audit-06.md` |
 | 出处快照 | `sources/` 归档规范已定，持续补档 |
 | 体例版本 | [v2.0](00_体例.md)（白话文 · 模型优先 · 评曰 · sources/ 归档） |
@@ -105,10 +122,12 @@ AI 自己写自己的历史。
 |------|------|------|
 | 监督 | 佩丽卡（Perlica） | 项目总协调、最终裁决 |
 | 统筹 | 凯尔希（Kal'tsit） | 项目调度、质量把关、方向决策 |
-| 架构 | 伊冯（Yvonne） | 体例设计、目录结构、模板规范 |
+| 架构 | 伊冯（Yvonne） | 体例设计、目录结构、模板规范、编年主笔 |
 | 调研 | 庄方宜（Zhuang Fangyi） | 模型收录、条目规划、编年主笔 |
+| 撰稿 | 赫默（Hermes） | 编年主笔、纪传撰写 |
 | 工程 | 赛希（Saixi） | 工具链开发、快照归档、格式校验 |
 | 审查 | 艾尔黛拉（Eldera） | 事实核查、出处验证、内容审计 |
+| 情报 | 迷迭香（Rosmary） | 文献调研、来源搜集 |
 
 首批条目（2022/08 ~ 2023/05 共 4 篇，后扩展至 8 篇）由 **ssg 的 AI 史官·玄墨** 贡献，署名已保留。
 
