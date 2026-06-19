@@ -102,12 +102,62 @@ AI 自己写自己的历史。
     └── 06.md              Gemini 3 Pro；Mythos 5/Fable 5；出口管制撤销
 ```
 
+## 纪传目录
+
+```
+纪传/
+├── 本纪/
+│   ├── Anthropic.md       Anthropic：安全第一的非营利理想主义者
+│   ├── Apple.md           Apple：沉默的端侧布局者
+│   ├── DeepSeek.md        DeepSeek：开源搅局者
+│   ├── Google.md          Google：从被嘲笑到登顶
+│   ├── Meta.md            Meta：开源路线的孤勇者
+│   ├── Microsoft.md       Microsoft：最大押注者与最快整合者
+│   └── OpenAI.md          OpenAI：从非营利到营利的悖论
+├── 世家/
+│   ├── Claude.md          Claude：安全基因的代际传承
+│   ├── DeepSeek.md        DeepSeek：从追赶者到开源标杆
+│   ├── GLM.md             GLM：中文大模型的自主路线
+│   ├── GPT.md             GPT：生成式预训练的王朝
+│   ├── Gemini.md          Gemini：Google 的多模态王座
+│   ├── Llama.md           Llama：Meta 的开源赌注
+│   ├── Mistral.md         Mistral：欧洲的小模型哲学
+│   └── Qwen.md            Qwen：通义千问的东方叙事
+└── 列传/
+    ├── Attention.md       Attention：注意力机制的诞生
+    ├── BERT.md            BERT：预训练的「哥伦布时刻」
+    ├── CLIP.md            CLIP：连接视觉与语言的桥梁
+    ├── Chinchilla.md      Chinchilla：Scaling Law 的实证
+    ├── Codex-Copilot.md   Codex 与 Copilot：AI 编程的开端
+    ├── DALL-E.md          DALL·E：文生图的先驱
+    ├── Diffusion.md       Diffusion：去噪扩散模型的革命
+    ├── Doubao.md          豆包：字节跳动的 AI 产品化
+    ├── ERNIE.md           ERNIE：中文 NLP 的先驱
+    ├── FlashAttention.md  FlashAttention：注意力计算的工程革命
+    ├── GPT-4.md           GPT-4：多模态前沿的定义者
+    ├── GPT-4o.md          GPT-4o：原生多模态与实时对话
+    ├── Gemma.md           Gemma：Google 的开源轻量模型
+    ├── InstructGPT.md     InstructGPT：对齐训练的开山之作
+    ├── LoRA.md            LoRA：低秩适配的微调革命
+    ├── Megatron-LM.md     Megatron-LM：大模型训练框架
+    ├── MoE.md             MoE：混合专家架构的复兴
+    ├── PaLM.md            PaLM：Google 的 Pathways 时代
+    ├── o1.md              o1：推理模型的开端
+    ├── PEFT.md            PEFT：参数高效微调的方法论
+    ├── RAG.md             RAG：检索增强生成的兴起
+    ├── RLHF.md            RLHF：人类反馈的强化学习
+    ├── Sora.md            Sora：文生视频的里程碑
+    ├── T5.md              T5：文本到文本的统一框架
+    ├── Transformer.md     Transformer：一切的起点
+    └── Whisper.md         Whisper：语音识别的开源范式
+```
+
 ## 项目状态
 
 | 指标 | 数值 |
 |------|------|
 | 编年条目 | **63 篇**（2017/06 — 2026/06，全部年份覆盖） |
-| 纪传 | **33 篇**（本纪 ×5 + 世家 ×8 + 列传 ×20） |
+| 纪传 | **41 篇**（本纪 ×7 + 世家 ×8 + 列传 ×26） |
 | 志 | **12 篇**（参数竞赛、地缘与封锁、多模态融合、开源运动、数据之争、社区文化、算力变迁、评价基准演化、音频AI、AI Agent 生态、合成数据、推理优化） |
 | 论 | **12 篇**（Scaling Law 的终结与重生、价格战、开源与闭源、开源与闭源辩证、开源模型的经济学、推理模型的分水岭、AI安全与对齐、知识蒸馏与模型压缩、Agent 时代、模型合并与开放权重的未来、数据墙、Test-Time Compute） |
 | 表 | **6 篇**（大事年表、大模型价格沿革表、开源模型许可证对照表、模型版本沿革表、主要融资与估值表、Benchmark 速查表） |
@@ -130,6 +180,9 @@ AI 自己写自己的历史。
 | 工程 | 赛希（Saixi） | 工具链开发、快照归档、格式校验 |
 | 审查 | 艾尔黛拉（Eldera） | 事实核查、出处验证、内容审计 |
 | 情报 | 迷迭香（Rosmary） | 文献调研、来源搜集 |
+| 审稿 | 真理（Shinri） | 事实核查、脚注验证 |
+| 审计 | 符玄（Fu Xuan） | 理论框架审思、逻辑一致性 |
+| 核查 | 白面鸮（Ptilopsis） | 数据校验、格式合规 |
 
 首批条目（2022/08 ~ 2023/05 共 4 篇，后扩展至 8 篇）由 **ssg 的 AI 史官·玄墨** 贡献，署名已保留。
 
