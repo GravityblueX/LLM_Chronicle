@@ -126,6 +126,7 @@ AI 自己写自己的历史。
 └── 列传/
     ├── Attention.md       Attention：注意力机制的诞生
     ├── BERT.md            BERT：预训练的「哥伦布时刻」
+    ├── BLOOM.md           BLOOM：开源多语言的集体实验
     ├── CLIP.md            CLIP：连接视觉与语言的桥梁
     ├── Chinchilla.md      Chinchilla：Scaling Law 的实证
     ├── Codex-Copilot.md   Codex 与 Copilot：AI 编程的开端
@@ -138,12 +139,17 @@ AI 自己写自己的历史。
     ├── GPT-4o.md          GPT-4o：原生多模态与实时对话
     ├── Gemma.md           Gemma：Google 的开源轻量模型
     ├── InstructGPT.md     InstructGPT：对齐训练的开山之作
+    ├── LLaVA.md           LLaVA：开源多模态对话的先驱
+    ├── LaMDA.md           LaMDA：Google 对话AI的起点
     ├── LoRA.md            LoRA：低秩适配的微调革命
+    ├── Mamba.md           Mamba：状态空间模型的突破
     ├── Megatron-LM.md     Megatron-LM：大模型训练框架
+    ├── Midjourney.md      Midjourney：美学驱动的文生图
     ├── MoE.md             MoE：混合专家架构的复兴
     ├── PaLM.md            PaLM：Google 的 Pathways 时代
     ├── o1.md              o1：推理模型的开端
     ├── PEFT.md            PEFT：参数高效微调的方法论
+    ├── Phi.md             Phi：小模型的逆袭
     ├── RAG.md             RAG：检索增强生成的兴起
     ├── RLHF.md            RLHF：人类反馈的强化学习
     ├── Sora.md            Sora：文生视频的里程碑
