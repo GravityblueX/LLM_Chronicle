@@ -1,0 +1,77 @@
+{
+  "month": "2026-06",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://en.wikipedia.org/wiki/Gemini_3_(AI)",
+      "title": "Gemini 3 (AI) — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-Gemini-3.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://en.wikipedia.org/wiki/GPT-5.2",
+      "title": "GPT-5.2 — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-GPT-5.2.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://en.wikipedia.org/wiki/Claude_Mythos",
+      "title": "Claude Mythos — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-Claude-Mythos.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^4]",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/950412/anthropic-trump-adminstration-claude-mythos-fable-5-export-controls",
+      "title": "Inside the fight over Claude Mythos 5 — The Verge, 2026-06-14",
+      "snapshot": "theverge-com-950412-mythos-export-controls.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^5]",
+      "url": null,
+      "title": "Semafor — White House move to limit Anthropic（引用自 The Verge 报道，无直接 URL）",
+      "snapshot": null,
+      "screenshot": null,
+      "archived_at": null,
+      "status": "no_url",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^6]",
+      "url": "https://www.reuters.com/technology/googles-gemini-co-lead-noam-shazeer-join-openai-2026-06-18/",
+      "title": "Google's Gemini co-lead Noam Shazeer to join OpenAI — Reuters, 2026-06-18",
+      "snapshot": "reuters-com-shazeer-join-openai.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "js_required",
+      "note": "Reuters 返回验证码页面，需浏览器渲染。与 2022/11 已有 Reuters 快照相同问题。",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^7]",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "title": "The Verge — AI section（编年原文中 URL 不完整，仅为频道页）",
+      "snapshot": "theverge-com-ai-artificial-intelligence.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "partial_url",
+      "note": "原文脚注中 URL 仅为 The Verge AI 频道首页，非具体文章链接。已存档频道页作为参考。",
+      "wayback_url": null
+    }
+  ]
+}

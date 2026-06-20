@@ -1,0 +1,66 @@
+{
+  "month": "2026-05",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://en.wikipedia.org/wiki/Claude_Mythos",
+      "title": "Claude Mythos — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-Claude-Mythos.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://en.wikipedia.org/wiki/Gemini_3_(AI)",
+      "title": "Gemini 3 (AI) — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-Gemini-3.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://en.wikipedia.org/wiki/Claude_Mythos",
+      "title": "Claude Mythos — Wikipedia（同 [^1]，Thomas Fraise 引用来源）",
+      "snapshot": "en-wikipedia-org-wiki-Claude-Mythos.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "note": "与 [^1] 共用同一快照文件",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^4]",
+      "url": "https://en.wikipedia.org/wiki/GPT-5.5",
+      "title": "GPT-5.5 — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-GPT-5.5.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^5]",
+      "url": "https://en.wikipedia.org/wiki/Qwen",
+      "title": "Qwen — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-Qwen.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^6]",
+      "url": "https://en.wikipedia.org/wiki/Claude_(language_model)",
+      "title": "Claude (language model) — Wikipedia",
+      "snapshot": "en-wikipedia-org-wiki-Claude-language-model.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    }
+  ]
+}

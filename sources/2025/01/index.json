@@ -2,65 +2,120 @@
   "month": "2025-01",
   "sources": [
     {
+      "ref": "[^1]",
       "url": "https://api-docs.deepseek.com/zh-cn/news/news250120",
-      "title": null,
+      "title": "DeepSeek-R1 发布 — DeepSeek 官方博客, 2025-01-20",
       "snapshot": "api-docs-deepseek-com-news-news250120.html",
       "screenshot": null,
-      "screenshot_status": null,
       "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 26119,
-      "file_size_human": "25.5 KB",
-      "curl_status": 200
+      "status": "ok",
+      "wayback_url": null
     },
     {
+      "ref": "[^2]",
       "url": "https://zh.wikipedia.org/wiki/DeepSeek-R1",
-      "title": null,
+      "title": "DeepSeek-R1 — 维基百科",
       "snapshot": "zh-wikipedia-org-wiki-DeepSeek-R1.html",
       "screenshot": null,
-      "screenshot_status": null,
       "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 208949,
-      "file_size_human": "204.1 KB",
-      "curl_status": 200
+      "status": "ok",
+      "wayback_url": null
     },
     {
+      "ref": "[^3]",
       "url": "https://arxiv.org/abs/2501.12948",
-      "title": null,
+      "title": "DeepSeek-R1: Incentivizing Reasoning Capability — arXiv:2501.12948",
       "snapshot": "arxiv-org-abs-2501.html",
       "screenshot": null,
-      "screenshot_status": null,
       "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 80029,
-      "file_size_human": "78.2 KB",
-      "curl_status": 200
+      "status": "ok",
+      "wayback_url": null
     },
     {
+      "ref": "[^4]",
+      "url": null,
+      "title": "财联社 — DeepSeek 理想主义（链接已变更，原文脚注标注"链接待补"）",
+      "snapshot": null,
+      "screenshot": null,
+      "archived_at": null,
+      "status": "no_url",
+      "note": "原文脚注标注"财联社文章 ID 已变更，需通过站内搜索定位原文"。暂无可用 URL。",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^5]",
       "url": "https://cloud.tencent.com/developer/article/2491379",
-      "title": null,
+      "title": "腾讯云 — DeepSeek-R1 正式登场, 2025-01-23",
       "snapshot": "cloud-tencent-com-article-2491379.html",
       "screenshot": null,
-      "screenshot_status": null,
       "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 120189,
-      "file_size_human": "117.4 KB",
-      "curl_status": 200
+      "status": "ok",
+      "wayback_url": null
     },
     {
+      "ref": "[^6]",
+      "url": "https://www.voachinese.com/",
+      "title": "美国之音中文网（通用 URL，非具体文章页）",
+      "snapshot": "voachinese-com.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "partial_url",
+      "note": "原文脚注标注"原文快照待补"，URL 仅为美国之音中文网首页。具体文章路径未知。",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^7]",
+      "url": "https://www.thepaper.cn/",
+      "title": "澎湃新闻（通用 URL，非具体文章页）",
+      "snapshot": "thepaper-cn.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "partial_url",
+      "note": "原文脚注标注"原文快照待补"，URL 仅为澎湃新闻首页。具体文章路径未知。",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^8]",
+      "url": "https://wallstreetcn.com/",
+      "title": "华尔街见闻（通用 URL，非具体文章页）",
+      "snapshot": "wallstreetcn-com.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "partial_url",
+      "note": "原文脚注标注"原文快照待补"，URL 仅为华尔街见闻首页。具体文章路径未知。",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^9]",
+      "url": "https://www.theinformation.com/articles/meta-scrambles-after-chinese-ai-equals-its-own-upending-silicon-valley",
+      "title": "Meta Scrambles After Chinese AI Equals Its Own — The Information, 2025-01-27",
+      "snapshot": "theinformation-com-meta-scrambles.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "blocked",
+      "note": "Cloudflare 封锁 + 付费墙。快照为 Cloudflare 拦截页面。需浏览器认证后访问。",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^10]",
+      "url": "https://doi.org/10.1038/d41586-025-03015-6",
+      "title": "Secrets of DeepSeek AI model revealed in landmark paper — Nature, 2025-09-17",
+      "snapshot": "doi-org-d41586-025-03015-6.html",
+      "screenshot": null,
+      "archived_at": "2026-06-20",
+      "status": "ok",
+      "wayback_url": null
+    },
+    {
+      "ref": "[^11]",
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1-0528",
-      "title": null,
+      "title": "DeepSeek-R1-0528 — HuggingFace, 2025-05-28",
       "snapshot": "huggingface-co-deepseek-ai-DeepSeek-R1-0528.html",
       "screenshot": null,
-      "screenshot_status": null,
       "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 312941,
-      "file_size_human": "305.6 KB",
-      "curl_status": 200
+      "status": "ok",
+      "wayback_url": null
     }
   ],
-  "updated_at": "2026-05-25"
+  "updated_at": "2026-06-20"
 }

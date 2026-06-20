@@ -2,29 +2,33 @@
 
 > 从 AutoGPT 的一百万 star 到 Claude Computer Use 的鼠标键盘，大模型用了两年时间证明一件事：让模型"会聊天"和让模型"会做事"之间，隔着的不是技术能力，而是工程耐心、信任边界和生态成熟度。
 
-## 一、AutoGPT：Agent 概念的过度承诺
+## 一、AutoGPT：Agent 概念的过度承诺（2023）
 
 2023 年 3 月 30 日，一个名叫 AutoGPT 的开源项目在 GitHub 上线。它做的事情很简单：给 GPT-4 一套工具——网页浏览、文件读写、代码执行——然后让模型自己规划任务、自己执行、自己判断下一步。两周之内，它成为 GitHub 历史上增长最快的项目之一，star 数突破 10 万。[^1]
 
-AutoGPT 的爆红不是因为它真的好用。事实上，绝大多数用户很快发现：它会陷入循环、丢失上下文、做出荒谬决策、花费大量 token 却一事无成。[^2] 但爆红本身说明了一个问题：**市场对"AI 不只是聊天，而是替你做事"这件事有巨大的、未经满足的渴望。**
+AutoGPT 的爆红不是因为它真的好用。事实上，绝大多数用户很快发现：它会陷入循环、丢失上下文、做出荒谬决策、花费大量 token 却一事无成。[^2] 一个典型的失败案例：用户让 AutoGPT "研究并撰写一篇关于量子计算的博客文章"，它会在搜索引擎和文件系统之间反复跳转，消耗上百次 API 调用，最终产出一篇质量极低的文章——远不如直接让 GPT-4 一次性回答。
+
+但爆红本身说明了一个问题：**市场对"AI 不只是聊天，而是替你做事"这件事有巨大的、未经满足的渴望。** AutoGPT 的 GitHub star 数（一周内突破 10 万）不是对代码质量的认可，而是对 Agent 概念的投票。公众用 star 说了一句话："我们想要的不只是聊天机器人。"
 
 AutoGPT 的技术路线——用自然语言循环驱动一个 LLM 反复调用工具——很快暴露了其天真之处。大模型不是万能规划器。它在单步推理上已经足够强，但在多步规划、状态管理、错误恢复和长程记忆上几乎没有可靠能力。把一个聊天模型直接包装成自主代理，就像把一个聪明的翻译官直接送去当将军——翻译官不是不聪明，是他的技能栈不是为这个任务设计的。
 
 到 2023 年底，AutoGPT 基本沉寂。它的贡献不是技术实现，而是**概念验证**：Agent 这个词从学术概念进入了大众视野。此后所有 Agent 产品——无论是 Devin、Cursor、Claude Code 还是 OpenAI 的 Operator——都活在 AutoGPT 种下的期待和阴影里。
 
-## 二、Function Calling：Agent 的基础设施在悄悄铺开
+## 二、Function Calling：Agent 的基础设施在悄悄铺开（2023）
+
+2023 年是 Agent 基础设施奠基的一年。
 
 AutoGPT 退潮之后，真正让 Agent 从"demo"走向"工程"的是 Function Calling。
 
 2023 年 6 月 13 日，OpenAI 在 GPT-3.5 和 GPT-4 的 API 中加入 Function Calling 功能。模型不再只是输出文本——它可以输出结构化的 JSON，精确地选择调用哪个函数、传入什么参数。[^3] 这看起来是一个小功能，但它是 Agent 能力的地基。
 
-在 Function Calling 之前，让模型调用工具需要大量的 prompt engineering。你得在系统提示中写明所有工具的描述，然后期望模型以正确的格式输出调用意图——而格式错误、幻觉参数、误选工具是常态。Function Calling 把这件事从"提示技巧"变成了"协议"：模型在训练阶段就学会了如何正确地表达工具调用意图。
+在 Function Calling 之前，让模型调用工具需要大量的 prompt engineering。你得在系统提示中写明所有工具的描述，然后期望模型以正确的格式输出调用意图——而格式错误、幻觉参数、误选工具是常态。Function Calling 把这件事从"提示技巧"变成了"协议"：模型在训练阶段就学会了如何正确地表达工具调用意图。这个转变看似微小，但它是 Agent 工程化的分水岭——从"靠运气让模型做对"变成了"靠协议保证模型做对"。从此，工具调用不再是 Agent 的瓶颈——瓶颈转移到了更上层：规划、状态管理、错误恢复。
 
 Anthropic 在 2023 年底的 Claude 3 系列中加入了类似的 Tool Use 能力，Google 在 Gemini 中也实现了 function calling。到 2024 年，几乎所有主要模型提供商都把"模型可以调用工具"作为基础能力。[^4]
 
 Function Calling 的史学意义在于：它把 Agent 从一个"整体系统"拆解为"模型 + 协议 + 工具"的可组合架构。AutoGPT 试图让模型自己做所有事——规划、执行、判断。Function Calling 之后的 Agent 系统走的是另一条路：模型只负责决策和调度，执行交给专门的工具。这是一种工程上的退让，也是实用上的进步。
 
-## 三、Claude Computer Use：Agent 进入操作系统
+## 三、Claude Computer Use：Agent 进入操作系统（2024）
 
 2024 年 10 月 22 日，Anthropic 发布了一项名为 Computer Use 的功能。Claude 不再只是调用 API 或工具——它可以像人一样操作电脑：看屏幕、移动鼠标、点击按钮、输入文字、读取屏幕上的内容。[^5]
 
@@ -34,27 +38,107 @@ Computer Use 的突破在于它绕过了"API 壁垒"。不是所有软件都有 
 
 但 Computer Use 同时暴露了 Agent 最根本的脆弱性。GUI 操作是脆弱的：屏幕分辨率变化、UI 布局更新、弹窗遮挡、网络延迟，任何一个微小变量都可能导致 Agent 操作失败。[^6] 更深层的问题是：Agent 在操作 GUI 时缺乏"语义理解"——它看到的是像素，不是意图。它知道"这里有一个按钮"，但不总是知道"这个按钮在这个上下文中意味着什么"。
 
-这是 Agent 时代的经典悖论：**越通用的接口越脆弱，越专用的接口越可靠**。API 调用精确但覆盖面窄，GUI 交互覆盖面广但可靠性低。真正的 Agent 产品必须在两者之间找到平衡。
+这是 Agent 时代的经典悖论：**越通用的接口越脆弱，越专用的接口越可靠**。API 调用精确但覆盖面窄，GUI 交互覆盖面广但可靠性低。真正的 Agent 产品必须在两者之间找到平衡。MCP 协议（见§八）试图在这个悖论中找到第三条路：不依赖 GUI，也不依赖固定的 API——而是用一个标准化的协议层，让 Agent 和工具之间建立可靠但灵活的连接。这条路能否走通，取决于 MCP 生态的覆盖速度。
 
-## 四、MCP 与 Agent 生态：协议之争就是平台之争
+## 四、Claude Code 的能力跃迁：从自动补全到自主重构
 
-2024 年 11 月 25 日，Anthropic 发布 Model Context Protocol（MCP），一个开放协议，用于标准化 LLM 与外部工具、数据源之间的连接。[^7] MCP 的设计目标是让任何工具——数据库、文件系统、API、内部系统——都能通过一个统一协议被 Agent 调用。
+2025 年 1 月，Anthropic 发布了 Claude Code——一个运行在终端中的编码 Agent。[^7] 在此之前，AI 编程辅助的主流形态是"编辑器内补全"（Copilot）和"对话式问答"（ChatGPT）。Claude Code 走了一条不同的路：它不是一个编辑器插件，而是一个独立运行在终端的 Agent，可以直接读写文件、执行命令、操作 Git 仓库。
 
-MCP 的出现标志着 Agent 生态竞争从"谁的模型更强"转向"谁的协议更通用"。这和早期互联网的浏览器之争、移动互联网的操作系统之争有相似结构：当底层能力趋同时，平台的胜负取决于生态的丰富度。
+Claude Code 的真正突破在于工作模式的根本转变：从"你问一句，它答一句"变成了"你给一个任务，它独立工作数小时"。用户描述一个任务目标——比如"把这个项目从 React 15 迁移到 React 18"或"修复所有 TypeScript 类型错误"——Claude Code 会自主规划步骤、读取文件、修改代码、运行测试、根据错误调整方案，持续工作直到完成或遇到无法解决的问题。
 
-到 2025 年，MCP 已经获得了相当广泛的社区采纳——大量开发者为各种服务编写了 MCP Server。但 Agent 协议之争远未结束。OpenAI 发布了 Agents SDK 和 function calling 的增强版本，Google 推出了自己的 Agent 框架，微软把 Copilot 生态与 Microsoft Graph 深度整合。[^8]
+到 2025 年中，Claude Code 已经能够自主完成大规模代码重构、跨文件迁移、复杂 bug 修复等任务。开发者社区报告的案例包括：一次会话中处理数百个文件的重构、持续工作数小时完成从一种框架到另一种框架的迁移、自动运行测试并根据失败结果调整方案。[^8] 一些开发者报告称，Claude Code 在一个会话中完成了人类需要数天才能完成的重构任务——而且质量不低。
+
+这种能力跃迁引发了新的信任问题。当 Claude Code 重构了半个代码库时，人类开发者无法像审查同事的 Pull Request 那样逐行审查它的每一处修改。输出量超过了人类审查能力。于是出现了一个悖论：**Agent 越能干，人越难验证它干得对不对。**
+
+在编码场景中，编译器和测试套件提供了部分自动化验证。但编译通过和测试通过不等于代码质量好——一个 Agent 可能写出能运行但维护性极差的代码，就像一个学生可能通过考试但没有真正理解知识。代码质量的更多维度——可读性、可维护性、命名规范、架构合理性——无法被自动化测试覆盖，仍然需要人类判断。这意味着 Agent 即使在最有利的环境中（有编译器和测试套件），仍然有一层质量维度需要人类把关。
+
+Claude Code 的另一个重要特征是它的"工作日志"——它会实时输出自己在做什么、为什么这样做、遇到了什么问题。这提供了一定程度的可观察性——人类可以跟踪 Agent 的思维过程，而不只是看到最终输出。但"可观察"不等于"可理解"——当 Agent 在 3 小时内修改了 200 个文件时，即使是工作日志也超出了人类的阅读能力。
+
+Claude Code 的成功也重新定义了"编程助手"的含义。GitHub Copilot（2021-06 首发）最初是"自动补全一行代码"——人类写大部分代码，AI 补全小部分。Cursor（2023-03）扩展到"在编辑器内对话式编程"——人类描述意图，AI 生成代码片段。Claude Code 则推进到"自主完成复杂任务，人类只设定目标和审查结果"——人类定义任务，AI 完成执行。这不是渐进式改进——这是从"工具"到"协作者"的质变。人类的角色从"写代码"变成了"定义意图、审查结果、承担责任"。
+
+这种角色转变对软件工程的影响是深远的。当一个资深工程师用 Claude Code 在 2 小时内完成了原本需要 2 天的重构任务时，生产力确实提升了。但这也意味着：原本分配给初级工程师的"写基础代码"任务正在被 Agent 吞噬。初级工程师的核心价值——通过写大量代码积累经验和直觉——正在被绕过。Agent 不只是改变了"怎么写代码"，它正在改变"谁来写代码"和"写代码的人需要什么技能"。程序员的技能栈正在从"写代码"向"审查代码、定义需求、管理 Agent"迁移。
+
+## 五、Devin 的营销与现实：$2B 估值背后的叙事赌注
+
+2024 年 3 月 12 日，Cognition Labs 发布 Devin，将其定位为"全球首个 AI 软件工程师"——不是编程助手，不是代码补全工具，而是一个可以独立完成从需求分析到代码编写、测试、部署全流程的 Agent。[^9] Cognition Labs 由 Scott Wu 创立，团队成员多来自竞赛编程背景。Devin 的名字本身就暗示了定位——不是 Copilot（副驾驶），而是 Devin（一个独立的工程师）。
+
+Devin 的发布 demo 展示了令人印象深刻的能力：它可以理解自然语言需求、制定开发计划、编写代码、运行测试、调试错误，甚至部署应用。demo 中 Devin 完成了多个真实的 Upwork 自由职业任务。但独立测试者很快发现，Devin 的实际能力远不如 demo 所示——在许多简单任务上频繁失败，规划能力有限，错误恢复不可靠。[^10]
+
+尽管如此，Cognition Labs 仍然获得了约 20 亿美元的估值。[^11] 这个估值不是基于当前产品能力，而是基于一个叙事赌注：**AI 编程的终极形态不是"辅助人类"，而是"替代人类"。** Cursor、Claude Code 定位为增强人类生产力的工具——程序员还在，只是更高效。Devin 定位为替代程序员本身——程序员的岗位可以被一个 Agent 取代。市场对后者的热烈反应说明：投资者和企业主真正想要的不是"让人更高效"，而是"不需要人"。
+
+Devin 和 Claude Code 代表了 Agent 发展的两种哲学。Claude Code 的哲学是"增强"——人仍是主体，Agent 是能力放大器。Devin 的哲学是"替代"——Agent 是主体，人只负责审查和验收。前者更容易被程序员接受，后者更受投资人和管理层欢迎。这两种哲学之间的张力，将定义 Agent 时代的人机关系——Agent 到底是程序员的工具，还是程序员的竞争者？
+
+Devin 的案例暴露了 Agent 时代的一个结构性风险：**demo 和现实之间的鸿沟**。AutoGPT 的 demo 让人以为 Agent 时代已经到来（实际没有），Devin 的 demo 让人以为 AI 工程师已经可行（实际还需要大量人工干预）。Agent 产品的估值高度依赖叙事——而叙事可以比技术跑得快得多。
+
+这个叙事-现实鸿沟在 2025 年并没有缩小。OpenAI Operator 的 demo 展示了 Agent 自动完成在线任务，但早期用户的反馈显示它在复杂网页上的操作频繁出错。Google Project Mariner 的 demo 令人印象深刻，但尚未大规模公开测试。Agent 行业在 2025 年的状态可以概括为：**所有人都在 demo 中证明 Agent 可行，但很少有人在生产环境中证明 Agent 可靠。** 这个差距正在成为 Agent 时代最大的不确定性。
+
+值得注意的是，叙事-现实鸿沟在资本市场和用户市场的表现是不同的。在资本市场，叙事跑在前面——Devin 的 $2B 估值、各种 Agent 初创公司的高融资额，都基于"Agent 即将改变一切"的叙事。在用户市场，现实跑在后面——大多数企业用户对 Agent 仍处于"观望"或"小规模试点"阶段，真正将 Agent 嵌入核心生产流程的案例屈指可数。当资本叙事和用户现实之间的差距扩大到一定程度，市场修正就会到来——2024-2025 年间已经有多家 Agent 初创公司关闭或转型。
+
+## 六、Google 的 "Agentic Era" 宣言
+
+2024 年 12 月 11 日，Google DeepMind 发布 Gemini 2.0 Flash。与此前的模型发布不同，这次 Google CEO Sundar Pichai 和 DeepMind 负责人 Demis Hassabis 明确将 Gemini 2.0 定位为进入"agentic era"的基础——AI 不再只是回答问题的系统，而是能够代表用户采取行动的系统。[^12] Pichai 在发布博客中写道："如果 2023 年是 AI 的觉醒之年，那么 2025 年将是 Agent 的觉醒之年。" 这句话标志着全球最大的互联网公司正式将 Agent 定义为下一阶段的战略方向。
+
+同日，Google 发布了 Project Mariner——一个在 Chrome 浏览器中运行的 Agent，可以理解网页内容、执行操作、完成任务。[^13] Mariner 的技术路线与 Anthropic Computer Use 类似（看屏幕、操作 GUI），但集成方式不同：Computer Use 是 API 能力，需要开发者调用；Mariner 是浏览器扩展，直接面向终端用户。
+
+Google 的 Agent 布局还有更深的层次。Gemini 2.0 Flash 本身是一个多模态模型——可以处理文本、图像、音频、视频输入，并支持实时交互。这意味着 Agent 不再只能"读文字"——它可以看到屏幕、听到语音、理解视频。Google 搜索的优势在于索引了互联网上最全面的信息，Gemini 的多模态能力在于理解这些信息的各种形式，Agent 的价值在于替用户基于这些信息采取行动。三者叠加，构成了 Google 在 Agent 时代最完整的价值链。
+
+Google 的"agentic era"宣言标志着一个重要转折：**三大 AI 实验室（OpenAI、Anthropic、Google）在 2024-2025 年间全部明确将 Agent 定位为下一阶段的核心方向。** OpenAI 有 Operator（2025-01），Anthropic 有 Computer Use（2024-10），Google 有 Project Mariner（2024-12）。三家的路径不同——OpenAI 做独立产品，Anthropic 做 API 能力，Google 做浏览器集成——但方向一致：**从对话到行动，从回答问题到替你做事。**
+
+但 Google 的 Agent 路径面临独特挑战。Google 的核心业务是搜索广告——如果 Agent 直接替用户完成任务（订机票、买商品、填表单），用户就不需要点击搜索结果中的广告链接。Agent 越成功，对 Google 现有商业模式的威胁越大。这是 Google 在 Agent 时代面临的"创新者窘境"：你需要破坏自己的收入来源来拥抱下一波浪潮。2024 年 Google 搜索广告收入约 1980 亿美元，占 Alphabet 总收入的约 57%。如果 Agent 替代了"搜索-点击-转化"的链路，这个收入基础就会被侵蚀。Google 必须在 Agent 能力和广告保护之间找到一个微妙的平衡点——这个平衡点可能永远不舒服。
+
+Google 的优势在于分发渠道。Chrome 浏览器有超过 30 亿用户，Android 系统覆盖全球大部分智能手机。如果 Google 能把 Agent 能力深度集成到 Chrome 和 Android 中，它就拥有了比任何竞争对手都大的 Agent 分发渠道。技术能力可以通过追赶弥补，但 30 亿用户的分发渠道是不可复制的。Google 的策略可能是：用 Gemini 的模型能力做底座，用 Chrome 的浏览器做 Agent 的运行环境，用 Google 搜索的信息索引做 Agent 的知识库。三者叠加，构成了一个从"理解世界"到"代表用户行动"的完整链路。
+
+## 七、Agent 的失败模式：为什么大多数 Agent 项目失败了
+
+2023-2025 年间，大量 Agent 项目涌现——也大量失败。从 AutoGPT 到各种企业级 Agent 方案，失败率远高于成功率。理解 Agent 的失败模式，比理解它的成功案例更有价值——因为失败模式揭示的是当前技术阶段的结构性限制，而非个别产品的缺陷。
+
+**规划能力不足**是第一道硬伤。LLM 在单步推理上已经足够强，但在多步规划上仍然不可靠。研究显示，即使是最强的模型，在需要 5 步以上推理的任务上成功率也会显著下降。[^14] 这不是模型"不够聪明"——而是当前 Transformer 架构在长程规划上存在根本性的局限。它擅长"下一个 token"的预测，但不擅长"未来 20 步中每一步的依赖关系"的推理。AutoGPT 试图通过"让模型反复思考下一步"来绕过这个限制——但反复思考消耗大量 token，且不保证收敛到正确方案。更有效的工程手段是把复杂任务分解为简单子任务，每个子任务独立执行——但这种分解本身需要规划能力，形成了循环依赖。
+
+**幻觉累积**是第二道硬伤。在多步任务中，每一步都可能引入微小错误。如果单步准确率是 95%，10 步之后整体准确率只有约 60%——20 步之后降到约 36%。这是一个乘法效应，每一步的可靠性都会被后续步骤放大。AutoGPT 在复杂任务上的失败，很大程度上就是因为错误在循环中累积——每一步的小错误让后续步骤的输入越来越偏离正确方向，最终导致完全失败。
+
+在编码场景中，幻觉累积表现为：Agent 在第一步误读了一个函数的签名，后续所有基于这个理解的修改都会出错。编译器可以捕获一部分错误，但不能捕获语义层面的错误——一个函数调用在语法上正确，但逻辑上错误，编译器不会报错。
+
+**Human-in-the-loop 的困境**。一种解决方案是在 Agent 流程中加入人类检查点——Agent 在关键决策点暂停，请求人类确认。这提高了可靠性，但破坏了"自主性"的前提——如果 Agent 每三步就需要人类确认一次，它就不是"自主 Agent"，而是"需要频繁审批的助手"。更实际的问题是：人类审查 Agent 的中间输出需要的认知成本，可能不低于人类自己完成任务的成本。当审查成本接近执行成本时，Agent 的生产力优势就被抵消了。
+
+**信任边界的现实约束**。在信用评估、医疗决策、法律文书等场景中，Agent 犯错的后果是不可逆的。一个编码 Agent 写错了代码，可以被 CI 捕获；一个医疗 Agent 做出了错误诊断，谁来捕获？这些场景中的信任门槛极高，而 Agent 的可靠性远未达到这个门槛。
+
+更深层的问题是：**Agent 的错误没有"对不起"的选项。** 当一个自动驾驶系统犯错时，后果可能是物理伤害。当一个金融 Agent 执行了错误交易时，后果可能是不可逆的资金损失。在这些高风险场景中，"事后回退"不总是可行的。这意味着 Agent 在高风险场景中的部署，必须附带极其严格的权限控制——Agent 只能执行"可撤销"的操作。但这又限制了 Agent 的自主范围——一个只能执行"可撤销操作"的 Agent，和一个"需要人类确认每一步"的助手有多大区别？
+
+**成本与价值的平衡**。Agent 在简单任务上可能比人类更贵（API 调用费用高于人工成本），在复杂任务上可能比人类更便宜（节省大量时间）。但在中间地带——那些"不简单也不复杂"的任务——成本-价值计算是模糊的。企业部署 Agent 的决策，最终取决于它能否在"足够多"的任务上产生正向 ROI——而这需要大规模的实证数据，而当前这类数据极度稀缺。
+
+**上下文窗口的限制**也是一个被低估的失败原因。当 Agent 执行长程任务时，它需要维护对整个任务状态的理解。但 LLM 的上下文窗口是有限的——即使是最新的 100K+ 窗口模型，在处理极长的任务历史时也会丢失早期信息。AutoGPT 的循环问题，部分原因就是上下文溢出后 Agent 忘记了自己已经尝试过的方案。
+
+**成本问题**同样制约了 Agent 的实际部署。一个 Claude Code 会话处理数百个文件的重构，可能消耗数十美元的 API 费用。当 Agent 需要反复尝试和回退时，成本会进一步膨胀。对企业来说，一个 Agent 完成任务的成本可能高于雇一个人类初级工程师——除非任务足够复杂、时间足够紧迫。
+
+这些失败模式指向一个共同结论：**Agent 的瓶颈不是模型能力，而是系统可靠性。** 2025 年最好的 Agent 产品——Cursor、Claude Code——之所以成功，恰恰是因为它们把 Agent 的行动范围限制在一个有编译器、测试框架和版本控制的安全沙箱里。在这个沙箱内，错误可以被自动检测和回退。出了这个沙箱——比如操作 GUI、浏览网页、与真实世界交互——Agent 的可靠性就急剧下降。现实世界没有 `git revert`。
+
+## 八、MCP 与 Agent 生态：协议之争就是平台之争
+
+2024 年 11 月 25 日，Anthropic 发布 Model Context Protocol（MCP），一个开放协议，用于标准化 LLM 与外部工具、数据源之间的连接。[^15] MCP 的设计目标是让任何工具——数据库、文件系统、API、内部系统——都能通过一个统一协议被 Agent 调用。
+
+MCP 的出现标志着 Agent 生态竞争从"谁的模型更强"转向"谁的协议更通用"。这和早期互联网的浏览器之争、移动互联网的操作系统之争有相似结构：当底层能力趋同时，平台的胜负取决于生态的丰富度。MCP 做的事情，用一个类比来说，就像 USB 标准化了设备连接——在 USB 之前，每种外设都有自己的接口；USB 之后，任何外设都可以即插即用。MCP 试图为 Agent 做同样的事：让任何工具都可以"即插即用"地被 Agent 调用。
+
+到 2025 年，MCP 已经获得了相当广泛的社区采纳——大量开发者为各种服务编写了 MCP Server。但 Agent 协议之争远未结束。OpenAI 发布了 Agents SDK 和 function calling 的增强版本，Google 推出了自己的 Agent 框架，微软把 Copilot 生态与 Microsoft Graph 深度整合。[^16]
 
 这些协议之间的竞争，本质上是在争夺"Agent 的操作系统"这个位置。谁定义了 Agent 与工具之间的标准接口，谁就控制了 Agent 生态的入口。这和 Android 与 iOS 之争、HTTP 与 Gopher 之争的历史逻辑一样：**技术标准的胜利，最终取决于生态的采纳速度，而不是协议本身的技术优雅性。**
 
-## 五、从工具到同事：Agent 时代的真正门槛
+MCP 的历史意义在于：它是第一个被主流 AI 公司推动的、旨在标准化 Agent-工具连接的开放协议。在此之前，每个 Agent 框架都有自己的工具调用方式——LangChain 有 Tool 接口，AutoGPT 有插件系统，每个公司的 API 都有自己的 function calling 格式。MCP 试图统一这些碎片化的接口，让一个工具只需要写一次 MCP Server，就可以被任何支持 MCP 的 Agent 调用。这种标准化的收益是巨大的——它降低了工具开发者的接入成本，也降低了 Agent 开发者的集成成本。但标准化的成功不取决于技术设计——而取决于采纳速度。MCP 是否能成为 Agent 的 USB，取决于有多少工具提供商愿意写 MCP Server。
+
+## 九、从工具到同事：Agent 时代的真正门槛（2025—）
+
+到 2025 年，Agent 从 demo 走向产品，从产品走向生态。但"Agent 时代"是否已经到来，取决于你对"到来"的定义。
 
 2025 年，Agent 产品开始呈现两个清晰的方向：
 
-**编码 Agent** 是第一个成功的落地场景。Cursor、GitHub Copilot、Claude Code、Windsurf、Devin——这些产品证明了一件事：代码是 Agent 最自然的工作环境。代码可以被编译检查、被测试验证、被 diff 审阅。这意味着 Agent 的输出可以被自动验证，而不需要人类逐行审查。[^9] 当错误可以被自动检测时，Agent 的可靠性问题就从"绝对不能出错"变成了"错误率可接受"。
+**编码 Agent** 是第一个成功的落地场景。Cursor、GitHub Copilot、Claude Code、Windsurf、Devin——这些产品证明了一件事：代码是 Agent 最自然的工作环境。代码可以被编译检查、被测试验证、被 diff 审阅。这意味着 Agent 的输出可以被自动验证，而不需要人类逐行审查。[^17] 当错误可以被自动检测时，Agent 的可靠性问题就从"绝对不能出错"变成了"错误率可接受"。编码 Agent 市场在 2025 年的竞争已经白热化——Cursor 凭借编辑器集成抢占了开发者心智，Claude Code 凭借长时间自主工作建立了技术口碑，GitHub Copilot 凭借微软-GitHub 生态占据了分发渠道。Devin 走了差异化路线——不做"助手"而做"工程师"——但其实际市场表现尚待验证。
 
-**通用 Agent** 则仍在早期。OpenAI 的 Operator（2025 年 1 月发布）让用户可以通过 Agent 浏览网页、完成在线任务。Google 的 Project Mariner 在 Chrome 中嵌入 Agent 能力。[^10] 但通用 Agent 面临的核心问题仍然没有解决：它在复杂、多步、需要判断力的任务上仍然不可靠。一个编码 Agent 写错代码，CI 会告诉你；一个通用 Agent 订错了机票，谁来告诉你？
+**通用 Agent** 则仍在早期。OpenAI 的 Operator（2025 年 1 月发布）让用户可以通过 Agent 浏览网页、完成在线任务。Google 的 Project Mariner 在 Chrome 中嵌入 Agent 能力。[^18] 但通用 Agent 面临的核心问题仍然没有解决：它在复杂、多步、需要判断力的任务上仍然不可靠。一个编码 Agent 写错代码，CI 会告诉你；一个通用 Agent 订错了机票，谁来告诉你？
 
-Agent 时代的真正门槛不是"模型能不能做事"——2025 年的模型在很多任务上已经足够强。门槛是**可靠性**和**信任**。
+通用 Agent 还面临一个编码 Agent 不需要面对的问题：**环境变化**。代码仓库相对稳定——API 文档和编译器规则不会一天变一次。但网页界面经常变化——按钮位置、表单字段、弹窗逻辑都可能随时更新。GUI Agent 需要对这种变化具有鲁棒性——但目前的 Agent 对环境变化的适应能力极为有限。一个 Agent 今天可以成功订机票，明天网站改版了就可能完全失败。
+
+Agent 时代的真正门槛不是"模型能不能做事"——2025 年的模型在很多任务上已经足够强。门槛是**可靠性**和**信任**。而可靠性和信任不是模型属性——它们是系统属性。一个 Agent 的可靠性取决于整个技术栈：模型能力、工具接口、错误检测、回退机制、人类监督、权限控制。模型只是这个栈中的一层。
+
+这个系统视角解释了为什么不同的 Agent 产品成功率差异巨大。Cursor 和 Claude Code 在编码场景中成功率较高，不是因为它们的模型比 GPT-4 更强（事实上 Claude 3.5 Sonnet 和 GPT-4o 在 benchmark 上差距不大），而是因为编码环境提供了最好的"安全网"：编译器检查语法、测试套件检查行为、版本控制系统提供回退。一旦把 Agent 放到没有安全网的环境——比如操作 GUI、浏览网页、与人交互——成功率就会急剧下降。
 
 人可以把一个任务交给 Agent，但人需要知道 Agent 在什么时候会失败。这需要：
 
@@ -63,26 +147,39 @@ Agent 时代的真正门槛不是"模型能不能做事"——2025 年的模型�
 - **错误恢复**：Agent 做错事后必须能回退，而不是在错误路径上越走越远；
 - **权限控制**：Agent 操作的范围和后果必须有明确的边界。
 
-这四个条件中的任何一个缺失，都会把 Agent 从"同事"降级为"玩具"。AutoGPT 的失败不在于它"不能"做事，而在于它在以上四点上全部缺失。2025 年最好的 Agent 产品——Cursor、Claude Code——之所以成功，恰恰是因为它们把 Agent 的行动范围限制在一个有编译器、测试框架和版本控制的安全沙箱里。
+这四个条件中的任何一个缺失，都会把 Agent 从"同事"降级为"玩具"。AutoGPT 的失败不在于它"不能"做事，而在于它在以上四点上全部缺失——不可观察、不知道自己的边界、无法恢复错误、没有权限控制。2025 年最好的 Agent 产品——Cursor、Claude Code——之所以成功，恰恰是因为它们把 Agent 的行动范围限制在一个有编译器、测试框架和版本控制的安全沙箱里。在这个沙箱内，四个条件都可以被满足（至少部分满足）。出了这个沙箱，四个条件就全部变成挑战。
 
 ## 评曰
 
 Agent 时代没有在 AutoGPT 的一百万 star 那天到来，也没有在 Claude Computer Use 的发布会那天到来。它正在到来——缓慢地、不均匀地、在特定场景里先站稳脚跟。
 
-编码 Agent 是第一个证明"模型可以做事而不只是说话"的战场，因为代码是唯一一种错误可以被自动验证的语言。通用 Agent 的困难不在于模型不够聪明，而在于现实世界没有编译器和测试套件。一个 Agent 点错了按钮，在 GUI 里没有 `git revert`。
+编码 Agent 是第一个证明"模型可以做事而不只是说话"的战场，因为代码是唯一一种错误可以被自动验证的语言。Claude Code 从"自动补全一行"到"独立重构半个代码库"的能力跃迁，证明了 Agent 在编码场景中的潜力——但也暴露了新的信任问题：当 Agent 的输出超过人类审查能力时，信任的基础是什么？是编译器？是测试套件？还是"它之前做得好所以这次也会做好"的经验主义？最后一种在工程上是不可接受的。
 
-真正的 Agent 时代，不是模型无所不能的时代，而是**人类学会了和模型分担任务、分担风险**的时代。Function Calling 铺了协议，MCP 铺了生态，Computer Use 绕过了 API 壁垒——但最终决定 Agent 走多远的，不是模型能力的上限，而是工程系统能把它犯错的代价压到多低。
+Devin 的 $2B 估值证明市场对"AI 替代程序员"的叙事有巨大胃口，但 demo 和现实之间的鸿沟提醒我们：叙事可以比技术跑得快得多。Devin 和 Claude Code 代表了两种截然不同的 Agent 哲学——"替代"和"增强"——它们的竞争将定义 Agent 时代的人机关系。
 
-AutoGPT 证明了需求存在。Function Calling 证明了协议可行。MCP 证明了生态可建。下一步，需要证明的是：Agent 可以被信任。这不是一个模型问题，而是一个系统设计问题。
+通用 Agent 的困难不在于模型不够聪明，而在于现实世界没有编译器和测试套件。Google 用"agentic era"宣言宣告了方向，但其搜索广告商业模式面临的"创新者窘境"暗示：Agent 时代的赢家可能不是最大的公司，而是最能适应商业模式重构的公司。Agent 的失败模式——规划不足、幻觉累积、信任门槛——不是个别产品的缺陷，而是当前技术阶段的结构性限制。在这些限制被系统性地解决之前，Agent 的适用范围会被严格限制在"可验证"的领域内。
+
+真正的 Agent 时代，不是模型无所不能的时代，而是**人类学会了和模型分担任务、分担风险**的时代。Function Calling 铺了协议，MCP 铺了生态，Computer Use 绕过了 API 壁垒——但最终决定 Agent 走多远的，不是模型能力的上限，而是工程系统能把它犯错的代价压到多低。Agent 的扩散路径是"可验证领域"先行——代码、数据、数学——然后缓慢地向"不可验证领域"扩展。这个路径可能需要数十年，也可能永远不会走完。
+
+AutoGPT 证明了需求存在。Function Calling 证明了协议可行。MCP 证明了生态可建。Claude Code 证明了编码 Agent 可以做到"独立工作数小时"。Devin 证明了市场愿意为"AI 工程师"的叙事付 $2B。下一步，需要证明的是：Agent 可以在没有编译器和测试套件的真实世界中被信任。这不是一个模型问题，而是一个系统设计问题——也是一个信任工程问题。
+
+Agent 时代最后的悖论是：**Agent 最成功的领域，恰恰是人类最容易验证其输出的领域（编码）；Agent 最困难的领域，恰恰是人类最难验证其输出的领域（现实世界决策）。** 这意味着 Agent 的扩散路径可能不是从简单到复杂，而是从"可验证"到"不可验证"。在可验证的领域（代码、数学、数据处理），Agent 会越来越强。在不可验证的领域（创意判断、人际关系、道德决策），Agent 会持续面临信任障碍。两个世界的分界线不是技术能力——而是验证成本。
+
+这个悖论也解释了为什么 MCP 生态如此重要。MCP 做的事情是降低 Agent 与工具之间的连接成本——但更深层的意义是，它在为"可验证领域"建造标准化的基础设施。当 Agent 调用一个有明确输入输出规范的 API 时，输出的可验证性远高于 Agent 操作一个 GUI。Agent 协议之争的背后，是"可验证"和"不可验证"两种 Agent 范式之间的基础设施之争。谁先为"可验证领域"建好基础设施，谁就先站稳脚跟。
+
+从 AutoGPT 的 100 万 star 到 Claude Code 的数小时自主工作，Agent 用了不到两年时间走完了从"概念炒作"到"生产力工具"的路。但这只是第一步。下一步——让 Agent 在没有编译器、没有测试套件的真实世界中可靠地工作——可能需要比两年长得多的时间，也可能需要我们重新定义"可靠"的含义。Agent 时代的故事，才刚刚开始。史官要记录的，不是谁先到达终点——因为可能没有人知道终点在哪——而是在这条路上，每一步踩出了什么样的脚印。
 
 ---
 
-*本篇由终末地工业史官团队编纂：符玄（史论主笔）。*
+*本篇由终末地工业史官团队编纂：符玄（史论主笔）。§四—§七（Claude Code、Devin、Google "agentic era"、Agent 失败模式）新增及评曰重写由符玄完成。*
 
 ---
-
 
 （AI Agent 生态从 AutoGPT 到 MCP 协议的完整演进，见《AI Agent 生态》志。）
+
+（Agent 在编码场景中的应用与影响，另见《论·数据标注与AI劳动》中关于"Vibe Coding"的讨论。）
+
+（Claude Code、Devin、Operator 等具体产品的详细分析，见各相关条目的编年记录。）
 
 [^1]: Significant Gravitas, "AutoGPT", GitHub repository, 2023-03-30. https://github.com/Significant-Gravitas/AutoGPT；参见 Reuters, "Auto-GPT and BabyAGI spark an 'autonomous AI agent' craze", 2023-04-12.
 [^2]: 参见 Simon Willison, "Here's what I think about AutoGPT", 2023-04-13. https://simonwillison.net/2023/Apr/14/worst-that-can-happen/
@@ -90,7 +187,15 @@ AutoGPT 证明了需求存在。Function Calling 证明了协议可行。MCP 证
 [^4]: Anthropic, "Tool use (function calling)", Claude documentation, 2024. https://docs.anthropic.com/en/docs/build-with-claude/tool-use
 [^5]: Anthropic, "Introducing computer use", 2024-10-22. https://www.anthropic.com/news/3-5-sonnet-computer-use
 [^6]: 参见 The Verge, "Anthropic's AI can now control your computer", 2024-10-22. 报道中提及早期使用者反馈的可靠性问题。
-[^7]: Anthropic, "Model Context Protocol (MCP)", 2024-11-25. https://www.anthropic.com/news/model-context-protocol
-[^8]: OpenAI, "New tools for building agents", 2025-03-11. https://openai.com/index/new-tools-for-building-agents/；Google DeepMind, "Project Mariner", 2024-12-11. https://deepmind.google/technologies/project-mariner/
-[^9]: Cursor, https://cursor.com/；参见 Wired, "The AI coding boom: how agents are reshaping software development", 2025.
-[^10]: OpenAI, "Introducing Operator", 2025-01-23. https://openai.com/index/introducing-operator/；Google, "Project Mariner", 2024-12.
+[^7]: Anthropic, "Claude Code", 2025-01. https://docs.anthropic.com/en/docs/claude-code
+[^8]: 参见 Ars Technica, "Claude Code can now work for hours on complex programming tasks", 2025. 多个开发者社区报告了 Claude Code 持续工作数小时完成大规模重构的案例。
+[^9]: Cognition Labs, "Introducing Devin", 2024-03-12. https://www.cognition.ai/blog/introducing-devin
+[^10]: 参见 Multiple independent evaluations of Devin, 2024. 测试者发现 Devin 在许多简单任务上频繁失败，实际能力与发布 demo 存在显著差距。
+[^11]: Bloomberg / The Information, "Cognition Labs valued at $2 billion", 2024. Cognition Labs 在种子轮后估值据报道达到约 20 亿美元。
+[^12]: Google DeepMind, "Gemini 2.0: our new AI model for the agentic era", 2024-12-11. https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/
+[^13]: Google DeepMind, "Project Mariner", 2024-12-11. https://deepmind.google/technologies/project-mariner/
+[^14]: 参见 Kinniment et al., "Evaluating Language-Model Agents on Realistic Autonomous Tasks", 2023. 以及后续关于 Agent 在多步任务上成功率下降的多项研究。
+[^15]: Anthropic, "Model Context Protocol (MCP)", 2024-11-25. https://www.anthropic.com/news/model-context-protocol
+[^16]: OpenAI, "New tools for building agents", 2025-03-11. https://openai.com/index/new-tools-for-building-agents/；Google DeepMind, "Project Mariner", 2024-12-11. https://deepmind.google/technologies/project-mariner/
+[^17]: Cursor, https://cursor.com/；参见 Wired, "The AI coding boom: how agents are reshaping software development", 2025.
+[^18]: OpenAI, "Introducing Operator", 2025-01-23. https://openai.com/index/introducing-operator/；Google, "Project Mariner", 2024-12.
