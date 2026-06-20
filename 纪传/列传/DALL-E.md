@@ -95,6 +95,9 @@ DALL·E 最深远的影响或许是：它证明了"文生图"这个需求是真�
 
 ---
 
+
+（相关条目：《Sora 列传》、《Diffusion 列传》。）
+
 [^1]: Ramesh et al., "Zero-Shot Text-to-Image Generation", arXiv:2102.12092, 2021-01-05. https://arxiv.org/abs/2102.12092
 [^2]: Ramesh et al., "Hierarchical Text-Conditional Image Generation with CLIP Latents", arXiv:2204.06125, 2022-04-06. https://arxiv.org/abs/2204.06125
 [^3]: OpenAI Blog, "DALL·E 3", 2023-09-20. https://openai.com/index/dall-e-3/

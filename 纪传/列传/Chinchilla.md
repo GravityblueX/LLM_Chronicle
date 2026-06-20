@@ -96,6 +96,9 @@ Chinchilla 最深远的影响或许是：它证明了"数据"这个长期被忽�
 
 ---
 
+
+（相关条目：《Scaling Law的终结与重生》。）
+
 [^1]: Kaplan et al., "Scaling Laws for Neural Language Models", arXiv:2001.08361, 2020-01-23. https://arxiv.org/abs/2001.08361
 [^2]: Hoffmann et al., "Training Compute-Optimal Large Language Models", arXiv:2203.15556, 2022-03-29. https://arxiv.org/abs/2203.15556
 [^3]: Touvron et al., "LLaMA: Open and Efficient Foundation Language Models", arXiv:2302.13971, 2023-02-27. https://arxiv.org/abs/2302.13971

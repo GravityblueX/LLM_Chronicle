@@ -134,6 +134,9 @@ Kaplan 修正了算力认知，Chinchilla 修正了数据认知，Test-Time Comp
 
 ---
 
+
+（推理优化的技术全景——从 FlashAttention 到推测解码——见《推理优化》志。）
+
 [^1]: Kaplan et al., "Scaling Laws for Neural Language Models", arXiv:2001.08361, 2020-01-23. https://arxiv.org/abs/2001.08361
 [^2]: Brown et al., "Language Models are Few-Shot Learners"（GPT-3 论文）, arXiv:2005.14165, 2020-05-28. https://arxiv.org/abs/2005.14165
 [^3]: Hoffmann et al., "Training Compute-Optimal Large Language Models"（Chinchilla 论文）, arXiv:2203.15556, 2022-03-29. https://arxiv.org/abs/2203.15556

@@ -141,6 +141,9 @@ FlashAttention 的历史位置，不在注意力公式，而在打通了注意�
 
 ---
 
+
+（相关条目：《推理优化》。）
+
 [^1]: Dao et al., "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness", NeurIPS 2022 / arXiv:2205.14135. https://arxiv.org/abs/2205.14135
 [^2]: Dao, "FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning", arXiv:2307.08691, 2023-07-17. https://arxiv.org/abs/2307.08691
 [^3]: Shah et al., "FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-Precision", arXiv:2407.08608, 2024-07-11. https://arxiv.org/abs/2407.08608

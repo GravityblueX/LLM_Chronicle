@@ -108,6 +108,9 @@ Codex 最深远的影响或许是：它证明了"AI 编程"这个需求是真实
 
 ---
 
+
+（相关条目：《AI Agent 生态》。）
+
 [^1]: Chen et al., "Evaluating Large Language Models Trained on Code", arXiv:2107.03374, 2021-07-07. https://arxiv.org/abs/2107.03374
 [^2]: GitHub Blog, "GitHub Copilot · Your AI pair programmer", 2021-06-29. https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/
 [^3]: GitHub Blog, "GitHub Copilot is generally available to all developers", 2022-06-21. https://github.blog/2022-06-21-github-copilot-is-generally-available-to-all-developers/

@@ -134,6 +134,9 @@ AI Agent 的故事，本质上是一场自主性与可靠性的拔河。AutoGPT 
 
 ---
 
+
+（AI 编程助手从 Codex 到 Copilot 的演进，见《Codex-Copilot 列传》。）
+
 [^1]: OpenAI, "ChatGPT plugins", 2023-03-23. https://openai.com/index/chatgpt-plugins/
 [^2]: Significant Gravitas, "Auto-GPT", GitHub repository, 2023-03-30. https://github.com/Significant-Gravitas/AutoGPT
 [^3]: The Verge, "AutoGPT is the future of AI assistants — if it can stop making mistakes", 2023-04-19. https://www.theverge.com/2024/4/19/24134730/autogpt-ai-agent-open-source

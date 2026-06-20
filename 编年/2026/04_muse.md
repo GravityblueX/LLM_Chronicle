@@ -58,4 +58,6 @@ Llama 世家用了三年半走完了从泄漏到争议的完整弧线。Muse Spa
 
 ---
 
+> 📖 详见《DeepSeek-R1 列传》《DeepSeek 世家》《DeepSeek 本纪》《Llama 世家》。
+
 [^1]: Meta AI Blog, "Muse Spark", 2026-04. https://ai.meta.com/ （具体博客 URL 待 Meta 发布正式公告后补充。编纂时依《Llama 世家》§2.5 和 Phase1 收录清单确认发布事实，原始链接待补档至 sources/2026/04/。）

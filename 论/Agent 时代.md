@@ -81,6 +81,9 @@ AutoGPT 证明了需求存在。Function Calling 证明了协议可行。MCP 证
 
 ---
 
+
+（AI Agent 生态从 AutoGPT 到 MCP 协议的完整演进，见《AI Agent 生态》志。）
+
 [^1]: Significant Gravitas, "AutoGPT", GitHub repository, 2023-03-30. https://github.com/Significant-Gravitas/AutoGPT；参见 Reuters, "Auto-GPT and BabyAGI spark an 'autonomous AI agent' craze", 2023-04-12.
 [^2]: 参见 Simon Willison, "Here's what I think about AutoGPT", 2023-04-13. https://simonwillison.net/2023/Apr/14/worst-that-can-happen/
 [^3]: OpenAI, "Function calling and other API updates", 2023-06-13. https://openai.com/blog/function-calling-and-other-api-updates

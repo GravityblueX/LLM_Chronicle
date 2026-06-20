@@ -128,6 +128,9 @@ Sora 是大模型史上罕见的"预告片比正片更震撼"的案例。2024 �
 
 ---
 
+
+（相关条目：《Diffusion 列传》、《DALL·E 列传》。）
+
 [^1]: OpenAI, "Sora: Creating video from text", 2024-02-15. https://openai.com/index/sora/
 [^2]: Tim Brooks, Bill Peebles et al. / OpenAI, "Video generation models as world simulators", 2024-02-15. https://openai.com/index/video-generation-models-as-world-simulators/
 [^3]: William Peebles, Saining Xie, "Scalable Diffusion Models with Transformers" (DiT), arXiv:2212.09748, submitted 2022-12-19. https://arxiv.org/abs/2212.09748

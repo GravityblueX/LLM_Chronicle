@@ -169,6 +169,9 @@ RIAA 诉讼的结局将定义整个生成式 AI 时代的版权框架。但如�
 
 ---
 
+
+（Whisper 的完整技术故事见《Whisper 列传》。）
+
 [^1]: Alec Radford et al. (OpenAI), "Robust Speech Recognition via Large-Scale Weak Supervision", arXiv:2212.04356, 2022-12-06. https://arxiv.org/abs/2212.04356
 [^2]: OpenAI, "Whisper", GitHub repository, 2022-09. https://github.com/openai/whisper
 [^3]: Wikipedia, "Whisper (speech recognition system)". https://en.wikipedia.org/wiki/Whisper_(speech_recognition_system)

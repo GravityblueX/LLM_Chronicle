@@ -114,6 +114,9 @@ Sohl-Dickstein 2015 年的论文，当年几乎无人引用。DDPM 用"去噪"�
 
 ---
 
+
+（相关条目：《Sora 列传》、《DALL·E 列传》。）
+
 [^1]: Goodfellow et al., "Generative Adversarial Nets", NeurIPS 2014 / arXiv:1406.2661. https://arxiv.org/abs/1406.2661
 [^2]: Sohl-Dickstein et al., "Deep Unsupervised Learning using Nonequilibrium Thermodynamics", ICML 2015 / arXiv:1503.03585. https://arxiv.org/abs/1503.03585
 [^3]: Ho, Jain, Abbeel, "Denoising Diffusion Probabilistic Models", NeurIPS 2020 / arXiv:2006.11239, 2020-06-19. https://arxiv.org/abs/2006.11239

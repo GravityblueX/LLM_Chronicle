@@ -91,5 +91,7 @@ DeepSeek-R1 说：只用规则奖励（答案对不对）+ GRPO 就够了。Kimi
 
 ---
 
+> 📖 详见《GPT 世家》《GPT-4 列传》《Claude 世家》《Anthropic 本纪》《DeepSeek-R1 列传》《DeepSeek 世家》《DeepSeek 本纪》。
+
 [^1]: Kimi Team (Moonshot AI), "Kimi k1.5: Scaling Reinforcement Learning with LLMs", arXiv:2501.12599, 2025-01-22. https://arxiv.org/abs/2501.12599
 [^2]: Moonshot AI, "Kimi-k1.5", GitHub repository. https://github.com/MoonshotAI/Kimi-k1.5

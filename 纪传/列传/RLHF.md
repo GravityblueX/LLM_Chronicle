@@ -104,6 +104,9 @@ RLHF 的贡献，是让大模型学会在人类面前收住自己。
 
 ---
 
+
+（相关条目：《InstructGPT 列传》。）
+
 [^1]: Ouyang et al., "Training language models to follow instructions with human feedback", arXiv:2203.02155, 2022-03-04. https://arxiv.org/abs/2203.02155
 [^2]: Christiano et al., "Deep reinforcement learning from human preferences", arXiv:1706.03741, 2017-06-13. https://arxiv.org/abs/1706.03741
 [^3]: OpenAI, "Introducing ChatGPT", 2022-11-30. https://openai.com/blog/chatgpt
