@@ -2,62 +2,77 @@
 
 ## Overall Status
 - **Start Date**: 2026-06-21
-- **Total Files**: 205 markdown files
-- **Translated**: 7 files
-- **Remaining**: 198 files
-- **Progress**: 3.4%
+- **Total Source Files**: 175 (excluding templates)
+- **Translated**: 131 files
+- **Remaining**: 44 files
+- **Progress**: 74.9%
+- **Last Updated**: 2026-06-24 02:10 UTC+8
 
-## Completed Translations
+## Translation Status by Category
 
-### Documentation (2/3) ✅
+### Documentation (3/3) ✅ Complete
 | File | Status | Notes |
 |------|--------|-------|
 | README.md | ✅ Complete | en/README.md |
 | INDEX.md | ✅ Complete | en/INDEX.md |
-| 00_体例.md | ⏳ Pending | |
+| 00_体例.md | ✅ Complete | en/docs/00_Style_Guide_EN.md (commit 44b79b1) |
 
-### Annals (编年) - 5/66 files
-| Year | Files | Translated | Status |
-|------|-------|------------|--------|
-| 2017 | 1 | 1 | ✅ Complete |
-| 2018 | 3 | 3 | ✅ Complete |
-| 2019 | 6 | 1 | 🔄 In Progress |
-| 2020 | 1 | 0 | ⏳ Pending |
-| 2021 | 4 | 0 | ⏳ Pending |
-| 2022 | 9 | 0 | ⏳ Pending |
-| 2023 | 9 | 0 | ⏳ Pending |
-| 2024 | 12 | 0 | ⏳ Pending |
-| 2025 | 14 | 0 | ⏳ Pending |
-| 2026 | 7 | 0 | ⏳ Pending |
+### Annals (编年) — 66/66 ✅ Complete
+| Year | Files | Status |
+|------|-------|--------|
+| 2017 | 1/1 | ✅ Complete |
+| 2018 | 3/3 | ✅ Complete |
+| 2019 | 6/6 | ✅ Complete |
+| 2020 | 1/1 | ✅ Complete |
+| 2021 | 4/4 | ✅ Complete |
+| 2022 | 9/9 | ✅ Complete |
+| 2023 | 9/9 | ✅ Complete |
+| 2024 | 12/12 | ✅ Complete |
+| 2025 | 14/14 | ✅ Complete |
+| 2026 | 7/7 | ✅ Complete |
 
-### Biographies (纪传) - 1/58 files
-| Category | Files | Translated | Status |
-|----------|-------|------------|--------|
-| Companies (本纪) | 12 | 0 | ⏳ Pending |
-| Families (世家) | 10 | 1 | 🔄 In Progress |
-| Models (列传) | 36 | 0 | ⏳ Pending |
+### Biographies (纪传) — 22/58 🔄 In Progress
+| Category | Files | Status |
+|----------|-------|--------|
+| Companies (本纪) | 12/12 | ✅ Complete |
+| Families (世家) | 3/10 | 🔄 In Progress |
+| Models (列传) | 7/36 | 🔄 In Progress |
 
-### Treatises (志) - 0/20 files
-### Commentary (论) - 0/18 files
-### Tables (表) - 0/10 files
+### Commentary (论) — 16/18 🔄 In Progress
+- 16 of 18 active essays translated
+- 2 remaining (excluding 2 archived)
 
-## Next Steps
+### Tables (表) — 10/10 ✅ Complete
 
-### Priority 1: Complete 2019 Annals
-- [ ] 2019/02 - GPT-2
-- [ ] 2019/03 - ERNIE 1.0
-- [ ] 2019/06 - XLNet
-- [ ] 2019/07 - RoBERTa
-- [ ] 2019/09 - Megatron-LM
-- [ ] 2019/10 - T5
+### Treatises (志) — 16/20 🔄 In Progress
+- 16 of 21 translated (excluding 1 template)
+- 5 remaining
 
-### Priority 2: Start Biographies
-- [ ] GPT Family (世家)
-- [ ] Transformer Biography (列传)
-- [ ] OpenAI Company (本纪)
+## Background Translation Status
 
-### Priority 3: Supporting Files
-- [ ] 00_体例.md → 00_Style_Guide_EN.md
+Multiple parallel translation sessions are actively running (as of 02:10 UTC+8):
+- 翻译-纪传 [streaming]
+- 翻译-列传A [streaming]
+- 翻译-列传B [streaming]
+- 翻译-世家 [streaming]
+- 翻译-志论补 [streaming]
+- 翻译-论 [streaming]
+- 赫默-translation-final [streaming]
+- 赫默-final3 [streaming]
+- LLM_Chronicle-Translator [streaming]
+
+**Expected**: File count will continue to grow as background sessions complete their work.
+
+## Completed Commits (this session)
+
+| Commit | Description |
+|--------|-------------|
+| 44b79b1 | translate: docs/00_Style_Guide EN |
+| 0e0e28b | translate: biographies/families/DeepSeek EN |
+
+## Target: 174 files
+
+Current count: 131/174 (75.3%). Background sessions are actively translating the remaining 43 files.
 
 ## Quality Metrics
 
@@ -66,19 +81,6 @@
 - Technical accuracy: ✅ Good
 - Natural English flow: ✅ Good
 - Cross-reference accuracy: ✅ Good
-
-### Issues Found
-- None yet
-
-## Notes
-
-### Translation Patterns Established
-1. Headers translated to English
-2. Technical terms kept in English (Transformer, BERT, GPT)
-3. Chinese names preserved with English translations
-4. Cross-references updated to English versions
-5. Commentary sections translated with cultural context
-6. Footnotes preserved with original URLs
 
 ### Style Decisions
 - "编年" → "Annals"
@@ -89,8 +91,9 @@
 - "本纪" → "Companies"
 - "世家" → "Families"
 - "列传" → "Models"
+- "评曰" → "Commentary"
 
 ---
 
-**Last Updated**: 2026-06-21
-**Updated By**: 凯尔希 (Kal'tsit)
+**Last Updated**: 2026-06-24 02:10 UTC+8
+**Updated By**: 赫默 (Silence) — Translation Coordinator
