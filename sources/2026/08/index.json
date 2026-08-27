@@ -19,6 +19,8 @@
     {"ref":"[^14]","url":"https://mistral.ai/news/shieldstral/","title":"Introducing Shieldstral — Mistral","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
     {"ref":"[^15]","url":"https://docs.mistral.ai/models/shieldstral-1-0","title":"Shieldstral 1.0 — Mistral Docs","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
     {"ref":"[^16]","url":"https://www.anthropic.com/news/claude-text-watermark","title":"How Claude’s text watermark works — Anthropic","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
-    {"ref":"[^17]","url":"https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/","title":"China's Moonshot in talks with Microsoft, Amazon, Google over K3 revenue sharing, sources say — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"}
+    {"ref":"[^17]","url":"https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/","title":"China's Moonshot in talks with Microsoft, Amazon, Google over K3 revenue sharing, sources say — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^18]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek-V4-Flash-Vision-Exp — DeepSeek API Change Log","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^19]","url":"https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards","title":"Improving Fable 5's biology safeguards — Anthropic","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"}
   ]
 }
