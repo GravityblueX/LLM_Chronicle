@@ -1,0 +1,11 @@
+{
+  "collection": "论/知识蒸馏与模型压缩",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 重写时核验论文、DeepSeek 官方仓库与 Anthropic 官方指控页面；HTML 快照待本地归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://arxiv.org/abs/1503.02531","title":"Distilling the Knowledge in a Neural Network","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/1910.01108","title":"DistilBERT","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1 official repository and license notes","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks","title":"Anthropic: Detecting and preventing distillation attacks","snapshot":null,"status":"live_verified_snapshot_pending","note":"Attribution claims are Anthropic's public allegations; article text preserves this evidentiary status."}
+  ]
+}
