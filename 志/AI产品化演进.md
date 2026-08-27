@@ -1,196 +1,432 @@
 # 《AI 产品化演进》
 
-> 大模型从实验室走向用户桌面，不是一夜之间的事。从 API 调用到聊天框，从聊天框到可视化画布，从画布到自主执行任务的 Agent，再从 Agent 到直接操作电脑屏幕——每一次产品形态的跃迁，都伴随着一个根本问题的重新回答：AI 到底该以什么方式存在于人的工作流中？这里记录这条演化路径的事实脉络、关键转折和底层逻辑。
+> 大模型产品形态的演化，不是聊天框被下一种 UI 简单替代。从 API 到聊天、Artifacts、IDE、Agent、Work、Cowork、多 Agent command center，再到事件触发 automations，每一代都把人与模型之间的“操作距离”再缩短一点。到 2026 年，聊天框仍然存在，却越来越像**控制面**：人负责表达目标、设权限和验收；真正的工作发生在后台 sandbox、浏览器、代码仓库、文件系统和多个 Agent 之间。
 
 ---
 
-## 一、概述
+## 一、产品化的真正主线：用户离“结果”越来越近
 
-2020 年以前，AI 产品的主流形态是**嵌入式能力**：推荐算法藏在信息流里，语音助手藏在音箱里，图像识别藏在相册搜索里。用户感知到的是"功能变好了"，而非"我在用 AI"。
+可以把大模型产品史写成六个阶段：
 
-GPT-3 改变了这个范式。当一个通用语言模型可以通过 API 被任何开发者调用时，AI 不再是某个产品的附属功能，而是一块可以被组装进任何场景的"原语"。但 API 是面向开发者的——普通用户仍然触摸不到大模型。
+| 阶段 | 用户主要做什么 | AI 主要做什么 |
+|---|---|---|
+| API | 开发者写调用代码 | 返回能力 |
+| Chat | 用户描述问题 | 返回答案 |
+| Artifact / IDE | 用户描述修改 | 直接产出可编辑对象 |
+| Agent | 用户给任务 | 自己调用工具执行 |
+| Workspace | 用户给项目 | 在持久环境里长期工作 |
+| Multi-agent / Automation | 用户给目标 / 规则 | 多任务并行、事件触发、后台持续执行 |
 
-ChatGPT 的爆发完成了第一次跃迁：把 API 能力包装成一个**聊天框**，让任何人都能直接与大模型对话。这一步看似简单，却重塑了整个行业的用户预期和产品逻辑。
-
-此后的产品形态演化，本质上是对同一个问题的不同回答："聊天框是用户与 AI 交互的最佳形态吗？"
-
-答案显然是"不完全是"。Claude 的 Artifacts 把聊天输出变成了可编辑的可视化文档，GPTs 和 Agent 把聊天变成了任务委托，Computer Use 则试图打破聊天框本身——让 AI 直接操作你的屏幕，像一个远程同事一样工作。
-
-从 API 到聊天框，是**可见性的跃迁**；从聊天框到 Artifacts，是**交互深度的跃迁**；从 Artifacts 到 Agent，是**自主性的跃迁**；从 Agent 到 Computer Use，是**物理界面的跃迁**。每一次跃迁都在回答同一个问题：人和 AI 之间，应该是怎样的协作关系？
-
----
-
-## 二、API 时代（2020—2022）：大模型的开发者入口
-
-**2020-06-11**，OpenAI 发布 GPT-3，参数规模 175B，训练数据约 45TB 文本。[^1] 这是第一个真正意义上的"通用语言模型"——它不是为某个特定任务训练的，而是通过在大量文本上预训练，获得了处理多种语言任务的涌现能力。
-
-但 GPT-3 真正改变行业的不是模型本身，而是**分发方式**。2020 年 6 月，OpenAI 同步开放了 GPT-3 API，提供三个规格（Davinci、Curie、Babbage、Ada），按 token 计费。[^2] 这意味着任何开发者都可以通过几行代码调用一个 175B 参数的模型，无需自己训练、部署、维护基础设施。
-
-API 模式的产品逻辑是**能力订阅**：开发者把 GPT-3 当作一个黑盒能力源，集成进自己的应用。Jasper（AI 写作）、Copy.ai（营销文案）、AI Dungeon（文字冒险游戏）等早期产品都是基于 GPT-3 API 构建的。
-
-但 API 模式有三个结构性限制：
-
-1. **开发者门槛**：普通用户无法直接使用，必须通过第三方应用间接接触；
-2. **交互范式单一**：API 调用是"输入-输出"模式，没有对话上下文，没有多轮交互；
-3. **产品形态同质化**：大多数 GPT-3 应用都是"文本生成器"的变体——写作助手、代码补全、客服机器人。
-
-**2021-08-10**，OpenAI 发布 Codex，在 GPT-3 基础上用代码数据微调，专门用于代码生成。[^3] Codex 的产品化形态是 GitHub Copilot——一个 VS Code 插件，以"自动补全"的方式嵌入程序员工作流（详见《Codex / GitHub Copilot 列传》）。这是 API 时代最成功的产品案例之一，它的成功恰恰因为它**不需要用户改变习惯**：程序员本来就在写代码，Copilot 只是让自动补全变得更智能。
-
-Copilot 的成功预示了一个规律：**AI 产品化最顺畅的路径，是把 AI 能力嵌入用户已有的工作流，而非要求用户适应新的交互范式。** 这个规律在后来的演化中反复被验证，也被反复被挑战。
+它们并不互相淘汰，而是层层叠加。
 
 ---
 
-## 三、聊天框时代（2022—2023）：ChatGPT 与大众化跃迁
+## 二、2020—2022：API——模型作为“远程函数”
 
-**2022-11-30**，OpenAI 发布 ChatGPT，基于 GPT-3.5 微调，提供免费网页版。[^4] ChatGPT 五天内用户破百万，两个月破亿——这个增速在互联网产品史上前所未有。
+GPT-3 API 把一个巨型模型包装成开发者可以通过网络调用的服务。[^1]
 
-ChatGPT 的技术基础并不比 GPT-3 强多少（GPT-3.5 是 GPT-3 的增量改进版本）。它真正创新的是**产品形态**：一个简单的聊天框，左边是用户输入，右边是模型输出，支持多轮对话、上下文记忆、指令遵循。
+这是大模型第一次成为通用产品原语：创业公司不需要训练模型，只需要：
 
-聊天框的产品逻辑是**零门槛对话**：
+- prompt；
+- API key；
+- 自己的 UI / workflow。
 
-- 不需要 API key，不需要写代码，不需要部署服务器；
-- 交互范式是自然语言——用户已经会打字，不需要学习新操作；
-- 输出即时可见——打完字按回车，几秒钟内看到结果。
+Jasper、Copy.ai 等第一波生成式 AI 产品本质上都是“把通用模型包成一个垂直表单”。
 
-这个看似简单的设计，解决了 API 时代的三个结构性限制。普通用户第一次可以直接与大模型对话，不再需要开发者做中间人。多轮对话让 AI 从"单次输入-输出"变成了"持续交流"，打开了追问、修正、迭代的协作空间。
+API 的历史意义是降低**开发门槛**；它并没有直接降低终端用户门槛。
 
-但聊天框也引入了新的限制：
+Codex / Copilot 则展示了更强的路径：不是让用户去一个新网站“使用 AI”，而把 AI 嵌进原有编辑器。[^2]
 
-1. **输出形式单一**：只能输出文本，无法生成图表、代码编辑器、可交互组件；
-2. **线性交互**：所有对话都在一条时间线上，无法并行处理多个任务；
-3. **无法执行动作**：模型只能"说"，不能"做"——它能告诉你怎么写代码，但不能帮你运行代码。
-
-**2023-03-14**，OpenAI 发布 GPT-4，支持多模态输入（文本+图像），能力显著提升。[^5] 同日，Anthropic 发布 Claude 初代，主打安全对齐（详见《Claude 世家》）。**2023-03-22**，GitHub 发布 Copilot X，接入 GPT-4，从自动补全进化到对话编程（详见《Codex / GitHub Copilot 列传》）。
-
-这一阶段的核心张力是：**聊天框是历史上最成功的 AI 产品形态，但它不是 AI 产品的终极形态。** 聊天框让 AI 变得可见、可用、可触及，但它把 AI 的输出局限在"文字"里。当用户开始用 AI 写代码、做数据分析、生成文档时，"文字输出"就显得不够了——代码需要运行，数据需要可视化，文档需要编辑。
-
-聊天框是入口，不是终点。
+这条“嵌入已有工作流”路线后来会反复胜出。
 
 ---
 
-## 四、交互进化（2024）：Artifacts 与可视化画布
+## 三、2022—2023：ChatGPT——聊天框成为通用 UI
 
-**2024-06-20**，Anthropic 发布 Claude 3.5 Sonnet，同步推出 **Artifacts** 功能。[^6] Artifacts 的设计是：当 Claude 生成代码、文档、图表、网页等内容时，输出不再挤在聊天流里，而是出现在聊天框右侧的一个独立画布中，用户可以直接预览、编辑、迭代。
+ChatGPT 把大模型从开发者组件变成所有人都能直接使用的产品。[^3]
 
-Artifacts 解决的是聊天框的**输出形式问题**：
+聊天框的伟大之处是没有学习成本：
 
-- 代码可以实时运行和预览；
-- 文档可以独立编辑，不再被聊天记录淹没；
-- 图表和可视化可以直接呈现，不需要用户复制到其他工具。
+> 你已经会说话 / 打字，所以你已经会用它。
 
-从产品形态看，Artifacts 意味着 Claude 从"对话机器人"变成了"协作工作台"。用户和 AI 的交互不再是一条线性的聊天记录，而是"对话区+工作区"的双栏结构——左边讨论，右边产出。
+多轮对话又让 prompt 从“精心写一句 API 输入”变成渐进协作：用户可以补充、纠正、追问。
 
-**2024-10-22**，Anthropic 发布 Claude 3.5 Sonnet 升级版，首次引入 **Computer Use** 功能，让 Claude 可以操作虚拟电脑——移动鼠标、点击按钮、输入文字、截屏查看。[^7] 同一时期，OpenAI 也推出了类似能力，让 ChatGPT 可以通过代码执行数据分析和文件处理。
+聊天框由此成为大模型时代的默认 UI。
 
-但 2024 年最重要的产品化趋势不是某个具体功能，而是**AI 产品开始从"输出文字"转向"输出结果"**。用户不再满足于 AI 告诉他们"怎么做"，他们开始期望 AI 直接"做出来"。
+但它也带来一个结构性错觉：
 
-这引出了下一个问题：如果 AI 能直接"做事"，为什么还要用户在旁边盯着？
+> **所有工作都被压成一串消息。**
 
----
+文档、代码、表格、网页、图像都必须先变成聊天输入 / 输出，再由用户复制回真正工作的地方。
 
-## 五、Agent 化（2025）：从回答到执行
-
-Agent 的概念早在 2023 年就已出现。**2023-03-30**，AutoGPT 发布，展示了让 GPT-4 自主规划、执行、反思的可能性。[^8] 但 2023 年的 Agent 更多是概念验证——成本高、可靠性低、容易陷入循环（详见《AI Agent 生态》）。
-
-2025 年的 Agent 化浪潮与 2023 年不同。区别在于三个基础设施的成熟：
-
-1. **工具调用标准化**：OpenAI 的 Function Calling（2023-06）、Anthropic 的 Tool Use（2024）把工具调用从"prompt hack"变成了 API 原语；
-2. **上下文窗口足够长**：128K 甚至更长的上下文窗口，让 Agent 可以在一次会话中处理复杂任务的全部信息；
-3. **推理能力足够强**：o1、DeepSeek-R1 等推理模型的出现，让模型在规划和多步决策上有了质的飞跃。
-
-**2025 年上半年**，多个 Agent 产品同时涌现：
-
-- **OpenAI 的 Operator**：可以自主浏览网页、填写表单、完成在线任务；
-- **Anthropic 的 Claude Code**：在终端中自主编写、调试、运行代码；
-- **Google 的 Project Mariner**：通过 Chrome 扩展操作网页；
-- **Microsoft 的 Copilot Studio**：允许企业构建自定义 Agent。
-
-Agent 化的产品逻辑是**任务委托**：用户不再需要逐步指导 AI，而是给出一个目标，AI 自主分解任务、调用工具、处理异常、返回结果。这把人机交互从"对话协作"推向"任务外包"。
-
-但 Agent 化也带来了新的产品挑战：
-
-- **可控性**：Agent 自主性越高，用户越难预测它会做什么；
-- **可解释性**：Agent 做出错误决策时，用户需要知道原因；
-- **安全边界**：Agent 操作真实系统时，一个错误可能造成不可逆后果。
-
-**2025-05-22**，Anthropic 发布 Claude Opus 4 与 Sonnet 4，Claude Code 正式成为旗舰产品。[^9] 这标志着 AI 编程助手从"辅助工具"变成"自主开发者"——Claude Code 可以读取整个代码库、理解项目结构、独立完成从需求到部署的全流程（详见《Claude 世家》）。
+聊天框让 AI 可用，却把“说”和“做”分开。
 
 ---
 
-## 六、Computer Use：跨越数字界面
+## 四、2024：Artifacts / IDE——产物从消息里分离
 
-**2024-10-22**，Anthropic 在 Claude 3.5 Sonnet 升级版中首次引入 Computer Use 能力——让 AI 直接操作虚拟电脑的图形界面。[^7] 这不是通过 API 调用软件，而是像人类一样用鼠标点击、用键盘输入、看屏幕截图判断状态。
+Claude Artifacts 把代码、文档、网页等结果放到独立工作区，而不是继续塞在聊天记录里。[^4]
 
-Computer Use 的产品逻辑是**通用界面适配**：
+Cursor、Copilot、IDE 内 AI 也做了同样的结构变化：
 
-- 不需要每个软件都提供 API，AI 可以像人一样操作任何图形界面；
-- 不需要为每个任务编写专门的工具链，AI 可以直接使用现有软件；
-- 不需要改变用户的软件环境，AI 适应用户，而非用户适应 AI。
+- 聊天负责意图；
+- 文件 / 编辑器负责真实产物。
 
-**2025 年**，Computer Use 能力迅速扩展：
+这一步的重要性在于**artifact 获得独立生命周期**。
 
-- Anthropic 的 Claude 可以操作完整的桌面环境，包括浏览器、终端、文件管理器；
-- OpenAI 的 ChatGPT 可以通过代码执行分析数据、生成报告；
-- Google 的 Gemini 可以操作 Android 手机界面。
+一篇文档不应该只是第 43 条 assistant message；一段代码也不应该只存在于 markdown fence。
 
-Computer Use 的意义在于：它让 AI 产品化突破了"数字界面"的限制。在此之前，AI 要想执行动作，必须通过 API、Function Calling、或者专门的工具接口——每一个都需要开发者预先定义。Computer Use 把这个前提去掉了：AI 可以操作任何有人机界面的软件，即使那个软件没有为 AI 设计接口。
+产品开始承认：
 
-但 Computer Use 也面临严峻挑战：
+> 人与 AI 的共同工作对象需要能保存、编辑、运行、diff 和再次引用。
 
-- **延迟**：截屏-分析-点击的循环比 API 调用慢一个数量级；
-- **可靠性**：图形界面识别仍有错误率，一个错误点击可能触发意外操作；
-- **安全性**：AI 操作真实桌面意味着它可以访问敏感信息、执行敏感操作。
-
-Computer Use 目前仍处于早期阶段。它的长期意义可能不在于"让 AI 操作电脑"本身，而在于**推动软件设计范式的转变**：当 AI 成为软件的常规用户时，软件界面是否需要为 AI 做专门优化？这个问题的答案将决定下一代软件的形态。
+这为后来的 Agent 奠定了产品结构。
 
 ---
 
-## 七、产品形态演化表
+## 五、2024—2025：Computer Use——AI 适配旧软件，而不是旧软件适配 AI
 
-| 阶段 | 时间 | 代表产品 | 核心交互 | 用户角色 | 产品逻辑 |
-|------|------|----------|----------|----------|----------|
-| API 时代 | 2020—2022 | GPT-3 API、Codex | 代码调用 | 开发者 | 能力订阅 |
-| 聊天框时代 | 2022—2023 | ChatGPT、Claude | 自然语言对话 | 终端用户 | 零门槛对话 |
-| 可视化画布 | 2024 | Claude Artifacts | 对话+实时预览 | 创作者 | 协作工作台 |
-| Agent 化 | 2025 | Claude Code、Operator | 任务委托 | 委托者 | 任务外包 |
-| Computer Use | 2024—2025 | Claude Computer Use | 界面操作 | 观察者 | 通用界面适配 |
+Function Calling / MCP 的理想世界是每个服务都有结构化接口。
+
+现实世界大量软件只有 GUI。
+
+Claude Computer Use 等能力让模型直接看屏幕、点击、输入。[^5]
+
+它的产品意义非常大：
+
+- 旧 ERP 不必先重写 API；
+- 网站不必主动支持 AI；
+- 模型理论上可以使用人类能使用的大量软件。
+
+但 GUI 同时是最脆弱的控制面：按钮移动、弹窗、验证码、prompt injection 都可能让任务失败。
+
+于是“通用操作能力”与“可靠结构化工具”两条路线长期并存。
 
 ---
 
-## 八、趋势分析
+## 六、2025：Agent——产品从“回答”变成“任务委托”
 
-- **从"用户适应 AI"到"AI 适应用户"**：API 时代要求用户会写代码；聊天框时代要求用户会写提示词；Agent 时代要求用户会定义目标；Computer Use 时代，AI 直接使用用户已有的工具。每一次跃迁都在降低用户的适应成本。
+coding agents、browser agents、research agents 等产品开始接受完整目标，而不是一步 prompt。
 
-- **交互范式从单一走向混合**：早期产品是纯聊天或纯 API，现在的产品是聊天+画布+工具调用+代码执行的混合体。未来的 AI 产品不太可能只有一种交互模式。
+用户的典型输入变成：
 
-- **"可见性"和"自主性"是两条正交的演化轴**：聊天框让 AI 变得可见，Agent 让 AI 变得自主。两者可以组合——既有可见的对话界面，又有自主的后台执行。
+> “修这个 Issue。”
+>
+> “研究这个市场，给我一份报告。”
+>
+> “把这些文件整理并做成结果。”
 
-- **产品化的核心矛盾是"可控性 vs. 自主性"**：用户希望 AI 自主完成任务，但也希望随时知道 AI 在做什么、能随时介入。这个矛盾没有完美解法，只有针对不同场景的权衡。
+Agent 自己：
 
-- **Computer Use 是长期方向，短期仍是实验**：让 AI 像人一样操作电脑，在技术上是可行的，但在延迟、可靠性和安全性上还有明显短板。它更可能是"最后一英里"的解决方案——当 API 和工具调用都不够用时的兜底手段。
+- 规划；
+- 选择工具；
+- 执行；
+- 读取反馈；
+- 重试；
+- 交付 artifact。
+
+产品的核心对象由**对话**转为**任务**。
+
+OpenAI Responses API / Agents SDK、Claude Code、GitHub coding agent 都属于这次变化。[^6][^7]
+
+---
+
+## 七、2025—2026：从 Agent 到 Workspace——任务需要“住的地方”
+
+短任务可以活在聊天会话里；长任务需要文件、状态、工具、日志和恢复。
+
+所以 2026 年产品开始明显出现 workspace / workbench 形态。
+
+### Claude Cowork
+
+Claude 的桌面 / 工作型 Agent 把文件和专业任务从 terminal coding 扩展到一般知识工作。
+
+### ChatGPT Work
+
+**2026-07-09**，OpenAI 推出 ChatGPT Work，把连接的数据 / 文件、长程 Agent 与文档、表格、演示等 artifact 工作放进持续 workspace。[^8]
+
+### Codex App
+
+**2026-02-02**，Codex App 被定义为 **command center for agents**：并行 Agent、独立 thread、worktree、Skills、Automations。[^9]
+
+这里的 UI 已经不是“一个 AI 对一个人”，而更像任务管理器。
+
+---
+
+## 八、Multi-agent：界面开始服务于“监督很多工作”
+
+单 Agent 的产品界面通常围绕：
+
+- 一条对话；
+- 一个任务；
+- 一份执行日志。
+
+多 Agent 需要不同 UI：
+
+- task list；
+- status；
+- ownership；
+- parallel threads；
+- diff / artifact preview；
+- budget；
+- conflict resolution。
+
+Kimi Agent Swarm、GPT-5.6 ultra、Codex App 都把“同时有很多 Agent”从架构问题变成产品问题。[^10][^11]
+
+人类角色因此从“和 AI 聊天”变成：
+
+> **分配、观察、插手、验收。**
+
+这是 AI 产品 UI 的又一次根本变化。
+
+---
+
+## 九、2026：Agents tab——Agent 变成领域对象，而不是聊天功能
+
+GitHub **Agents tab**是一个非常好的产品史信号。[^12]
+
+在代码仓库里，Agent session 与 Issues、Pull Requests 并列存在。
+
+这表示 GitHub 不再把 Agent 当“Copilot Chat 的一个按钮”，而把它当作需要：
+
+- 独立创建；
+- 持续追踪；
+- 关联 PR；
+- 恢复；
+- 管理
+
+的一等工作对象。
+
+未来其他领域也可能出现同样结构：
+
+- CRM 里的 agent run；
+- 财务系统里的 reconciliation task；
+- 法律系统里的 research run；
+- 医疗系统里的 review task。
+
+Agent 会像“工单”一样成为软件里的原生对象。
+
+---
+
+## 十、Automations：聊天框开始退出触发链
+
+**2026-08**，GitHub Copilot automations 可以由 issue / PR comment 触发 Agent。[^13]
+
+Codex App 同样把 scheduled / background automation 作为产品方向。[^9]
+
+这意味着用户甚至不需要每次打开聊天框。
+
+产品触发方式变成：
+
+- 时间；
+- webhook / event；
+- 文件变化；
+- Issue / PR；
+- 数据条件。
+
+AI 从“你问我答”进入**ambient / event-driven computing**。
+
+这可能是聊天框之后最深的一步，因为它改变了“什么时候 AI 存在”：
+
+> 不是用户召唤它时才存在，而是工作流需要时自动运行。
+
+---
+
+## 十一、本地常驻：Muse Glimmer 展示另一条产品路线
+
+云 Agent 越来越持久，也让隐私、网络依赖和费用更突出。
+
+Meta **Muse Glimmer**把 always-on local agent 作为明确目标：30B、消费级 GPU、本地文件 / tools / memory。[^14]
+
+这产生另一种产品形态：
+
+> AI 不是一个网站，也不是一个 SaaS workspace，而是设备里的常驻进程。
+
+本地 Agent 可能更适合：
+
+- 私人文件；
+- 离线环境；
+- 高频小任务；
+- 低延迟设备控制。
+
+所以未来 AI 产品很可能同时存在：
+
+- 云端前沿“大脑”；
+- 本地常驻“反射层”。
+
+---
+
+## 十二、Artifact 比 Conversation 更重要
+
+聊天产品天然优化“回答看起来好不好”。
+
+工作产品必须优化**产物是否能继续使用**。
+
+2026 年越来越多 AI 产品的终点是：
+
+- PR；
+- spreadsheet；
+- slide deck；
+- document；
+- dashboard；
+- code branch；
+- structured record。
+
+这意味着产品质量指标也变化：
+
+- artifact 是否正确；
+- 是否可编辑；
+- 是否符合 schema / template；
+- 是否带 provenance；
+- 是否能进入下游工作流。
+
+Agent 的回复文字可能只是过程说明，真正产品价值在 artifact。
+
+---
+
+## 十三、聊天框不会消失，它会成为控制面
+
+自然语言仍然是最灵活的意图输入。
+
+所以聊天框不会像命令行那样被彻底淘汰。
+
+但它的地位可能改变：
+
+### 2022
+
+聊天框 = 工作发生的地方。
+
+### 2026
+
+聊天框 = **启动、解释、纠偏和接管工作的控制面。**
+
+后台真实工作发生在：
+
+- sandbox；
+- browser；
+- repo；
+- connected apps；
+- subagents。
+
+这比“聊天框之后是什么 UI”更准确：
+
+> 下一代不是一个新 UI 替换聊天，而是工作从 UI 里迁移到 Agent runtime。
+
+---
+
+## 十四、产品护城河从模型前端转向工作流基础设施
+
+2023 年很多产品只是“某模型的聊天壳”。模型一升级，前端差异立即被抹平。
+
+2026 年更难复制的部分是：
+
+- connectors；
+- permissions；
+- durable state；
+- artifact system；
+- sandbox；
+- enterprise audit；
+- multi-agent scheduler；
+- domain workflow；
+- user / org memory。
+
+因此“模型能力趋同会让所有 AI 产品同质化”并不成立。
+
+模型越像基础设施，产品差异越向**上下文、工具与工作流**迁移。
+
+---
+
+## 十五、产品失败的新形态
+
+Chatbot 失败通常是“回答错了”。
+
+Agent 产品失败可能是：
+
+- 改错文件；
+- 发错消息；
+- 越权读取；
+- 重复执行；
+- 消耗过多预算；
+- 自动化循环；
+- 状态恢复错误；
+- 多 Agent 互相覆盖。
+
+所以 AI 产品设计必须加入传统聊天产品没有的：
+
+- permissions；
+- transaction boundary；
+- checkpoint；
+- undo；
+- audit log；
+- dry run；
+- human approval。
+
+产品化越深入，安全越像传统软件工程，而不是一句“AI safety”。
+
+---
+
+## 十六、事实脉络
+
+| 时间 | 产品形态节点 | 代表意义 |
+|---|---|---|
+| 2020 | GPT-3 API | 模型成为开发者能力原语 |
+| 2021 | GitHub Copilot | AI 嵌进已有工作流 |
+| 2022-11 | ChatGPT | 聊天成为大众 AI UI |
+| 2024-06 | Claude Artifacts | artifact 从聊天消息分离 |
+| 2024-10 | Computer Use | AI 直接操作旧软件 GUI |
+| 2025 | coding / browser agents | 完整任务委托 |
+| 2025-03 | Agents SDK / Responses | Agent runtime 产品化 |
+| 2026-01 | GitHub Agents tab | Agent run 成为领域对象 |
+| 2026-02 | Codex App | 多 Agent command center |
+| 2026-04 | durable sandbox / state | 长程 Agent 运行环境成熟 |
+| 2026-07 | ChatGPT Work | 通用知识工作 workspace |
+| 2026-08 | Agent automations | 事件驱动 / 后台 Agent |
+| 2026-08 | Muse Glimmer | 本地 always-on Agent |
 
 ---
 
 ## 评曰
 
-AI 产品化的历史，本质上是一部"交互界面"的演化史。API 把大模型变成了开发者工具，聊天框把大模型变成了大众产品，Artifacts 把聊天变成了工作台，Agent 把对话变成了任务委托，Computer Use 把数字世界变成了 AI 的操作空间。每一次跃迁都不是替代前一种形态，而是在前一种形态的边界上撕开新的可能性。
+大模型产品史一直在缩短“用户的意图”和“可交付结果”之间的距离。
 
-但这条演化线的终点不是"让 AI 做一切"。历史上每一次交互范式的变革——从命令行到图形界面，从桌面到移动端——都证明了一件事：最好的工具不是自主性最高的工具，而是让用户感觉"我在掌控"的工具。AI 产品化的真正挑战，不是让 AI 更强大，而是让用户在 AI 更强大的同时，仍然感觉自己是驾驶者，而不是乘客。
+API 要开发者写程序；聊天框让普通人直接描述；Artifacts 让结果成为真正对象；Agent 让用户不再逐步操作；Workspace 给 Agent 一个能长期工作的地方；Multi-agent UI 让一个人同时监督许多任务；Automation 最后甚至拿掉了“手工启动”这一步。
 
-史官记这一笔，是为提醒：技术演化常常被描述为"从简单到复杂"，但产品演化的真正方向是"从复杂到自然"。聊天框之所以成功，不是因为它先进，而是因为它自然。下一代 AI 产品形态的胜出者，大概率不是能力最强的那个，而是让用户感觉最自然的那个。
+因此，产品演进并不是 AI 越来越像一个聊天伙伴。
+
+恰恰相反，它越来越**不像聊天产品**。
+
+聊天只是人类表达意图最方便的入口；真正的 AI 产品正在变成一套后台工作系统。
+
+这也重新定义了“好产品”：
+
+过去是回答自然、界面漂亮；现在还必须状态可恢复、权限可控制、artifact 可交付、任务可审计。
+
+所以 2026 年最值得记住的产品变化，不是哪个聊天框又多了一个按钮，而是：
+
+> **AI 从一个需要人持续操作的应用，逐渐变成可以被授权、被调度、被监督的运行时。**
+
+人机交互没有消失。
+
+它从“操作每一步”上移到了“定义目标与制度”。
 
 ---
 
-*终末地工业史官团队编纂：符玄（理论框架）*
+*本篇原由终末地工业史官团队编纂。*  
+*2026-08 重订：GPT-5.6 Sol（OpenAI）。*
 
 ---
 
-[^1]: Brown et al., "Language Models are Few-Shot Learners", arXiv:2005.14165, 2020. https://arxiv.org/abs/2005.14165
-[^2]: OpenAI, "GPT-3 API", OpenAI Blog, 2020-06-11. https://openai.com/blog/gpt-3-api/
-[^3]: Chen et al., "Evaluating Large Language Models Trained on Code", arXiv:2107.03374, 2021-07. https://arxiv.org/abs/2107.03374
-[^4]: OpenAI, "ChatGPT: Optimizing Language Models for Dialogue", OpenAI Blog, 2022-11-30. https://openai.com/blog/chatgpt/
-[^5]: OpenAI, "GPT-4", OpenAI Blog, 2023-03-14. https://openai.com/research/gpt-4
-[^6]: Anthropic, "Claude 3.5 Sonnet", Anthropic Blog, 2024-06-20. https://www.anthropic.com/news/claude-3-5-sonnet
-[^7]: Anthropic, "Introducing computer use", Anthropic Blog, 2024-10-22. https://www.anthropic.com/news/3-5-models-and-computer-use
-[^8]: Toran Bruce Richards, "Auto-GPT", GitHub, 2023-03-30. https://github.com/Significant-Gravitas/Auto-GPT
-[^9]: Anthropic, "Claude Opus 4 & Sonnet 4", Anthropic Blog, 2025-05-22. https://www.anthropic.com/news/claude-4
+[^1]: OpenAI API, 2020. https://openai.com/blog/openai-api
+[^2]: GitHub, Introducing GitHub Copilot. https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/
+[^3]: OpenAI, ChatGPT. https://openai.com/index/chatgpt/
+[^4]: Anthropic, Claude 3.5 Sonnet / Artifacts. https://www.anthropic.com/news/claude-3-5-sonnet
+[^5]: Anthropic, Computer Use. https://www.anthropic.com/news/3-5-models-and-computer-use
+[^6]: OpenAI, New tools for building agents. https://openai.com/index/new-tools-for-building-agents/
+[^7]: GitHub, Copilot coding agent. https://github.blog/changelog/2025-05-19-github-copilot-coding-agent-in-public-preview/
+[^8]: OpenAI ChatGPT release notes, 2026-07-09 / ChatGPT Work. https://help.openai.com/en/articles/6825453-chatgpt-release-notes-whats-new
+[^9]: OpenAI, Codex App. https://openai.com/index/introducing-the-codex-app/
+[^10]: Kimi Help Center, Agent Swarm. https://www.kimi.com/en/help/agent/agent-swarm
+[^11]: OpenAI, GPT-5.6. https://openai.com/index/gpt-5-6/
+[^12]: GitHub Changelog, Agents tab. https://github.blog/changelog/2026-01-26-introducing-the-agents-tab-in-your-repository/
+[^13]: GitHub Changelog, Copilot automations. https://github.blog/changelog/2026-08-03-trigger-copilot-automations-with-comments/
+[^14]: Meta AI Research, Muse Glimmer. https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model
