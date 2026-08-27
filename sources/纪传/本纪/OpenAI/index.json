@@ -1,50 +1,21 @@
 {
   "collection": "纪传/本纪/OpenAI",
-  "archived_at": "2026-05-25",
+  "updated_at": "2026-08-28",
+  "archive_note": "保留旧有 Wayback 归档记录；2026 夏季补订新增来源已核验活链，待仓库本地 snapshot 工具归档。历史争议按来源归属记录。",
   "sources": [
-    {
-      "url": "https://openai.com/blog/introducing-openai",
-      "curl_status": "403_cloudflare",
-      "wayback_url": "http://web.archive.org/web/20240425131034/https://openai.com/blog/introducing-openai",
-      "ok": true
-    },
-    {
-      "url": "https://openai.com/blog/openai-supporters",
-      "curl_status": "403_cloudflare",
-      "wayback_url": "http://web.archive.org/web/20240411122008/https://openai.com/blog/openai-supporters",
-      "ok": true
-    },
-    {
-      "url": "https://openai.com/research/better-language-models",
-      "curl_status": "403_cloudflare",
-      "wayback_url": "http://web.archive.org/web/20240430205024/https://openai.com/research/better-language-models",
-      "ok": true
-    },
-    {
-      "url": "https://openai.com/blog/openai-lp",
-      "curl_status": "403_cloudflare",
-      "wayback_url": "http://web.archive.org/web/20240415094020/https://openai.com/blog/openai-lp",
-      "ok": true
-    },
-    {
-      "url": "https://news.microsoft.com/2019/07/22/microsoft-invests-in-and-partners-with-openai/",
-      "curl_status": "404",
-      "wayback_url": null,
-      "ok": false,
-      "note": "死链+IA无存档"
-    },
-    {
-      "url": "https://openai.com/blog/chatgpt",
-      "curl_status": "403_cloudflare",
-      "wayback_url": null,
-      "ok": false,
-      "note": "Cloudflare拦截+IA无存档"
-    },
-    {
-      "url": "https://openai.com/blog/openai-announces-leadership-transition",
-      "curl_status": "403_cloudflare",
-      "wayback_url": "http://web.archive.org/web/20240501063747/https://openai.com/blog/openai-announces-leadership-transition",
-      "ok": true
-    }
+    {"url":"https://openai.com/blog/introducing-openai","curl_status":"403_cloudflare","wayback_url":"http://web.archive.org/web/20240425131034/https://openai.com/blog/introducing-openai","ok":true},
+    {"url":"https://openai.com/blog/openai-lp","curl_status":"403_cloudflare","wayback_url":"http://web.archive.org/web/20240415094020/https://openai.com/blog/openai-lp","ok":true},
+    {"url":"https://openai.com/blog/openai-announces-leadership-transition","curl_status":"403_cloudflare","wayback_url":"http://web.archive.org/web/20240501063747/https://openai.com/blog/openai-announces-leadership-transition","ok":true},
+    {"url":"https://openai.com/our-structure/","title":"OpenAI — Our structure","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/introducing-gpt-5/","title":"Introducing GPT-5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/gpt-5-1/","title":"GPT-5.1","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/introducing-gpt-5-2/","title":"Introducing GPT-5.2","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/introducing-gpt-5-3-codex/","title":"Introducing GPT-5.3-Codex","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/introducing-gpt-5-4/","title":"Introducing GPT-5.4","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/introducing-gpt-5-5/","title":"Introducing GPT-5.5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/announcing-the-stargate-project/","title":"Announcing The Stargate Project","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://openai.com/index/next-chapter-of-microsoft-openai-partnership/","title":"The next chapter of the Microsoft–OpenAI partnership","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://news.microsoft.com/2019/07/22/openai-forms-exclusive-computing-partnership-with-microsoft-to-build-new-azure-ai-supercomputing-technologies/","title":"Microsoft invests in and partners with OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"}
   ]
 }
