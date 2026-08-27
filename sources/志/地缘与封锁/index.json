@@ -1,0 +1,16 @@
+{
+  "entry": "志/地缘与封锁",
+  "updated_at": "2026-08-28",
+  "archive_note": "本轮重点校正 AI Diffusion Rule 已于 2025-05 撤销，并补服务地区、所有权、蒸馏、能力分层、开放权重与云托管。新增活链待本地 snapshot。",
+  "sources": [
+    {"url":"https://www.bis.gov/press-release/biden-harris-administration-announces-regulatory-framework-responsible-diffusion-advanced-artificial","title":"Framework for Artificial Intelligence Diffusion — BIS","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.bis.gov/press-release/department-commerce-rescinds-biden-era-artificial-intelligence-diffusion-rule-strengthens-chip-related","title":"Commerce rescinds Biden-era AI Diffusion Rule — BIS, 2025-05-13","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://help.openai.com/en/articles/5347006-openai-api-supported-countries-and-territories","title":"OpenAI API supported countries and territories","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.anthropic.com/news/updating-restrictions-of-sales-to-unsupported-regions","title":"Anthropic unsupported-region restrictions update","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.anthropic.com/news/claude-fable-5-mythos-5","title":"Claude Fable 5 and Claude Mythos 5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.anthropic.com/news/redeploying-fable-5","title":"Redeploying Claude Fable 5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.anthropic.com/news/position-open-weights-models","title":"Anthropic position on open-weights models","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/","title":"Kimi K3 cloud-hosting talks — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai","title":"EU AI Act regulatory framework — European Commission","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
