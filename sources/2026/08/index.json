@@ -1,0 +1,24 @@
+{
+  "entry": "编年/2026/08",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 编纂 8 月编年时逐条核验活链。当前 GitHub 连接器无法执行仓库网页快照工具，因此新增来源暂登记为待归档，不伪造 HTML snapshot。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.alibabagroup.com/en-US/document-2021044032125272064","title":"Alibaba Unveils Qwen3.8-Max: Its Largest and Most Capable Flagship Model to Date","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://www.reuters.com/business/retail-consumer/alibaba-unveils-its-most-capable-ai-model-date-not-far-behind-moonshots-size-2026-08-03/","title":"Alibaba unveils its most capable AI model to date, not far behind Moonshot's in size — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://github.com/QwenLM/Qwen3.8","title":"Qwen3.8 official repository — QwenLM","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.alibabacloud.com/help/en/model-studio/qwen3-8-2-4t-a95b","title":"qwen3.8-2.4t-a95b Model Info — Alibaba Cloud Model Studio","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model","title":"Introducing Muse Glimmer: An Open Agentic Model That Runs on Your Device — Meta AI Research","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.reuters.com/world/china/meta-launches-new-ai-model-zuckerberg-champions-open-weight-push-2026-08-10/","title":"Meta launches new AI model as Zuckerberg champions open-weight push — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://www.deepseek.com/","title":"DeepSeek official homepage — V4-Pro release notice","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.reuters.com/world/china/deepseek-releases-official-v4-pro-model-it-steps-up-expansion-2026-08-13/","title":"DeepSeek releases official V4 Pro model as it steps up expansion — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/","title":"Introducing Gemini 3.7 Flash — Google","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.reuters.com/business/google-unveils-gemini-37-flash-ai-model-coding-agent-workflows-2026-08-13/","title":"Google unveils Gemini 3.7 Flash AI model for coding, agent workflows — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/","title":"Improving GPT-5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6: Frontier intelligence that scales with your ambition — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://www.reuters.com/technology/openai-cuts-developer-pricing-frontier-gpt-56-sol-model-by-more-than-20-2026-08-21/","title":"OpenAI cuts developer pricing for frontier GPT-5.6 Sol model by more than 20% — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://mistral.ai/news/shieldstral/","title":"Introducing Shieldstral — Mistral","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://docs.mistral.ai/models/shieldstral-1-0","title":"Shieldstral 1.0 — Mistral Docs","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^16]","url":"https://www.anthropic.com/news/claude-text-watermark","title":"How Claude’s text watermark works — Anthropic","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/","title":"China's Moonshot in talks with Microsoft, Amazon, Google over K3 revenue sharing, sources say — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"}
+  ]
+}
