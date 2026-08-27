@@ -1,163 +1,412 @@
 # 《AI 编程助手生态志》
 
-> AI 编程助手是大模型时代第一个被验证的产品品类。它的故事不是某个模型的故事——而是"模型能力如何变成程序员日常工具"的故事。从 Copilot 的自动补全到 Cursor 的 AI-native IDE，再到 Claude Code 的自主编码 Agent，这个赛道在四年内经历了三次范式跃迁。每一次跃迁都重新定义了"AI 帮人写代码"的含义：第一次是预测下一行，第二次是对话协作，第三次是理解任务并自主完成。这里记录的，是这个转变的事实脉络。
+> AI 编程是大模型最早完成“从能力到工作流”转化的领域。它从 Codex 生成一个函数，发展到 Copilot Tab 补全；再到 Cursor / Copilot Chat 多文件编辑；2025 年以后，coding agent 开始接收 Issue、进入隔离环境、运行测试、提交 Pull Request；2026 年又出现 Agents tab、Codex 多 Agent command center、worktree 隔离与事件触发 automations。编程助手的历史因此不是“代码生成越来越准”，而是**软件工程把越来越大的执行权限交给模型，同时用 Git、CI、sandbox 和 review 把风险圈起来。**
 
 ---
 
-## 一、概述
+## 一、为什么编程最先成为成熟 Agent 场景
 
-2024—2025 年，AI 编程助手成为大模型商业化最成功的产品品类之一。GitHub Copilot 的付费用户在 2024 年突破 200 万[^1]，Cursor 在 2024 年底成为开发者社区增长最快的 IDE[^2]，Claude Code 在 2025 年展示了"连续工作 7 小时完成复杂代码重构"的 Agent 能力[^3]。这些产品的共同特征是：**它们不是在"演示 AI"，而是在改变程序员的工作方式。**
+代码有一个其他知识工作很少具备的优势：结果可以被机器部分验证。
 
-从 2021 年 Codex 和 GitHub Copilot 发布开始，AI 编程助手在四年内经历了三次范式跃迁：
+程序员拥有：
 
-1. **自动补全**（2021—2023）：Copilot 预测下一行代码，程序员按 Tab 接受。
-2. **对话编程**（2023—2024）：Copilot X、Cursor 内嵌聊天窗口，程序员用自然语言描述意图。
-3. **自主编码 Agent**（2025）：Claude Code、Devin 理解任务、制定计划、修改多个文件、运行测试、修复 bug。
+- 编译器；
+- type checker；
+- lint；
+- unit / integration tests；
+- Git diff；
+- branch protection；
+- CI；
+- Pull Request review。
 
-这三次跃迁的背后，是大模型编程能力的持续飙升——从 Codex 在 HumanEval 上的 28.8%（2021）到 Claude 3.5 Sonnet 的 92%（2024），两年间提升了三倍以上[^4][^5]。模型能力的提升是产品范式跃迁的先决条件：没有足够强的代码生成能力，对话编程和自主编码都只是概念。
+因此，模型写错代码后，环境会产生结构化反馈。
 
-（AI 编程助手的技术起源——Codex 与 GitHub Copilot 的完整故事——详见《Codex / GitHub Copilot 列传》。）
+这让编程天然适合“模型行动 → 环境验证 → 修正 → 再行动”的 Agent loop。
 
----
-
-## 二、自动补全时代：Copilot 定义品类（2021—2023）
-
-2021 年 6 月 29 日，GitHub 与 OpenAI 联合发布 GitHub Copilot 技术预览版。[^6] 产品形态极其简洁：程序员在 VS Code 中写代码，Copilot 在灰色幽灵文本中预测接下来的代码，按 Tab 接受。这是一个"更智能的自动补全"——它补全的不是一个变量名，而是一整段逻辑。
-
-2022 年 6 月，Copilot 正式发布（GA），定价 $10/月。[^7] 到 2023 年初，GitHub 宣布 Copilot 已被超过 100 万开发者使用，在支持的语言中平均有 40% 的代码由 Copilot 生成。[^8]
-
-Copilot 的成功验证了一个关键假设：**程序员愿意为"省几秒钟打字"付费。** 这个看似微小的价值主张，乘以全球数千万开发者的基数，就变成了一个年收入数十亿美元的市场。
-
-但自动补全模式有其固有限制：
-
-- **被动**：它只能在你写代码时预测，不能主动理解你的意图。
-- **局部**：它的上下文窗口有限（早期 Codex 只有 4K tokens），无法理解整个代码库的结构。
-- **无记忆**：每次补全都是独立的，不记得你之前做过什么决策。
-
-这些限制意味着，自动补全本质上是"一行一行地帮"——它让写代码更快，但没有改变程序员的工作方式。程序员仍然需要自己设计架构、理解需求、编写测试。
+AI 编程的成熟速度，不只是因为训练数据里代码多，也因为**软件工程早就有一套管理不完全可靠修改的制度。**
 
 ---
 
-## 三、对话编程：从补全到协作（2023—2024）
+## 二、2021—2022：Codex / Copilot 把生成能力塞进 Tab 键
 
-2023 年 3 月 22 日，GitHub 发布 Copilot X，接入 GPT-4，增加 Copilot Chat 功能。[^9] 这标志着 AI 编程助手从"自动补全"进化到"对话编程"。
+Codex 证明专门针对代码训练的语言模型可以显著提高 HumanEval 等程序合成任务表现。[^1]
 
-Copilot X 的核心变化是：**程序员可以直接用自然语言和 AI 对话。** "这段代码有什么 bug？""帮我重构这个函数，用 decorator 模式。""给这段代码写单元测试。" AI 不再只是一个被动的补全引擎——它变成了一个可以讨论、可以商量的协作者。
+**2021-06-29**，GitHub Copilot 技术预览把这个能力产品化：编辑器灰字预测，用户按 Tab 接受。[^2]
 
-2023 年是"AI 编程助手爆发年"。Copilot X 之后，大量竞争者涌入：
+**2022-06-21**，Copilot 正式 GA。[^3]
 
-| 产品 | 发布时间 | 核心定位 | 关键特性 |
-|------|----------|----------|----------|
-| **Cursor** | 2023 | AI-native IDE | 不是插件而是独立编辑器；AI 深度整合到每一个操作 |
-| **Windsurf**（原 Codeium） | 2024 更名 | 全代码库上下文 | 基于整个代码库的上下文理解和补全 |
-| **Amazon CodeWhisperer** | 2023-04 | AWS 生态集成 | 免费层 + 企业安全合规 |
-| **JetBrains AI** | 2023-12 | IDE 原生集成 | 嵌入 IntelliJ 系列所有 IDE |
+这个产品形态非常克制：
 
-**Cursor** 是其中最具颠覆性的挑战者。[^2] 它不是一个 VS Code 插件——它是一个完整的独立 IDE（基于 VS Code 代码分支构建），把 AI 深度整合到编辑器的每一个环节。Cursor 的设计理念是：**AI 不应该是一个"旁边的小窗口"，而应该是编辑器的核心交互方式。** 在 Cursor 中，Ctrl+K 直接呼出 AI 编辑选中代码，Ctrl+L 打开聊天窗口，AI 可以同时编辑多个文件、理解整个代码库的索引。
+- AI 不掌握文件系统；
+- 不自己运行命令；
+- 不创建 PR；
+- 人始终是执行者。
 
-Cursor 的成功反映了一个重要的产品洞察：**AI 编程助手的价值不在于"补全更快"，而在于"理解更深"。** 一个能理解整个代码库、记住之前的对话、同时修改多个文件的 AI，比一个只能预测下一行代码的 AI，有用得多。
+所以早期 Copilot 的风险和收益都局限在“建议代码”。
 
----
-
-## 四、编程模型之争：Claude 3.5 Sonnet 成为标杆
-
-2024 年的另一条主线是编程模型本身的能力竞赛。GPT-4 发布时（2023-03）在 HumanEval 上达到 67%[^10]，已经远超 Codex 的 28.8%。但真正的转折发生在 2024 年 6 月——Anthropic 发布 Claude 3.5 Sonnet。
-
-Claude 3.5 Sonnet 在 HumanEval 上达到 92%[^5]，在 SWE-bench（基于真实 GitHub issue 的评测）上解决了 49% 的问题[^11]。更重要的是，在实际的编程助手场景中，Claude 3.5 Sonnet 被开发者社区广泛认为是"最好用的编程模型"——不是因为它在某个 benchmark 上分数最高，而是因为它生成的代码**最可读、最符合上下文意图、最少无意义的冗余**。
-
-Anthropic 同步推出的 **Artifacts** 功能——让 Claude 的输出变成可交互的代码、文档和图表——进一步强化了 Claude 作为"编程工作台"的定位[^12]。Artifacts 不只是"看代码"——它可以运行代码、展示结果、即时修改。
-
-Claude 3.5 Sonnet 成为编程助手标杆，对整个赛道产生了深远的连锁反应：
-
-- **Cursor、Windsurf 等产品纷纷将默认模型切换为 Claude 3.5 Sonnet**，或至少将其作为首选选项。
-- **GitHub Copilot 的市场份额受到直接冲击**——当一个更好的底层模型可用时，前端产品的差异化空间被压缩。
-- **"哪个模型最适合写代码"这个问题有了明确答案**——在 2024 下半年，答案是 Claude 3.5 Sonnet。
-
-（Claude 世家的完整技术故事，详见《Claude 世家》。）
+这是 **assistive AI**，还不是 Agent。
 
 ---
 
-## 五、自主编码 Agent：从助手到工程师（2025）
+## 三、2023—2024：从补全到编辑整个代码库
 
-2025 年初，AI 编程助手赛道迎来了第三次范式跃迁：**自主编码 Agent**。
+Copilot X、Cursor、Windsurf 等产品把交互从“下一行是什么”改成：
 
-**2024-03-12**，Cognition Labs 发布 Devin，宣称是"第一个 AI 软件工程师"。[^13] Devin 能在完整的开发环境中工作——终端、编辑器、浏览器。它不只是补全代码或回答问题，而是理解需求、规划实现路径、编写代码、运行测试、调试错误。Devin 的演示视频中，它独立完成了从 GitHub issue 到 Pull Request 的全流程。
+> “我想让这个仓库发生什么变化？”
 
-但 Devin 在发布后引发了激烈争议。独立评测显示，Devin 在 SWE-bench 上的实际表现远低于官方宣称的 13.86% 解决率[^14]（Cognition Labs 后来修正了评测方法）。Devin 的"首个 AI 软件工程师"标签更多是营销定位——它验证了自主编码 Agent 的概念，但在可靠性上还远未达标。
+模型开始拥有：
 
-真正将自主编码 Agent 推入实用阶段的是 **Claude Code**。[^3]
+- repository indexing；
+- multi-file edits；
+- chat；
+- terminal context；
+- codebase search。
 
-2025 年 2 月，Anthropic 发布 Claude Code——一个基于 Claude 3.7 Sonnet 的命令行编码工具。Claude Code 的核心能力是：
+真正变化的是**工作单位变大**：
 
-- **理解整个代码库**：自动索引项目结构、依赖关系、代码风格。
-- **制定实现计划**：根据自然语言需求，生成多步骤的修改计划。
-- **自主执行**：修改多个文件、运行测试、修复失败的测试、处理合并冲突。
-- **持续迭代**：在一次会话中持续工作——有报道称 Claude Code 连续工作 7 小时完成了一次复杂的代码库重构。[^3]
+一行 → 一个函数 → 一个文件 → 多个文件。
 
-Claude Code 的出现重新定义了程序员与 AI 的关系。在自动补全时代，程序员是作者，AI 是键盘；在对话编程时代，程序员是导演，AI 是演员；在自主编码 Agent 时代，程序员是审查者，AI 是工程师。
+Claude 3.5 Sonnet 在 2024 年成为 coding 场景的重要底层模型；Artifacts、Computer Use 等能力进一步让模型从代码文本走向可执行环境。[^4][^5]
 
-**2025-05-22**，Anthropic 发布 Claude Opus 4 和 Sonnet 4，进一步强化了编程 Agent 能力。Claude Opus 4 在 SWE-bench Verified 上达到 72.5%，被 Anthropic 称为"全球最佳编程模型"。[^15]
-
----
-
-## 六、三次范式跃迁的结构分析
-
-回看四年的演化，三次范式跃迁不是产品设计者的"远见"驱动的，而是**模型能力突破到一定阈值后，产品形态自然跟随**。
-
-| 阶段 | 时间 | 代表产品 | 模型能力门槛 | 程序员角色 |
-|------|------|----------|-------------|-----------|
-| 自动补全 | 2021—2023 | Copilot | HumanEval ≥30% | 作者（AI 预测下一行） |
-| 对话编程 | 2023—2024 | Copilot X, Cursor | HumanEval ≥67%（GPT-4 级） | 导导（AI 写代码） |
-| 自主编码 | 2025 | Claude Code, Devin | SWE-bench ≥40% | 审查者（AI 自主完成任务） |
-
-每一阶段的跃迁都满足两个条件：（1）模型在编程基准上跨过一个新的阈值；（2）至少一个产品将这个能力转化为可用的交互范式。Copilot 把 Codex 变成了自动补全，Cursor 把 GPT-4 变成了 IDE 核心，Claude Code 把 Claude 3.7 Sonnet 变成了自主 Agent。
-
-这个模式也解释了为什么每次跃迁都伴随着新玩家的崛起：**新范式需要新产品，而不是给旧产品加新功能。** Copilot 是 VS Code 插件时代的产物，Cursor 是 AI-native IDE 时代的产物，Claude Code 是 Agent 时代的产物。给 Copilot 加一个聊天窗口（Copilot X）可以延缓但无法逆转范式转移。
+但这一阶段大多数产品仍要求人在 IDE 里实时监督。
 
 ---
 
-## 七、生态格局（2025 年中）
+## 四、2025：Agent mode——AI 开始自己决定下一步编辑
 
-到 2025 年中，AI 编程助手赛道形成了三层竞争格局：
+**2025-02-06**，GitHub 发布 Copilot agent mode：Agent 可以跨多个文件实施修改，并在过程中决定下一步动作。[^6]
 
-**底层模型层**：Claude、GPT-4、Gemini 竞争"谁是最好的编程模型"。Claude 3.5 Sonnet / Opus 4 在多项编程基准上领先，GPT-4o 和 Gemini 2.5 Pro 紧随其后。
+这和普通 chat / edit 的差异在于：
 
-**产品层**：Cursor、GitHub Copilot、Windsurf、Claude Code 竞争"谁是最好的编程产品"。Cursor 凭借 AI-native IDE 设计占据开发者心智；GitHub Copilot 凭借 GitHub 生态的存量优势维持市场份额；Claude Code 凭借自主 Agent 能力代表最新方向。
+- 人给目标；
+- Agent 自己搜索相关文件；
+- 进行一系列修改；
+- 根据工具结果继续。
 
-**企业层**：GitHub Copilot Enterprise、Amazon CodeWhisperer、Google Gemini Code Assist 竞争企业市场。企业客户关心的不只是"AI 写代码好不好用"，还有代码安全、合规审计、私有代码库保护。
+编辑器里的 Agent 由“生成器”变成了**局部执行者**。
 
-一个显著的趋势是**垂直化**：通用编程助手正在分化为面向特定场景的专用工具——前端开发（v0 by Vercel）、数据科学（Cursor + Jupyter 集成）、DevOps（Claude Code 的基础设施自动化能力）。AI 编程助手不再是"一个产品"，而是一个产品品类。
+同年 Claude Code、Codex CLI 等终端 Agent 进一步让 shell、Git 和测试成为一等工具。
+
+终端之所以适合 Agent，是因为它比 GUI 更结构化，又比单一 API 更通用。
+
+---
+
+## 五、2025：Coding Agent 真正跨过一道线——从同步协作到异步委派
+
+**2025-05-19**，GitHub Copilot coding agent 进入 public preview。用户可以像分配给开发者一样把 GitHub Issue assign 给 Copilot。Agent 在基于 GitHub Actions 的独立云开发环境里工作，运行 tests / linter，最终提交 Pull Request 请求人类 review。[^7][^8]
+
+这一步的历史意义大于“agent mode 又增强了”：
+
+> **用户不再需要在线陪着 AI。**
+
+任务被委派到后台环境。
+
+从这一刻起，coding agent 的基本单位从“会话”变成“任务 / PR”。
+
+同时 GitHub 保留了软件工程的控制结构：
+
+- branch protections；
+- PR review；
+- workflow approval；
+- session logs；
+- Actions 环境隔离。[^8]
+
+这几乎是 Agent 安全最早的大规模生产范式之一：**不是阻止 Agent 修改，而是让修改进入已有的变更管理制度。**
+
+---
+
+## 六、Claude Code：终端成为长期 Agent 工作台
+
+Claude Code 从 2025 年开始持续强化：
+
+- 读取 / 修改整个仓库；
+- shell / Git / test；
+- extended thinking；
+- memory；
+- checkpoints；
+- subagents；
+- 更长 context / compaction。
+
+随着 Claude 4.5—5 系列出现，coding 逐渐变成 Anthropic 训练 Agent 能力的主要压力测试场。[^9][^10]
+
+原因仍然是反馈闭环：
+
+> 写错 → 测试失败 → 读错误 → 再改。
+
+因此 Claude Code 不只是“一个很成功的编程产品”，它也是 Claude 长程 Agent 能力进入 Cowork / professional work 的工程母体。
+
+> 📖 详见《Claude 世家》。
+
+---
+
+## 七、Codex：从 coding agent 到多 Agent command center
+
+OpenAI 在 **2025** 把 Codex 重新定义为云端 coding agent，可在独立环境中处理任务。[^11]
+
+**2026-02-02**，Codex App 进一步改造人机界面：它不再只围绕一个聊天线程，而是被定义为**command center for agents**。[^12]
+
+关键机制包括：
+
+- 多 Agent 并行；
+- 每个 Agent 独立 thread；
+- worktree 隔离，同一 repo 多任务不互相踩文件；
+- diff review；
+- Skills；
+- Automations；
+- CLI / IDE / cloud session 延续。
+
+这里最值得记录的是 worktree。
+
+多 Agent 最大的工程问题之一是并发修改冲突。Git worktree 把一个老软件工程工具变成了 Agent isolation primitive：每个 Agent 有自己的工作副本，再由人 / Git 合并。
+
+Agent 时代没有抛弃 Git；相反，它开始更依赖 Git。
+
+---
+
+## 八、2026：GitHub Agents tab——仓库里出现“Agent 任务中心”
+
+**2026-01-26**，GitHub 把 coding agent sessions 集中到 repository **Agents tab**。[^13]
+
+它的界面逻辑已经非常接近 issue / PR 管理：
+
+- 查看全部 Agent session；
+- 创建任务；
+- 切换任务；
+- 跳到对应 PR；
+- 从 CLI resume。
+
+这意味着 coding agent 不再只是 IDE feature，而正式成为**repository object**。
+
+代码库里传统对象是：
+
+- commit；
+- branch；
+- issue；
+- pull request。
+
+2026 年开始多了：
+
+- **agent session**。
+
+这是一种非常具体的软件工程制度变化。
+
+---
+
+## 九、2026：第三方 Agent 进入 GitHub，同一个 Issue 不再只属于 Copilot
+
+GitHub 2026 的另一项变化是支持第三方 coding agents 与 Copilot cloud agent 并列：用户可以把开发任务委派给不同 Agent，Agent 在后台工作并创建 PR。[^14]
+
+这意味着 GitHub 开始从“卖一个 Copilot”转向“托管 Agent 工作流的平台”。
+
+长期看，仓库可能拥有：
+
+- Copilot agent；
+- Claude-based agent；
+- Codex agent；
+- 企业内部 agent；
+- 安全审计 agent；
+- 文档 agent。
+
+GitHub 的价值因此可能不只来自拥有最强 coding model，而来自：**成为所有 coding agents 的共同任务 / 权限 / review 平面。**
+
+---
+
+## 十、2026-08：Automations——软件维护开始事件驱动
+
+GitHub Copilot automations 开始支持 issue / PR comment 触发。[^15]
+
+这看起来像一个小功能，却改变了运行模型：
+
+> 过去：人打开 Agent → 输入任务。
+>
+> 现在：仓库里发生事件 → Agent 自动开始工作。
+
+例如：
+
+- 评论 `/investigate` → 调查 bug；
+- PR review comment → 修改；
+- Issue label → 补文档 / 测试；
+- 自动化任务 → 创建 follow-up。
+
+这使 coding agent 逐渐接近 CI/CD：**由代码仓库事件驱动，而不是由聊天窗口驱动。**
+
+---
+
+## 十一、AI 编程助手生态的竞争单位已经改变
+
+### 2021：模型 + autocomplete
+
+比谁补全得准。
+
+### 2023：模型 + IDE context
+
+比谁理解代码库。
+
+### 2025：模型 + execution environment
+
+比谁能自主改、跑、测。
+
+### 2026：模型 + agent runtime + repository control plane
+
+比谁能：
+
+- 长时间稳定工作；
+- 多 Agent 并行；
+- 隔离 workspace；
+- 自动触发；
+- 留下 trace；
+- 进入 PR / CI / review 制度。
+
+底层模型仍然关键，但**产品护城河越来越来自 harness 和 workflow integration。**
+
+---
+
+## 十二、代码生成 Benchmark 为什么越来越不够
+
+HumanEval 评一个函数；Agent coding 已经是：
+
+- 理解真实 repo；
+- 修改多个文件；
+- 使用工具；
+- 运行测试；
+- 与 CI / PR 交互。
+
+因此 SWE-bench、Terminal-Bench 等环境式评测比 HumanEval 更接近实际工作。
+
+但即便如此，真实生产还需要衡量：
+
+- 改错文件了吗？
+- 破坏兼容性了吗？
+- 是否留下安全漏洞？
+- PR 是否容易 review？
+- retry 几次？
+- 人类审查花多久？
+
+coding agent 的最终 benchmark 可能就是：
+
+> **这个 PR 能不能被安全合并。**
+
+---
+
+## 十三、审查带宽成为新瓶颈
+
+AI 能生成更多代码，并不意味着团队能吸收更多代码。
+
+Agent 一次提交 5,000 行修改后，人类 reviewer 可能完全失去逐行理解能力。
+
+因此真正可扩展的 coding agent 必须帮助降低 review 成本：
+
+- 小而明确的 diff；
+- 自动测试；
+- change summary；
+- provenance；
+- risk highlighting；
+- 分阶段 commit；
+- rollback；
+- policy checks。
+
+如果生成速度超过验证速度，生产力只是把瓶颈从“写代码”搬到“审代码”。
+
+---
+
+## 十四、初级工程师问题：学习路径正在改变，但结论不能写得太早
+
+coding agents 显然会吞掉一部分过去用于培养新人的机械任务：
+
+- boilerplate；
+- 简单迁移；
+- 基础测试；
+- 文档；
+- 小 bug。
+
+但“因此初级工程师会消失”并不能从技术能力直接推出。
+
+团队仍需要培养未来能：
+
+- 定义系统架构；
+- 判断需求；
+- 审查 Agent；
+- 处理生产事故；
+- 理解深层约束
+
+的人。
+
+真正变化的是学习材料：新人可能不再通过手写 10 万行 boilerplate 获得经验，而通过**审查、实验、调试 Agent 产物**建立直觉。
+
+这是教育与组织问题，不宜在技术史里提前宣布结局。
+
+---
+
+## 十五、2026 年的 AI 编程技术栈
+
+| 层 | 代表 |
+|---|---|
+| Coding model | Claude Sonnet/Opus、GPT/Codex、Gemini、DeepSeek、Qwen 等 |
+| IDE interaction | VS Code / Cursor / JetBrains / Copilot |
+| Terminal agent | Claude Code / Codex CLI / Copilot CLI |
+| Cloud coding agent | Copilot coding agent / Codex cloud / third-party agents |
+| Sandbox | GitHub Actions / cloud containers / native sandbox |
+| Repo isolation | branches / worktrees |
+| Verification | tests / lint / typecheck / CI |
+| Control plane | Issues / PRs / Agents tab / Codex App |
+| Automation | comments / schedules / repository events |
+| Review | diff / approval / branch protection |
+
+这张表比“哪个 AI 写代码最好”更能说明赛道现状。
 
 ---
 
 ## 评曰
 
-AI 编程助手的四年演化史，是大模型能力产品化最完整的样本。
+AI 编程助手最早卖的是一个非常小的动作：**按 Tab 少打几行字。**
 
-三次范式跃迁——自动补全、对话编程、自主编码——每一次都伴随着新玩家对旧格局的颠覆。Copilot 定义了品类，但 Cursor 证明了"AI 可以不只是一行补全"；Claude Code 证明了"AI 可以不只是一段对话"。这个模式本身就说明：在大模型时代，产品壁垒不在功能堆叠，而在交互范式——谁先找到模型能力与用户需求之间的最佳接口，谁就赢得这个阶段。
+五年后，它正在争夺的是整个软件变更流程。
 
-但这个赛道最终的悬念不是"谁是最好的编程助手"，而是"编程助手会不会消灭编程"。当 Claude Code 能连续工作 7 小时自主完成一次代码重构，程序员的价值还剩下什么？答案可能是：架构判断、需求定义、代码审查——这些都是"决定做什么"而非"怎么做"的工作。AI 编程助手越是强大，程序员的角色就越像产品经理和架构师，而非传统意义上的"写代码的人"。
+这段历史真正连续的，不是 HumanEval 从多少涨到多少，而是**人类交给 AI 的变更权限越来越大**：
 
-这不是失业的故事——这是职业定义被重写的故事。
+- 建议下一行；
+- 修改一个文件；
+- 修改整个仓库；
+- 运行命令；
+- 接一个 Issue；
+- 提交 PR；
+- 在后台持续工作；
+- 同时调度多个 Agent；
+- 被仓库事件自动触发。
+
+与此同时，软件工程也把自己的老制度重新派上了用场：Git、branch、worktree、CI、PR、review、rollback。
+
+所以 coding agent 的成功并没有证明“AI 已经像程序员一样可靠”。
+
+它证明的是另一件事：
+
+> **即使 Agent 不完全可靠，只要工作环境足够可验证、可隔离、可回滚，它仍然可以被安全地授予越来越多行动权。**
+
+这可能也是编程对其他 Agent 场景最大的启示。
+
+未来真正可复制的，不是“让 AI 会写代码”，而是软件工程这套**管理机器生成变更**的制度。
 
 ---
 
-*本篇由终末地工业史官团队编纂：赫默（主笔）。*
+*本篇原由终末地工业史官团队编纂。*  
+*2026-08 重订：GPT-5.6 Sol（OpenAI）。*
 
 ---
 
-[^1]: GitHub Blog, "GitHub Copilot reaches 2 million developers", 2024-10. https://github.blog/news-insights/product-news/github-copilot-the-agent-ai-assistant/
-[^2]: Cursor 官方文档与产品页面. https://www.cursor.com/
-[^3]: Anthropic, "Claude Code: Best practices for agentic coding", 2025-02. https://docs.anthropic.com/en/docs/claude-code
-[^4]: Chen et al., "Evaluating Large Language Models Trained on Code" (Codex), arXiv:2107.03374, 2021-07-07. https://arxiv.org/abs/2107.03374
-[^5]: Anthropic, "Claude 3.5 Sonnet", 2024-06-20. https://www.anthropic.com/news/claude-3-5-sonnet
-[^6]: GitHub Blog, "Introducing GitHub Copilot · Your AI pair programmer", 2021-06-29. https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/
-[^7]: GitHub Blog, "GitHub Copilot is generally available to all developers", 2022-06-21. https://github.blog/2022-06-21-github-copilot-is-generally-available-to-all-developers/
-[^8]: GitHub Blog, "GitHub Copilot: The AI-powered developer tool", 2023-06-20. https://github.blog/2023-06-20-github-copilot-the-ai-powered-developer-tool/
-[^9]: GitHub Blog, "GitHub Copilot X: The AI-powered developer experience", 2023-03-22. https://github.blog/2023-03-22-github-copilot-x-the-ai-powered-developer-experience/
-[^10]: OpenAI, "GPT-4 Technical Report", 2023-03-14. https://openai.com/research/gpt-4
-[^11]: Anthropic, "Claude 3.5 Sonnet: Computer use and upgraded capabilities", 2024-10-22. https://www.anthropic.com/news/3-5-sonnet-computer-use
-[^12]: Anthropic, "Introducing Claude's new Artifacts feature", 2024-06-20. https://support.anthropic.com/en/articles/9517075-what-are-artifacts
-[^13]: Cognition Labs, "Introducing Devin", 2024-03-12. https://www.cognition.ai/blog/introducing-devin
-[^14]: SWE-bench 官方排行榜. https://www.swebench.com/
-[^15]: Anthropic, "Claude Opus 4 and Sonnet 4", 2025-05-22. https://www.anthropic.com/news/claude-4
+> 📖 相关：《Codex / GitHub Copilot 列传》《Claude 世家》《志·AI Agent 生态》《论·Agent 时代》。
+
+[^1]: Chen et al., Codex / HumanEval. https://arxiv.org/abs/2107.03374
+[^2]: GitHub, “Introducing GitHub Copilot”. https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/
+[^3]: GitHub, “GitHub Copilot is generally available”. https://github.blog/2022-06-21-github-copilot-is-generally-available-to-all-developers/
+[^4]: Anthropic, Claude 3.5 Sonnet. https://www.anthropic.com/news/claude-3-5-sonnet
+[^5]: Anthropic, Computer Use / Claude 3.5 update. https://www.anthropic.com/news/3-5-models-and-computer-use
+[^6]: GitHub, “Copilot Agent Mode”, 2025-02-06. https://github.com/newsroom/press-releases/agent-mode
+[^7]: GitHub, Copilot coding agent public preview, 2025-05-19. https://github.blog/changelog/2025-05-19-github-copilot-coding-agent-in-public-preview/
+[^8]: GitHub, “Meet the new coding agent”. https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/
+[^9]: Anthropic, Claude 3.7 Sonnet and Claude Code. https://www.anthropic.com/news/claude-3-7-sonnet
+[^10]: Anthropic, Claude Sonnet 5. https://www.anthropic.com/news/claude-sonnet-5
+[^11]: OpenAI, Introducing Codex. https://openai.com/index/introducing-codex/
+[^12]: OpenAI, “Introducing the Codex app”, 2026-02-02. https://openai.com/index/introducing-the-codex-app/
+[^13]: GitHub Changelog, Agents tab, 2026-01-26. https://github.blog/changelog/2026-01-26-introducing-the-agents-tab-in-your-repository/
+[^14]: GitHub Docs, “About third-party coding agents”. https://docs.github.com/en/copilot/concepts/agents/about-third-party-coding-agents
+[^15]: GitHub Changelog, “Trigger Copilot automations with comments”, 2026-08-03. https://github.blog/changelog/2026-08-03-trigger-copilot-automations-with-comments/
