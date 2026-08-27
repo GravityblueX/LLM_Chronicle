@@ -44,7 +44,7 @@ K1.5 在数学、代码和视觉推理等任务上表现突出。它的意义不
 
 K1.5 与 DeepSeek-R1 几乎在同一时期进入公众视野，因此新闻声量被 R1 的开放权重和低成本冲击部分盖过。但从 Kimi 自身谱系看，K1.5 是后续 K2 Agent 路线的重要过渡：强化学习不再只用于提高回答正确率，而开始为更长程的行动与工具使用做准备。
 
-> 📖 详见《编年·2025年1月·Kimi K1.5》。
+> 📖 详见《编年·2025年1月》中的 Kimi K1.5 专题。
 
 ---
 
@@ -90,7 +90,7 @@ K3 并不是简单把 K2 放大。它引入了 **Kimi Delta Attention（KDA）**
 
 K3 的目标任务也非常明确：长时间代码工程、大型仓库操作、终端工具编排、深度研究、知识工作和多模态 Agent，而不是只追求聊天榜单分数。官方公开评测把它与 GPT-5.6 Sol、Claude Fable 5 等闭源前沿模型直接并列比较。[^10]
 
-**2026-07-27** — K3 完整权重与技术报告公开。技术报告进一步确认 2.8T / 104B、百万 token 上下文和新的混合注意力架构。[^12]
+**2026-07-27** — K3 完整权重公开；同期发布的技术报告进一步确认 2.8T / 104B、百万 token 上下文和新的混合注意力架构。[^12]
 
 > 📖 详见《编年·2026年7月》。
 
@@ -141,7 +141,7 @@ Kimi 最早让人记住的是“200 万字”。这件事看起来像营销，�
 ---
 
 [^1]: Reuters, "China's Moonshot AI releases open-source model to reclaim market position", 2025-07-11. https://www.reuters.com/business/media-telecom/chinas-moonshot-ai-releases-open-source-model-reclaim-market-position-2025-07-11/
-[^2]: Moonshot AI / Kimi 产品公开资料。Kimi 早期以长上下文文档阅读为核心卖点，2024 年 3 月宣布支持约 200 万汉字上下文。https://www.kimi.com/
+[^2]: 每日经济新闻, "时隔5个月，Kimi从20万字到200万字，月之暗面‘长文本时代’一路狂奔", 2024-03-18. https://www.nbd.com.cn/articles/2024-03-18/3285223.html
 [^3]: Liu et al., "Lost in the Middle: How Language Models Use Long Contexts", arXiv:2307.03172, 2023. https://arxiv.org/abs/2307.03172
 [^4]: Moonshot AI, "Kimi k1.5: Scaling Reinforcement Learning with LLMs", arXiv:2501.12599, 2025-01-21. https://arxiv.org/abs/2501.12599
 [^5]: Moonshot AI, "Kimi K2: Open Agentic Intelligence", GitHub. https://github.com/MoonshotAI/Kimi-K2
@@ -151,5 +151,5 @@ Kimi 最早让人记住的是“200 万字”。这件事看起来像营销，�
 [^9]: Kimi Help Center, "Agent Swarm" — K2.6 release and Swarm scaling, 2026-04-20. https://www.kimi.com/en/help/agent/agent-swarm
 [^10]: Moonshot AI, "Kimi K3: Open Frontier Intelligence", GitHub. https://github.com/MoonshotAI/Kimi-K3
 [^11]: Reuters, "China's Moonshot unveils world's largest open AI model, closing in on US rivals", 2026-07-17. https://www.reuters.com/world/china/chinas-moonshot-unveils-worlds-largest-open-ai-model-closing-us-rivals-2026-07-17/
-[^12]: Moonshot AI, "Kimi K3: Open Frontier Intelligence", arXiv:2607.24653, 2026. https://arxiv.org/abs/2607.24653
+[^12]: Moonshot AI, "Kimi K3: Open Frontier Intelligence", arXiv:2607.24653; Kimi Help Center, Agent overview. https://arxiv.org/abs/2607.24653 ; https://www.kimi.com/en/help/agent/agent-overview
 [^13]: Reuters, "China's Moonshot in talks with Microsoft, Amazon, Google over K3 revenue sharing, sources say", 2026-08-26. https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/
