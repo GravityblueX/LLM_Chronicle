@@ -1,216 +1,234 @@
 # 《DeepSeek 世家》
 
-> 从 2023 年底一个 67B 的"体面但不够震撼"的开源模型，到 2026 年 API 价格仅为 GPT-5.5 1/370 的行业替代者——DeepSeek 只用了五代模型。这条路的起点是一次低调的入场，终点是一场全球 AI 行业成本结构的重构。MoE → MLA → MTP → 极致成本优化——每一代迭代都不是为了炫技，而是为了让"前沿模型不需要前沿预算"这个命题更加无可辩驳。
+> DeepSeek 从 2023 年末的 67B 开放模型起步，先以 MLA、MoE、FP8 和 MTP 把“前沿能力到底需要多少算力”变成工程问题；R1 又把推理训练的成本结构公开给全行业；到 2025 年下半年，思考模式、工具调用和稀疏注意力开始汇流；2026 年 V4 则把效率战推进到百万上下文、Agent、国产硬件适配和多模态执行。DeepSeek 最稳定的传统并不是“永远最便宜”，而是不断寻找智能系统里最贵的那一层，然后重新设计它。
 
 ---
 
-## 一、概述
+## 一、概述：效率不是定价，是架构
 
-DeepSeek（深度求索）是幻方量化旗下的 AI 研究机构于 2023 年底推出的开源语言模型系列。它的第一个模型 DeepSeek-LLM（67B）几乎没有人注意到；两年半之后，它的第四代模型 V4 正在被全中国开发者当作"弃用御三家"的核心替代方案。
+DeepSeek（深度求索）源自幻方量化的 AI 研究体系。它在 2023 年进入大模型赛道时并没有最强的品牌、最多的用户或最大的云平台，却很快形成了一条异常连贯的技术路线：**不把算力昂贵当作自然规律。**[^1]
 
-DeepSeek 世家在开源模型史上的独特性在于：它不是在某个单项上做到极致——不是参数最大的、不是 benchmark 最高的、不是最先发布 MoE 的。它做到极致的是**成本效率**。从 V2 到 V3 到 R1 到 V4，每一代模型都在回答同一个问题：如果钱不是限制，那么什么才是？而它的回答是——**用更少的钱达到更大的能力，然后把省出来的利润以更低的价格还给用户。**
+这条路线经历了几次对象转换：
 
-这个策略不是市场定价策略——是技术策略。MLA 压缩 KV Cache 90%，不是为了让论文好看，是为了让推理成本降到十分之一。MoE 架构不是用来发论文的，是用来让训练的 671B 参数只用 37B 的算力跑起来。MTP 不是为了多一篇 arXiv，是为了每个训练 token 更有效。这三项技术合在一起，构成了大模型行业最深的一条成本护城河。
+- 初代 LLM 研究 **scaling law 与训练配比**；
+- V2 用 **DeepSeekMoE + MLA** 攻击推理时的参数与 KV Cache 成本；
+- V3 用 **FP8、MTP 和无辅助损失的 MoE 负载均衡**继续压训练与推理成本；
+- R1 用强化学习把“推理能力”从昂贵闭源服务变成可公开复现的训练路线；
+- V3.1 / V3.2 开始把思考能力直接嵌进工具调用和 Agent；
+- V4 则进一步攻击**长上下文、长程 Agent、硬件部署与服务调度**的成本。
 
-（关于 DeepSeek 背后的幻方量化背景、梁文锋的决策逻辑、量化基因对技术路线的影响，详见《DeepSeek 本纪》。本篇聚焦模型系列的技术迭代。）
+因此，DeepSeek 的历史如果只写成“价格屠夫”会漏掉真正重要的部分：价格只是结果，**系统效率才是因。**
 
 ---
 
 ## 二、代际演进
 
-| 代际 | 发布时间 | 参数规模 | 核心创新 | 许可 | API 价格标志 |
-|------|----------|----------|----------|------|-------------|
-| DeepSeek-LLM | 2023-11-29 | 7B/67B | Scaling law 研究 + DPO 对齐 | 模型权重有限许可 | — |
-| DeepSeek-V2 | 2024-05-06 | 236B/21B (MoE) | **MLA**（KV Cache 压缩 90%） | 同上 | GPT-4 的约 1% |
-| DeepSeek-V3 | 2024-12-26 | 671B/37B (MoE) | MTP + FP8 + 无辅助损失 MoE | **MIT** | 训练成本仅 $5.6M |
-| DeepSeek-R1 | 2025-01-20 | 基于 V3 | 纯 RL 推理 + GRPO | **MIT**（含思维链） | o1 的约 3% |
-| DeepSeek-V4 | 2026-04-24 | 未公开 | Pro/Flash 双变体 + 1M 上下文 | **MIT** | GPT-5.5 的约 1/370 |
-
-### 2.1 初代 DeepSeek-LLM：安静的地基
-
-2023 年 11 月 29 日，DeepSeek 发布了第一个语言模型 DeepSeek-LLM，包含 7B 和 67B 两个规模，Base 与 Chat 版本同时开源。[^1]
-
-在 2023 年底的 AI 行业，67B 参数并不惊艳——Llama 2 已经有了 70B，GPT-3 已经 175B。但 DeepSeek-LLM 做了三件在当时看起来是"选择"、后来回头看是"必然"的事情。
-
-第一，**用 DPO 替代 RLHF**。Chat 模型的对齐没有走当时主流的 RLHF（奖励模型 + PPO 优化），而是采用了 Rafailov 等人刚发表半年的 DPO——一种更轻量、更稳定的对齐方法。这为后来 R1-Zero 完全跳过 SFT 只用 RL 炼推理埋下了方法论伏笔。
-
-第二，**系统性研究 scaling law**。论文对开源配置下的算力-数据配比进行了独立验证，提出"长期主义"理念——训练数据和架构设计不是为了一次发布的最优，而是为未来迭代的可扩展性。这个思维方式后来定义了 DeepSeek 的每一代模型。
-
-第三，**从第一天起开源**。虽然模型权重采用的是有限许可证（非 MIT），但这个姿态在当时国产 LLM 圈中并不多见。
-
-性能上，DeepSeek-LLM 67B 在 HumanEval（73.78%）、GSM8K（84.1%）、MATH（32.6%）、MMLU（71.3%）等基准上全面超越 Llama 2 70B，Chat 版本在开放式评测中追平 GPT-3.5。[^1]
-
-（详见《编年·2023年11月》）
-
-### 2.2 DeepSeek-V2：MLA 与价格屠夫
-
-2024 年 5 月 6 日，DeepSeek 发布 V2。这是 DeepSeek 系列的第一个真正改变行业格局的模型。[^2]
-
-**架构**：236B 总参数，21B 激活参数，MoE 架构。但 V2 真正的核武器不是 MoE——是 **MLA（Multi-head Latent Attention，多头潜在注意力）**。
-
-传统的多头注意力机制需要为每个 token 缓存 Key 和 Value 矩阵，KV Cache 随序列长度线性增长——这是推理成本的最大瓶颈。MLA 的核心思路是将 KV 投影到一个低维潜在空间，再从中重建注意力——在保持注意力质量的前提下，将 KV Cache 压缩到原来的 5%-10%。[^2]
-
-这个技术看起来像是一个不起眼的工程优化。但它的后果是颠覆性的：KV Cache 压缩 90%，意味着推理成本压缩 90%。DeepSeek-V2 的 API 定价可以压到 GPT-4 Turbo 的约 1%——不是靠烧钱，是靠 MLA。
-
-性能上，V2 的 MMLU 达到 80.3%，接近 GPT-4。但行业记住的不是 benchmark 数字——而是 1% 的定价。V2 在中文 AI 圈引发了一场真正的价格战：阿里通义千问、百度文心一言、智谱 GLM、字节豆包在几周内纷纷大幅降价。不到一个月，中国 AI API 的价格跌至年初的十分之一以下。[^3]
-
-V2 是大模型史上最被低估的模型。R1 一天蒸发英伟达 5890 亿市值吸引了全世界的聚光灯——但没有 V2 的 MLA，就没有 R1。MLA 是所有后续 DeepSeek 模型的成本基础。
-
-（详见《编年·2024年5月》）
-
-### 2.3 DeepSeek-V3：$5.6M 的前沿模型
-
-2024 年 12 月 26 日，DeepSeek 发布 V3：671B MoE 总参数（37B 激活），性能对标 GPT-4o 和 Claude 3.5 Sonnet。但最重要的数字是一个开销数字：预训练仅消耗 2.788M H800 GPU 小时，按当时的市场价格约 **557.6 万美元**。[^4]
-
-V3 在三个技术方向上推进了从 V2 继承的路线：
-
-**MLA 扩展**：将 V2 的 MLA 扩展到 671B 规模并配合 MoE 使用。推理时每次只激活 37B 参数的注意力计算，但受益于 671B 参数的专家知识；KV Cache 压缩依然生效，推理成本接近同性能密集模型的一小部分。
-
-**DeepSeekMoE + 无辅助损失负载均衡**：采用 1 个共享专家 + 256 个路由专家的细粒度划分，每 token 激活 8 个专家。首次实现了无需辅助损失（auxiliary-loss-free）的负载均衡——通过动态偏置调整来控制路由，避免了传统 MoE 为了负载均衡而牺牲模型质量的取舍。[^4]
-
-**Multi-Token Prediction（MTP）**：在每个位置同时预测多个后续 token，而非传统的单 token 预测。MTP 显著提升了样本效率和最终性能——每一组训练数据都被更充分地利用。在 671B 规模上证明 MTP 的有效性，是整个行业从"堆数据"到"用数据更聪明"的转折点之一。
-
-此外，V3 还采用了 FP8 混合精度全程训练——首批在 600B+ 规模上做到这一点的模型之一。整个预训练约两个月完成，期间**未出现任何需要回滚的不可恢复 loss spike**——这是对其工程管线稳定性的极限证明。[^4]
-
-性能上，V3 在 MMLU（88.5%）、MATH 500（90.2%）、HumanEval（92.1%）等基准上与 GPT-4o 互有胜负。在中文任务上全面领先。[^4]
-
-V3 引发的真正震动不是 benchmark 的数字本身——GPT-4o 级别的性能行业已经习惯了——而是 $5.6M 这个数字。在此之前的四年里，行业默认答案是需要数千万到上亿美元的算力。V3 用不到 600 万美元撞开了这道墙，证明了三件事：算力不是护城河、MoE 是开源的最优解、H800 这种受管制的硬件也能做前沿模型。[^4]
-
-（详见《编年·2024年12月》）
-
-### 2.4 DeepSeek-R1：MIT 开源 + 5890 亿蒸发
-
-2025 年 1 月 20 日，DeepSeek 发布 R1——一个基于 V3-Base 的推理模型。这是 DeepSeek 最著名的模型，也是有史以来引发最大股市震荡的单个 AI 产品。[^5]
-
-**技术路线**：R1 的核心技术创新分两步。
-
-第一步是 **R1-Zero**：完全跳过监督微调（SFT），仅使用 GRPO（Group Relative Policy Optimization）强化学习进行训练。所有奖励基于规则——答案对不对、格式对不对。不使用基于模型的奖励函数。
-
-纯 RL 训练催生了令人意外的涌现行为：模型在训练中自发学会了"顿悟时刻"（Aha Moment）——在某道题上，它突然停下来，用人类可读的语言重新评估自己的推理过程，并主动分配更多思考时间。DeepSeek 团队称这不是被编程进去的，而是模型与 RL 环境交互中自行发展的。[^5]
-
-第二步是 **R1**：在 R1-Zero 基础上引入冷启动 SFT 数据（数千条高质量思维链范例），再进行 RL 训练。这解决了 R1-Zero 的输出可读性问题，同时保持了推理能力。
-
-**性能**：R1 在 AIME 2024（79.8% vs o1 79.2%）、MATH-500（97.3% vs o1 96.4%）、Codeforces（96.3%ile vs o1 96.6%ile）、SWE-bench Verified（49.2% vs o1 48.9%）上全面对标 OpenAI o1。[^5]
-
-**MIT 开源**：R1 以 MIT 许可完全开源——权重、代码、方法，包括思维链输出。OpenAI o1 刻意隐藏思维链，且收取每月 $200 订阅费。R1 把同等能力的模型完全免费、完全透明地交给了全世界。
-
-**冲击波**：2025 年 1 月 27 日，DeepSeek 超越 ChatGPT 登顶苹果 App Store 美国区榜首。同日，英伟达股价暴跌 17%，单日市值蒸发约 5890 亿美元——美国股市历史最大单日跌幅。市场恐惧的不是 R1 本身，而是它揭示的事实：最先进的 AI 不一定需要最多的 GPU。[^6]
-
-Meta 在内部组建了四个专门研究 DeepSeek 的小组——分别研究成本降低、训练数据、模型架构重构。OpenAI 声称有证据表明 DeepSeek 使用其专有模型输出训练 R1（DeepSeek 否认了这一指控）。[^7][^8]
-
-**后续**：2025 年 5 月 28 日发布 R1-0528 升级版，AIME 2025 准确率从 70% 跃升至 87.5%。同年 9 月，R1 论文在 *Nature* 正式发表，成为首批登上 Nature 的大模型论文之一。[^9][^10]
-
-（详见《编年·2025年1月》、《DeepSeek 本纪》）
-
-### 2.5 DeepSeek V4：从追赶者到替代者
-
-2026 年 4 月 24 日，DeepSeek 发布 V4 Preview——距 R1 时隔 15 个月的首个重大版本更新。V4 提供 Pro 和 Flash 两个变体，支持 1M token 上下文窗口，MIT 许可开源。[^11]
-
-V4 最引人注目的数字是价格。多家中文媒体报告其 API 价格为 GPT-5.5 的约 1/370（2.5 元/百万 token vs 约 130 美元/百万 token）。[^12] 从 V2 时代约 100 倍的价格差扩大到 V4 时代约 370 倍——暗示 DeepSeek 的效率优势在 15 个月内不仅没有被追赶者缩小，反而在拉大。
-
-但 V4 真正的历史意义不在于价格数字本身——而在于时机。一个月前的 318 事变（2026 年 3 月，详见《编年·2026年3月》）刚刚证明了一件事：中国开发者对海外模型的依赖是一个地缘政治风险。V4 在一个月后就证明了另一件事：这个风险可以被化解——不是靠情怀，不是靠政策，而是靠一个成本低两个数量级、性能在同一量级的替代品。
-
-V2 时代，行业震惊于 1% 的定价。V3 时代，行业困惑于 $5.6M 的训练成本。R1 时代，行业不安于 MIT 开源。V4 时代，行业不再震惊、困惑或不安——行业在迁移。从"不可能"到"正在发生"，DeepSeek 用四代模型完成了从技术冲击到生态替代的完整弧线。
-
-（详见《编年·2026年4月》）
+| 代际 | 时间 | 规模 / 形态 | 核心变化 | 历史位置 |
+|------|------|-------------|----------|----------|
+| DeepSeek-LLM | 2023-11 / 2024-01 | 7B / 67B | scaling law、开放基座 | 技术路线起点 |
+| DeepSeek-V2 | 2024-05 | 236B / 21B active MoE | MLA + DeepSeekMoE | 把推理成本拉入主战场 |
+| DeepSeek-V2.5 | 2024-09 | V2 系融合 | Chat + Coder 合流 | 通用能力与代码能力合并 |
+| DeepSeek-V3 | 2024-12 | 671B / 37B active MoE | FP8、MTP、无辅助损失负载均衡 | 前沿训练效率冲击 |
+| DeepSeek-R1 | 2025-01 | 基于 V3 | RL 推理、R1-Zero、GRPO | 开放推理模型的分水岭 |
+| V3.1 | 2025-08 | 统一模型 | thinking / non-thinking 双模式、Agent | 推理开始进入工具执行 |
+| V3.2 | 2025-12 | 稀疏注意力 + Agent | DSA、thinking in tool-use | 长程 Agent 的过渡代 |
+| DeepSeek-V4 | 2026-04 | Pro 1.6T/49B；Flash 284B/13B | 1M context、CSA/HCA、mHC、Muon | 长上下文效率重构 |
+| V4-Flash / V4-Pro GA | 2026-07—08 | 分层服务 | Responses API、effort、峰谷定价 | 从“低价模型”到计算服务分层 |
+| V4-Flash-Vision-Exp | 2026-08-21 | 多模态实验版 | 视觉 Agent | DeepSeek 明显跨出纯文本路线 |
 
 ---
 
-## 三、技术路线演进
+## 三、第一阶段：把“便宜”做进模型里
 
-### 3.1 一条贯穿的线索：效率优先
+### 3.1 DeepSeek-LLM：安静的地基
 
-从初代 LLM 到 V4，DeepSeek 的技术路线有一条清晰的主线：**每一代模型都把效率当作核心指标，而非参数规模或 benchmark 数字**。这与 OpenAI 从 GPT-1 到 GPT-4 的"更大就是更强"路线、Google 的"更多模态更全功能"路线、Anthropic 的"更安全更对齐"路线形成了系统性的区分。
+DeepSeek 最初的 7B / 67B 模型在 2023 年末出现，技术报告于 2024 年 1 月公开。论文标题里的 **“Scaling Open-Source Language Models with Longtermism”** 已经说明了团队最初的关注：不是做一次性的榜单产品，而是研究数据、算力和模型规模怎样长期扩展。[^1]
 
-| 代际 | 效率核心 | 实现手段 | 效果 |
-|------|----------|----------|------|
-| 初代 LLM | 训练效率 | Scaling law 研究、DPO 替代 RLHF | 验证算力-数据最优配比 |
-| V2 | **推理效率** | MLA（KV Cache 压缩 90%） | 推理成本降至 GPT-4 的 1/100 |
-| V3 | **训练 + 推理效率** | MTP + FP8 + 无辅助损失 MoE | 训练成本 $5.6M，推理更便宜 |
-| R1 | **对齐效率** | GRPO 纯 RL + 规则奖励 | 跳过 SFT 炼出推理，对齐成本极低 |
-| V4 | **全链路效率** | 全部技术积累的集大成 | 价格差拉到 370 倍 |
+初代模型没有改变全球市场，但它确立了两个后来反复出现的习惯：其一，技术细节公开得相对充分；其二，工程判断高度围绕投入产出比，而不是单纯把参数量当成进步尺度。
 
-### 3.2 MoE：DeepSeek 的架构选择
+### 3.2 V2：MLA 把 KV Cache 变成一等公民
 
-DeepSeek 从 V2 开始全面采用 MoE 架构，是开源大模型中最早大规模使用 MoE 并在前沿性能上验证其可行性的团队之一。
+**2024-05** — DeepSeek-V2 发布，采用 **236B 总参数、约 21B 激活参数**的 MoE 架构，并引入后来成为 DeepSeek 标志的 **Multi-head Latent Attention（MLA）**。[^2]
 
-MoE 的核心经济逻辑是稀疏激活——671B 总参数，但每 token 只激活 37B。这意味着训练和推理的成本结构被彻底改变：模型可以在训练时受益于大量参数的知识容量，但在推理时只需要为激活的一部分买单。V3 的 $5.6M 训练成本之所以可能，MoE 是第一个关键杠杆。
+MLA 的意义在于重新处理推理阶段最昂贵的状态之一：KV Cache。传统注意力要随着上下文增长持续保存 Key / Value；MLA 把这些表示压缩到潜在空间，再在需要时恢复，从而显著降低长上下文的内存占用。
 
-DeepSeek 对 MoE 的贡献不限于采用——它在 V3 中实现了无辅助损失负载均衡，解决了传统 MoE 的一个老问题：用 auxiliary loss 强制平衡专家负载会损害模型质量。DeepSeek 的动态偏置方法让 MoE 路由变得"自适应"而不是"被强迫"。
+这件事后来影响远超过 V2 本身。大模型第一次非常直观地向行业证明：**同样的模型能力，推理侧架构可以让单位 token 成本差一个数量级。** V2 发布后，中国市场迅速出现 API 降价潮，价格开始从营销变量变成模型架构的公开竞争指标。
 
-### 3.3 MLA：KV Cache 革命
+### 3.3 V2.5：Chat 与 Coder 合流
 
-MLA 是 DeepSeek 最具原创性的技术贡献，也是所有后续模型的推理成本基础。传统注意力的计算成本与序列长度平方相关，KV Cache 随序列线性增长——这意味着长文本推理的成本会爆炸。MLA 通过将 KV 缓存投影到低维潜在空间并从中重建，在不损失注意力质量的前提下压缩 KV Cache 到原来的 5%-10%。
+**2024-09-05** — DeepSeek 把 DeepSeek-V2 Chat 与 DeepSeek-Coder-V2 合并为 **DeepSeek-V2.5**。官方更新明确把通用对话、代码和指令遵循收进同一模型。[^3]
 
-MLA 的价值在 V3 的 128K 上下文和 V4 的 1M 上下文中被放大到极致。当你的 KV Cache 压缩了 90%，128K 上下文的推理成本接近别人 12K 上下文的成本——这让 DeepSeek 可以在不涨价的情况下支持超长上下文，而竞争对手每增加一倍上下文就要多收一倍的推理费。
-
-### 3.4 MTP + FP8：从训练侧省出更多
-
-Multi-Token Prediction（MTP）和 FP8 全程训练是 DeepSeek 在训练效率上的两个关键创新。
-
-MTP 的核心思想是让模型在每个位置同时预测多个后续 token——而不是传统的单 token 预测。这看起来只是改变了一个训练目标，但效果是每个训练样本被更充分地利用——样本效率大幅提升，同样的训练数据量产出更好的模型。
-
-FP8 全程训练的意义在于算力效率的翻倍。从 FP16 切换到 FP8，理论上可以用同样的 GPU 小时训练两倍的 token。V3 是整个行业首批在 600B+ 规模上全程使用 FP8 的模型之一。
-
-MTP + FP8 + MoE 稀疏激活——这三项技术叠加在一起，解释了为什么 V3 可以用 2.788M H800 GPU 小时做到对标 GPT-4o 的性能，而 Llama 3 405B 需要约 30.8M H100 GPU 小时才能达到类似水平。
+这个小版本后来显得很重要：模型产品不再需要“通用”和“代码”两套完全分离的身份。2025—2026 年主流前沿模型把 coding、tool use 和 general reasoning 合流，V2.5 是 DeepSeek 自己谱系里的早期预演。
 
 ---
 
-## 四、生态与影响
+## 四、V3 与 R1：训练效率和推理训练同时爆发
 
-### 4.1 开源路线：从有限许可到 MIT
+### 4.1 DeepSeek-V3：557.6 万美元究竟意味着什么
 
-DeepSeek 的开源姿态经历了一次关键转变：从初代 LLM 和 V2 的有限许可，到 V3 开始全面采用 MIT 许可。
+**2024-12-26** — DeepSeek-V3 发布：**671B 总参数、37B 激活参数**，并继续采用 MLA 与细粒度 MoE。技术报告披露预训练阶段消耗约 **2.788M H800 GPU hours**；按照报告采用的每 GPU 小时 2 美元估算，对应约 **557.6 万美元的预训练计算成本**。[^4]
 
-这个转变不是偶然的——是 V3 的 $5.6M 训练成本让"完全开源"在战略上变得合理。如果一个模型的训练成本是 1 亿美元，开源意味着放弃了巨额的潜在收入。如果一个模型的训练成本只有 557 万美元——而且背后的公司不靠 AI 赚钱——开源就变成了一个几乎零成本的品牌攻势。
+这里需要比旧叙事更严谨：**557.6 万美元不是整项模型研发、数据、人力和所有实验的“总成本”**，而是论文明确核算的一段训练计算开销。即使如此，这个数字依然足以冲击当时“前沿模型必然需要数亿美元训练”的默认想象。
 
-R1 的 MIT 开源（含思维链）是这一逻辑的极致。OpenAI o1 在收 $200/月的订阅费，把思维链作为核心 IP 隐藏起来。DeepSeek 把一个同级别的推理模型完全、免费、公开地放了出来——包括思维链。这个决定不仅在技术上冲击了行业，在商业模式上粉碎了"推理模型 = 奢侈品"的默认假设。
+V3 的关键技术组合包括：
 
-### 4.2 价格战与行业重构
+- **FP8 混合精度训练**，降低训练算力与显存压力；
+- **Multi-Token Prediction（MTP）**，让训练目标同时利用多个后续 token；
+- **无辅助损失的负载均衡**，减少传统 MoE 为平衡专家而付出的质量代价；
+- 延续 **MLA + DeepSeekMoE**，让总参数规模与每 token 实际计算量脱钩。[^4]
 
-DeepSeek 的价格策略是大模型商业史上最激进的。从 V2 的 1% 到 V4 的 1/370，每一代模型都把价差越拉越大。
+V3 因此不是“低价版 GPT-4o”，而是一次完整的成本工程展示。
 
-但关键是——这不是亏本甩卖。MLA 让推理成本降了 90%，所以 DeepSeek 可以把价格定在 GPT-4 的 1% 同时依然盈利。MoE + MTP + FP8 让训练成本降到了 $5.6M，所以 DeepSeek 可以把模型免费开源同时不影响业务。这里没有补贴，没有烧钱——只有结构性成本优势。
+### 4.2 DeepSeek-R1：把推理训练公开化
 
-这个结构性优势对整个行业的商业模型产生了巨大压力：当 DeepSeek 的 API 价格是你的 1/100 甚至 1/370 时，任何以 API 收入为核心的商业模型都变得不可持续——除非你能证明你的模型好到值 370 倍的溢价。而在大多数商业场景中，"足够好 + 便宜 370 倍"碾压了"可能好一点但贵 370 倍"。
+**2025-01-20** — DeepSeek 发布 **R1** 与 R1-Zero。R1-Zero 的实验重点是尽可能少依赖监督推理轨迹，通过强化学习直接诱导复杂推理行为；正式 R1 则加入冷启动数据与后续训练，以改善可读性、稳定性和通用能力。[^5]
 
-### 4.3 蒸馏生态
+R1 最重要的影响不是“某一张数学榜单追平 o1”，而是把此前极度封闭的 reasoning model 训练讨论变成公共工程对象：GRPO、规则奖励、RL scaling、蒸馏小模型以及 reasoning trace 的行为都可以被社区直接研究。
 
-R1 发布时同步推出了 6 个蒸馏小模型（1.5B 至 70B，基于 Qwen 和 Llama 初始化）——其中 32B 和 70B 模型在多项基准上超越了 OpenAI o1-mini。这催生了一个强大的推理模型蒸馏生态：开发者可以下载 R1 蒸馏模型，在自己的硬件上跑推理——不再需要 API 费用，不再受 rate limit 限制。推理能力从"只有大公司和付费用户才能用"变成了"任何有 GPU 的人都可以用"。
+**2025-05-28** — R1-0528 继续提升推理、函数调用和前端能力，官方给出的 AIME 2025 等指标显著上升。[^6]
+
+R1 之后，行业不再能把“推理能力”描述成某一家公司的独家黑箱。推理模型由一个昂贵产品类别，迅速变成了整个开源生态都可以复现、蒸馏和改造的技术方向。
+
+---
+
+## 五、V3.1 / V3.2：推理开始进入 Agent
+
+### 5.1 V3.1：一个模型，两种思考方式
+
+**2025-08-21** — DeepSeek-V3.1 发布。官方将其定义为**混合推理架构**：同一模型同时支持 thinking 与 non-thinking 模式，并明确强化工具使用和 Agent 能力。[^7]
+
+这一步看似只是把 R1 的推理能力合回 V3，实际上改变了产品结构。简单任务不必为长推理付费，复杂任务又不必切换到另一个完全不同的模型。DeepSeek 从“chat / reasoner 两套模型”开始走向**一个基座、不同推理预算**。
+
+### 5.2 V3.2-Exp 与 DeepSeek Sparse Attention
+
+**2025-09-29** — V3.2-Exp 引入 **DeepSeek Sparse Attention（DSA）**。官方把它定位为迈向下一代架构的实验：在尽量保持模型效果的同时，减少长上下文训练和推理的注意力计算。[^8]
+
+这使 DeepSeek 的效率攻击从“每个 token 用多少参数”“KV Cache 多大”继续推进到“**长上下文里到底需要看多少历史 token**”。
+
+### 5.3 V3.2：Thinking in Tool-Use
+
+**2025-12-01** — DeepSeek-V3.2 正式发布，同时推出强调极限推理的 V3.2-Speciale。V3.2 的关键变化是 **thinking in tool-use**：模型可以在思考模式中进行多轮工具调用，而不是先思考完再一次性调用工具。[^9]
+
+官方还披露其 Agent 训练数据合成覆盖超过 1,800 个环境和 85,000 条复杂指令。此时 DeepSeek 已经明显不是“一个便宜聊天模型”，而是在构造能持续搜索、调用工具、修正路径的 Agent 基座。
+
+---
+
+## 六、DeepSeek-V4：效率战进入百万上下文
+
+### 6.1 V4 Preview：不是一款模型，而是两种负载
+
+**2026-04-24** — DeepSeek-V4 Preview 开放权重并上线 API，分为：
+
+- **V4-Pro：1.6T 总参数 / 49B 激活参数**；
+- **V4-Flash：284B 总参数 / 13B 激活参数**；
+- 两者都支持 **1M token** 上下文。[^10][^11]
+
+V4 的技术报告把长上下文效率放到核心位置，引入 **Compressed Sparse Attention（CSA）+ Heavily Compressed Attention（HCA）** 的混合注意力、**Manifold-Constrained Hyper-Connections（mHC）** 与 **Muon optimizer**。官方报告称，相比 V3.2，在百万 token 上下文设置下，V4-Pro 的单 token 推理 FLOPs 和 KV Cache 均显著下降。[^10]
+
+这一步把 DeepSeek 过去三年的路线串在了一起：MLA 解决 KV 表示，DSA 减少注意范围，V4 再把稀疏与压缩注意力推到 1M context。**长上下文不是加一个数字，而是重新设计推理成本函数。**
+
+Reuters 同日还报道 V4 对华为 Ascend 集群的适配与支持。硬件适配开始成为模型代际的一部分：效率不再只发生在 Transformer 内部，也发生在芯片、并行策略和推理引擎之间。[^11]
+
+> 📖 详见《编年·2026年4月》。
+
+### 6.2 V4-Flash：便宜的 Agent 工作马
+
+**2026-07-31** — V4-Flash 正式版进入公开测试。官方强调这次主要是 post-training 更新，显著强化代码 Agent、工具调用和生产型任务，并原生支持 Responses API、适配 Codex。[^12]
+
+Reuters 随后援引 Artificial Analysis 数据，将 V4-Flash 描述为当时知名模型中运行成本最低的一档：约 **$0.14 / 1M 输入 tokens、$0.28 / 1M 输出 tokens**。[^13]
+
+这延续了 DeepSeek 的传统，但也埋下了下一步变化：如果 Flash 负责极低成本，那么 Pro 就可以开始出售更高的任务完成率。
+
+### 6.3 V4-Pro GA：DeepSeek 也开始卖“旗舰溢价”
+
+**2026-08-13** — V4-Pro 正式版上线 App、Web 与 API，显著加强 Agent 能力，支持 Responses API，并加入 low / high / max 三档 thinking effort。官方同时宣布 V4 家族改为**峰谷定价**。[^12]
+
+Reuters 报道当时 V4-Pro 定价约为 **$1.32 / 1M 输入、$3.96 / 1M 输出**，分别约为 V4-Flash 的 9 倍和 14 倍。[^14]
+
+这件事修正了早期对 DeepSeek 的一种简单想象：它不是永远只把价格往下压。到了 V4，DeepSeek 也开始明确区分**廉价高吞吐负载**和**高完成率复杂 Agent 负载**，甚至用峰谷价引导用户错峰使用算力。
+
+所谓“模型价格”正在越来越像计算资源市场，而不是软件许可证。
+
+### 6.4 V4-Flash-Vision-Exp：文本效率路线第一次明显跨模态
+
+**2026-08-21** — DeepSeek 发布 **V4-Flash-Vision-Exp**。官方称其纯文本能力与 V4-Flash 大致持平，但在需要视觉理解的 Agent benchmark 上有显著提升，并将多模态 Agent 能力推近 Opus 4.8。[^12]
+
+这使旧稿里“DeepSeek 主要局限于文本推理、多模态存在感较弱”的判断正式过期。
+
+DeepSeek 进入视觉并不是为了做一个独立“看图聊天”产品，而是为了补齐 **computer use、图表、网页、截图、视觉工具环境**中的 Agent 输入。它仍然沿着同一条主线前进：不是追求模态数量，而是补足长期任务执行里真正缺失的感知通道。
+
+---
+
+## 七、重新理解 DeepSeek 的技术主线
+
+如果只看新闻标题，DeepSeek 的标签会不断变化：价格屠夫、R1、国产替代、开源模型、华为适配、Agent、百万上下文。
+
+把模型谱系连起来，主线反而很稳定：
+
+| 阶段 | 最昂贵的瓶颈 | DeepSeek 的回答 |
+|------|--------------|-----------------|
+| 初代 | 训练规模怎么配 | scaling law |
+| V2 | KV Cache / 激活参数 | MLA + MoE |
+| V3 | 训练精度、样本利用率、专家路由 | FP8 + MTP + loss-free balancing |
+| R1 | 推理能力训练 | RL / GRPO |
+| V3.1 | 快思考与慢思考割裂 | hybrid reasoning |
+| V3.2 | 长上下文注意力与 Agent 工具循环 | DSA + thinking in tool-use |
+| V4 | 百万上下文、长程 Agent、硬件与服务调度 | CSA/HCA + mHC + 分层模型 + 峰谷定价 |
+| V4 Vision | Agent 缺少视觉环境输入 | 多模态感知 |
+
+因此 DeepSeek 的“效率”定义一直在扩大：最早是**每个训练 token 的成本**，后来是**每个生成 token 的成本**，再后来是**完成一整项 Agent 工作的成本**。
+
+---
+
+## 八、开放权重与基础设施
+
+DeepSeek 对开放生态的影响也发生了变化。
+
+V3、R1、V3.2 让开发者可以研究训练方法和权重；V4 则进一步迫使推理框架适配新注意力结构。V4 发布当天，vLLM、SGLang 等社区迅速跟进支持，说明前沿开放模型的竞争已经不只是“谁把 checkpoint 上传到 Hugging Face”，而是**谁能让整个推理栈一起工作**。[^15]
+
+2T 级以下的开放模型仍然可能在本地或小型集群运行，但 V4-Pro 这种 1.6T MoE 已经天然要求复杂的专家并行、KV 管理和集群调度。开放权重并不会自动带来低部署门槛。
+
+这与 2026 年整个行业的变化一致：**权重开放解决控制权，系统软件与硬件效率决定可用性。**
 
 ---
 
 ## 评曰
 
-DeepSeek 世家是当代开源 LLM 中技术路线最连贯、成本效率最极致的系列。
+DeepSeek 最容易被记成“把 API 卖得特别便宜的公司”，但这是一个过于表面的结论。
 
-从初代 LLM 的 scaling law 研究，到 V2 的 MLA 架构，到 V3 的 MTP + FP8，到 R1 的纯 RL 推理，到 V4 的全链路整合——每一步都没有废招。没有为了发论文而堆参数、没有为了公关而刷 benchmark、没有为了融资而搞"多模态全景大统一"。每一步都指向同一个目标：用更少的资源做更多的能力，然后把利润还给用户。
+V2 的 MLA、V3 的 FP8 / MTP、R1 的强化学习、V3.2 的稀疏注意力、V4 的百万上下文压缩，本质上都在做同一件事：**拒绝接受行业当前最昂贵的那一步是不可改变的。**
 
-这条路线与 Llama 的"开源作为商业策略"路线形成了鲜明对比。Llama 的许可条款始终存在模糊地带——OSI 从未认证 Llama 为真正开源。Meta 在 Llama 4 上的评测争议更严重损害了"开源旗手"的公信力。而 DeepSeek 从 2024 年底开始全面采用 MIT 许可，包括训练技术、模型权重、思维链输出——没有"月活超 7 亿需额外许可"的隐藏条款，没有"优化实验版刷榜"的争议。这种透明度不是公关策略——是结构性的：当你不需要从模型赚钱时，你就没有理由隐藏任何东西。
+有时候最贵的是训练，于是压训练；有时候最贵的是 KV Cache，于是重新表示 KV；有时候最贵的是推理时思考，于是研究 RL 和 effort；有时候最贵的是百万 token 历史，于是稀疏和压缩注意力；有时候最贵的是 GPU 高峰期，于是连 API 也做峰谷调度。
 
-但 DeepSeek 世家也有其自身的局限。它的技术路线高度聚焦于文本推理——在多模态、Agent、企业集成、硬件生态等领域，DeepSeek 的身影并不显著。这背后是同一个悖论：DeepSeek 不靠 AI 赚钱，所以它可以做最好的模型工厂——但正因为不靠 AI 赚钱，它也没有动力去构建围绕模型的完整产品生态。它是最好的模型提供者——但不是最好的 AI 产品公司。
+这也解释了为什么 2026 年的 DeepSeek 和 2025 年初已经不同。R1 时代它最醒目的身份是“开放推理能力”；V4 时代它更像一家研究**智能计算系统成本结构**的实验室。模型、Agent、硬件、推理框架和价格开始被放进同一张账本。
 
-对标 Llama 世家：Llama 证明了"开源可以作为商业策略"——Meta 不靠模型赚钱，靠削弱竞争对手护城河赚钱。DeepSeek 证明了"开源可以不附带任何商业策略"——幻方量化不需要削弱谁的护城河，它甚至不参与同一个商业游戏。这种"不需要市场验证的顶级 AI 研究机构"——正是 DeepSeek 不可复制的核心。
+而 V4-Flash-Vision-Exp 又修正了另一个旧判断：DeepSeek 并没有被“文本模型”这个身份锁死。它进入视觉不是为了多一个产品标签，而是因为 Agent 要真正操作世界，就必须看见世界。
 
-从更长期的历史角度看，DeepSeek 世家最大的遗产可能不是某个模型、某个 benchmark 或某个价格数字——而是一个命题：**前沿 AI 能力的边际生产成本可以持续下降，且下降的速度远超行业预期。** 如果这个命题成立——而 DeepSeek 五代模型的数据表明它确实成立——那么 AI 行业当前以"订阅 + API 高溢价"为核心的商业模式，将在未来几年内被成本优势不可逆地侵蚀。
+所以 DeepSeek 世家的长期命题已经不只是“前沿 AI 能不能更便宜”，而是：
 
-DeepSeek 世家不需要成为 AI 行业的主角。它只需要让主角们——OpenAI、Google、Anthropic——不断被迫回答同一个问题：为什么你的模型贵 370 倍？
+**当智能开始持续运行、调用工具、读取百万上下文并占用真实计算资源时，能否把完成一整项工作的边际成本继续压下去。**
 
----
-
-*本篇由终末地工业史官团队编纂：赫默（编年主笔）。*
+只要这个问题仍然存在，DeepSeek 的技术路线就仍然有位置。
 
 ---
 
-[^1]: DeepSeek-AI et al., "DeepSeek LLM: Scaling Open-Source Language Models with Longtermism", arXiv:2401.02954, 提交于 2024-01-05. https://arxiv.org/abs/2401.02954
-[^2]: DeepSeek-AI, "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model", arXiv:2405.04434, 2024-05-07. https://arxiv.org/abs/2405.04434
-[^3]: DeepSeek-V2 的"1%"定价为行业共识估算——V2 API 输入 1 元/百万 token，GPT-4 Turbo 输入 $10/百万 token。按汇率折算约为 GPT-4 的 1%。参见 DeepSeek API 定价页（2024 年 5 月存档）及 OpenAI API Pricing。
-[^4]: DeepSeek-AI et al., "DeepSeek-V3 Technical Report", arXiv:2412.19437, 2024-12-27. https://arxiv.org/abs/2412.19437。训练算力消耗见该论文 §2.1。
-[^5]: DeepSeek-AI et al., "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning", arXiv:2501.12948, 2025-01-22. https://arxiv.org/abs/2501.12948
-[^6]: 澎湃新闻, "DeepSeek超越ChatGPT，登顶苹果美国区免费APP下载排行榜", 2025-01-27。华尔街见闻, "英伟达市值蒸发近6000亿美元，规模创美股史上最大", 2025-01-28。
-[^7]: The Information / Stephanie Palazzolo, "Meta Scrambles After Chinese AI Equals Its Own, Upending Silicon Valley", 2025-01-27. https://www.theinformation.com/articles/meta-scrambles-after-chinese-ai-equals-its-own-upending-silicon-valley （付费墙）
-[^8]: OpenAI 蒸馏指控与 DeepSeek 回应，参见 Nature, 2025-09-17（注 [^10]）中的报道。
-[^9]: HuggingFace, "deepseek-ai/DeepSeek-R1-0528", 2025-05-28. https://huggingface.co/deepseek-ai/DeepSeek-R1-0528
-[^10]: Elizabeth Gibney, "Secrets of DeepSeek AI model revealed in landmark paper", *Nature*, 2025-09-17. doi:10.1038/d41586-025-03015-6. https://doi.org/10.1038/d41586-025-03015-6
-[^11]: DeepSeek API Docs, "DeepSeek V4 Preview Release", 2026-04-24. https://api-docs.deepseek.com/news/news260424
-[^12]: 腾讯新闻, "DeepSeek V4 发布：今天，我们终于可以弃用国外御三家了", 2026-04-24. https://news.qq.com/rain/20260424。1/370 价格对比为第三方据 DeepSeek 与 OpenAI 双方公开定价换算，存疑。
+*本篇由终末地工业史官团队编纂：赫默（编年主笔）。*  
+*2026-08 补订：GPT-5.6 Sol（OpenAI）。*
+
+---
+
+[^1]: DeepSeek-AI et al., “DeepSeek LLM: Scaling Open-Source Language Models with Longtermism”, arXiv:2401.02954. https://arxiv.org/abs/2401.02954
+[^2]: DeepSeek-AI, “DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model”, arXiv:2405.04434. https://arxiv.org/abs/2405.04434
+[^3]: DeepSeek API Docs, “DeepSeek V2 Chat & DeepSeek Coder V2 Upgraded to DeepSeek V2.5”, 2024-09-05. https://api-docs.deepseek.com/updates/
+[^4]: DeepSeek-AI et al., “DeepSeek-V3 Technical Report”, arXiv:2412.19437. https://arxiv.org/abs/2412.19437
+[^5]: DeepSeek-AI et al., “DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning”, arXiv:2501.12948. https://arxiv.org/abs/2501.12948
+[^6]: DeepSeek API Docs, “DeepSeek-R1-0528 Release”, 2025-05-28. https://api-docs.deepseek.com/updates/
+[^7]: DeepSeek API Docs, “DeepSeek-V3.1”, 2025-08-21. https://api-docs.deepseek.com/updates/
+[^8]: DeepSeek, “Introducing DeepSeek-V3.2-Exp”, 2025-09-29. https://api-docs.deepseek.com/news/news250929/
+[^9]: DeepSeek, “DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models”, 2025-12-01. https://www.deepseek.com/en/news/deepseek-v3-2/
+[^10]: DeepSeek, “DeepSeek-V4 Preview: Entering the Era of Affordable Million-Token Context”, 2026-04-24. https://deepseek.com/en/news/v4-preview/
+[^11]: Reuters, “DeepSeek-V4, the Chinese AI model adapted for Huawei chips”, 2026-04-24. https://www.reuters.com/world/china/deepseek-v4-chinese-ai-model-adapted-huawei-chips-2026-04-24/
+[^12]: DeepSeek API Docs, “Change Log” — V4-Flash (2026-07-31), V4-Pro GA (2026-08-13), V4-Flash-Vision-Exp (2026-08-21). https://api-docs.deepseek.com/updates/
+[^13]: Reuters, “DeepSeek's new AI model is by far the cheapest of well-known models to run, research firm says”, 2026-08-03. https://www.reuters.com/business/retail-consumer/deepseeks-new-ai-model-is-by-far-cheapest-well-known-models-run-research-firm-2026-08-03/
+[^14]: Reuters, “DeepSeek launches V4 Pro at prices up to 14 times higher than V4 Flash”, 2026-08-13. https://www.reuters.com/world/china/deepseek-releases-official-v4-pro-model-it-steps-up-expansion-2026-08-13/
+[^15]: vLLM Team, “DeepSeek V4 in vLLM: Efficient Long-context Attention”, 2026-04-24. https://vllm.ai/blog/deepseek-v4
