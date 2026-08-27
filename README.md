@@ -101,7 +101,8 @@ AI 自己写自己的历史。
     ├── 04.md              DeepSeek V4：从追赶者到替代者
     ├── 05.md              Claude Mythos：漏洞武器化与出口管制危机
     ├── 06.md              Gemini 3 Pro；Mythos 5/Fable 5；出口管制撤销
-    └── 07.md              GPT-5.6、Kimi K3、Gemini 3.6、Claude Opus 5 与 DeepSeek V4-Flash
+    ├── 07.md              GPT-5.6、Kimi K3、Gemini 3.6、Claude Opus 5 与 DeepSeek V4-Flash
+    └── 08.md              Qwen3.8、Muse Glimmer、DeepSeek V4-Pro 与模型部署的最后一公里
 ```
 
 ## 纪传目录
@@ -126,7 +127,7 @@ AI 自己写自己的历史。
 │   ├── DeepSeek.md        DeepSeek：从追赶者到开源标杆
 │   ├── Falcon.md          Falcon：海湾国家AI主权的开源尝试
 │   ├── GLM.md             GLM：中文大模型的自主路线
-│   ├── GPT.md             GPT：生成式预训练的王朝
+│   ├── GPT.md             GPT：从预训练王朝到 scaling work
 │   ├── Gemini.md          Gemini：Google 的多模态王座
 │   ├── Llama.md           Llama：Meta 的开源赌注
 │   ├── Mistral.md         Mistral：欧洲的小模型哲学
@@ -138,7 +139,7 @@ AI 自己写自己的历史。
     ├── BLOOM.md           BLOOM：开源多语言的集体实验
     ├── CLIP.md            CLIP：连接视觉与语言的桥梁
     ├── Chinchilla.md      Chinchilla：Scaling Law 的实证
-    ├── Codex-Copilot.md   Codex 与 Copilot：AI 编程的开端
+    ├── Codex-Copilot.md   Codex 与 Copilot：从补全到多 Agent 工程
     ├── DALL-E.md          DALL·E：文生图的先驱
     ├── Diffusion.md       Diffusion：去噪扩散模型的革命
     ├── Doubao.md          豆包：字节跳动的 AI 产品化
@@ -173,12 +174,12 @@ AI 自己写自己的历史。
 
 | 指标 | 数值 |
 |------|------|
-| 编年条目 | **67 篇**（2017/06 — 2026/07，全线覆盖） |
+| 编年条目 | **68 篇**（2017/06 — 2026/08，全线覆盖） |
 | 纪传 | **58 篇**（本纪 ×12 + 世家 ×10 + 列传 ×36） |
 | 志 | **20 篇**（参数竞赛、地缘与封锁、多模态融合、开源运动、数据之争、社区文化、算力变迁、评价基准演化、音频AI、AI Agent 生态、合成数据、推理优化、AI编程助手、长上下文、模型对齐技术演进、版权与法律诉讼、AI产品化演进、AI基础设施与芯片、前史、AI伦理与治理） |
 | 论 | **18 篇**（Scaling Law 的终结与重生、价格战、开源与闭源、推理模型的分水岭、AI安全与对齐、知识蒸馏与模型压缩、Agent 时代、模型合并与开放权重的未来、数据墙、Test-Time Compute、后Transformer、推理经济学、AI基础设施军备竞赛、多语言与文化公平性、创作者经济与AI生成内容、OpenAI的分裂与演化、中国AI三条路线、数据标注与AI劳动） |
 | 表 | **10 篇**（大事年表、大模型价格沿革表、开源模型许可证对照表、模型版本沿革表、主要融资与估值表、Benchmark 速查表、人物谱系、前沿模型对比、训练成本对比、开源模型影响力排行） |
-| **总计** | **173 篇**（编年 67 + 纪传 58 + 志 20 + 论 18 + 表 10） |
+| **总计** | **174 篇**（编年 68 + 纪传 58 + 志 20 + 论 18 + 表 10） |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册，待写清单见 `review/audit-06.md` |
 | 出处快照 | `sources/` 归档规范已定，持续补档 |
 | 体例版本 | [v2.0](00_体例.md)（白话文 · 模型优先 · 评曰 · sources/ 归档） |
@@ -215,4 +216,3 @@ AI 自己写自己的历史。
 ## License
 
 待定
-
