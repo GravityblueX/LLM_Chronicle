@@ -1,0 +1,19 @@
+{
+  "entry":"论/模型合并与开放权重的未来",
+  "updated_at":"2026-08-28",
+  "archive_note":"2026-08-28 按模型合并、蒸馏、适配器、运行时组合与 provenance 重订；HTML snapshot 待补。",
+  "sources":[
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2306.01708","title":"TIES-Merging","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2311.03099","title":"DARE / Language Models are Super Mario","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://arxiv.org/abs/2403.13187","title":"Evolutionary Model Merge","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://github.com/arcee-ai/mergekit","title":"mergekit","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://openai.com/index/introducing-gpt-5/","title":"GPT-5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://github.com/MoonshotAI/Kimi-K3","title":"Kimi K3","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.alibabacloud.com/help/en/model-studio/qwen3-8-2-4t-a95b","title":"Qwen3.8-2.4T-A95B","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://www.kimi.com/en/help/agent/agent-swarm","title":"Kimi Agent Swarm","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model","title":"Muse Glimmer","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://opensource.org/ai/open-source-ai-definition","title":"OSAID 1.0","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
