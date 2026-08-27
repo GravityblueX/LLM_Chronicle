@@ -1,0 +1,24 @@
+{
+  "entry": "纪传/世家/GPT",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 补订 GPT-5 至 GPT-5.6 系谱时逐条核验活链。当前 GitHub 连接器无法执行仓库网页快照工具，因此新增来源暂登记为待归档，不伪造 HTML snapshot。",
+  "sources": [
+    {"ref":"[^1]","url":"https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf","title":"Improving Language Understanding by Generative Pre-Training","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf","title":"Language Models are Unsupervised Multitask Learners","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://arxiv.org/abs/2005.14165","title":"Language Models are Few-Shot Learners","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://arxiv.org/abs/2203.02155","title":"Training language models to follow instructions with human feedback","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://arxiv.org/abs/2303.08774","title":"GPT-4 Technical Report","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://openai.com/index/hello-gpt-4o/","title":"Hello GPT-4o — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://openai.com/index/learning-to-reason-with-llms/","title":"Learning to reason with LLMs — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://openai.com/index/introducing-gpt-5/","title":"Introducing GPT-5 — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://openai.com/index/introducing-gpt-5-for-developers/","title":"Introducing GPT-5 for developers — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://openai.com/index/gpt-5-1/","title":"GPT-5.1: A smarter, more conversational ChatGPT — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://openai.com/index/gpt-5-1-for-developers/","title":"Introducing GPT-5.1 for developers — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://openai.com/index/introducing-gpt-5-2/","title":"Introducing GPT-5.2 — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://openai.com/index/introducing-gpt-5-3-codex/","title":"Introducing GPT-5.3-Codex — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://openai.com/index/introducing-gpt-5-4/","title":"Introducing GPT-5.4 — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://openai.com/index/introducing-gpt-5-5/","title":"Introducing GPT-5.5 — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^16]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6: Frontier intelligence that scales with your ambition — OpenAI","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://www.reuters.com/technology/openai-cuts-developer-pricing-frontier-gpt-56-sol-model-by-more-than-20-2026-08-21/","title":"OpenAI cuts developer pricing for frontier GPT-5.6 Sol model by more than 20% — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"}
+  ]
+}
