@@ -1,0 +1,23 @@
+{
+  "entry": "论/价格战",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 按 token 定价向任务经济学的转变重订。新增来源活链已核验，HTML snapshot 待补。",
+  "sources": [
+    {"ref":"[^2]","url":"https://openai.com/index/introducing-chatgpt-and-whisper-apis/","title":"ChatGPT and Whisper APIs — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://openai.com/index/gpt-4-research/","title":"GPT-4 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://arxiv.org/abs/2405.04434","title":"DeepSeek-V2 — arXiv","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://openai.com/index/hello-gpt-4o/","title":"GPT-4o — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://ai.google.dev/gemini-api/docs/pricing","title":"Gemini API pricing — Google","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://github.com/deepseek-ai/DeepSeek-V3","title":"DeepSeek-V3","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/","title":"Advancing the price-performance frontier with GPT-5.6 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/","title":"Expanding GPT-5.6 Luna access — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/","title":"Gemini 3.7 Flash — Google","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://www.anthropic.com/news/claude-sonnet-5","title":"Claude Sonnet 5 — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://www.reuters.com/business/retail-consumer/deepseeks-new-ai-model-is-by-far-cheapest-well-known-models-run-research-firm-2026-08-03/","title":"DeepSeek V4 Flash cost — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://www.reuters.com/world/china/deepseek-releases-official-v4-pro-model-it-steps-up-expansion-2026-08-13/","title":"DeepSeek V4 Pro launch/pricing — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^16]","url":"https://www.reuters.com/world/china/deepseek-raises-api-pricing-its-v4-models-2026-08-13/","title":"DeepSeek peak/off-peak pricing — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/","title":"GPT-5.6 Fast mode — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
