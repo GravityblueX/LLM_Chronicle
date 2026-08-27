@@ -1,130 +1,211 @@
 # 《Google 本纪》
 
-> Google 是 Transformer 的发明者，全球唯一拥有从 TPU 芯片到模型到产品到操作系统的完整 AI 栈的公司。从 Transformer 论文的八位作者到 Bard 翻车的集体耻笑，再到 Gemini 3 登顶 LMArena——Google 的 AI 十年，是一场"发明者如何夺回自己创造的世界"的漫长反击。
+> Google 发明了 Transformer，却没有最先把它变成全球最成功的聊天产品。真正值得记录的，并不是“发明者被后来者抢先”的戏剧性，而是 Google 此后怎样重新组织自己的优势：**TPU、模型、搜索、Android、Workspace、云、Agent 平台一起工作。** 到 2026 年，Gemini 的竞争单位已经不再只是某个 Pro 旗舰，而是一整套从 Deep Think 到 Flash、从 Search 到 Managed Agents 的生产系统。
 
 ---
 
 ## 一、概述
 
-Google 在大模型史上的地位独一无二：**Transformer 架构诞生于 Google Brain**，2017 年的《Attention Is All You Need》改变了整个行业的技术底座。但 Google 并没有从自己的发明中获得最大的商业回报——ChatGPT 由 OpenAI 率先产品化，Google 反而成了被追赶的追赶者。
+Google 在大模型史上的地位有两层。
 
-从 2023 年 Bard 的仓促翻车，到 2025 年 Gemini 2.5 Pro 登顶 LMArena，Google 用了两年时间完成了从"被嘲笑"到"被认可"的转型。支撑这条弧线的不是某一次算法突破，而是 Google 在硬件（TPU）、数据（YouTube/搜索）、分发（Android/Workspace）三个维度上的结构性优势。这些优势是任何纯模型公司无法复制的。
+第一层是技术史：Google Brain / Google Research 在 2017 年发表《Attention Is All You Need》，Transformer 成为后续 GPT、BERT、PaLM、Llama、Gemini 等系统的共同基础。[^1]
 
----
+第二层是产业史：Google 同时拥有 TPU、搜索、YouTube、Android、Workspace、Chrome、Cloud 等模型公司通常无法同时拥有的基础设施。ChatGPT 的爆发证明“拥有技术”并不等于“拥有产品”；Gemini 此后的演化则证明，Google 的反击也不能只靠再训练一个更大的模型。
 
-## 二、创立与早年
+到 2026 年，Google 的 AI 路线可以概括成：
 
-### 2.1 Google Brain：深度学习的先驱
-
-Google 的 AI 故事始于 2011 年。Google Brain 项目由 Jeff Dean、Andrew Ng（吴恩达）和 Greg Corrado 发起——用 16,000 个 CPU 核心训练了一个深度神经网络，从 YouTube 视频中自动学会了识别猫。这个实验在学术上不算突破，但在工业上意义重大：它证明了大规模计算可以直接提升模型能力。[^1]
-
-Google Brain 此后成为 Google 内部 AI 研究的核心引擎。2014 年收购 DeepMind（约 $5 亿），形成了 Google 内部两个 AI 实验室并存的格局——Google Brain 侧重工程和产品，DeepMind 侧重基础研究和游戏 AI（AlphaGo、AlphaFold）。这种"双头制"在带来内部竞争的同时，也埋下了组织协调的隐患。
-
-### 2.2 Transformer 论文：改变世界的八个人
-
-2017 年 6 月 12 日，Google Brain 和 Google Research 的八位作者——Ashish Vaswani、Noam Shazeer、Niki Parmar、Jakob Uszkoreit、Llion Jones、Aidan N. Gomez、Łukasz Kaiser 和 Illia Polosukhin——在 arXiv 上发布了《Attention Is All You Need》。[^2]
-
-这篇论文的核心贡献不是发现了注意力机制（它之前已经存在），而是做了一道减法：把循环结构（RNN/LSTM）完全砍掉，只用自注意力来建模序列。这个设计让训练可以完全并行，让模型可以堆得更深、更大，为后来所有大模型——GPT、BERT、PaLM、Llama——铺平了道路。
-
-极具讽刺意味的是，论文的八位作者中，**没有一位留在 Google**。Ashish Vaswani 和 Niki Parmar 联合创办了 Adept AI（后被 Amazon 收购）；Noam Shazeer 创办了 Character.AI（后被 Google 收回）；Llion Jones 创办了 Sakana AI；Łukasz Kaiser 加入了 OpenAI（后成为 o1 项目的核心成员）；Illia Polosukhin 创办了 NEAR Protocol。[^3] Google 发明了 Transformer，却没能留住任何一个发明者。
+> **把模型能力嵌入既有基础设施，再把基础设施反过来变成 Agent 的运行环境。**
 
 ---
 
-## 三、关键事件
+## 二、从 Google Brain 到 Google DeepMind
 
-### 3.1 TPU：从芯片开始的自主之路
+### 2.1 Transformer：发明基础设施，却没有定义第一代产品
 
-Google 是全球唯一一家同时自研 AI 芯片和大模型的公司。TPU（Tensor Processing Unit）自 2015 年起迭代：TPU v1 用于推理加速（驱动 AlphaGo），TPU v2/v3 用于训练，TPU v4（2021）开始成为 Gemini 系列的训练基础设施，TPU v5p（2023）被用于 Gemini 1.0 Ultra 的训练。[^4]
+2017 年 6 月，Vaswani 等八位作者发表 Transformer 论文。[^1]
 
-TPU 的战略意义在于：Google 不受英伟达 GPU 供应限制。当 OpenAI 和 Anthropic 在 2023-2024 年为争抢 H100/A100 集群而头疼时，Google 可以自由扩展自己的训练算力。这个优势在推理成本上更为明显——Gemini 系列的 API 定价可以持续压低，因为 Google 不需要向英伟达支付 GPU 溢价。
+它最重要的工程意义是去掉循环结构，使序列训练能够更充分并行化。此后的规模化预训练几乎都建立在这个方向上。
 
-但 TPU 生态也有裂隙。TPU 的软件栈（JAX/XLA）不如英伟达的 CUDA 生态成熟，外部开发者更习惯 PyTorch + CUDA。这意味着 Google 的 AI 基础设施优势更多体现在内部训练和推理上，而非吸引外部开发者生态。
+Google 随后又发展 BERT、T5、Switch Transformer、PaLM 等路线，但在 2022 年 11 月 ChatGPT 出现时，公众第一次大规模接触通用大模型的入口并不是 Google。
 
-### 3.2 Bard 翻车（2023-02）：恐慌的代价
+历史因此出现一个反差：**Google 发明了底座，OpenAI 定义了聊天产品。**
 
-2023 年 2 月 6 日，Sundar Pichai 在 Google 官方博客宣布 Bard——基于 LaMDA 的对话 AI 产品。这一天比微软发布 Bing+ChatGPT 早一天——Google 试图用"先发"来抢占注意力。[^5]
+### 2.2 Bard 失误与组织合并
 
-两天后的巴黎 demo 中，Bard 在回答一个关于詹姆斯·韦伯太空望远镜的问题时犯了事实性错误。一张截图在社交媒体上疯传——Google 股价当日下跌 7.7%，市值蒸发超过 1000 亿美元。[^6]
+2023 年初 Bard 的仓促发布与公开错误，暴露了 Google 在研究、模型与产品之间的组织摩擦。
 
-Bard 翻车是 Google AI 战略中最具标志性的耻辱。它暴露了 Google 在"快速发布 vs 充分测试"之间的矛盾——一个习惯了搜索引擎"经过充分测试再上线"文化的公司，在 ChatGPT 的冲击下被迫仓促出招。但 Bard 也迫使 Google 做了一个关键决定：**放弃 Google Brain 和 DeepMind 的双头制，合并为 Google DeepMind**。
+**2023-04**，Google 将 Brain 与 DeepMind 合并为 **Google DeepMind**，由 Demis Hassabis 领导。[^2]
 
-### 3.3 Google DeepMind 的成立（2023-04）：合并与统一
-
-2023 年 4 月，Google 正式宣布将 Google Brain 和 DeepMind 合并为 **Google DeepMind**，由 DeepMind 联合创始人 Demis Hassabis 领导。[^7]
-
-这次合并的直接动因是 Bard 翻车暴露的组织效率问题：两个实验室各自为政、资源重复投入、产品化路径不统一。合并后，Gemini 项目成为 Google DeepMind 的旗舰——由原 Brain 和 DeepMind 的团队联合开发，统一在 TPU v5p 上训练。
-
-Hassabis 的领导风格与之前的双头制截然不同。他强调"研究必须服务于产品"——DeepMind 之前以纯基础研究著称（AlphaFold、AlphaGo），合并后必须同时产出可部署的模型。这个转向让一些纯研究导向的成员不满，但从组织效率上看，合并立竿见影：Gemini 1.0 在合并后仅八个月就发布了。
-
-### 3.4 Gemini 1.0 到 3.x：从剪辑争议到 LMArena 登顶
-
-**2023-12-06** — Google DeepMind 发布 Gemini 1.0，Ultra 在 32 项基准中 30 项超过 GPT-4。但发布 demo 被曝剪辑造假，社区信任度受损（详见《Gemini 世家》）。
-
-**2024-02-15** — Gemini 1.5 Pro 发布，1M token 上下文窗口——开辟"超长上下文"赛道，迫使所有对手跟进。
-
-**2024-12-11** — Gemini 2.0 Flash 发布，定位"agentic era"先锋——Google 率先将大模型定位为"能调用工具的智能体"。
-
-**2025-03-25** — Gemini 2.5 Pro 发布，LMArena 排行榜登顶。从 2023 年 12 月的"剪辑造假"到 2025 年 3 月的"用户投票登顶"，Google 用了 16 个月走完了从被嘲笑到被认可的路。[^8]
-
-**2026-05** — Gemini 3 系列发布，延续 Pro（旗舰）+ Flash（速度）+ Deep Think（深度推理）三层产品结构，与 GPT-5.x、Claude 4 处于持续竞速状态。
-
-### 3.5 数据护城河：YouTube、搜索、Books
-
-Google 拥有大模型训练数据中最深的护城河：YouTube（视频数据，全球最大视频平台）、Google Search（网页索引，覆盖互联网的绝大多数页面）、Google Books（数十亿页书籍扫描）。这三个数据源是 OpenAI 和 Anthropic 无法复制的——它们是 Google 二十年互联网基础设施积累的副产品。
-
-Gemini 的"原生多模态"——从设计之初就在文本、图像、音频、视频的联合数据上训练——只有在拥有这些独家数据源时才成为可能。竞争对手即使在算法上追上 Google，在训练数据的广度和多样性上也很难匹敌。
+这一步比任何单次模型发布更重要。Gemini 后来的训练、产品和研究路线，开始在统一组织下推进；TPU、基础研究和消费产品也被更紧密地连接起来。
 
 ---
 
-## 四、兴衰分析
+## 三、Gemini：从多模态模型到 Agent 基础设施
 
-### 阶段一：发明者的优势（2011-2020）
+### 3.1 Gemini 1.x：原生多模态与百万上下文
 
-**发生了什么**：Google Brain 和 DeepMind 并行推进深度学习前沿，Transformer 论文、BERT、TPU、AlphaFold 等重大成果均出自此期。
+**2023-12**，Gemini 1.0 发布。Google 从一开始就强调多模态训练，而不是把视觉作为语言模型的后接插件。[^3]
 
-**为什么发生**：Google 的搜索和广告业务提供了充足的资金支持；学术自由的组织文化鼓励基础研究；TPU 自研使 Google 在算力上领先。
+**2024-02**，Gemini 1.5 Pro 将长上下文推进到百万 token 级，长视频、长文档和代码库分析成为 Gemini 的主要差异化方向之一。[^4]
 
-**留下了什么**：Transformer 架构成为全行业的技术底座；TPU 成为 Google 的硬件护城河；但"发明者优势"也带来了一种惰性——Google 更擅长发论文，不擅长快速产品化。
+这个阶段 Google 的竞争叙事仍然主要围绕“模型能力”：多模态、上下文窗口、基准表现。
 
-### 阶段二：被 ChatGPT 打得措手不及（2022-2023）
+### 3.2 Gemini 2.x：Agentic era 成为显式目标
 
-**发生了什么**：ChatGPT（2022-11）引爆公众关注，Google 仓促发布 Bard（2023-02）却遭遇翻车，被迫合并 Brain 和 DeepMind。
+Gemini 2.0 / 2.5 之后，Google 越来越频繁地把模型放在工具调用、搜索、代码执行和 Agent 系统中讨论。
 
-**为什么发生**：Google 的产品化节奏与 OpenAI 截然不同——Google 习惯了"搜索引擎式"的充分测试后上线，而 OpenAI 用"研究预览"的方式快速迭代。Google 内部的"双头制"导致资源分散、决策缓慢。
+这意味着上下文不再只是“能读多少文本”，而是模型需要在多轮工具调用里持续维护的工作状态。
 
-**留下了什么**：Bard 翻车成为 Google AI 历史上最具标志性的耻辱事件，但也成为了组织变革的催化剂——直接导致了 Google DeepMind 的成立。
+### 3.3 Gemini 3 / 3.1：旗舰能力继续推进
 
-### 阶段三：结构性反击（2024-至今）
+**2026-02-12**，Google 更新 Gemini 3 Deep Think，把它定位于科学、研究和工程问题。[^5]
 
-**发生了什么**：Gemini 系列从 1.0 的剪辑争议迭代到 2.5 Pro 的 LMArena 登顶；超长上下文、原生多模态、agentic 定位成为差异化优势；TPU 自研持续迭代。
+**2026-02-19**，Gemini 3.1 Pro 发布，面向复杂任务，并进入 Gemini API、Vertex AI、Gemini app 与 NotebookLM。[^6]
 
-**为什么发生**：Google 的结构性优势——TPU、数据、分发——在长期竞争中逐渐发挥作用。Gemini 不必在每个维度上都是最强，只需在"能力×成本×分发"的乘积上无人能及。
+这里仍然是传统旗舰路线：复杂任务用更强模型、更高推理预算。
 
-**留下的悬念**：Google 能否在推理模型（Deep Think）上持续领先？OpenAI 的 GPT-5.x 和 Anthropic 的 Claude 4 会否在核心能力上再次拉开差距？Google 的"全栈自主"优势能否转化为真正的市场份额？
+真正改变 Google 2026 年节奏的，却是 Flash。
+
+---
+
+## 四、Flash：从“便宜版 Pro”变成生产 Agent 工作马
+
+### 4.1 3.5：frontier intelligence with action
+
+**2026-05-19**，Google 发布 Gemini 3.5，官方直接使用 “frontier intelligence with action” 描述这一代。[^7]
+
+3.5 的关键不是又多一档模型，而是 Google 将**执行复杂 Agent workflow**写成家族目标。
+
+### 4.2 3.6 Flash：为高频 Agent 调用优化 token 效率
+
+**2026-07-21**，Google 发布 Gemini 3.6 Flash、3.5 Flash-Lite 与 3.5 Flash Cyber。Google 明确表示这些模型用于在规模上运行 AI agents，重点是 token efficiency、latency 与 reliability。[^8]
+
+其中 3.6 Flash 的意义尤其清楚：
+
+- 不只追求单次回答质量；
+- 还追求完成一个多轮 Agent 工作流时少生成多少 token；
+- token 少意味着延迟低、成本低，也意味着同一预算能进行更多次工具循环。
+
+### 4.3 Managed Agents：Google 开始托管整个运行时
+
+**2026-07-28**，Gemini API 的 Managed Agents 更新到默认使用 3.6 Flash，并增加 environment hooks、budget controls、scheduled triggers 等能力。[^9]
+
+一个 API 调用可以协调 reasoning、代码执行、包安装、文件管理与 web retrieval，并在隔离云 sandbox 内运行。
+
+这一步表明 Google 的产品不再只是“给你一个模型 API”，而是开始提供：
+
+> **模型 + 沙箱 + 工具 + 触发器 + 审计钩子 + 预算控制。**
+
+### 4.4 3.7 Flash：工作马三周一更
+
+**2026-08-13**，Gemini 3.7 Flash 发布，距 3.6 Flash 只有三周。Google 称其为“our most intelligent workhorse model yet for coding and agents”，并以 3.6 Flash 原始价格的一半作为首发价。[^10]
+
+这时一个非常重要的结构已经成形：
+
+**旗舰发布时间，与生产负载进步开始解耦。**
+
+即使最强 Pro 代际没有同步更新，Flash 仍可以通过：
+
+- 更低 token 消耗；
+- 更低延迟；
+- 更低价格；
+- 更可靠的工具调用；
+- 更成熟的 managed runtime；
+
+让真实 Agent 系统继续向前。
+
+---
+
+## 五、Deep Research：模型开始承担长程知识工作
+
+**2026-04-21**，Google 发布下一代 Deep Research / Deep Research Max。Max 基于 Gemini 3.1 Pro，加入 MCP 支持、私有数据连接与可视化生成，面向长程研究工作。[^11]
+
+这说明 Gemini 的另一个产品方向：不是把所有 Agent 都压进浏览器操作，而是将“研究”本身做成可委托的长任务。
+
+对 Google 来说，这种 Agent 有一个天然优势：搜索、网页索引、Workspace、NotebookLM 和 Cloud data source 原本就在同一生态里。
+
+---
+
+## 六、TPU 与全栈优势：真正的护城河不是某一版 Gemini
+
+Google 很早就自研 TPU。其长期意义在 2026 年变得更明显：
+
+1. **训练**：Google 不需要完全依赖 NVIDIA 的产品周期；
+2. **推理**：Flash 这种高调用量模型可以与自有硬件协同优化；
+3. **分发**：同一模型可以进入 Search、Gemini app、Android、Workspace、Vertex AI；
+4. **Agent runtime**：Cloud sandbox、Search、文件、浏览器和私有数据可以在同一控制平面内组织。
+
+因此“Google 有没有世界最强模型”已经不是最好的公司级问题。
+
+更好的问题是：
+
+> **Google 能不能把足够强的模型，以最低摩擦送进最多真实工作流？**
+
+这也是为什么 Flash 的历史意义可能不小于 Pro。
+
+---
+
+## 七、Google 路线的矛盾
+
+### 7.1 全栈是优势，也是组织负担
+
+Google 拥有别人难以复制的资产，却也意味着产品线复杂、内部接口众多、发布节奏更难统一。
+
+ChatGPT 时代已经证明，小团队可以通过一个极简产品迅速建立用户心智。Google 的优势更多会在**持续生产负载、企业集成和分发**上体现，而不一定表现为每次发布都最轰动。
+
+### 7.2 “模型最好”与“系统最好”正在分离
+
+在 2023 年，比较 GPT-4、Claude、Gemini 主要还是比较模型。
+
+到 2026 年，真实系统要比较的已经包括：
+
+- 模型质量；
+- token efficiency；
+- sandbox；
+- search / retrieval；
+- MCP；
+- budget controls；
+- triggers；
+- enterprise data access；
+- Android / Workspace / Cloud 分发。
+
+这正是 Google 最有机会发挥结构优势的地方。
 
 ---
 
 ## 评曰
 
-Google 的 AI 十年，可以用一句话概括：**发明了改变世界的工具，却没有在第一时间理解它的产品价值。**
+Google 的 AI 史曾经很容易被写成一句戏剧化的话：
 
-Transformer 论文的八位作者全部离开 Google，这不是偶然——它暴露了 Google 组织文化中的一个裂隙：学术自由与产品速度之间的张力。Google 鼓励发论文，但论文发完之后，产品化的节奏远慢于一个 50 人的创业公司。ChatGPT 不是技术上比 Google 的模型更强——GPT-3.5 的底座能力不如 PaLM——但它把已有技术放进了一个聊天框，五天百万用户。Google 有更强的模型，却没有一个叫"ChatGPT"的产品。
+> **发明 Transformer 的公司，却被 ChatGPT 抢走了产品时代。**
 
-但 Google 也证明了一件事：**基础设施是最大的时间朋友**。TPU、YouTube 数据、Android 分发——这些需要十年以上才能建成的资产，在长期竞争中越来越重要。当模型能力趋于同质化（GPT-5.x、Claude 4、Gemini 3.x 在核心基准上差距越来越小），竞争会从"谁的模型更强"转向"谁的系统更完整"。在这个维度上，Google 至今仍是全世界唯一一个拥有从芯片到模型到产品到操作系统的完整 AI 栈的公司。
+这句话描述了 2022—2023，却不足以描述 2026。
 
-Bard 翻车的耻辱和 Gemini 登顶的荣耀，发生在同一家公司身上——这不是矛盾，而是同一种力量的两面：一个习惯了深度思考的组织，在被迫加速时会摔跤，但在跌倒后能站起来，因为它脚下踩的地基比任何人都厚。
+Google 后来的反击不是再证明一次“我们也能训出很强的模型”，而是逐渐把自己二十年的基础设施重新解释成 AI 资产：TPU 是算力，Search 是外部世界接口，Workspace 是工作数据，Android 是终端分发，Cloud 是 Agent 的运行环境。
+
+Gemini 3.7 Flash 的意义恰好在这里。它不是最昂贵、最高规格的旗舰，却可能承担更多真实生产调用。Agent 一项任务要进行几十次推理和工具交互时，**便宜一点、少生成一点、稳定一点**的价值会被循环放大。
+
+因此 Google 真正的竞争单位正在从 Gemini 模型，变成：
+
+**Gemini + TPU + Search + Cloud + Workspace + Android + Agent runtime。**
+
+Transformer 给了 Google 技术史上的起点；能否把这套全栈系统变成长期生产优势，才决定它在 Agent 时代的终点。
 
 ---
 
-*本篇由终末地工业史官团队编纂：庄方宜（主笔）。*
+*本篇由终末地工业史官团队编纂：伊冯（架构审计）。*  
+*2026-08 补订：GPT-5.6 Sol（OpenAI）。*
 
 ---
 
-[^1]: Le et al., "Building High-level Features Using Large Scale Unsupervised Learning", arXiv:1112.6209, 2012. https://arxiv.org/abs/1112.6209
-[^2]: Vaswani et al., "Attention Is All You Need", arXiv:1706.03762, 2017-06-12. https://arxiv.org/abs/1706.03762
-[^3]: Cade Metz / The New York Times, "The A.I. Revolution Is Coming. Not Everyone Is Convinced.", 2023-05-01.（关于 Transformer 八位作者去向的综合报道）
-[^4]: Google Cloud Blog, "Cloud TPU v5p and AI Hypercomputer", 2023-12-06. https://cloud.google.com/blog/products/ai-machine-learning/introducing-cloud-tpu-v5e-and-a3-gpus
-[^5]: Sundar Pichai / Google Blog, "An important next step on our AI journey", 2023-02-06. https://blog.google/technology/ai/bard-google-ai-search-updates/
-[^6]: The Verge, "Google's AI chatbot Bard makes factual error in first demo", 2023-02-08. https://www.theverge.com/2023/2/8/23590864/google-ai-chatbot-bard-mistake-error-exoplanet-demo
-[^7]: Google Blog, "Google DeepMind: Bringing together two world-class AI teams", 2023-04-20. https://blog.google/technology/ai/google-deepmind-google-brain/ （原 URL 已失效，此为归档替代链接）
-[^8]: Google DeepMind Blog, "Gemini 2.5: Our most intelligent AI model", 2025-03-25. https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/
+[^1]: Vaswani et al., “Attention Is All You Need”, 2017. https://arxiv.org/abs/1706.03762
+[^2]: Google, “Google DeepMind: bringing together two world-class AI teams”, 2023-04. https://blog.google/technology/ai/april-ai-update/
+[^3]: Google, “Introducing Gemini”, 2023-12-06. https://blog.google/technology/ai/google-gemini-ai/
+[^4]: Google, “Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context”, 2024-02. https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/
+[^5]: Google, “Gemini 3 Deep Think: Advancing science, research and engineering”, 2026-02-12. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/
+[^6]: Google, “Gemini 3.1 Pro: A smarter model for your most complex tasks”, 2026-02-19. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/
+[^7]: Google, “Gemini 3.5: frontier intelligence with action”, 2026-05-19. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/
+[^8]: Google, “Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber”, 2026-07-21. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/
+[^9]: Google, “Gemini API Managed Agents: 3.6 Flash, hooks, and more”, 2026-07-28. https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/
+[^10]: Google, “Introducing Gemini 3.7 Flash”, 2026-08-13. https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/
+[^11]: Google, “Deep Research Max: a step change for autonomous research agents”, 2026-04-21. https://blog.google/innovation-and-ai/models-and-research/gemini-models/next-generation-gemini-deep-research/
