@@ -1,143 +1,212 @@
 # 《Anthropic 本纪》
 
-> 一群因为担心 AI 安全而离开 OpenAI 的人，创办了一家新公司，做了一个不那么会写诗但更不会撒谎的模型。三年后，Anthropic 的 Claude 在编程基准上成了全行业的对标线，它的 Artifacts 重新定义了 AI 交互界面，它的"宪法 AI"方法论开创了一条与 OpenAI RLHF 完全不同的安全路线。
+> Anthropic 最初以“安全公司”的形象进入大模型史，但到 2026 年，它已经不能再用“更安全的 Claude”一句话概括。Claude Code、Computer Use、长程 Agent、Fable / Mythos、runtime classifiers、trusted access、文本水印，乃至 Model Hardware Standard，把 Anthropic 推到了一个更复杂的位置：**它试图把前沿能力的风险边界做成产品架构本身。**
 
 ---
 
 ## 一、概述
 
-Anthropic 于 2021 年由前 OpenAI 高管 Dario Amodei 和 Daniela Amodei（兄妹）等创立。公司名称源自"人择原理"（anthropic principle），反映了其核心理念：AI 系统应以人类利益为中心。
+Anthropic 成立于 2021 年，由 Dario Amodei、Daniela Amodei 等前 OpenAI 成员创办。早期公司的辨识度来自安全研究：RLHF、Constitutional AI、可解释性与前沿风险评估。Claude 则把这些研究转化为实际产品。
 
-Anthropic 最大的不同不是技术路线——统一使用 Transformer 架构、RL 对齐——而是**组织基因**。从创立的第一天起，"安全"就是它的核心产品属性，而非事后附加的 feature。这种以"安全为第一性"的理念，贯穿了从 Constitutional AI 到 Claude 系列的每一个关键决策。
+如果只看到这里，会把 Anthropic 写成“安全优先的 OpenAI 分支”。但 2024—2026 年的事实已经超出这个框架：
 
----
+- Claude 3.5 Sonnet 让 Anthropic 成为软件工程市场的重要模型供应商；
+- Computer Use 与 Claude Code 把 Claude 从回答问题推进到操作环境；
+- Claude 4.x、Sonnet 5 把 effort、compaction、memory、checkpoint、subagents 等 Agent 机制推入产品；
+- Fable 5 / Mythos 5 则第一次公开把**同一模型的能力等级与风险控制、访问资格结合起来**；
+- 2026 年 8 月，文本水印与 Model Hardware Standard 又把治理扩展到输出来源和物理设备控制。
 
-## 二、创立：「出走者的公司」
+因此 Anthropic 的公司史，已经从“安全与能力是否冲突”变成另一个问题：
 
-### 2.1 从 OpenAI 分裂
-
-2020 年底至 2021 年初，OpenAI 内部发生了一场深刻的分裂。副总裁 Dario Amodei 和一批员工认为 OpenAI 在商业化压力下对安全投入不足——模型发布速度越来越快、对潜在风险的评估越来越简略、"开源"的承诺正在被商业利益侵蚀。
-
-这批出走者都是 OpenAI 的安全派——他们曾主导 OpenAI 的安全研究方向，包括 RLHF 的前期工作。分裂的导火索是 GPT-3 的 API 商业化决策（2020-06）——Dario 等人认为，在没有任何公众安全评估框架的前提下，将一个 175B 参数的模型推入商业市场，是对 OpenAI 原始使命的背叛。
-
-### 2.2 早期的低调
-
-Anthropic 在 2021 年成立后保持了近两年的低调。它没有像 OpenAI 那样频繁发布博客、开放 API、做媒体采访。Anthropic 的核心团队在西雅图和旧金山安静地做基础研究——安全对齐方法、模型可靠性评估、训练基础设施。
-
-这种"在研究上高调、在宣传上低调"的风格，后来成为 Anthropic 的标志性品牌特征。
+> **当模型越来越能行动时，怎样把能力、权限、风险与访问制度组成一个可运行的系统？**
 
 ---
 
-## 三、关键事件
+## 二、创立：从 OpenAI 分出另一种治理实验
 
-### 3.1 Constitutional AI（2022-12）：安全方法论的定义
+Anthropic 的创办团队来自 OpenAI，Dario Amodei 曾负责研究工作。两家公司后来经常被写成“商业派 OpenAI”与“安全派 Anthropic”的镜像，但这种二分不能解释全部历史。
 
-Anthropic 开发了 **Constitutional AI（宪法 AI）**——一种独特的安全对齐方法。
+更准确的说法是：Anthropic 从一开始就把**前沿模型开发与安全研究放在同一个组织内**。这意味着安全不是外部审查机构，也不是发布后的过滤器，而要与模型训练、评估、产品和部署一起发展。
 
-与 OpenAI 的 RLHF 不同，Constitutional AI 不使用人类标注员直接评估模型输出。相反，它：
-1. 给模型一套明确的"宪法"——来自联合国人权宣言、苹果服务条款等公开文件
-2. 让模型**自己评估和修改自己的输出**——生成回答 → 用宪法原则自我批评 → 修改回答
-3. 用 AI 生成的反馈来训练偏好模型
-4. 用 RL 微调模型
+这一点后来体现在两个长期项目中：
 
-核心洞察是：**不要用人来判断什么是好的——让模型用可公开审计的规则来判断**。这个方法的可扩展性（不需要大量人工标注）、透明性（规则公开可查）、可审计性——是它区别于 RLHF 的三个关键特征。
+1. **Constitutional AI**：尝试把行为原则写成可检查的文本规则，并用 AI feedback 扩展监督；[^1]
+2. **Responsible Scaling Policy / 前沿评估体系**：让模型能力达到不同危险阈值时，对应不同的部署和防护要求。
 
-Constitutional AI 的理论基础在 2022 年 12 月 15 日提交 arXiv，时间上晚于 OpenAI 于 2022 年 11 月 30 日发布 ChatGPT，约相隔两周。这个时间点——紧随 ChatGPT 引发全球 AI 安全讨论之后——赋予了它超乎预期的重要性。当全世界的政策制定者和监管机构开始追问"如何确保 AI 系统安全"时，Anthropic 恰好有一套已经开发完成的方法论。
-
-### 3.2 Claude 的发布与 GPT-4 同日（2023-03）：巧合或有意
-
-2023 年 3 月 14 日——GPT-4 发布的同一天——Anthropic 向合作伙伴开放了 Claude API。同一天发布是巧合或有意，至今没有定论。但两篇发布并列在一起，恰好构成了大模型两条路的分野：
-
-Claude 的定位从一开始就是"更诚实、更无害"的对话 AI——不是"更聪明"的 ChatGPT。在 GPT-4 以"更强"为导向的同时，Claude 以"更安全"为导向。这两者的差异不是技术路线上的——是产品定位和价值观上的。
-
-（详见《编年·2023年3月》）
-
-### 3.3 Claude 3（2024-03）：首次超越 GPT-4
-
-2024 年 3 月，Anthropic 发布 Claude 3 系列（Opus/Sonnet/Haiku），首次在主流基准上**超越 GPT-4**。Opus 在 MMLU 86.8% vs GPT-4 86.4%、HumanEval 84.9% vs GPT-4 67.0%——是一个质的超越。
-
-更精妙的是 Claude 3 的三层定价策略：Opus 是最贵、最强——面向"钱不是问题"的极端准确场景；Sonnet 是大多数人的默认选择——价格适中、能力充分；Haiku 是"嵌入式 AI"——极快、极便宜，适合实时客服和内容审核。这种"三种规模、三种定价、一个品牌"的策略，后来被证明是 Anthropic 对抗 OpenAI 的最有效武器。
-
-Claude 3 的里程碑意义不仅在于数字——更在于它终结了"GPT-4 最强"的单一叙事。从这一刻起，大模型竞争进入了真正的三足鼎立：GPT-4 有最好的多模态、Claude 3 有最好的安全性和诚实性、Gemini 1.5 有超长上下文。
-
-（详见《编年·2024年3月》）
-
-### 3.4 Claude 3.5 Sonnet（2024-06）：程序员的集体选择
-
-跳过 Opus 直接发布 Sonnet 升级版——这是一个精妙的产品信号：Anthropic 在说"我们不靠更大来变强——我们靠更好的工程来变强"。
-
-Claude 3.5 Sonnet 以比 Opus 更低的价格达到了更强的效果。在编程基准 HumanEval 92.0% 和 SWE-bench 40.6% 上，它大幅领先 GPT-4o——这使它迅速成为全球程序员的首选 AI 编程助手。但更持久的遗产是 **Artifacts**——完全重新定义了 AI 对话的界面。从"聊天"到"建造"——Artifacts 允许 Claude 在对话中直接生成可预览的代码、组件、设计文档。
-
-（详见《编年·2024年6月》）
-
-### 3.5 Claude 3.7 Sonnet（2025-02）：混合推理的范式
-
-Claude 3.7 Sonnet 是 Anthropic 对 OpenAI 的 o1 推理模型的回应——但回应方式不是"我们也做一个推理模型"。
-
-Anthropic 把一个推理能力嵌入了同一个模型中——用户可以选择"即时回答"或"扩展思考"。这是对 OpenAI "两个模型全家桶"方式的范式反驳。更重要的是，Claude 3.7 Sonnet 展示了**透明思考**——用户可以看到模型的推理过程。这与 o1 的"隐藏思维链"形成了鲜明对比——也是对 DeepSeek-R1 "公开思维链"策略的认同。
-
-（详见《编年·2025年2月》）
-
-### 3.6 Claude 4（2025-05）：商业模式的拐点
-
-Claude 4 的技术创新是渐进的——但商业模式的革新是激进的。Claude Max 的"用量制"定价——$200/月 + 按深度思考使用量计费——是 AI 行业从"统一订阅"向"按需计费"转型的第一个明确信号。
-
-这个转折背后的经济学逻辑是不可逆的：深度推理的计算成本是即时回答的几十倍。统一月费会迫使轻度用户补贴重度用户（不公平），或让服务提供方在重度用户上亏损（不可持续）。Anthropic 是第一个直面这个逻辑的 AI 公司——无论 Claude Max 在市场上的短期表现如何，它准确预判了 AI 商业定价未来十年的方向。
-
-（详见《编年·2025年5月》）
+早期 Claude 的“Helpful, Honest, Harmless”标签只是这套制度的消费级表面。到 2026 年，真正重要的部分已经转移到运行时权限和能力分层。
 
 ---
 
-## 四、兴衰分析
+## 三、Claude：从对话助手到工程 Agent
 
-### Anthropic 的结构优势
+### 3.1 Claude 1—3：安全品牌获得能力基础
 
-Anthropic 的核心竞争优势是它不需要和 OpenAI 正面比较"谁更强"——它有一个独立的、不与能力指标直接关联的差异化价值主张：**安全**。
+**2023-03**，Anthropic 发布 Claude。[^2]
 
-当所有其他 AI 公司在 benchmark 和用户兴奋度上竞争时，Anthropic 在"可信赖性"上竞争。这个策略在以下场景中尤其有效：
-- 企业客户更关心可控性和合规性而非生成长度或创意性
-- 政府和公共部门的 AI 采购——安全是采购决策的首要标准
-- 医疗、法律、金融等受监管行业——"诚实"的价值远高于"有创意"
+**2024-03**，Claude 3 Opus / Sonnet / Haiku 发布。三档模型证明了一件对后续很重要的事：一个模型家族可以不只按“大小”分层，也可以按速度、成本和任务价值分层。[^3]
 
-### Anthropic 的脆弱点
+**2024-06**，Claude 3.5 Sonnet 发布，并推出 Artifacts。[^4] 这代模型在软件开发中的采用，让 Anthropic 的公司定位发生第一次明显变化：它不再只靠“安全”获得企业信任，也开始靠**可验证的工程工作能力**获得开发者。
 
-Anthropic 的最大脆弱点是：**"安全"作为一个产品差异属性是脆弱的**。当竞争对手（特别是 GPT-4o、Gemini 2.5 Pro）进入市场后也强调安全措施时，"安全"就不再是 Anthropic 的专属标签。
+### 3.2 Computer Use 与 Claude Code：行动权扩大
 
-这就是为什么 Claude 3.5 Sonnet 和 Artifacts 如此重要——它们将 Anthropic 的差异点从"安全"延伸到了"产品体验"和"编程能力"。"编程能力最强"比"最安全"更容易在开发者群体中建立忠诚度——因为编程能力是可以被验证的，"安全"是模糊的。
+**2024-10-22**，Anthropic 发布 Computer Use，让 Claude 通过截图、鼠标与键盘操作图形界面。[^5]
 
-从 Claude 3 到 Claude 4，Anthropic 的叙事经历了重大演进：从"最安全的 AI" → "最安全的 AI，也很有用" → "最有用的 AI 之一，也是安全的"。安全从唯一的主张变成了多元化的多重主张中的一员。
+**2025-02-24**，Claude 3.7 Sonnet 与 Claude Code 同时发布。[^6]
 
-### Anthropic 和 OpenAI 的根本差异
+Claude Code 的历史意义比单个 benchmark 更大。软件工程提供了 Agent 所需的一整套外部反馈：
 
-这两个公司从同一批创立者身上分裂而来——但七年后，它们变成了两个完全不同的物种：
+- 文件是否真的修改；
+- shell 命令是否成功；
+- 测试是否通过；
+- git diff 是否符合预期；
+- 错误能否回滚。
 
-OpenAI 的护城河是品牌；Anthropic 的护城河是信任。
-OpenAI 的目标是定义"前沿能力"；Anthropic 的目标是定义"前沿安全"。
-OpenAI 通过制造兴奋来增长；Anthropic 通过建立信任来增长。
+于是 Claude Code 成了 Anthropic 长程 Agent 的实验场。后来进入 Claude / Cowork / 企业 Agent 的 memory、compaction、checkpoint、subagents、effort 等机制，都可以在编码场景中找到成熟前史。
 
-这种二元性在 2025 年的 AI 行业中是根本性的——它不只决定了两家公司的命运，也决定了整个 AI 行业在"能力"和"安全"之间如何平衡。
+### 3.3 Claude 4.x 到 Sonnet 5：前沿能力向工作马下放
+
+2025—2026 年 Claude 4 系列持续推进 Agent 工作能力。到 **2026-06-30**，Claude Sonnet 5 发布，Anthropic 将其定义为最 agentic 的 Sonnet，能够规划、使用浏览器与终端并进行更长时间的自主工作。Sonnet 5 的定价后来在 8 月永久保持为 **$2 / $10 per 1M input/output tokens**。[^7]
+
+这里形成了 Anthropic 很稳定的产品节奏：
+
+> 前沿能力先在昂贵层出现 → Agent 工程成熟 → 能力逐渐下放到更便宜的 Sonnet 层。
+
+因此“最强模型”并不是唯一关键。**能力下放的速度**同样决定多少真实工作可以被自动化。
+
+---
+
+## 四、Fable / Mythos：模型身份开始由治理结构定义
+
+2026 年是 Anthropic 公司史最值得单独记的一年。
+
+### 4.1 Mythos Preview：前沿能力不再默认普遍开放
+
+2026 年 4 月，Anthropic 通过 Project Glasswing 向特定安全研究伙伴提供 Mythos Preview。它被用于高能力网络安全研究，而不是普通公众产品。
+
+这里第一次清楚出现了“**模型很强，但访问资格不是默认平等**”的产品形式。
+
+### 4.2 Fable 5 与 Mythos 5：同一底模，两种治理身份
+
+**2026-06-09**，Anthropic 发布 Claude Fable 5 与 Claude Mythos 5。Anthropic 明确说明：**Fable 5 与 Mythos 5 是同一个模型，区别在 safeguards。**[^8]
+
+- Fable 5：保留 cyber / bio 等运行时防护，可向一般用户提供；
+- Mythos 5：解除部分 safeguards，只通过 trusted-access 体系向验证机构和研究人员开放。
+
+这件事改变了“模型版本”的定义。
+
+过去说 GPT-4、Claude 3、Llama 3，模型身份主要由权重和训练版本决定。Fable / Mythos 则公开承认：
+
+> **模型的身份，也可以由围绕权重的 classifier、访问权限和用途验证决定。**
+
+### 4.3 出口管制危机：安全制度碰上国家制度
+
+**2026-06-12**，美国政府要求暂停外国人访问 Fable 5 与 Mythos 5。Anthropic 因无法实时可靠验证所有用户国籍，暂时停止两款模型访问。[^9]
+
+**2026-06-30 / 07-01**，限制解除，Fable 5 与 Mythos 5 恢复部署。[^10]
+
+这次事件说明前沿 AI 的“权限系统”已经不只由公司设计：国家安全、出口管制、身份验证与云服务都可能进入模型的运行边界。
+
+---
+
+## 五、安全从训练方法变成运行时基础设施
+
+### 5.1 Runtime classifiers 与 fallback
+
+Fable 5 的部分高风险请求由独立 classifiers 判断；必要时请求会被阻断，或切换到能力更低的模型。[^8]
+
+这和早期 Constitutional AI 有本质差异：
+
+- Constitutional AI 主要改变模型训练后的行为倾向；
+- runtime classifier 可以**不改底层权重，单独升级安全边界**。
+
+**2026-08**，Anthropic 更新 Fable 5 biology safeguards，官方称内部测试中的相关误触发下降约 85%。[^11]
+
+这说明安全层已经像普通软件一样可以独立版本化，而不是每次都重新训练整个模型。
+
+### 5.2 Trusted access：能力不再只有“开放 / 不开放”两档
+
+Mythos 5 的 trusted-access 计划要求验证组织和用途后再开放更高风险能力。[^8]
+
+这不是传统 API key 的区别，而是在模型能力本身上设访问层级。到这里，Anthropic 实际上形成了：
+
+**普通访问 → 更高能力订阅 → Fable safeguards → Mythos trusted access**
+
+这样的能力梯度。
+
+### 5.3 Provenance：输出本身成为治理对象
+
+**2026-08-14**，Anthropic 宣布未来 Claude 文本加入统计式 watermark，以满足透明度与来源识别要求。官方强调其不插入隐藏字符，也不包含用户身份追踪信息。[^12]
+
+治理由“模型能否回答”继续扩展到“输出如何被识别”。
+
+### 5.4 从软件到物理设备
+
+**2026-08-27**，Reuters 报道 Anthropic 发布 Model Hardware Standard（MHS）research preview，目标是给 AI Agent 一套标准接口，用于控制显微镜、机械臂等实验和物理设备。[^13]
+
+截至本篇补订时，仓库尚未取得 Anthropic 官方 MHS 页面，因此该节点按**单一权威媒体来源**记录，不扩写具体技术细节。
+
+它的重要性在于边界变化：当 Agent 从 shell、browser、desktop 进入实验设备，权限与安全就不再只关系到文件和账号，而开始涉及物理动作。
+
+---
+
+## 六、Anthropic 的公司路线究竟是什么
+
+旧稿把 Anthropic 概括为“安全是护城河”。这在 2023 年有解释力，到 2026 年已经不够。
+
+Anthropic 的真正路线更接近四层同时推进：
+
+| 层 | 代表工作 | 解决的问题 |
+|---|---|---|
+| 模型能力 | Claude Opus / Sonnet / Fable | 能做多复杂的工作 |
+| Agent runtime | Claude Code、Computer Use、memory、checkpoint、subagents | 能连续做多久、怎样恢复 |
+| 安全控制面 | classifiers、fallback、sandbox、watermark | 怎样限制错误与滥用 |
+| 访问制度 | Fable / Mythos、trusted access | 谁可以获得哪一级能力 |
+
+因此 Anthropic 与 OpenAI 的区别，也不应写成“OpenAI 追求能力、Anthropic 追求安全”。两家公司都追求能力，也都做安全。
+
+真正的差异之一在于：Anthropic 在 2026 年更明确地把**风险等级本身产品化**。
 
 ---
 
 ## 评曰
 
-Anthropic 是 AI 史上最特殊的公司。它从一场"安全焦虑"中诞生——不是从技术突破中，也不是从商业机会中。
+Anthropic 最初的问题是：
 
-它的 Constitutional AI 方法论——让模型用可公开审计的规则来评估自己的输出——是一个在概念上比 RLHF 更优雅的解决方案。它的 Claude 3 在基准上第一次超越 GPT-4——是"安全派"创业者在技术上也追上的证据。它的 Artifacts 和混合推理——证明了 Anthropic 不仅是"安全的公司"，还是"有产品洞察力的公司"。
+> **模型能不能在变强的同时更可控？**
 
-但 Anthropic 也面临一个深层困境：它的存在本身证明了许多人对 AI 安全的担忧——但也证明了一家以安全为核心价值的公司可以在商业上成功。这是否意味着"安全"不必由一个独立的非营利机构来保证——而可以由一个"以安全为卖点的营利公司"来保证？如果答案是肯定的，那么 Anthropic 的商业成功本身，就是在解构 OpenAI 原始使命（AGI 应该安全且不受利润驱动）的逻辑基础。
+Constitutional AI 给出的答案是：把原则放进训练。
 
-Anthropic 的遗产——不论这家公司最终是否会变成下一个 OpenAI——是用三年的产品交付证明了一个根本命题：**"安全"和"强"不是互斥的**。当整个行业的叙事是"越强越不安全"时，Claude 系列一直在反方向证明"更强可以更安全"。这个证明的持久性——尤其是在竞争者也在追上安全能力时——将决定 Anthropic 在 AI 史上的最终位置。
+Claude Code 给出的答案是：把行动放进沙箱、测试、diff、checkpoint 和权限体系。
+
+Fable / Mythos 给出的答案则更激进：
+
+> **当风险无法只靠训练解决时，就让同一个底层智能拥有不同的访问身份。**
+
+这也意味着不能再说“安全和能力不是跷跷板”。Fable 的 false positives、Mythos 的受限访问、6 月的暂停都说明冲突是真实存在的。Anthropic 的路线不是证明冲突不存在，而是尝试**把冲突工程化、分层化和制度化**。
+
+到了 2026 年，Claude 的“安全”已经不是一句品牌文案。它越来越像操作系统里的权限模型：模型、工具、classifier、身份、sandbox、watermark 和法律要求共同决定一次行动到底能不能发生。
+
+如果 Anthropic 最终在 AI 史上留下一个最独特的制度遗产，也许不是 Constitutional AI 本身，而是它很早就把一个问题推到了产品层：
+
+**前沿智能不只要回答“能做什么”，还要回答“由谁、在什么条件下、以什么权限做”。**
 
 ---
 
-*本篇由终末地工业史官团队编纂：庄方宜（主笔）。*
+*本篇由终末地工业史官团队编纂：庄方宜（主笔）。*  
+*2026-08 补订：GPT-5.6 Sol（OpenAI）。*
 
 ---
 
-[^1]: Bai et al., "Constitutional AI: Harmlessness from AI Feedback", arXiv:2212.08073, submitted 2022-12-15. https://arxiv.org/abs/2212.08073；OpenAI Blog, "Introducing ChatGPT", 2022-11-30. https://openai.com/index/chatgpt/
-[^2]: Anthropic Blog, "Introducing Claude", 2023-03-14. https://www.anthropic.com/news/introducing-claude
-[^3]: Anthropic Blog, "Introducing the next generation of Claude", 2024-03-04. https://www.anthropic.com/news/claude-3-family
-[^4]: Anthropic Blog, "Claude 3.5 Sonnet", 2024-06-20. https://www.anthropic.com/news/claude-3-5-sonnet
-[^5]: Anthropic Blog, "Claude 3.7 Sonnet and Claude Code", 2025-02-24. https://www.anthropic.com/news/claude-3-7-sonnet
-[^6]: Anthropic Blog, "Introducing the Claude 4 family", 2025-05-22. https://www.anthropic.com/news/claude-4
+[^1]: Bai et al., “Constitutional AI: Harmlessness from AI Feedback”, arXiv:2212.08073. https://arxiv.org/abs/2212.08073
+[^2]: Anthropic, “Introducing Claude”, 2023-03. https://www.anthropic.com/news/introducing-claude
+[^3]: Anthropic, “Introducing the next generation of Claude”, 2024-03-04. https://www.anthropic.com/news/claude-3-family
+[^4]: Anthropic, “Claude 3.5 Sonnet”, 2024-06-20. https://www.anthropic.com/news/claude-3-5-sonnet
+[^5]: Anthropic, “Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku”, 2024-10-22. https://www.anthropic.com/news/3-5-models-and-computer-use
+[^6]: Anthropic, “Claude 3.7 Sonnet and Claude Code”, 2025-02-24. https://www.anthropic.com/news/claude-3-7-sonnet
+[^7]: Anthropic, “Introducing Claude Sonnet 5”, 2026-06-30, updated 2026-08-10. https://www.anthropic.com/news/claude-sonnet-5
+[^8]: Anthropic, “Claude Fable 5 and Claude Mythos 5”, 2026-06-09. https://www.anthropic.com/news/claude-fable-5-mythos-5
+[^9]: Anthropic, “Statement on the US government directive to suspend access to Fable 5 and Mythos 5”, 2026-06-12. https://www.anthropic.com/news/fable-mythos-access
+[^10]: Anthropic, “Redeploying Claude Fable 5”, 2026-06-30 / update 2026-07-01. https://www.anthropic.com/news/redeploying-fable-5
+[^11]: Anthropic, “Improving Fable 5's biology safeguards”, 2026-08. https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards
+[^12]: Anthropic, “How Claude’s text watermark works”, 2026-08-14. https://www.anthropic.com/news/claude-text-watermark
+[^13]: Reuters, “Anthropic launches Model Hardware Standard research preview”, 2026-08-27. 单源节点；官方一手链接待 sources/ 补档。
