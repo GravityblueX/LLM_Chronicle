@@ -1,0 +1,13 @@
+{
+  "collection": "纪传/本纪/Alibaba",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 补订时核验官方活链；HTML 快照待本地归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.alibabacloud.com/blog/","title":"Alibaba Cloud / Tongyi Qianwen launch materials","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://qwenlm.github.io/blog/qwen3/","title":"Qwen3: Think Deeper, Act Faster","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.alibabagroup.com/en-US/document-2021044032125272064","title":"Alibaba Unveils Qwen3.8-Max","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://github.com/QwenLM/Qwen3.8","title":"Qwen3.8 official repository","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.alibabagroup.com/en-US/","title":"Alibaba Group — QwenWork launch, 2026-08-03","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.alibabagroup.com/en-US/","title":"Alibaba Group — Full-Stack AI and cloud growth update, 2026-08-20","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
