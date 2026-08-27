@@ -1,0 +1,22 @@
+{
+  "entry": "纪传/世家/DeepSeek",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 补订至 DeepSeek V4-Pro / V4-Flash-Vision-Exp。当前 GitHub 连接器无法执行仓库网页快照工具，因此新增来源登记为活链已核验、snapshot 待补。",
+  "sources": [
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2401.02954","title":"DeepSeek LLM: Scaling Open-Source Language Models with Longtermism","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2405.04434","title":"DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek API Change Log — V2.5 and later releases","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://arxiv.org/abs/2412.19437","title":"DeepSeek-V3 Technical Report","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://arxiv.org/abs/2501.12948","title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek-R1-0528 Release — DeepSeek API Docs","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek-V3.1 Release — DeepSeek API Docs","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://api-docs.deepseek.com/news/news250929/","title":"Introducing DeepSeek-V3.2-Exp","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://www.deepseek.com/en/news/deepseek-v3-2/","title":"DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://deepseek.com/en/news/v4-preview/","title":"DeepSeek-V4 Preview: Entering the Era of Affordable Million-Token Context","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://www.reuters.com/world/china/deepseek-v4-chinese-ai-model-adapted-huawei-chips-2026-04-24/","title":"DeepSeek-V4, the Chinese AI model adapted for Huawei chips — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek API Change Log — V4 Flash, V4 Pro and Vision Exp","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://www.reuters.com/business/retail-consumer/deepseeks-new-ai-model-is-by-far-cheapest-well-known-models-run-research-firm-2026-08-03/","title":"DeepSeek's new AI model is by far the cheapest of well-known models to run — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://www.reuters.com/world/china/deepseek-releases-official-v4-pro-model-it-steps-up-expansion-2026-08-13/","title":"DeepSeek launches V4 Pro at prices up to 14 times higher than V4 Flash — Reuters","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://vllm.ai/blog/deepseek-v4","title":"DeepSeek V4 in vLLM: Efficient Long-context Attention — vLLM Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"}
+  ]
+}

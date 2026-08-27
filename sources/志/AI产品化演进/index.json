@@ -1,0 +1,21 @@
+{
+  "entry":"志/AI产品化演进",
+  "updated_at":"2026-08-28",
+  "archive_note":"2026-08-28 补订到 workspace、多 Agent、event-driven automation 与本地常驻 Agent；HTML snapshot 待补。",
+  "sources":[
+    {"ref":"[^1]","url":"https://openai.com/blog/openai-api","title":"OpenAI API","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/","title":"GitHub Copilot","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://openai.com/index/chatgpt/","title":"ChatGPT","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/claude-3-5-sonnet","title":"Claude Artifacts","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.anthropic.com/news/3-5-models-and-computer-use","title":"Claude Computer Use","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://openai.com/index/new-tools-for-building-agents/","title":"OpenAI agent tools","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://github.blog/changelog/2025-05-19-github-copilot-coding-agent-in-public-preview/","title":"GitHub Copilot coding agent","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://help.openai.com/en/articles/6825453-chatgpt-release-notes-whats-new","title":"ChatGPT Work release notes","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://openai.com/index/introducing-the-codex-app/","title":"Codex App","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.kimi.com/en/help/agent/agent-swarm","title":"Kimi Agent Swarm","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6 ultra","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://github.blog/changelog/2026-01-26-introducing-the-agents-tab-in-your-repository/","title":"GitHub Agents tab","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://github.blog/changelog/2026-08-03-trigger-copilot-automations-with-comments/","title":"Copilot automations","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model","title":"Muse Glimmer","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

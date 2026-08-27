@@ -1,0 +1,18 @@
+{
+  "collection": "纪传/本纪/Google",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 补订时核验 Google 官方活链；HTML 快照待本地归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://arxiv.org/abs/1706.03762","title":"Attention Is All You Need","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://blog.google/technology/ai/april-ai-update/","title":"Google DeepMind organizational update","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://blog.google/technology/ai/google-gemini-ai/","title":"Introducing Gemini","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/","title":"Gemini 1.5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/","title":"Gemini 3 Deep Think","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/","title":"Gemini 3.1 Pro","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/","title":"Gemini 3.5: frontier intelligence with action","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/","title":"Gemini 3.6 Flash and 3.5 Flash family","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/","title":"Gemini API Managed Agents","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/","title":"Introducing Gemini 3.7 Flash","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/next-generation-gemini-deep-research/","title":"Deep Research Max","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

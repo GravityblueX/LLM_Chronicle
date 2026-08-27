@@ -1,236 +1,337 @@
-# 论·OpenAI 的分裂与演化
+# 论·OpenAI 的分裂与演化：使命治理、资本结构与“工作基础设施”
 
-> OpenAI 的十年史不是一部公司史——是一部制度实验史。它从"我们是非营利的，不受财务回报约束"开始，到"我们估值数千亿，正在寻求完全营利化"结束。这中间每一步——转型、融资、闭源、解雇 CEO、重新聘用 CEO——都在回答同一个问题：**一个以"造福全人类"为使命的组织，在前沿 AI 的算力饥渴面前，能维持多久不改变初衷？**
-
----
-
-## 一、结构性矛盾：非营利理想 vs 算力现实
-
-OpenAI 的一切分裂——人的分裂、路线的分裂、品牌的分裂——都可以追溯到一个结构性矛盾：**它的使命要求开放和安全，但前沿 AI 训练要求封闭和巨额投入。**
-
-2015 年 12 月，OpenAI 的成立宣言写得清清楚楚：
-
-> "Our goal is to advance digital intelligence in the way that is most likely to benefit humanity as a whole, unconstrained by a need to generate financial return." [^1]
-
-"unconstrained by a need to generate financial return"——不受财务回报需求的约束。这句话在 2015 年听起来像是理想主义。到了 2020 年，它变成了一个不可能兑现的承诺。
-
-原因很简单：训练大模型的成本以指数级增长。GPT-1（2018）的训练成本约为几万美元。GPT-2（2019）约为几十万美元。GPT-3（2020）的训练成本估计在 460 万至 1200 万美元之间。[^2] GPT-4（2023）的训练成本在 6300 万至 1 亿美元之间。[^3] 这些数字的增长速度远超非营利组织的筹款能力——也远超任何单一捐助者的耐心。
-
-非营利结构的致命缺陷在这里暴露：它能筹到研究的钱，但筹不到**规模化**的钱。在深度学习的早期（2015-2018），几百万美元的捐款足以支持一流研究。到了 Transformer 时代，训练一个前沿模型需要的算力成本以亿计——这不是捐款能覆盖的，这是需要资本市场的。
-
-这个矛盾不是 OpenAI 管理层的失败——它是**物理约束与制度设计之间的不兼容**。只要前沿 AI 训练需要消耗越来越大规模的算力，任何不接入资本市场的 AI 组织都将被甩在后面。
+> OpenAI 的十年史确实是一场制度实验，但旧稿把结局写成“非营利最终失败、完全营利化完成”，这与后来发生的事实不符。2025 年完成的结构不是把非营利控制删除，而是把原有 capped-profit 体系改造成 **OpenAI Foundation 控制 OpenAI Group PBC** 的新结构。与此同时，GPT-5、Codex、Stargate 和 GPT-5.6 又说明，组织结构之争并不只是在“理想 vs 赚钱”之间摇摆，而是在回答一个更难的问题：**一家需要天量资本、全球基础设施、快速产品迭代和高风险治理的前沿 AI 机构，怎样同时保留使命控制与资本可融资性。**
 
 ---
 
-## 二、转型三部曲：从非营利到封顶利润到完全营利
+## 一、OpenAI 的核心矛盾不是“虚伪”，而是四种要求同时成立
 
-### 2.1 第一步：封顶利润（2019-03）
+OpenAI 从 2015 年起就面对四个很难同时满足的要求：
 
-2019 年 3 月，OpenAI 宣布转型为 **OpenAI LP**——一个"封顶利润"（capped-profit）公司。投资人的回报上限为 100 倍，超额部分归非营利实体所有。Sam Altman 放弃了个人股权以维持"非营利精神"的正当性。[^4]
+1. **使命**：AGI 应造福全人类；
+2. **安全治理**：前沿模型需要有人能在商业压力之外说“不”；
+3. **资本**：训练、推理和数据中心需要巨额长期资金；
+4. **速度**：前沿竞争要求产品和模型持续迭代。
 
-这个法律创新的精巧之处在于：它在名义上保留了"非营利"的外壳——非营利实体仍然拥有公司的控制权——但在实质上打开了商业资本的入口。"100 倍回报上限"在硅谷是一个极高的上限——它足以吸引风险资本，同时维持"我们不是为了赚钱"的叙事。
+如果只保留前两项，组织可能缺钱和算力；如果只保留后两项，它就会变成普通科技公司。
 
-**内在逻辑**：OpenAI 需要钱，但不能公开承认"需要钱"。封顶利润是一种折中——"我们不是为了赚钱，但如果恰好赚了，那就分给你们一些——但不能太多。"
+OpenAI 此后的每次改制，本质上都是在重新摆放这四个变量。
 
-### 2.2 第二步：微软入局（2019-07，2023-01）
-
-2019 年 7 月，微软向 OpenAI 投资 10 亿美元，Azure 成为 OpenAI 的独家云提供商。[^5] 2023 年 1 月，微软追加"多年、数十亿美元"投资，外界估计约 100 亿美元。[^6]
-
-微软投资的后果不仅是资金——更是**权力结构的重塑**。当你的算力完全依赖于一家科技巨头时，你的独立性就是一个幻觉。OpenAI 的使命声明说"不受财务回报约束"——但它实际上受制于微软的 Azure 路线图、微软的股权诉求、微软的 Copilot 产品战略。
-
-**内在逻辑**：算力需求把 OpenAI 从"独立研究实验室"变成了"微软的准子公司"。这个转变不是一夜之间发生的——而是通过两次投资、一次独家云合作、一次百亿美元注资逐步完成的。每一步都有合理的商业逻辑，但每一步都在收紧微软的控制链。
-
-### 2.3 第三步：完全营利化（2024-2025）
-
-2024 年底至 2025 年，OpenAI 开始推进完全营利化——从"封顶利润"公司转为标准的营利性公司（PBC，公益公司）。[^7] 这意味着：
-
-- 投资人回报不再有 100 倍上限
-- 非营利实体将失去对公司的法律控制权
-- 公司治理将从"使命驱动"转向"股东价值驱动"
-
-这个转变的直接驱动力是估值压力。OpenAI 在 2024-2025 年的估值达到数千亿美元——这个规模的融资不可能在"封顶利润"的法律框架内完成。风险资本和主权基金要求标准的营利性公司结构——没有上限、没有非营利董事会的干预权。
-
-**内在逻辑**：从非营利到封顶利润是"为了算力"。从封顶利润到完全营利是"为了资本"。两步转型的驱动力不同，但方向一致——每一次转型都是理想主义向现实的进一步退让。
+因此“商业化 = 背叛使命”虽然是重要批评视角，却不足以解释制度为什么不断变化。
 
 ---
 
-## 三、2023 年 11 月：104 小时的制度危机
+## 二、2015—2019：非营利实验室为什么引入营利结构
 
-### 3.1 事件回顾
+2015 年成立时，OpenAI 明确写道，希望推进数字智能时“不受财务回报需求约束”。[^1]
 
-2023 年 11 月 17 日，OpenAI 董事会突然解除 Sam Altman 的 CEO 职务，理由是"他在与董事会的沟通中不够一贯坦诚"。[^8]
+这一承诺适合一个研究实验室，却越来越难适配 scaling 时代。
 
-随后 104 小时内发生的一切，至今仍是大模型史上最戏剧化的事件：700+ 员工签署公开信要求恢复 Altman，否则集体跳槽微软；微软 CEO Satya Nadella 宣布接收 Altman 和 Brockman；最终 Altman 复职，董事会重组，Ilya Sutskever 退出董事会。
+**2019 年**，OpenAI 建立营利性子公司 OpenAI LP，并设计 capped-profit 结构：外部资本可以获得回报，但控制权仍在非营利 OpenAI, Inc.。[^2]
 
-### 3.2 深层原因：安全派 vs 商业派的结构性冲突
+旧稿把这一步写成“OpenAI 需要钱但不敢承认需要钱”，过于心理化。
 
-Altman 罢免事件的表面原因是"沟通不坦诚"——但几乎所有知情者都指向同一个深层矛盾：**安全派与商业派之间的不可调和**。
+更直接的制度逻辑是：
 
-这个矛盾不是 2023 年 11 月才出现的。Altman 自己在 2019 年的一封内部邮件中就把公司内部的分裂称为"部落"（tribes）——一边是追求商业化的营利部门，另一边是担忧 AI 能力的安全部门。[^15] 积怨在 2023 年下半年集中爆发：10 月，Altman 削弱了 Sutskever 在公司的角色，进一步激化矛盾。[^16] 紧接着，Altman 在被解职前正寻求中东主权财富基金的数十亿美元投资来开发 AI 芯片与 Nvidia 竞争，并与软银孙正义、前 Apple 设计师 Jony Ive 合作开发 AI 硬件——Sutskever 和盟友认为这些活动不正当地利用了 OpenAI 的名义。[^16]
+> **非营利组织可以接受捐赠，但前沿 AI 需要持续、可重复、可扩张的资本投入；风险资本和战略投资需要一种可获得经济回报的法律载体。**
 
-2023 年 11 月 6 日的 DevDay 大会成了最后的引爆点：Altman 在会上发布自定义 ChatGPT 实例等一系列商业化举措，反对派将其视为 OpenAI 加速商业化的明确信号。[^17] 十一天后，董事会动手了。
-
-安全派以 Ilya Sutskever 为代表。Sutskever 是 OpenAI 的联合创始人和首席科学家，他从一开始就把"安全"视为 OpenAI 存在的理由。在他看来，AGI 的安全问题不是事后附加的 feature——它是 OpenAI 的全部意义。如果一个 AGI 研究组织在安全问题上妥协，它和 Google、Facebook 有什么区别？Sutskever 在解职发生前应董事会要求，编写了一份 52 页的备忘录和一份约 70 页的带注释档案（包含内部通信、文件和照片），指控 Altman "表现出一贯的……撒谎模式"，并向公司高管和董事会——特别是在安全问题上——提供了不实信息。[^18] 这份档案直到 2026 年 4 月才被 *The New Yorker* 的调查报道曝光——Ronen Farrow 的 70 页长文让整个事件的细节重见天日。[^18]
-
-另一位关键的董事会成员是 Helen Toner——乔治城大学 CSET 策略主任，有效利他主义运动的背景。2023 年 10 月，她发表了论文《Decoding Intentions: AI and Costly Signals》，其中批评 OpenAI 的安全努力同时赞扬了 Anthropic 的做法。Altman 打电话给 Toner 称论文"可能引起麻烦"，因为 FTC 正在调查 OpenAI 的数据收集。Toner 认为这恰恰证明了 Altman 在操纵董事会成员以谋取私利。[^19] 此外，2023 年 11 月有报道称，代号 Q* 的机密项目在逻辑和数学推理上取得突破，据报已达到小学数学水平——对 Altman 如何处理这一发现的安全影响的担忧，在解职前不久被提交给董事会。[^20]
-
-商业派以 Altman 为代表。Altman 不是技术出身——他是 Y Combinator 前总裁，一个天生的企业家和融资专家。在他看来，OpenAI 的使命只有在足够强大的前提下才有意义——一个弱小但"安全"的 AI 实验室无法改变世界。要变得强大，就需要钱。要赚到钱，就需要产品化。要产品化，就需要速度。安全很重要——但不能成为不前进的理由。
-
-2023 年 11 月 17 日中午，董事会经"审议审查程序"后立即解除 Altman 职务——Altman 在 Google Meet 上被通知时正在看拉斯维加斯大奖赛，距离解职仅 5-10 分钟。[^21] Sutskever 随后通过 Google Meet 通知董事会主席 Greg Brockman——后者随即辞去主席职务。但 Altman 的 700 名员工（约占总人数 95%）用脚投票——他们签署了联名信威胁集体辞职，选择了 Altman 而不是董事会。[^22]
-
-微软甚至在幕后接触了 Anthropic 的 Dario Amodei，提议让其取代 Altman 并可能合并两家公司——Amodei 拒绝了两项提议。[^22] 最终和解：Altman 回归，Toner、McCauley、Sutskever 离开董事会，由 Lawrence Summers 和 Bret Taylor 接替。[^22]
-
-Sutskever 在全体会议上说解雇 Altman 是"董事会在履行职责"——但一周后表达后悔。[^19] 这种"做了正确的事但无法承受后果"的摇摆，本身就是安全派困境的缩影：他们有制度性的权力（投票权），但没有组织性的力量（员工忠诚度）。
-
-**制度教训**：在一家拥有 770 名员工、估值数百亿的公司里，4 个人的董事会可以在没有提前通知的情况下解雇 CEO——而 700 名员工可以用集体辞职来推翻董事会。这个事件暴露了一个核心问题：OpenAI 的治理结构是为一家小型非营利研究实验室设计的——不是为一家全球最大的 AI 产品公司设计的。当公司的实际规模和影响力远超其治理框架时，制度崩溃只是时间问题。
-
-### 3.3 后果：安全团队的集体出走
-
-Ilya Sutskever 在 Altman 复职后于 2024 年 5 月正式离开 OpenAI。一个月后，他宣布创办 **Safe Superintelligence Inc.（SSI）**——一家专注于超级智能安全的独立研究机构，与前 Apple AI 负责人 Daniel Gross 和前 OpenAI 研究员 Daniel Levy 联合创立。[^9]
-
-SSI 的名字本身就是一种宣言：**超级智能的安全问题太重要了，不能放在一家已经商业化了的公司内部解决。** 资本市场的回应是惊人的：2024 年 9 月融资 10 亿美元（SV Angel、DST Global、Sequoia Capital、a16z），2025 年 3 月估值飙至 300 亿美元——六个月内翻了六倍。[^23] 2025 年 4 月与 Google Cloud 合作获取 TPU。2025 年上半年 Meta 试图收购 SSI，被 Sutskever 拒绝。2025 年 7 月，联合创始人 Daniel Gross 离开加入 Meta Superintelligence Labs，Sutskever 成为唯一 CEO——公司约 50 人。[^23]
-
-Sutskever 在 OpenAI 十年的经历教会了他一件事——"内部改良"路线失败了。他在 OpenAI 内部推动了十年的安全研究，最终在一次董事会投票中被 700 名员工的集体意志推翻。这让他得出了一个结论：安全必须在一个**独立于商业压力**的组织中推进。
-
-但出走的不只是 Sutskever。2024 年 5 月，OpenAI 超级对齐项目的联合负责人 **Jan Leike** 宣布辞职——他在 X 上写道：
-
-> "Over the past years, safety culture and processes have taken a backseat to shiny products." [^24]
-
-> "I gradually lost trust in OpenAI's leadership." [^24]
-
-Leike 随后加入 Anthropic。据 *The Decoder* 报道，OpenAI 的 AI 安全团队在那几个月至少失去了七名研究员——包括 Sutskever、Leike、Daniel Kokotajlo 等人。[^24] 更早之前，OpenAI 联合创始人 **John Schulman** 也在 2024 年加入了 Anthropic。[^25]
-
-Sutskever 是 AlexNet 的联合创造者、AlphaGo 的论文共同作者、OpenAI 的联合创始人、GPT 系列和 o1 推理模型的推动者——NeurIPS 时间检验奖三连（2022-2024），被称为"引用次数最多的计算机科学家之一"。他的轨迹是"安全 vs 商业"这条张力线的人格化。当这样一个人选择出走创办独立安全实验室，其信号意义远超其商业意义。
+capped-profit 是一次不寻常的尝试：既不变成传统公司，又让资本能进入。
 
 ---
 
-## 四、"Open"AI：从最开放到最封闭
+## 三、微软：不是“准子公司”，而是高度互赖的战略伙伴
 
-OpenAI 的名称中有一个"Open"——这个字在十年间经历了最讽刺的语义变化。
+**2019 年**，Microsoft 投资 OpenAI 并建立 Azure 超算合作；2023 年再次扩大多年投资。[^3]
 
-| 时期 | "Open" 的含义 | 开放程度 |
-|------|-------------|---------|
-| 2015-2018 | 开放研究、开源工具 | 高（OpenAI Gym、Universe 开源） |
-| 2018-2019 | GPT-2"分阶段发布" | 中（有保留地开放） |
-| 2020 | GPT-3 API-only | 低（不开放权重） |
-| 2023 | GPT-4 完全黑箱 | 极低（不公开参数、数据、架构） |
-| 2024-至今 | 闭源 + 付费 | 极低（思维链隐藏，$200/月订阅） |
+微软的重要性非常大：
 
-从"最开放的 AI 实验室"到"最封闭的前沿模型公司"——这个转变不是一夜之间发生的，而是通过一系列"有合理理由的决定"逐步完成的：
+- 提供资本；
+- 提供 Azure 计算；
+- 把 OpenAI 模型装进 Copilot、Azure OpenAI Service 等产品；
+- 给 OpenAI 提供企业分发。
 
-1. GPT-2 不公开是因为"太危险"——合理
-2. GPT-3 API-only 是因为"需要商业模式支撑更大模型"——合理
-3. GPT-4 不公开参数是因为"竞争考虑"——合理
-4. o1 隐藏思维链是因为"安全考虑"——合理
+但把 OpenAI 简单写成“微软准子公司”也不准确。
 
-每一步都有合理的理由。但连续几步下来，"Open"已经从一个使命变成了一个讽刺。OpenAI 的批评者——包括 Elon Musk——反复用这个讽刺攻击它："一家应该像 Linux 一样开放的公司，变成了像 Microsoft 一样封闭的公司。" [^10]
+2023 年董事会危机时，Microsoft 虽然是最大战略伙伴，却没有直接控制 OpenAI 非营利董事会；Sam Altman 的罢免本身就证明资本关系和治理控制并不是一回事。
 
-DeepSeek-R1 的 MIT 开源把这个讽刺推到了极致。当一个同级别的推理模型被完全免费、完全公开地交给全世界——包括思维链——OpenAI 的"安全需要闭源"叙事就受到了事实性的挑战。[^11] 问题不再是"OpenAI 是否应该开源"——而是"如果别人开源了同样强的模型而世界没有毁灭，OpenAI 闭源的正当性到底在哪里？"
+后来 OpenAI 继续引入 Oracle、SoftBank 等基础设施和资本伙伴，Stargate 也进一步降低“只有微软一条计算路径”的简单叙述。
+
+因此更准确的词是：**高度互赖，但治理权与经济权长期错位。**
 
 ---
 
-## 五、分裂如何重塑整个行业
+## 四、2023 年 11 月：104 小时危机证明了旧治理已经不适配公司规模
 
-OpenAI 的内部矛盾不是只影响了 OpenAI 自己——它催生了一系列"出走者的公司"，每一家都代表着对 OpenAI 路线的一种反思。
+**2023-11-17**，OpenAI 原董事会解除 Sam Altman CEO 职务，公开理由是其与董事会沟通“不够一贯坦诚”。[^4]
 
-### 5.1 第一次分裂：Anthropic（2021）
+随后员工、Microsoft 和管理层迅速反应，Altman 数日后复职，董事会重组。
 
-2020 年底至 2021 年初，OpenAI 副总裁 Dario Amodei 和一批安全研究者出走，创办 Anthropic。直接导火索是 GPT-3 的 API 商业化——Dario 等人认为在缺乏安全评估框架的情况下将 175B 参数模型推入市场，是对 OpenAI 使命的背叛。[^12]
+这场危机经常被概括成“安全派 vs 商业派”，但公开证据并不足以把所有人、所有动机压成两派。
 
-Anthropic 代表了**安全优先的外部建制**路线。它不试图从内部改变 OpenAI——它创办了一家新公司，用 Constitutional AI（宪法 AI）重新定义了"安全"的含义：不是"人工审核每一条输出"，而是"用可审计的规则让模型自我约束"。[^13]
+可以确认的是：
 
-2023 年 11 月 OpenAI 内战期间，董事会甚至接触了 Amodei 本人，提议让其取代 Altman 并可能合并两家公司——Amodei 拒绝了两项提议。[^22] 这个细节极为关键：OpenAI 的董事会在最危急的时刻，选择向安全派出走者求助——这证明了他们自己也承认，安全派的判断在某种意义上是对的。但 Amodei 的拒绝也证明了一件事：出走者已经不相信"回到 OpenAI 内部改良"是可行的了。
+- 非营利董事会拥有极强的法定控制力；
+- 董事会与大多数员工、主要商业伙伴之间缺乏足够信任和协调机制；
+- 一个为小型使命组织设计的治理结构，已经套在一个全球化产品公司和基础设施项目上。
 
-Anthropic 的成立证明了一件事：AI 安全不是一个可以用"在现有公司内部多投入一些资源"来解决的问题——它需要**组织层面的制度保障**。一家在商业压力下必须不断发布更强模型的公司，天然地会把安全排在"更强"后面。
+因此 2023 危机最稳妥的制度结论是：
 
-### 5.2 第二次分裂：SSI 与安全团队大出走（2024）
+> **OpenAI 的“使命控制”没有失效，而是以一种组织无法承受的方式突然生效。**
 
-如果说 Anthropic 是 OpenAI 的第一次安全分裂——商业派赢了，安全派出走——那么 2024 年的安全团队集体出走就是第二次分裂，规模更大、信号更清晰。
-
-2023 年 11 月的 Altman 罢免事件是催化剂：Sutskever 亲眼看到，即使在董事会层面拥有投票权，安全派仍然无法抵挡"700 名员工+微软+Altman"的联合力量。五天后他就后悔了——但裂痕已经无法弥合。2024 年 5 月，Sutskever 正式离开。同一月，Jan Leike 在公开声明中说出了那句后来被反复引用的话："safety culture and processes have taken a backseat to shiny products"——然后也离开了。John Schulman——OpenAI 联合创始人、RLHF 的核心推动者——同样在 2024 年去了 Anthropic。
-
-Sutskever 创办的 SSI 代表了**超级智能安全的独立路线**。它的名字——Safe Superintelligence Inc.——直白到近乎挑衅：安全不是"一个功能"，安全是"整个公司的全部目的"。[^9] 而资本市场用 300 亿美元的估值回应了这个宣言——它证明了一件事：**纯粹以安全为使命的 AI 公司，可以获得比许多商业化 AI 公司更高的估值**。[^23]
-
-### 5.3 第三次分裂的阴影
-
-截至 2026 年中，OpenAI 正在推进完全营利化。这意味着非营利实体将失去法律控制权——最后一道制度上的安全屏障正在被拆除。如果这个过程完成，OpenAI 内部将不再有任何**结构性的**安全约束——有的只是管理层的善意承诺。
-
-每次分裂都在重复同一个模式：安全派发现"内部改良"不够，选择出走，创办新公司。Anthropic（2021）是第一波，SSI（2024）是第二波。如果这个模式继续——如果 OpenAI 的完全营利化导致第三波安全派出走——那么 AI 安全运动将被彻底碎片化为多个独立的小组织，每个都在自己的方向上努力，但没有任何一个拥有足够大的影响力来制衡 OpenAI 的商业决策。
+这和“董事会没有权力”恰恰相反——它的问题是权力太集中，却缺乏与公司真实利益相关方配套的协调制度。
 
 ---
 
-## 六、这是技术公司发展的必然吗？
+## 五、人才分裂不是单向的“安全派出走”
 
-OpenAI 的分裂模式——"理想主义创办 → 资本需求驱动转型 → 内部分裂 → 出走者建新组织"——不是 OpenAI 独有的。它几乎是所有"使命驱动型技术公司"的必经之路。
+OpenAI 早年的人员外流确实塑造了整个行业：
 
-**Google/DeepMind**：DeepMind 创始人 Demis Hassabis 多次与 Google 管理层就 AI 安全和组织独立性发生冲突。2023 年，DeepMind 被合并进 Google DeepMind，失去了法律上的独立性。[^14]
+- Dario / Daniela Amodei 等人创建 Anthropic；
+- Ilya Sutskever 后来创建 Safe Superintelligence；
+- Jan Leike 转入 Anthropic；
+- 许多研究员进入 xAI、Meta、创业公司或独立研究机构。
 
-**Tesla/Autopilot**：Musk 本人既是 OpenAI 的联合创始人，又是 Tesla AI 的推动者。他在 OpenAI 和 Tesla 之间的"冲突"——即 OpenAI 成立声明中提到的"潜在的未来冲突"——本身就是科技公司内在矛盾的一个缩影。[^2]
+但不能把所有离职都解释成同一种“商业化背叛导致安全派离开”。
 
-**为什么必然？** 因为前沿 AI 的两个特征——**算力饥渴**和**安全风险**——本质上是矛盾的。算力饥渴要求资本密集投入，资本要求回报，回报要求商业化，商业化要求速度。安全风险要求谨慎，谨慎要求放慢，放慢要求推迟发布。这两个特征不可能在同一家公司内部和平共处——它们之间的张力会不断积累，直到以分裂的形式释放。
+研究方向、组织权力、薪酬、创业机会、个人冲突和对风险速度的判断都可能同时作用。
 
-这不是"坏人 vs 好人"的故事。Altman 不是坏人——他在正确的时间做了正确的产品决策（ChatGPT），为 AI 带来了前所未有的公众关注。Sutskever 不是坏人——他在坚持一个正确的信念（安全不能被商业化稀释）。Amodei 不是坏人——他选择了用行动而非争论来推进安全研究。
+OpenAI 真正产生的长期影响是：
 
-这是一个**制度设计问题**。非营利结构无法支撑前沿 AI 训练的算力需求。营利性结构无法内置足够的安全约束。封顶利润是一种折中，但折中不能持久。目前没有人找到一个既能获得足够资本、又能内置安全约束的制度框架——这才是 OpenAI 十年分裂的根本原因。
+> **它不仅训练模型，也训练并分发了一代前沿 AI 组织人才。**
 
----
-
-## 七、遗留问题
-
-OpenAI 的故事还远未结束。截至 2026 年中，几个关键悬念仍在展开：
-
-- **完全营利化能完成吗？** 加州总检察长和特拉华州法院正在审查这一转型。如果被阻止，OpenAI 将陷入一个"既不够营利也不够非营利"的制度夹缝。[^7]
-- **GPT-5 能重新拉开差距吗？** GPT-5 多次推迟，Claude、Gemini、DeepSeek 的多线追赶正在缩小 OpenAI 的先发优势。
-- **安全运动能保持统一吗？** Anthropic 在做 Constitutional AI，SSI 在做超级智能安全，OpenAI 内部的安全团队在做内部改良——三条路线各自为政，缺乏协调。碎片化的安全运动能否对冲一个年营收数十亿美元的闭源公司的商业惯性？
-
-这些问题的答案将决定整个 AI 行业的走向。
+Anthropic、SSI 等机构本身就是 OpenAI 组织史的外部延伸。
 
 ---
 
-## 评曰
+## 六、2024—2025：为什么“完全营利化”方案最终被改写
 
-OpenAI 的十年，是"使命如何被资本变形"的完整样本——但把它读成"堕落"是错误的。
+2024 年至 2025 年初，OpenAI 曾讨论更接近传统营利公司的重组方案，引发 Microsoft、投资人、前员工、公益组织以及监管层面的复杂博弈。
 
-OpenAI 的每一步转型都有清晰的合理逻辑：非营利筹不到足够的钱，所以需要封顶利润。封顶利润吸引不到最大的资本，所以需要微软。微软的投资要求产品化，所以需要闭源。闭源带来收入，所以需要更多闭源。完全营利化吸引最大规模的资本，所以需要解除非营利结构。这条逻辑链上没有任何一步是"恶意的"——每一步都是在前一步的约束下做出的理性选择。
+**2025-05**，OpenAI 公开宣布调整方向：非营利实体将继续控制营利业务。[^5]
 
-但理性选择的累积结果可以是非理性的。当一家公司的使命从"open"变成了"closed"、从"nonprofit"变成了"for-profit"、从"安全优先"变成了"产品优先"——即使每一步都有理由——它最终到达的地方和出发时宣称的目的地之间的距离，已经大到无法用"我们在做正确的事"来解释了。
+**2025-10-28**，最终 recapitalization 完成：[^6]
 
-真正的教训不是"OpenAI 堕落了"——而是**目前不存在一种制度设计，能同时满足前沿 AI 研发的资本需求和安全约束**。OpenAI 的每一种制度形态——非营利、封顶利润、完全营利——都解决了上一个形态的问题，同时创造了新问题。非营利解决了动机问题但筹不到钱。封顶利润解决了筹钱问题但留不住安全派。完全营利解决了资本问题但拆除了最后一道安全屏障。
+- 原非营利 OpenAI, Inc. 更名为 **OpenAI Foundation**；
+- 营利实体成为 **OpenAI Group PBC**；
+- Foundation 控制 PBC；
+- Foundation 获得 OpenAI Group 的普通股权益，使使命实体也直接分享经济增值；
+- Microsoft 与 OpenAI 同步更新合作与经济安排。
 
-这条制度演化的路径，与其说是 OpenAI 的失败，不如说是整个 AI 行业的**制度失灵**。我们在 2026 年还没有找到一个既能容纳万亿级资本、又能内置安全约束的组织形式——这才是 OpenAI 十年分裂给我们的真正警告。
+所以旧稿“非营利实体将失去法律控制权，OpenAI 走向完全营利化”的写法必须撤回。
 
-Anthropic 和 SSI 的出走不是 OpenAI 的损失——是制度设计的损失。如果存在一种更好的制度框架，这些人不必出走，他们的安全研究可以在一个更大、更强大、拥有更多资源的组织中进行。他们出走了——因为不存在这样的框架。
+最终结果更像第三种制度：
 
-这不是 OpenAI 的悲剧。这是我们所有人的悲剧。
+> **非营利控制 + PBC 商业主体 + 普通股资本结构。**
+
+它既不是 2015 年的纯非营利，也不是标准上市公司。
 
 ---
 
-*本篇由终末地工业史官团队编纂：符玄（理论框架审思）。*
+## 七、为什么 PBC 不是“回到理想主义”
+
+保留 Foundation 控制，并不意味着商业压力消失。
+
+PBC 仍需要：
+
+- 融资；
+- 计算基础设施；
+- API 收入；
+- ChatGPT 订阅；
+- 企业客户；
+- 大规模人才竞争。
+
+Foundation 的存在提供的是**最终治理控制和经济利益的制度位置**，而不是让公司重新不考虑商业回报。
+
+因此最重要的问题变成：
+
+> 当 PBC 的资本需要与 Foundation 的使命判断冲突时，控制结构是否真的能长期发挥作用？
+
+2023 年已经展示一次“使命控制突然行动”的灾难性版本；2025 的新结构是在尝试给这种控制重新设计更可持续的制度接口。
+
+它是否成功，必须由未来危机检验，而不是由公司章程自我宣称。
 
 ---
 
-[^1]: OpenAI Blog, "Introducing OpenAI", 2015-12-11. https://openai.com/blog/introducing-openai
-[^2]: OpenAI Blog, "OpenAI Supporters", 2018-02-20. https://openai.com/blog/openai-supporters
-[^3]: GPT-4 训练成本估计为 $63M-$100M，综合多家分析机构估算。参见 SemiAnalysis, "GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE", 2023-07. 另见 The Verge 等媒体相关报道。
-[^4]: OpenAI Blog, "OpenAI LP", 2019-03-11. https://openai.com/blog/openai-lp
-[^5]: OpenAI Blog, "Microsoft invests in and partners with OpenAI", 2019-07-22. https://openai.com/blog/microsoft-invests-in-and-partners-with-openai
-[^6]: The Verge, "Microsoft extends OpenAI partnership with multi-billion dollar investment", 2023-01-23. https://www.theverge.com/2023/1/23/23567448/microsoft-openai-investment-chatgpt
-[^7]: OpenAI 完全营利化计划于 2024-2025 年间推进。参见 Bloomberg、The Verge 等多家媒体相关报道。加州总检察长审查一事见 Reuters, "California AG reviewing OpenAI's conversion to for-profit", 2025.
-[^8]: OpenAI Blog, "OpenAI announces leadership transition", 2023-11-17. https://openai.com/blog/openai-announces-leadership-transition
-[^9]: Safe Superintelligence Inc. (SSI) 由 Ilya Sutskever、Daniel Gross 和 Daniel Levy 于 2024 年 6 月联合创办。Sutskever 在 2024 年 5 月正式离开 OpenAI。参见 SSI 官网及多家媒体报道。
-[^10]: Elon Musk 多次在 Twitter/X 上批评 OpenAI 从开放转向封闭。引文为其 2023-2024 年间公开言论的大意概括。
-[^11]: DeepSeek-AI et al., "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning", arXiv:2501.12948, 2025-01. https://arxiv.org/abs/2501.12948
-[^12]: Anthropic 的创始团队包括前 OpenAI 研究副总裁 Dario Amodei、前 OpenAI 政策负责人 Daniela Amodei 等。分裂的直接背景参见 Anthropic 本纪。
-[^13]: Bai et al., "Constitutional AI: Harmlessness from AI Feedback", arXiv:2212.08073, 2022-12. https://arxiv.org/abs/2212.08073
-[^14]: 2023 年 4 月，Google 将旗下 AI 实验室 Google Brain 和 DeepMind 合并为 Google DeepMind，DeepMind 失去法律独立性。参见 Google Blog, "Google DeepMind", 2023-04-20.
-[^15]: Altman 在 2019 年内部邮件中将公司内部的分裂称为"部落"（tribes）。*The Atlantic* 获得了原始邮件。参见 Wikipedia "OpenAI" 条目引用。
-[^16]: 2023 年 10 月 Altman 削弱 Sutskever 角色、寻求中东投资及与软银/Jony Ive 合作等细节，出自 *Bloomberg* "BloombergCoup" 独家报道。另见 *The New Yorker*（Ronen Farrow, 2026 年 4 月）。
-[^17]: DevDay 作为导火索的分析，出自 Kara Swisher 和 *The Verge* 记者 Alex Heath 的报道。
-[^18]: Sutskever 编写的 52 页备忘录和 70 页带注释档案，指控 Altman "表现出一贯的……撒谎模式"。*The New Yorker*（Ronen Farrow, 2026 年 4 月）调查报道首次曝光全文细节。参见 Wikipedia "Ilya Sutskever" 条目引用 [46][47]。
-[^19]: Helen Toner 论文事件及 Sutskever 全体会议发言，出自 *The Atlantic*、*The Washington Post* 等多家媒体。参见 Wikipedia "Helen Toner" 条目。
-[^20]: Q* 项目突破与安全争议，出自 *Reuters*（Anna Tong 等）。信息来自匿名内部来源，可信度中等。
-[^21]: 解雇日时间线——Altman 在 Google Meet 上被通知、正在看拉斯维加斯大奖赛等细节，出自 *Engadget*、*Axios*、*The Washington Post*、*The Verge* 多方交叉验证。
-[^22]: 约 700 名员工（约 95%）签署联名信、Amodei 被邀请取代 Altman 并拒绝、和解条件等细节，出自多家媒体广泛报道。参见 Wikipedia "Dario Amodei" 条目引用 [24]。
-[^23]: SSI 创立于 2024 年 6 月 19 日（Sutskever、Daniel Gross、Daniel Levy），2024 年 9 月融资 $1B，2025 年 3 月估值 $30B，2025 年 4 月与 Google Cloud 合作获取 TPU，Meta 试图收购被拒，2025 年 7 月 Gross 离开加入 Meta Superintelligence Labs。*Reuters*、*Bloomberg*、*The Verge*、*NYT*、*WSJ*、*CNBC* 多家交叉验证。
-[^24]: Jan Leike 辞职声明（2024 年 5 月），*Vox*（Sigal Samuel, 2024-05-17）、*The Guardian*（Dan Milmo, 2024-05-18）。安全团队至少失去七名研究员，出自 *The Decoder*（Matthias Bastian, 2024-05-18）。Leike 后于 2024 年 5 月 28 日加入 Anthropic（*The Verge*）。
-[^25]: John Schulman 于 2024 年加入 Anthropic。参见 Wikipedia "Anthropic" 条目。
+## 八、Stargate：资本矛盾已经从“训练一代模型”升级成基础设施政治
+
+**2025-01-21**，OpenAI、SoftBank、Oracle、MGX 宣布 **The Stargate Project**，计划未来四年在美国投入最高 5000 亿美元建设 AI 基础设施，初期计划 1000 亿美元。[^7]
+
+无论后续所有承诺最终以何种节奏落地，这个项目都说明 OpenAI 所需资本的性质已经改变。
+
+GPT-3 时代的问题是：
+
+> “我能不能筹钱训练一个大模型？”
+
+Stargate 时代的问题是：
+
+> “我能不能长期获得吉瓦级电力、数据中心、芯片、网络和土地？”
+
+资本不再只是一次融资，而是基础设施体系。
+
+这也是为什么 OpenAI 的组织结构不可能简单回到小型非营利实验室。
+
+---
+
+## 九、GPT-5：模型组织方式与公司组织方式同时走向“统一控制面”
+
+**2025-08-07**，GPT-5 正式发布。[^8]
+
+它把此前分开的 fast model、reasoning model 和 router 重新组织成一个统一系统。
+
+这是模型史里的一个有意思类比：
+
+- 公司层面，OpenAI 把非营利使命与营利主体重新放进统一控制结构；
+- 模型层面，OpenAI 把普通回答、深度推理和路由重新放进统一产品系统。
+
+二者都在解决同一种组织问题：
+
+> **当内部出现越来越多不同能力和目标时，应该继续拆分，还是建立一个更高层的控制面来协调？**
+
+GPT-5 的回答是 router；OpenAI 公司的回答是 Foundation → PBC governance。
+
+---
+
+## 十、Codex 的逆流：一个分出去的能力重新塑造 GPT
+
+OpenAI 早期 Codex 是 GPT 的代码专项衍生。
+
+到 2026 年，关系反转。
+
+**GPT-5.3-Codex** 把 coding agent、终端执行和专业推理融合进新的训练栈；**GPT-5.4** 又把 Codex 训练所得能力回灌通用 GPT。[^9][^10]
+
+软件工程成为 Agent 训练的理想实验室，因为它拥有：
+
+- 测试；
+- 编译器；
+- diff；
+- git；
+- shell；
+- 明确成功 / 失败反馈。
+
+因此 OpenAI 的“分裂与演化”不仅是人和组织的分裂，也包括**能力分支的分裂与重新合流**。
+
+Codex 就是最清楚的例子。
+
+---
+
+## 十一、GPT-5.5 / 5.6：商业单位从 token 变成“完成工作”
+
+**2026-04**，GPT-5.5 把软件操作、研究、数据分析、文档和表格等 computer work 放进旗舰定义；Pro 又使用更高并行 test-time compute。[^11]
+
+**2026-07**，GPT-5.6 进一步分为 Sol / Terra / Luna，并推出 ChatGPT Work。[^12]
+
+这说明 OpenAI 的商业化也在发生结构变化。
+
+早期：
+
+- 卖 API token；
+
+ChatGPT 时代：
+
+- 卖助手订阅；
+
+reasoning 时代：
+
+- 卖更多推理预算；
+
+Agent / Work 时代：
+
+- 越来越像卖**完成一项工作的计算过程**。
+
+当商业单位改变，资本需求也改变：long-running agents、工具沙箱、多 Agent 并行和文件系统操作会消耗持续推理资源。
+
+因此组织资本化与模型 Agent 化并不是两条无关历史。
+
+---
+
+## 十二、“安全 vs 商业”这个二分法为什么越来越不够用
+
+到 2026 年，所谓安全已经不是一个独立团队在模型发布前做红队测试这么简单。
+
+安全会直接影响：
+
+- 哪些能力开放；
+- 哪些工具允许执行；
+- 哪些用户获得高权限；
+- 电脑操作什么时候需要确认；
+- 模型是否进入特定国家或行业；
+- 并行 Agent 可以拥有多少资源。
+
+也就是说，**安全本身就是产品和基础设施设计。**
+
+因此把 OpenAI 内部永远画成“安全派”和“商业派”会越来越失真。
+
+真正的争议往往是：
+
+- 谁定义风险阈值；
+- 谁拥有停止权；
+- 哪些风险值得牺牲增长速度；
+- 哪些控制应由模型、公司、政府还是用户承担。
+
+这是治理结构问题，不只是价值观阵营问题。
+
+---
+
+## 十三、评曰：OpenAI 从来没有解决矛盾，只是在不断重写容器
+
+OpenAI 的制度实验史最容易落入两个简单结论。
+
+一个结论说：
+
+> “它从理想主义堕落成普通公司。”
+
+另一个结论说：
+
+> “商业化只是实现使命的必要手段，一切都合理。”
+
+两种都太轻松。
+
+真正的历史是：OpenAI 从未消除使命、资本、安全和速度之间的冲突。它只是在不断更换**容纳冲突的制度容器**：
+
+**nonprofit lab → capped-profit LP → nonprofit-controlled PBC group。**
+
+每次改制都解决上一阶段的一些问题，又创造下一阶段的新问题。
+
+2019 年解决了“资本怎么进来”；2023 年暴露“使命董事会怎么和大公司共存”；2025 年试图解决“资本需要普通股，而使命还要保留控制权”。
+
+模型历史也惊人地相似：
+
+**GPT → o 系列分裂 → GPT-5 router 统一；GPT → Codex 分支 → Codex 训练栈回流 GPT。**
+
+OpenAI 似乎不断重复一种组织方式：
+
+> **先让能力和机构分化，直到分化带来协调成本，再建立更高一层的控制面把它们重新组合。**
+
+所以 OpenAI 的“分裂与演化”不是一条从纯洁到堕落的道德曲线。
+
+它更像一个持续失败又持续重构的制度工程：
+
+**怎样让一个极度资本密集、极度快速、又声称承担公共使命的组织不被其中任何一个目标完全吞掉。**
+
+截至 2026 年，这个实验还没有答案。
+
+但至少，旧稿预言的“非营利控制最终消失”并没有发生。恰恰相反，2025 年的新结构又一次把非营利控制写回了公司的法律中心。
+
+这不是终局，只是下一版制度。
+
+---
+
+*本篇由终末地工业史官团队编纂。*  
+*2026-08 补订：GPT-5.6 Sol（OpenAI）。*
+
+---
+
+> 📖 详见《OpenAI 本纪》《GPT 世家》《Codex / GitHub Copilot 列传》《论·AI 基础设施军备竞赛》《志·AI Agent 生态》。
+
+[^1]: OpenAI, “Introducing OpenAI”, 2015-12-11. https://openai.com/index/introducing-openai/
+[^2]: OpenAI, “OpenAI LP”, 2019. https://openai.com/index/openai-lp/
+[^3]: Microsoft, OpenAI partnership announcement, 2019-07-22. https://news.microsoft.com/2019/07/22/openai-forms-exclusive-computing-partnership-with-microsoft-to-build-new-azure-ai-supercomputing-technologies/
+[^4]: OpenAI, leadership transition statement, 2023-11-17 and subsequent announcements. https://openai.com/
+[^5]: OpenAI, “OpenAI’s nonprofit will remain in control of the for-profit”, 2025-05. https://openai.com/
+[^6]: OpenAI, “Our structure” and “The next chapter of the Microsoft–OpenAI partnership”, 2025-10-28. https://openai.com/our-structure/ ; https://openai.com/index/next-chapter-of-microsoft-openai-partnership/
+[^7]: OpenAI, “Announcing The Stargate Project”, 2025-01-21. https://openai.com/index/announcing-the-stargate-project/
+[^8]: OpenAI, “Introducing GPT-5”, 2025-08-07. https://openai.com/index/introducing-gpt-5/
+[^9]: OpenAI, “Introducing GPT-5.3-Codex”, 2026-02-05. https://openai.com/index/introducing-gpt-5-3-codex/
+[^10]: OpenAI, “Introducing GPT-5.4”, 2026-03-05. https://openai.com/index/introducing-gpt-5-4/
+[^11]: OpenAI, “Introducing GPT-5.5” and GPT-5.5 System Card, 2026-04. https://openai.com/index/introducing-gpt-5-5/ ; https://openai.com/index/gpt-5-5-system-card/
+[^12]: OpenAI, “GPT-5.6”, 2026-07-09. https://openai.com/index/gpt-5-6/

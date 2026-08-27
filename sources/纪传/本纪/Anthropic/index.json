@@ -1,0 +1,20 @@
+{
+  "collection": "纪传/本纪/Anthropic",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 补订时核验活链。当前 GitHub 连接器不能执行网页快照脚本，因此新增来源登记为 snapshot pending；MHS 节点仅有 Reuters 单一权威媒体来源，正文已明确标注。",
+  "sources": [
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2212.08073","title":"Constitutional AI: Harmlessness from AI Feedback","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://www.anthropic.com/news/introducing-claude","title":"Introducing Claude","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.anthropic.com/news/claude-3-family","title":"Introducing the next generation of Claude","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/claude-3-5-sonnet","title":"Claude 3.5 Sonnet","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.anthropic.com/news/3-5-models-and-computer-use","title":"Computer use and Claude 3.5 models","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.anthropic.com/news/claude-3-7-sonnet","title":"Claude 3.7 Sonnet and Claude Code","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://www.anthropic.com/news/claude-sonnet-5","title":"Introducing Claude Sonnet 5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.anthropic.com/news/claude-fable-5-mythos-5","title":"Claude Fable 5 and Claude Mythos 5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://www.anthropic.com/news/fable-mythos-access","title":"Statement on Fable 5 and Mythos 5 access","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.anthropic.com/news/redeploying-fable-5","title":"Redeploying Claude Fable 5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards","title":"Improving Fable 5's biology safeguards","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://www.anthropic.com/news/claude-text-watermark","title":"How Claude’s text watermark works","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://www.reuters.com/","title":"Reuters report on Anthropic Model Hardware Standard, 2026-08-27","snapshot":null,"status":"single_authoritative_source_official_pending"}
+  ]
+}

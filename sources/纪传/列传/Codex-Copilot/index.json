@@ -1,0 +1,160 @@
+{
+  "entry": "纪传/列传/Codex-Copilot",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 补订至多 Agent 编程阶段时逐条核验活链。当前 GitHub 连接器无法执行仓库网页快照工具，因此新增来源暂登记为待归档，不伪造 HTML snapshot。",
+  "sources": [
+    {
+      "ref": "[^1]",
+      "url": "https://arxiv.org/abs/2107.03374",
+      "title": "Evaluating Large Language Models Trained on Code",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^2]",
+      "url": "https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/",
+      "title": "Introducing GitHub Copilot: your AI pair programmer",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^3]",
+      "url": "https://github.blog/2022-06-21-github-copilot-is-generally-available-to-all-developers/",
+      "title": "GitHub Copilot is generally available to all developers",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^4]",
+      "url": "https://github.blog/2023-06-20-github-copilot-the-ai-powered-developer-tool/",
+      "title": "GitHub Copilot: The AI-powered developer tool",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^5]",
+      "url": "https://github.blog/2023-03-22-github-copilot-x-the-ai-powered-developer-experience/",
+      "title": "GitHub Copilot X: The AI-powered developer experience",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^6]",
+      "url": "https://github.blog/news-insights/product-news/github-copilot-the-agent-awakens/",
+      "title": "GitHub Copilot: The agent awakens",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^7]",
+      "url": "https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/",
+      "title": "Vibe coding with GitHub Copilot: Agent mode and MCP support rolling out to all VS Code users",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^8]",
+      "url": "https://openai.com/index/introducing-codex/",
+      "title": "Introducing Codex — OpenAI",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^9]",
+      "url": "https://openai.com/index/o3-o4-mini-codex-system-card-addendum/",
+      "title": "Addendum to o3 and o4-mini system card: Codex — OpenAI",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^10]",
+      "url": "https://github.blog/changelog/2025-05-19-github-copilot-coding-agent-in-public-preview/",
+      "title": "GitHub Copilot coding agent in public preview",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^11]",
+      "url": "https://github.blog/changelog/2025-09-25-copilot-coding-agent-is-now-generally-available/",
+      "title": "Copilot coding agent is now generally available",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^12]",
+      "url": "https://help.openai.com/en/articles/11096431",
+      "title": "OpenAI Codex CLI – Getting Started",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending",
+      "secondary_url": "https://github.com/openai/codex"
+    },
+    {
+      "ref": "[^13]",
+      "url": "https://openai.com/index/codex-now-generally-available/",
+      "title": "Codex is now generally available — OpenAI",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^14]",
+      "url": "https://github.blog/changelog/2026-01-26-introducing-the-agents-tab-in-your-repository/",
+      "title": "Introducing the Agents tab in your repository",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^15]",
+      "url": "https://openai.com/index/introducing-the-codex-app/",
+      "title": "Introducing the Codex app — OpenAI",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^16]",
+      "url": "https://openai.com/index/harness-engineering/",
+      "title": "Harness engineering: leveraging Codex in an agent-first world — OpenAI",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^17]",
+      "url": "https://arxiv.org/abs/2108.07732",
+      "title": "Program Synthesis with Large Language Models",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^18]",
+      "url": "https://arxiv.org/abs/2203.07814",
+      "title": "Competition-Level Code Generation with AlphaCode",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    },
+    {
+      "ref": "[^19]",
+      "url": "https://arxiv.org/abs/2310.06770",
+      "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+      "snapshot": null,
+      "archived_at": "2026-08-28",
+      "status": "live_verified_snapshot_pending"
+    }
+  ]
+}

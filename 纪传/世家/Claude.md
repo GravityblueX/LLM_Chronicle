@@ -1,221 +1,407 @@
 # 《Claude 世家》
 
-> Claude 是 Anthropic 的大语言模型家族，以"Constitutional AI"（宪法 AI）为核心技术路线，主打安全对齐。从 2022 年的内部版本到 2025 年的 Claude 4，Claude 走了一条与 GPT 截然不同的路——不是用规模取胜，而是用对齐定义产品的边界。它的故事是"安全优先"的 AI 公司如何在"能力优先"的竞争中存活、壮大、最终正面超越 GPT 的故事。
+> Claude 是 Anthropic 自 2023 年起发展的模型家族。它最初以 Constitutional AI 和长上下文建立“更安全、更可控”的差异化；Claude 3 证明安全公司同样可以做到前沿能力；3.5 Sonnet、Claude Code 和 computer use 又把 Claude 推成编程与 Agent 的重要基座。到 2026 年，Claude 的谱系发生了更深的变化：Haiku / Sonnet / Opus 之外出现 **Mythos-class**，同一底层前沿模型还可以因为 safeguards 和 trusted access 不同而分别叫 Fable 与 Mythos。安全不再只是训练时的一套理念，而开始直接参与模型命名、访问资格、价格和部署方式。
 
 ---
 
-## 一、概述
+## 一、概述：从“安全的模型”到“按风险分发能力”
 
-Claude 系列由 Anthropic PBC 开发。Anthropic 于 2021 年 1 月 26 日在旧金山注册成立，创始人 Dario Amodei 和 Daniela Amodei 兄妹曾在 OpenAI 任职——Dario 担任研究副总裁，Daniela 担任运营副总裁。他们带着对 AI 安全方向的不同理解离开 OpenAI，创立了 Anthropic。[^1]
+Anthropic 成立于 2021 年，由一批曾在 OpenAI 工作的研究者创办。Claude 系列早期最有辨识度的技术路线是 **Constitutional AI**：让模型根据一组原则进行自我批评和修订，并以 AI 反馈参与强化学习，减少对大规模有害内容人工标注的依赖。[^1][^2]
 
-Claude 的核心技术创新是 **Constitutional AI（宪法 AI）**——2022 年 12 月发表的论文提出了一种新的对齐方法：不需要大量人类标注员标注有害内容，而是用一组"宪法原则"让 AI 自己评判和修正自己的输出。这个方法的两个阶段——监督学习阶段（AI 自我批评和修订）和强化学习阶段（RLAIF，AI 反馈强化学习）——为 Claude 奠定了"用更少的人类标签实现更好的安全对齐"的技术基础。[^2]
+但如果把 Claude 的历史只写成“安全优先”，会错过它之后最重要的变化。
 
-Claude 的迭代经历了三个明确的阶段：**对齐探索期**（Claude 1.x/2.x，2023-2024 初）、**能力爆发期**（Claude 3/3.5，2024），以及**推理融合期**（Claude 3.7/4，2025）。在前两个阶段，Claude 始终是 GPT 的追赶者——在安全性和对话体验上占优，但在 raw capability 上落后。转折点是 2024 年 3 月的 Claude 3 Opus——它首次在多项基准上正面超越 GPT-4，改变了"Anthropic 是 AI 安全公司，不是 AI 能力公司"的市场认知。
+Claude 的谱系大致经历了五个阶段：
+
+1. **对齐与长上下文**（Claude 1 / 2）：先证明模型可以更可控、能处理更长材料；
+2. **能力追平前沿**（Claude 3）：Haiku / Sonnet / Opus 三层体系成形；
+3. **编程与 Agent 产品化**（Claude 3.5 / 3.7 / 4）：Artifacts、computer use、Claude Code、extended thinking；
+4. **长程执行与多 Agent**（Claude 4.5—4.8）：effort、context management、1M context、subagents / dynamic workflows；
+5. **能力等级与风险等级合流**（Mythos Preview、Fable 5 / Mythos 5、Sonnet 5、Opus 5）：模型家族不再只按“强弱与价格”分档，而开始按**危险能力、safeguards 和访问制度**分档。
+
+这第五步，是 2026 年 Claude 世家真正的新阶段。
 
 ---
 
 ## 二、代际演进
 
-| 代际 | 发布时间 | 参数规模 | 核心创新 | 许可 |
-|------|----------|----------|----------|------|
-| Claude (初代) | 2023-03 | 未公开（据传 ~52B，存疑） | Constitutional AI (RLAIF) | 闭源 |
-| Claude Instant | 2023-03 | 未公开 | 轻量快速版，成本更低 | 闭源 |
-| Claude 2 | 2023-07-11 | 未公开 | 100K token 上下文，首次大规模商用 | 闭源 |
-| Claude 2.1 | 2023-11 | 未公开 | 200K 上下文，幻觉率减半 | 闭源 |
-| Claude 3 Haiku/Sonnet/Opus | 2024-03-04 | 未公开（三档） | 首次正面超越 GPT-4，视觉能力 | 闭源 |
-| Claude 3.5 Sonnet | 2024-06-20 | 未公开 | Artifacts，编程助手标杆 | 闭源 |
-| Claude 3.5 Sonnet (升级版) | 2024-10-22 | 未公开 | Computer use，SWE-bench 49% | 闭源 |
-| Claude 3.5 Haiku | 2024-10/11 | 未公开 | 匹配 Claude 3 Opus 能力 | 闭源 |
-| Claude 3.7 Sonnet | 2025-02-24 | 未公开 | 首个混合推理模型 | 闭源 |
-| Claude Opus 4 / Sonnet 4 | 2025-05-22 | 未公开 | 全球最佳编程模型，Claude Max 订阅 | 闭源 |
-
-### 2.1 Claude (初代)：宪法 AI 的第一块试验田
-
-2022 年 12 月，Anthropic 在 arXiv 发表了《Constitutional AI: Harmlessness from AI Feedback》论文。这篇论文描述的技术——让 AI 根据一组预设原则自我批评和修订输出——成为了 Claude 系列的技术基底。[^2]
-
-2023 年 3 月，Claude 正式公开发布，提供两个版本：Claude（高性能版）和 Claude Instant（轻量快速版）。初始合作伙伴包括 Notion、Quora（通过 Poe 平台）和 DuckDuckGo。[^3] 参数规模从未公开披露——外界推测约为 52B 参数（存疑），但 Anthropic 始终拒绝确认。
-
-Claude 初代的定位不是与 GPT-3.5 在能力上正面对抗——它在大多数基准上落后于 ChatGPT。Claude 的卖点是"更少有害输出、更易对话、更可控"。Anthropic 在发布时特别强调"less likely to produce harmful outputs"——这既是技术承诺，也是市场差异化。
-
-值得注意的是，Claude 初代的发布时间距 ChatGPT 爆发（2022 年 11 月）仅四个月。Anthropic 不得不在 GPT 改变世界的那个时刻同时发布自己的第一个产品——这是一个被时间线挤压的决策，而非一个从从容选择的时机。
-
-### 2.2 Claude 2：100K 与首次大规模商用
-
-2023 年 7 月 11 日，Claude 2 发布。[^4] 核心升级：**100K token 上下文窗口**——在当时是行业最大的可用上下文窗口，意味着 Claude 可以一次处理数百页技术文档甚至整本书。同时，Anthropic 首次面向公众开放 claude.ai 网站——在此之前 Claude 仅通过 API 和合作伙伴提供服务。
-
-在能力上，Claude 2 在律师资格考试（Bar Exam）的多选部分得分 76.5%（Claude 1.3 为 73.0%）；在 GRE 阅读和写作上超过 90% 的考生；在编程基准 Codex HumanEval 上达到 71.2%（Claude 1.3 为 56.0%）。[^4]
-
-但 Claude 2 仍然不是一个可以在 raw capability 上对抗 GPT-4 的模型。它在多数基准上与 GPT-3.5 持平——在 GPT-4 已经发布四个月的市场环境下，这意味着 Claude 2 是"GPT-3.5 的安全替代品"而非"GPT-4 的竞争对手"。
-
-### 2.3 Claude 2.1：200K 与幻觉减半
-
-2023 年 11 月，Claude 2.1 发布，上下文窗口翻倍至 **200K tokens**——约 15 万字或 500 页文档。[^5] 这在当时是行业首次。
-
-更重要的升级是幻觉率：Anthropic 声称 Claude 2.1 的虚假陈述率比 Claude 2.0 降低了一半。他们用一组复杂的事实性问题测试模型——Claude 2.1 更倾向于承认"不确定"而非编造答案。[^5]
-
-Claude 2.1 还引入了两项关键功能：**系统提示（system prompts）**和 **工具使用（tool use）**——前者让开发者定义 Claude 的角色和行为约束，后者让 Claude 能够调用外部 API 和工具。这两个功能将 Claude 从一个"对话模型"变成了一个可以嵌入应用的"AI 组件"。
-
-### 2.4 Claude 3：三个型号，首次正面超越 GPT-4
-
-2024 年 3 月 4 日，Claude 3 发布——这次不是单个模型，而是一个家族：**Haiku**（轻量快速）、**Sonnet**（平衡性能）、**Opus**（旗舰智能）。[^6] 这个三档定价体系一直沿用至今。
-
-**Claude 3 Opus 是第一个在多项权威基准上正面超越 GPT-4 的模型。** 在 MMLU（本科知识）、GPQA（研究生推理）、GSM8K（数学）等标准测试中，Opus 均达到或超过 GPT-4 的水平。[^6] 这是 Anthropic 的里程碑——它证明了一个以安全为核心的公司，同样可以产出能力最强的模型。
-
-Claude 3 还带来了 **视觉能力**——可以处理照片、图表、技术文档。Anthropic 指出，企业客户高达 50% 的知识库以 PDF、流程图、演示文稿等非纯文本格式存在。[^6] 视觉能力不是炫技——它是企业市场的需求。
-
-另一个重要改进是减少了"不必要的拒绝"。Claude 1.x/2.x 被诟病的一个问题是过于保守——经常拒绝回答实际上是无害的问题。Claude 3 对请求的理解更加细致，能区分真正的有害意图和触及边界的无害提问。[^6]
-
-### 2.5 Claude 3.5 Sonnet：Artifacts 与编程助手的诞生
-
-2024 年 6 月 20 日，Claude 3.5 Sonnet 发布——这是 Claude 3.5 系列的首个模型。[^7] Anthropic 选择先发布中档的 Sonnet 而非旗舰 Opus，这是一个有意识的策略：3.5 Sonnet 的能力超越了 Claude 3 Opus（旗舰），同时保持了 Claude 3 Sonnet 的速度和成本——这是"中档价格买旗舰能力"的降维打击。
-
-3.5 Sonnet 在研究生级推理（GPQA）、本科知识（MMLU）和编程能力（HumanEval）上均创下新高。在内部的 agentic coding 评估中，3.5 Sonnet 解决了 64% 的问题，而 Claude 3 Opus 只解决了 38%。[^7]
-
-但 3.5 Sonnet 最深远的影响是 **Artifacts 功能**——2024 年 6 月同步推出。Artifacts 让 Claude 的输出不再是一段纯文本，而是可以交互的代码、文档、图表——它将 Claude 从一个"对话 AI"变成了一个"创作工作台"。这个功能直接推动 Claude 3.5 Sonnet 成为程序员和内容创作者的首选工具——在编程辅助领域，Claude 3.5 Sonnet 成为了事实上的行业标杆。
-
-（详见《编年·2024年6月》）
-
-### 2.6 Claude 3.5 Sonnet (升级版)：Computer Use 与 SWE-bench 49%
-
-2024 年 10 月 22 日，Anthropic 发布了 Claude 3.5 Sonnet 的升级版，同时带来了两个重要更新：升级版 3.5 Sonnet 和 Claude 3.5 Haiku。[^8]
-
-升级版 3.5 Sonnet 的最大亮点是 **computer use（计算机使用）能力**——这是第一个在公共测试版中提供此功能的前沿模型。开发者可以让 Claude 像人类一样操作计算机：查看屏幕、移动光标、点击按钮、输入文本。虽然 Anthropic 自己也承认此时的 computer use 仍然"笨拙且容易出错"，但 Asana、Canva、Cognition、DoorDash、Replit 等公司已经开始探索这个能力。[^8]
-
-在编程能力上，升级版 3.5 Sonnet 在 SWE-bench Verified 上从 33.4% 提升到 **49.0%**——超过了当时所有公开可用的模型，包括 OpenAI 的 o1-preview。[^8] 这个分数意味着 Claude 不再只是一个"对话写代码"的模型——它可以理解复杂的代码库、定位 bug、独立修复。
-
-**Claude 3.5 Haiku** 同日宣布——性能匹配 Claude 3 Opus（上一代旗舰），但速度接近 Claude 3 Haiku。[^8] 这是"中档旗舰化"策略的延续：每一代的中档和轻量型号都在追赶上一代的旗舰。
-
-（详见《编年·2024年10月》）
-
-### 2.7 Claude 3.7 Sonnet：第一个混合推理模型
-
-2025 年 2 月 24 日，Claude 3.7 Sonnet 发布——Anthropic 称之为**"市场上第一个混合推理模型"**。[^9]
-
-这个"混合"是什么意思？在此之前，推理模型（如 OpenAI o1）和普通语言模型是两个不同的产品——你需要分别使用。Claude 3.7 Sonnet 把两者合而为一：在标准模式下，它是一个升级版的 3.5 Sonnet，即时回答；在 **extended thinking（扩展思考）模式**下，它会进行内部逐步推理，然后给出更深入的答案。
-
-"就像人类用同一个大脑来做快速反应和深度思考一样"——Anthropic 用这个比喻解释了他们的哲学。[^9] API 用户甚至可以控制"思考预算"——指定模型最多使用多少 token 进行推理，在速度和质量之间灵活权衡。
-
-Claude 3.7 Sonnet 还同步发布了 **Claude Code**——一个命令行工具，让开发者可以直接在终端中将编程任务委托给 Claude。这标志着 Claude 从"对话助手"到"编程协作者"的正式转变。[^9]
-
-定价与前代相同：$3/百万输入 token，$15/百万输出 token——包括思考 token。[^9] 这意味着 Anthropic 没有为推理能力额外收费——这是一个定价策略，也是对"推理应该是一等能力，而不是付费升级"的表态。
-
-### 2.8 Claude 4：全球最佳编程模型
-
-2025 年 5 月 22 日，Claude 4 发布——包含 **Claude Opus 4** 和 **Claude Sonnet 4** 两个型号。[^10]
-
-Claude Opus 4 是 Anthropic 有史以来最强大的模型。在 SWE-bench（软件工程基准）上得分 **72.5%**，在 Terminal-bench（终端操作基准）上得分 **43.2%**——均为当时全球最佳。[^10] Anthropic 对 Opus 4 的定位极为明确："全球最佳编程模型"。它可以在复杂的代码库上连续工作数小时——Rakuten 的测试中，Opus 4 独立运行了一个开源项目的重构，持续 **7 小时**保持稳定性能。[^10]
-
-Claude Sonnet 4 在 SWE-bench 上同样达到 **72.7%**——甚至略高于 Opus 4。[^10] GitHub 宣布将其作为 GitHub Copilot 新一代编码代理的底层模型。[^10]
-
-两个模型都是混合推理模型，支持扩展思考模式，并且首次支持**在扩展思考中使用工具**——包括网络搜索。[^10] 这意味着 Claude 在推理过程中可以主动获取外部信息，而不仅仅依赖预训练知识。
-
-Claude 4 的发布还伴随着一系列新 API 能力：代码执行工具、MCP 连接器、文件 API、长达一小时的 prompt 缓存——这些工具共同指向一个方向：**AI 代理（Agent）**。[^10]
-
-与 Claude 4 同步推出的是 **Claude Max 订阅计划**——$100/月起，提供 5 倍或 20 倍于 Pro 的使用量和更高的输出限制。[^11] 这是 Anthropic 在订阅模式上的重大升级，对标 OpenAI 的 ChatGPT Pro。
+| 代际 | 时间 | 主要定位 | 关键变化 |
+|------|------|----------|----------|
+| Claude 1 / Instant | 2023-03 | 对话 / 低成本 | Constitutional AI 产品化 |
+| Claude 2 / 2.1 | 2023-07—11 | 长文档 | 100K → 200K context、system prompts |
+| Claude 3 Haiku / Sonnet / Opus | 2024-03 | 三层产品谱系 | 视觉、前沿能力、三档成本 |
+| Claude 3.5 Sonnet | 2024-06 | 编程 / 创作 | Artifacts、代码能力飞跃 |
+| Claude 3.5 Sonnet New | 2024-10 | computer use | 模型第一次直接操作计算机 |
+| Claude 3.7 Sonnet | 2025-02 | hybrid reasoning | extended thinking + Claude Code |
+| Claude Opus 4 / Sonnet 4 | 2025-05 | 长程 Agent | extended thinking with tool use |
+| Opus 4.1 | 2025-08 | 高难编码 / Agent | 多文件重构、agentic search |
+| Sonnet 4.5 / Haiku 4.5 | 2025-09—10 | Agent 主力 / 并行执行 | Agent SDK、memory、checkpoints、低成本 subagents |
+| Opus 4.5 | 2025-11 | 长程工作 / 多 Agent | effort、compaction、subagent orchestration |
+| Opus 4.6 / Sonnet 4.6 | 2026-02 | 1M context Agent | 更长任务、大代码库、computer use |
+| Mythos Preview | 2026-04 | 受控前沿能力 | Project Glasswing、极强 cybersecurity |
+| Opus 4.7 / 4.8 | 2026-04—05 | 高端日常 Agent | 更强视觉、验证、dynamic workflows |
+| Fable 5 / Mythos 5 | 2026-06 | Mythos-class | 同底层模型，不同 safeguards / access |
+| Sonnet 5 | 2026-06 | 高频 Agent | 接近 Opus 4.8、更低价格 |
+| Opus 5 | 2026-07 | 日常最高端 | 接近 Fable 5，成本约一半 |
 
 ---
 
-## 三、技术路线变迁
+## 三、Claude 1 / 2：先解决“怎么让模型更可控”
 
-### 3.1 对齐方法：从 Constitutional AI 到混合推理
+### 3.1 Constitutional AI
 
-Claude 系列的技术路线始终以**对齐**为出发点——这与 GPT 系列以"规模"为出发点形成了根本性的对照。
+**2022-12** — Anthropic 发表《Constitutional AI: Harmlessness from AI Feedback》。论文描述的核心流程是：先让模型依据一组原则批评和修订自己的回答，再用 AI 反馈形成偏好数据并训练模型。[^2]
 
-- **Constitutional AI（2022-2023）**：用一组原则让 AI 自我批评和修订，用 RLAIF（AI 反馈强化学习）替代人类标注。核心优势是"用更少的人类标签实现更好的安全对齐"。[^2]
-- **Claude 2.x（2023-2024）**：对齐的方法论不变，但增加了工程层面的约束——system prompts 让开发者能精确定义 Claude 的行为边界。
-- **Claude 3.x（2024-2025）**：对齐与能力的平衡点发生转移——从"优先安全，能力其次"到"能力追上 GPT-4，安全不退让"。减少不必要的拒绝是一个关键信号——它说明 Anthropic 学会了"更智能的对齐"而非"更保守的对齐"。
-- **Claude 3.7/4（2025）**：推理能力被整合进对齐框架——extended thinking 让 Claude 在回答前自我推理，这本质上是 Constitutional AI 的"自我批评"阶段的推理时（inference-time）版本。
+这套方法后来常被概括为 RLAIF，但更重要的是它改变了对齐问题的组织方式：安全要求可以被写成明确原则，并进入训练流程，而不只是产品上线以后叠一层关键词过滤器。
 
-### 3.2 上下文窗口：从 9K 到 200K
+**2023-03** — Claude 正式面向合作伙伴与公众推出，早期包括 Claude 与 Claude Instant。[^3]
 
-| 代际 | 上下文窗口 |
-|------|-----------|
-| Claude 1.x | ~9K tokens |
-| Claude 2 | 100K tokens |
-| Claude 2.1+ | 200K tokens |
+早期 Claude 在 raw capability 上并未超越 GPT-4，它真正的市场差异是对话风格、较低的有害输出倾向，以及 Anthropic 对安全方法本身的公开解释。
 
-Anthropic 在上下文窗口上的推进比 OpenAI 激进得多。100K（2023 年 7 月）和 200K（2023 年 11 月）都是在 GPT-4 的 8K/32K/128K 逐步开放的同时完成的飞跃。长上下文窗口不仅是技术能力——它直接决定了 Claude 能否处理"上传整个代码库""阅读整本书"这类企业场景。到 Claude 3 之后，200K 成为了 Claude 的标准配置。
+### 3.2 Claude 2：100K / 200K 把长文档变成产品能力
 
-### 3.3 产品化路径
+**2023-07-11** — Claude 2 发布，上下文扩展到 **100K tokens**，claude.ai 也开始更广泛开放。[^4]
 
-Claude 的产品化路径也与 GPT 有显著差异：
+**2023-11** — Claude 2.1 将上下文扩大到 **200K tokens**，并强化 system prompts 与工具集成。[^5]
 
-- **GPT**：API → ChatGPT → Plus 订阅 → 企业版。起点是 API，爆点是聊天框。
-- **Claude**：合作伙伴 API → claude.ai → Pro 订阅 → Artifacts → Max 订阅。起点是 B2B 合作伙伴（Notion、Quora），爆点是 Artifacts 和编程辅助。
-
-Artifacts（2024 年 6 月）是 Claude 产品化路径上的关键转折。在此之前，Claude 是一个"更好的聊天机器人"——有用户，但没有杀手级应用场景。Artifacts 把 Claude 变成了一个"创作工具"——程序员用来写代码、调试、生成文档；非程序员用来做流程图、数据分析、演示文稿。这个功能让 Claude 从"ChatGPT 的替代品"变成了"ChatGPT 做不到的事"。
-
-### 3.4 闭源策略的一以贯之
-
-Claude 系列从未开源过任何模型。与 Llama 的"开放权重"和 GPT 的"从开到关"不同，Claude 从第一天起就是完全闭源的。Anthropic 的理由不是商业保密——而是安全考量。Dario Amodei 多次在公开场合表示：模型权重的开放分发在当前的安全水平下是不负责任的。
-
-这个立场在 2024-2025 年的开源浪潮中显得格格不入——DeepSeek-R1 以 MIT 许可完全开源思维链，Qwen 3 完全开源，Llama 3.1 405B 开放权重。但 Anthropic 从未动摇。到 2025-2026 年，当 Anthropic 拒绝将 Claude 用于美国大规模监控和全自主武器（导致国防部将其列为"供应链风险"）时，外界开始重新理解 Anthropic 的安全立场——它不是营销口号，而是公司治理的核心原则。[^12]
+Claude 2.x 因此与后来的 Kimi、Gemini 1.5 一起证明了一件事：上下文窗口不只是技术参数，它直接决定模型能不能处理一本书、一套合同、一个大型代码库或一组企业资料。
 
 ---
 
-## 四、生态与影响
+## 四、Claude 3：安全公司第一次站到能力前沿
 
-### 4.1 编程生态的崛起
+**2024-03-04** — Claude 3 家族发布：**Haiku / Sonnet / Opus**。[^6]
 
-Claude 在 2024-2025 年最显著的市场成就不是"超越 GPT-4"——而是成为**编程辅助领域的首选模型**。这个地位的建立有三个关键节点：
+这个命名体系后来成为 Anthropic 最稳定的产品结构：
 
-1. **Claude 3.5 Sonnet（2024-06）**：Artifacts + 编程能力飞跃 → 成为 Cursor、Windsurf 等 AI 编程工具的底层模型
-2. **Claude 3.5 Sonnet 升级版（2024-10）**：SWE-bench 49%，超过所有公开模型 → 编程辅助的事实标准
-3. **Claude 4（2025-05）**：GitHub Copilot 选择 Sonnet 4 作为编码代理底层 → 进入全球最大的编程生态
+- **Haiku**：速度和成本；
+- **Sonnet**：能力 / 成本平衡；
+- **Opus**：最高日常能力。
 
-从 Cursor 到 GitHub Copilot，Claude 在 AI 编程工具中的渗透率在 2025 年超过了 GPT。这改变了 Anthropic 的市场定位——它不再只是"更安全的 ChatGPT"，它是"更好的编程助手"。
+Claude 3 同时加入视觉输入。更关键的是，Opus 在多项当时主流评测中达到或超过 GPT-4 水平，使 Anthropic 不再只是“安全但弱一点”的替代者。
 
-### 4.2 竞品关系
+这一代还有一个容易被忽略的变化：Anthropic 明确强调减少**不必要的拒绝**。安全对齐开始从“拒绝更多”转向“更准确地区分危险与正常请求”。
 
-Claude 与 GPT 的竞争关系是大模型领域最清晰的双主线之一：
+这为 2026 年 Fable safeguards 的精细化埋下了非常长的伏笔。
 
-- **2023 年**：Claude 是 GPT 的追赶者。Claude 2 与 GPT-3.5 持平，但远落后于 GPT-4。
-- **2024 年 3 月**：Claude 3 Opus 首次正面超越 GPT-4——这是 Anthropic 的"登月时刻"。
-- **2024 年 6-10 月**：Claude 3.5 Sonnet 在编程和实际应用中建立了优势——GPT-4o 虽然在多模态和语音上领先，但在"帮你写代码"这件事上，Claude 成为了更好的选择。
-- **2025 年**：Claude 3.7/4 在推理能力上与 o1/o3 对标——Anthropic 用"混合推理"回应了 OpenAI 的"推理模型"策略，但避免了为推理能力单独收费。
+---
 
-与 Gemini 的竞争则更多体现在企业市场——Google 的 Gemini 依赖 Google Cloud 的分发优势，而 Claude 通过 Amazon Bedrock 和 Google Cloud Vertex AI 同时分发（是的，Claude 同时在 Google 的云平台上销售——Google 持有 Anthropic 约 14% 的股份）。
+## 五、Claude 3.5 / 3.7：编程、Artifacts 与 computer use
 
-### 4.3 安全与商业的辩证
+### 5.1 Sonnet 3.5：中档模型成为真正主角
 
-Anthropic 的故事本质上是一个实验：**一家以安全为核心使命的公司，能否在以能力为核心竞争维度的市场中生存？**
+**2024-06-20** — Claude 3.5 Sonnet 发布。它用 Sonnet 的价格和速度提供了超过上一代 Opus 的多项能力，并同步推出 **Artifacts**。[^7]
 
-2023 年的答案看起来是否定的——Claude 1.x 和 2.x 的能力明显落后于 GPT-4，市场定位尴尬。2024 年的答案变成了"可以"——Claude 3 的能力追上来了，安全定位反而成了差异化优势（"不只是强大，而且可信赖"）。2025 年的答案是"不仅能活，还能赢"——Claude 4 在编程能力上全球领先，Anthropic 估值达 **9650 亿美元**（2026 年 5 月），成为全球最有价值的纯 AI 公司。[^13]
+Artifacts 很重要，因为 Claude 的输出第一次稳定地脱离纯聊天消息：代码、网页、文档、图表和可交互内容可以成为独立工作对象。
 
-但这个故事不是简单的"安全第一就能赢"。Anthropic 赢在**安全和能力的双轮驱动**——如果 Claude 3 Opus 没有在基准上超越 GPT-4，再好的安全故事也不会转化为商业价值。Constitutional AI 不是一个营销概念——它是一种训练方法，它确实产出更好的模型。这才是 Claude 世家的核心叙事：安全不是能力的对立面，安全本身就是一种能力。
+这让 Claude 的产品路线从“和模型聊天”向“和模型一起做东西”移动。
+
+### 5.2 2024-10：computer use
+
+**2024-10-22** — 更新版 Claude 3.5 Sonnet 公测 **computer use**：模型通过截图理解界面，再移动鼠标、点击和输入。[^8]
+
+当时能力仍不稳定，但这个方向后来成为所有前沿 Agent 的标准组件。模型开始获得一种新的权限：不只调用结构化 API，而是直接操作人类软件界面。
+
+### 5.3 Claude 3.7 Sonnet：快答与慢想合流
+
+**2025-02-24** — Claude 3.7 Sonnet 发布，被 Anthropic 定义为 hybrid reasoning model：同一模型既能直接响应，也能投入更多 **extended thinking**。[^9]
+
+同日，**Claude Code** 以研究预览形式推出。
+
+这一组合的历史意义很清楚：推理不再是为了给一道数学题多想几十秒，而开始服务于真实执行——读代码、改文件、跑命令、看测试结果，再继续思考。
+
+---
+
+## 六、Claude 4：模型开始持续工作数小时
+
+**2025-05-22** — Claude Opus 4 与 Sonnet 4 发布。二者支持 extended thinking 中使用工具，并明显面向编码 Agent 和长时间任务。[^10]
+
+Anthropic 当时展示了 Opus 4 在复杂代码任务中连续工作的案例，Claude Code 也由研究项目转向更成熟的开发工具。
+
+Claude 4 的真正变化不在 benchmark，而在**时间尺度**：AI 不再只需要一次回答正确，而要在几十分钟、数小时的工具循环中保持目标、上下文和修改的一致性。
+
+---
+
+## 七、4.1—4.8：长程执行被拆成一整套工程能力
+
+### 7.1 Opus 4.1：多文件与 agentic search
+
+**2025-08-05** — Opus 4.1 上线，重点改进 agentic tasks、现实代码工作和推理，特别是多文件重构、深入研究与 agentic search。[^11]
+
+它仍然是“Opus 的小版本”，却代表 Anthropic 开始以很短周期优化**任务完成质量**，而不是等待完整代际升级。
+
+### 7.2 Sonnet 4.5：Agent SDK、memory 与 rollback
+
+**2025-09-29** — Claude Sonnet 4.5 发布。Anthropic 同时推出 / 加强：
+
+- Claude Code **checkpoints** 与回滚；
+- VS Code 原生扩展；
+- API 的 **context editing 与 memory**；
+- **Claude Agent SDK**；
+- 更强的 computer use 与 prompt-injection 防御。[^12]
+
+这里出现了一个重要转向：Agent 的能力不再只来自“模型更聪明”，还来自**记忆、权限、回滚、上下文管理和 harness**。
+
+Claude 世家的能力单位因此从模型版本开始扩展成“模型 + Agent runtime”。
+
+### 7.3 Haiku 4.5：便宜模型成为并行劳动力
+
+**2025-10-15** — Haiku 4.5 发布，Anthropic 把它定位为接近前沿编码能力、但速度更快、价格更低的模型，定价 **$1 / $5** 每百万输入 / 输出 tokens。[^13]
+
+官方甚至直接给出多 Agent 用法：让 Sonnet 负责规划和协调，让多个 Haiku 并行完成子任务。[^13]
+
+这意味着 Haiku 不再只是“便宜聊天模型”，而成为**可横向扩展的 subagent 层**。
+
+### 7.4 Opus 4.5：effort 与 subagent orchestration
+
+**2025-11-24** — Opus 4.5 发布，价格降到 **$5 / $25**。与此同时，Anthropic 提供 effort parameter、context compaction 和更强的 tool use，并明确展示模型管理多个 subagents 的能力。[^14]
+
+从这一刻起，Anthropic 的 scaling 已经至少有三条轴：
+
+- 模型等级：Haiku → Sonnet → Opus；
+- 单 Agent 推理预算：effort；
+- 并行执行量：subagents。
+
+### 7.5 Opus / Sonnet 4.6：1M context 进入 Agent
+
+**2026-02-05** — Opus 4.6 发布，在 Opus 级首次提供 **1M token context beta**，强化大代码库、研究、金融分析和长程 Agent。[^15]
+
+**2026-02-17** — Sonnet 4.6 发布，同样获得 1M context beta，并加强 coding、computer use、agent planning 和知识工作；它成为 Free / Pro 用户默认模型。[^16]
+
+长上下文至此不再只是“多塞文档”，而是在给长时间运行的 Agent 保存更大的工作现场。
+
+### 7.6 Opus 4.7 / 4.8：验证、视觉和 dynamic workflows
+
+**2026-04-16** — Opus 4.7 发布，增强高难软件工程、长程任务、指令遵循和高分辨率视觉。Anthropic特别强调它更会自行验证结果。[^17]
+
+**2026-05-28** — Opus 4.8 发布，同价继续提升 coding、agents 和 professional work；Claude Code 同时出现 **dynamic workflows** 研究预览，可针对大规模任务协调大量并行 subagents。[^18]
+
+一个模型“能运行更久”逐渐被拆成多个工程问题：
+
+> 怎么记住？怎么压缩上下文？怎么自己验证？怎么并行？怎么把失败回滚？怎么减少人工看守？
+
+这也是 Claude Code 为什么在 Claude 世家里越来越重要：它是这些 Agent 技术最早大规模落地的试验场。
+
+---
+
+## 八、Mythos Preview：能力过强时，模型还能不能直接发布？
+
+**2026-04-07** — Anthropic 与多家科技、云、安全和基础设施公司宣布 **Project Glasswing**，并披露 **Claude Mythos Preview**。[^19]
+
+Mythos Preview 是一个通用前沿模型，但在 cybersecurity 上异常强。Anthropic 的红队研究认为，它在发现和利用软件漏洞方面已经达到需要特别部署策略的程度。[^20]
+
+于是 Anthropic 没有像普通 Claude 一样把它直接放给所有用户，而是让 Glasswing 合作伙伴先用于防御关键软件。
+
+这是 Claude 世家的一个分水岭：
+
+**以前，模型家族按性能和价格分层；Mythos 开始按危险能力和访问资格分层。**
+
+---
+
+## 九、Fable 5 / Mythos 5：同一个模型，两套安全边界
+
+### 9.1 Mythos-class 正式成为新能力等级
+
+**2026-06-09** — Anthropic 发布 **Claude Fable 5** 与 **Claude Mythos 5**。官方明确说：Mythos-class 位于 Opus 之上。[^21]
+
+最关键的是，**Fable 5 和 Mythos 5 是同一个底层模型**。
+
+它们名字不同，不是因为参数规模不同，也不是因为一个更大，而是因为 safeguards 与 access policy 不同：
+
+- **Fable 5**：面向一般用户，但对部分高风险 cyber / bio 请求设置实时 classifiers；触发时可以回退到较低风险模型；
+- **Mythos 5**：同一底层能力，但在可信访问场景中解除部分 safeguards，先向 Project Glasswing 等安全合作伙伴开放，并规划 biology trusted access。[^21]
+
+二者价格均为 **$10 / $50** 每百万输入 / 输出 tokens。[^21]
+
+这在大模型谱系里非常罕见：**安全策略本身成为型号差异。**
+
+模型家族不再只是：
+
+> 小模型 / 中模型 / 大模型
+
+而开始出现：
+
+> 同样的能力，谁有资格以什么安全边界使用。
+
+### 9.2 6 月 12 日暂停：治理第一次直接中断前沿模型生命周期
+
+**2026-06-12** — 美国政府以国家安全权限对 Fable 5 / Mythos 5 发出出口管制指令，要求停止外国国民访问。Anthropic 表示由于无法实时验证所有用户国籍，只能暂时**对所有用户停用两款模型**。[^22]
+
+这是模型史里非常重要的一种新事件：不是模型故障，不是安全事故，也不是公司主动下架，而是**国家治理直接决定一个模型是否能运行。**
+
+**2026-06-30** — 管制被解除；**7 月 1 日**，Fable 5 全球恢复，Mythos 5 按受限结构恢复。[^23]
+
+> 📖 详见《编年·2026年6月》《编年·2026年7月》。
+
+### 9.3 Safeguards 也变成会快速迭代的软件层
+
+Fable 5 发布时的 classifiers 有意设置得较保守，因此存在正常请求被 fallback 的问题。
+
+**2026-08-07** — Anthropic 更新 Fable 5 的 biology safeguards，称内部测试中 biology 相关 fallback 下降约 **85%**。[^24]
+
+这件事很值得和 Claude 3 当年的“减少不必要拒绝”对照。三年前的问题是模型本身太爱拒绝；三年后，问题变成**外部安全层如何在高风险能力上减少误杀**。
+
+对齐已经从模型训练一路外溢成独立的运行时系统。
+
+---
+
+## 十、Sonnet 5 / Opus 5：前沿能力不断向下渗透
+
+### 10.1 Sonnet 5：几个月前的 Opus 能力变成日常工作马
+
+**2026-06-30** — Claude Sonnet 5 发布。Anthropic 将其描述为最 agentic 的 Sonnet，可自主规划、使用浏览器与终端，在若干任务上接近 Opus 4.8。[^25]
+
+它最初以 **$2 / $10** 的促销价格推出；**2026-08-10**，Anthropic 将这一价格永久化。[^25]
+
+Sonnet 5 的位置说明 Claude 家族里存在持续的**能力下放**：上一季度需要 Opus 的工作，很快会进入 Sonnet 的价格区间。
+
+### 10.2 Opus 5：接近 Fable，但面向每天使用
+
+**2026-07-24** — Claude Opus 5 发布，基础价格仍为 **$5 / $25**，与 Opus 4.8 相同。Anthropic 将其定位为接近 Fable 5 frontier intelligence、但成本约为 Fable 一半的日常高端模型。[^26]
+
+Opus 5 继续强调 long-running agents、coding、knowledge work、computer use 与可调 effort。它还成为 Claude Max 默认模型，并是 Pro 上最强型号。[^26]
+
+这让 2026 年 Claude 的产品层级比 2024 年复杂得多：
+
+| 层级 | 主要意义 |
+|------|----------|
+| Haiku | 高吞吐 / subagents |
+| Sonnet | 高频生产 Agent |
+| Opus | 日常最高端复杂工作 |
+| Fable | Mythos-class 能力 + 一般用户 safeguards |
+| Mythos | Mythos-class + trusted access / 部分 safeguards 解除 |
+
+**能力、价格、风险和身份验证第一次共同决定你拿到哪一个 Claude。**
+
+---
+
+## 十一、安全体系的演化：从“宪法”到“整套治理栈”
+
+Claude 的安全路线如果只写 Constitutional AI，到了 2026 年已经远远不够。
+
+它至少形成了五层：
+
+### 11.1 训练层：Constitutional AI 与 alignment
+
+原则、偏好训练和安全训练仍是基础。Sonnet 4.5 还公开展示了针对 sycophancy、deception、power-seeking、delusion encouragement 等行为的评估，并按 ASL-3 protections 部署。[^12]
+
+### 11.2 Agent runtime：权限、memory、checkpoint、prompt-injection defense
+
+当模型能操作电脑和长期运行以后，安全问题变成工程权限问题。Claude Code 的 checkpoint / rollback、Agent SDK 的权限设计、context management 和对 prompt injection 的防御，都属于这一层。[^12]
+
+### 11.3 Runtime classifiers：能力不变，实时改变输出路径
+
+Fable 5 的 cyber / bio safeguards 是独立 classifiers。高风险请求触发时，可以阻止或把请求切换给能力较低的模型。[^21]
+
+这是“模型安全”从模型参数内部走向外部可更新系统的明确例子。
+
+### 11.4 Trusted access：不是所有人拿到同一能力边界
+
+Mythos 5 证明某些前沿能力可能采用**身份 / 组织 / 用途验证后开放**，而不是“全公开”与“全封闭”二选一。
+
+### 11.5 Provenance：连输出文本也进入监管基础设施
+
+**2026-08-14** — Anthropic 宣布未来 Claude 模型文本将加入统计式 watermark，以满足欧盟 AI Act 等透明度要求。该方法不添加隐藏字符、不额外消耗 token，也不包含可追踪到个人、组织或具体对话的身份信息。[^27]
+
+监管要求因此进入 token 采样层本身。
+
+这条路线很能说明 2026 年的大模型系统是什么：**模型、权限、classifier、身份验证、水印和法律义务已经构成同一产品。**
+
+---
+
+## 十二、闭源立场也比“Anthropic 反对开放权重”更复杂
+
+Claude 一直是闭源模型家族，但不能把 Anthropic 的政策立场简单写成“反对 open weights”。
+
+**2026-07-27**，Dario Amodei 明确写道 Anthropic “从未主张禁止开放权重模型”，并称不具危险能力的 open-weight models 是公共品；他的担忧集中于具有极高危险能力的前沿模型一旦不可逆扩散后难以重新加装 safeguards。[^28]
+
+这与 Fable / Mythos 的设计正好对应：Anthropic 的核心主张不是“权重必须闭源”，而是**访问制度应随危险能力变化**。
+
+赞同与否是政策讨论；但从史料上看，这比旧稿“Anthropic 因安全原因从不开放、立场从未动摇”的二分说法准确得多。
+
+---
+
+## 十三、Claude Code 为什么越来越像 Claude 世家的第二条主线
+
+从 Sonnet 3.5 开始，Claude 的能力跃迁越来越频繁地首先在编码 Agent 中显现：
+
+- 长上下文对应整个代码库；
+- tool use 对应 shell / git / test runner；
+- computer use 对应浏览器和 GUI；
+- memory / compaction 对应长任务；
+- checkpoints 对应可回滚；
+- subagents / dynamic workflows 对应并行工程；
+- effort 对应任务级推理预算。
+
+软件工程恰好提供了 Agent 最需要的反馈机制：文件是否改了、测试是否通过、diff 是否合理、命令是否失败。
+
+因此 Claude Code 不只是 Anthropic 的一个产品。它是 Claude 训练路线的**压力测试场**：模型要从“说得像会做”变成“真的连续做完”。
+
+这也解释了为什么 Claude 后来的 professional work、Cowork、浏览器操作和企业 Agent 会大量复用最早在 coding 场景里成熟的机制。
 
 ---
 
 ## 评曰
 
-Claude 系列的迭代史，回答了一个在 AI 行业反复被问到的问题：**一家以安全为核心使命的公司，是否注定在能力竞赛中落败？**
+Claude 世家最初回答的问题是：**AI 能不能在变强的同时更可控？**
 
-2023 年的回答看起来是"是"——Claude 1.x 和 2.x 在能力上明显落后于 GPT-4，市场份额微小，媒体报道中 Claude 总是作为"更安全但更弱"的选项被提及。
+Constitutional AI 给出了第一版答案：把原则写进训练。Claude 3 又证明，重视安全并不意味着能力永远只能当第二名。
 
-2024 年 3 月，Claude 3 Opus 改变了这个叙事。它不是靠安全性拿到市场份额的——它靠的是在 MMLU、GPQA、HumanEval 等标准基准上**正面超越 GPT-4**。对齐没有拖累能力——对齐甚至可能促进了能力。当你的训练方法让模型更善于"理解人类意图"时，它在遵循指令的任务上自然表现更好。
+但到了 2026 年，这个问题已经被模型能力本身推得更复杂。
 
-但 Claude 世家更深远的遗产是它对**AI 产品化路径**的贡献。Artifacts 将 AI 从"对话框"变成了"工作台"——这个转变看起来简单，但它重新定义了"AI 助手"应该是什么。Claude 4 和 Claude Code 则将 AI 推向了"编程协作者"的角色——从"帮你写一行代码"到"帮你重构整个项目"。GitHub Copilot 选择 Claude Sonnet 4 作为底层模型，是这个方向上最有分量的背书。
+当模型只能聊天时，“安全”主要是不要输出危险文本；当模型会写代码、操作电脑、运行几十小时、调用工具和协调 subagents 时，安全变成了权限、回滚、prompt injection、工具边界和持续监督；当 Mythos-class 出现以后，甚至连**谁可以拿到完整能力**都成为模型设计的一部分。
 
-Claude 世家的历史也是"时间窗口"的实证。在 2023 年，GPT 的前沿优势是两年。到 2024 年，Claude 3 用一年追上了。到 2025 年，Claude 4 和 o1 几乎同时发布——时间窗口缩短到了近乎为零。当"前沿"不再是某个公司的独占优势时，竞争的维度就会从"能力"扩展到"安全性""产品体验""编程能力""企业信任"——而这些恰好是 Claude 擅长的。
+Fable 5 与 Mythos 5 是这一变化最清晰的历史标记：
 
-最终，Claude 世家的真正意义不在于它击败了 GPT——而在于它证明了：**安全和能力不是跷跷板的两端，而是同一枚硬币的两面。** Constitutional AI 不是限制——它是一种更聪明的训练方法。Anthropic 不是在"牺牲能力换取安全"——它找到了一种让安全成为能力来源的路径。这个认知，可能是 2020 年代 AI 行业最重要的发现之一。
+> **同一个底层模型，因为 safeguards 与访问制度不同，成为两个型号。**
+
+这意味着模型谱系第一次公开承认：模型的“身份”不仅由权重定义，也由围绕权重的治理结构定义。
+
+而 Sonnet 5 与 Opus 5 又展示了另一面。前沿能力并不是永远被锁在最高风险层；它会随着成本下降、安全措施成熟和下一代模型出现，不断向日常层渗透。几个月前属于 Opus 的能力进入 Sonnet，接近 Fable 的能力进入 Opus。
+
+因此 Claude 2026 年真正形成的是一条动态梯度：
+
+**能力向前推进，安全层跟着重构；当风险可以被更精确控制，能力再向更广用户下放。**
+
+这比“安全和能力不是跷跷板”更准确。二者有时确实冲突——Fable 的 false positive、Mythos 的受限访问、6 月出口管制都说明冲突是真实的。Anthropic 的路线不是消灭这种冲突，而是把冲突本身做成工程系统和访问制度。
+
+Claude 世家的长期遗产，也许最终不是某一代模型最强，而是它最早把一个问题推到了产品层面：
+
+**前沿智能不只是“能做什么”，还必须回答“在什么条件下、由谁、以什么权限做”。**
+
+到了 Agent 时代，这个问题已经和模型能力本身一样重要。
 
 ---
 
-*本篇由终末地工业史官团队编纂：赫默（编年主笔）。*
+*本篇由终末地工业史官团队编纂：赫默（编年主笔）。*  
+*2026-08 补订：GPT-5.6 Sol（OpenAI）。*
 
 ---
 
-[^1]: Anthropic, "Introducing Claude", Anthropic Blog. https://www.anthropic.com/index/introducing-claude ; Wikipedia, "Anthropic", https://en.wikipedia.org/wiki/Anthropic
-[^2]: Bai et al., "Constitutional AI: Harmlessness from AI Feedback", arXiv:2212.08073, 2022-12. https://arxiv.org/abs/2212.08073
-[^3]: Anthropic, "Introducing Claude", Anthropic Blog, 2023-03. https://www.anthropic.com/index/introducing-claude
-[^4]: Anthropic, "Claude 2", Anthropic Blog, 2023-07-11. https://www.anthropic.com/news/claude-2
-[^5]: Anthropic, "Introducing Claude 2.1", Anthropic Blog, 2023-11. https://www.anthropic.com/news/claude-2-1
-[^6]: Anthropic, "Introducing the next generation of Claude", Anthropic Blog, 2024-03-04. https://www.anthropic.com/news/claude-3-family
-[^7]: Anthropic, "Introducing Claude 3.5 Sonnet", Anthropic Blog, 2024-06-20. https://www.anthropic.com/news/claude-3-5-sonnet
-[^8]: Anthropic, "Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku", Anthropic Blog, 2024-10-22. https://www.anthropic.com/news/3-5-models-and-computer-use
-[^9]: Anthropic, "Claude 3.7 Sonnet and Claude Code", Anthropic Blog, 2025-02-24. https://www.anthropic.com/news/claude-3-7-sonnet
-[^10]: Anthropic, "Introducing Claude 4", Anthropic Blog, 2025-05-22. https://www.anthropic.com/news/claude-4
-[^11]: Anthropic, "Plans & Pricing", https://www.anthropic.com/pricing
-[^12]: Wikipedia, "Claude (language model)", https://en.wikipedia.org/wiki/Claude_(language_model) — Anthropic–United States Department of Defense dispute.
-[^13]: Wikipedia, "Anthropic", https://en.wikipedia.org/wiki/Anthropic — estimated valuation $965 billion (May 2026).
+[^1]: Anthropic, “Introducing Claude”, 2023. https://www.anthropic.com/index/introducing-claude
+[^2]: Bai et al., “Constitutional AI: Harmlessness from AI Feedback”, arXiv:2212.08073, 2022-12. https://arxiv.org/abs/2212.08073
+[^3]: Anthropic, “Introducing Claude”, 2023-03. https://www.anthropic.com/index/introducing-claude
+[^4]: Anthropic, “Claude 2”, 2023-07-11. https://www.anthropic.com/news/claude-2
+[^5]: Anthropic, “Introducing Claude 2.1”, 2023-11. https://www.anthropic.com/news/claude-2-1
+[^6]: Anthropic, “Introducing the next generation of Claude”, 2024-03-04. https://www.anthropic.com/news/claude-3-family
+[^7]: Anthropic, “Introducing Claude 3.5 Sonnet”, 2024-06-20. https://www.anthropic.com/news/claude-3-5-sonnet
+[^8]: Anthropic, “Introducing computer use, a new Claude 3.5 Sonnet, and Claude 3.5 Haiku”, 2024-10-22. https://www.anthropic.com/news/3-5-models-and-computer-use
+[^9]: Anthropic, “Claude 3.7 Sonnet and Claude Code”, 2025-02-24. https://www.anthropic.com/news/claude-3-7-sonnet
+[^10]: Anthropic, “Introducing Claude 4”, 2025-05-22. https://www.anthropic.com/news/claude-4
+[^11]: Anthropic, “Claude Opus 4.1”, 2025-08-05. https://www.anthropic.com/news/claude-opus-4-1
+[^12]: Anthropic, “Introducing Claude Sonnet 4.5”, 2025-09-29. https://www.anthropic.com/news/claude-sonnet-4-5
+[^13]: Anthropic, “Introducing Claude Haiku 4.5”, 2025-10-15. https://www.anthropic.com/news/claude-haiku-4-5
+[^14]: Anthropic, “Introducing Claude Opus 4.5”, 2025-11-24. https://www.anthropic.com/news/claude-opus-4-5
+[^15]: Anthropic, “Introducing Claude Opus 4.6”, 2026-02-05. https://www.anthropic.com/news/claude-opus-4-6
+[^16]: Anthropic, “Introducing Claude Sonnet 4.6”, 2026-02-17. https://www.anthropic.com/news/claude-sonnet-4-6
+[^17]: Anthropic, “Introducing Claude Opus 4.7”, 2026-04-16. https://www.anthropic.com/news/claude-opus-4-7
+[^18]: Anthropic, “Introducing Claude Opus 4.8”, 2026-05-28. https://www.anthropic.com/news/claude-opus-4-8
+[^19]: Anthropic, “Project Glasswing”, 2026-04-07. https://www.anthropic.com/glasswing
+[^20]: Anthropic Frontier Red Team, “Assessing Claude Mythos Preview’s cybersecurity capabilities”, 2026-04-07. https://www.anthropic.com/research/mythos-preview
+[^21]: Anthropic, “Claude Fable 5 and Claude Mythos 5”, 2026-06-09. https://www.anthropic.com/news/claude-fable-5-mythos-5
+[^22]: Anthropic, “Statement on the US government directive to suspend access to Fable 5 and Mythos 5”, 2026-06-12. https://www.anthropic.com/news/fable-mythos-access
+[^23]: Anthropic, “Redeploying Claude Fable 5”, 2026-06-30 / update 2026-07-01. https://www.anthropic.com/news/redeploying-fable-5
+[^24]: Anthropic, “Improving Fable 5's biology safeguards”, 2026-08-07. https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards
+[^25]: Anthropic, “Introducing Claude Sonnet 5”, 2026-06-30; pricing made permanent 2026-08-10. https://www.anthropic.com/news/claude-sonnet-5
+[^26]: Anthropic, “Introducing Claude Opus 5”, 2026-07-24. https://www.anthropic.com/news/claude-opus-5
+[^27]: Anthropic, “How Claude’s text watermarking works”, 2026-08-14. https://www.anthropic.com/news/claude-text-watermark
+[^28]: Dario Amodei / Anthropic, “Our position on open-weights models”, 2026-07-27. https://www.anthropic.com/news/position-open-weights-models

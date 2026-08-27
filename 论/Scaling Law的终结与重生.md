@@ -1,130 +1,317 @@
-# Scaling Law 的终结与重生
+# Scaling Law 的终结与重生：从训练幂律到工作规模化
 
-> Scaling Law 从来没有被推翻过。它只是被一再修正——每一次修正都像是一个时代在说："你之前搞错了重点。"从 Kaplan 到 Chinchilla 到 o1，大模型史里的 scaling law 经历了三次修正。不是三次否定，而是三次重新定义"规模"的意义。
+> Scaling Law 没有“死”，但到 2026 年，继续把它理解成“参数、数据、训练 FLOPs 越多越强”已经太窄。Kaplan 研究的是训练 loss 的幂律；Chinchilla 研究固定 compute 下参数与数据怎样分配；o1 和 R1 让推理时计算成为显性资源；GPT-5.5 / 5.6、Kimi Agent Swarm 和多 Agent 工程又进一步证明，一项任务还可以通过并行搜索、工具调用、子 Agent 和环境反馈扩大计算。Scaling 的对象已经从**模型训练**扩展到**完成工作本身**。
 
-## 一、Kaplan Scaling Law：第一个信条
+---
 
-2020 年 1 月，Jared Kaplan 等人在 OpenAI 的论文《Scaling Laws for Neural Language Models》中提出了一个影响深远的结论：语言模型的性能与模型参数量、训练数据量、训练计算量之间呈**幂律关系**。[^1] 简单说：给更多的数据或更多的参数，loss 就以可预测的速率下降。
+## 一、Kaplan：性能第一次看起来可以被“预购”
 
-这不是一篇实验室奇想。它是 GPT-1（2018-06）从 117M 参数起步、GPT-2（2019-02）冲到 1.5B、GPT-3（2020-06）暴增至 175B 的理论基础。Kaplan 论文给出了一个精确到小数点后的预测公式——如果一个模型在某个规模上表现如何，那么把参数翻 N 倍，表现会上涨多少，可以事先算出来。这在 2020 年的 AI 行业是一个极具诱惑力的承诺：**性能是可预购的。** 你不需要发明新的架构，只需要买更多的 GPU，堆更多的数据，模型就会自然变强。
+**2020 年**，Kaplan 等人的《Scaling Laws for Neural Language Models》系统描述语言模型 loss 与参数量、数据量、训练 compute 之间的幂律关系。[^1]
 
-GPT-3 的 175B 参数是这个信条的第一次大规模兑现。从 1.5B 到 175B，参数膨胀了 100 倍，能力在 many-shot、few-shot、zero-shot 上出现了质的跃升——包括被后来广泛讨论的"涌现"现象。DeepMind 在 2021 年底以 Gopher（280B 参数）对 152 项任务做了系统评测，再次独立验证了 scaling law 的适用性。[^2]
+这篇论文最重要的产业影响不是某个具体指数，而是一种预期：
 
-但 Kaplan 的结论中埋着一个后来被证明是错误的具体推断：**参数规模比数据规模更重要。** 论文给出的建议是——在固定计算预算下，应该更多地增加参数而不是训练数据。这个建议在 Chinchilla 论文中将被精确地推翻。
+> **如果给更多 compute，模型性能可以在相当范围内可预测地改善。**
 
-## 二、Chinchilla：第一次修正——不是参数不够，是数据没跟上
+GPT-3 175B 是这条路线最著名的早期工业实践之一。
 
-2022 年 3 月，DeepMind 的 Hoffmann 等人在 Chinchilla 论文中给出了一个简洁的修正：在固定计算预算下，**模型参数量与训练 token 数应该大致等比例增长**。[^3]
+在那个阶段，scaling 的对象基本等于**预训练规模**。
 
-听起来只是技术细节的修正。但它的实际含义是颠覆性的：Kaplan 认为应该"堆参数"，Chinchilla 认为应该"堆数据"。按照 Chinchilla 的公式，GPT-3 的 175B 参数搭配 ~300B token 的训练量，是严重"数据不足"的——它应该用更少的参数、更多的数据来训练，效果会更好。
+---
 
-DeepMind 用实验给出了直观证明：一个 70B 参数的 Chinchilla 模型，在同样训练算力预算下（~5.76×10²³ FLOPs），训练约 1.4T token，在几乎全部下游任务上全面超越了 280B 参数的 Gopher（仅训练了 300B token）。参数是 Gopher 的四分之一，能力是 Gopher 的全面超越。这在 Kaplan 的框架下是不该发生的——但它发生了。
+## 二、Chinchilla：第一次修正的是 compute allocation
 
-Chinchilla 的影响不是"70B 比 280B 好"这么窄，而是从根本上改变了行业对"规模"的理解：
+**2022 年**，Chinchilla 研究指出，固定训练 compute 下，很多前沿模型参数过大、数据不足。70B Chinchilla 使用更多训练 token，可以超过 280B Gopher。[^2]
 
-- **之前**：参数规模是地位的象征。公司比谁的模型参数多，就像冷战比谁的核弹头多。
-- **之后**：数据量和数据质量被拉到与参数规模同等甚至更高的位置。Llama 系列（特别是 Llama 3 的 15T token 训练）、Claude 系列、后来的 DeepSeek，都把"训练了多少 token"放在与"有多少参数"并列的位置。
+Chinchilla 不是“反 scaling”。
 
-Chinchilla 也在经济学层面改变了模型设计。在 Kaplan 时代，如果把参数做得更大，推理成本也跟着变大——因为每个 token 的计算量正比于参数规模。Chinchilla 的意思是：如果你愿意在训练时多喂数据，你可以用更小的参数达到同样甚至更好的性能，而推理成本降下来了。这对商业部署的意义是直接的：**训练多花一点，推理便宜很多。**
+它真正做的是：
 
-从模型的代际来看，Chinchilla 是第一次修正——但不是终点。它仍然在 Kaplan 的框架内工作：它讨论的是"训练时如何配比参数和数据来最优地使用算力"。训练结束之后，模型能力就被封存在权重里了。推理阶段只是"消费"这些能力，不会产生新的能力。
+> **把“扩大规模”从参数单轴改成参数 × 数据的最优资源分配问题。**
 
-这个前提在 2024 年 9 月被 o1 打破了。
+这也是 scaling law 史上第一条重要教训：
 
-## 三、o1 与 test-time compute：第二次修正——推理本身可以 scale
+**更多资源有用，但资源放错地方会浪费。**
 
-2024 年 9 月 12 日，OpenAI 发布了 o1，一个"推理模型"。[^4] o1 的核心理念是：模型在回答之前，先生成一条内部的思维链（chain of thought），用额外的计算时间来规划、验证、修正自己的思路。用户看到的是整理后的答案，而不是原始的推理过程。
+后来 LLaMA 等模型通过更多 token 训练较小参数模型，进一步证明部署成本也会反过来影响训练最优点。
 
-从 scaling law 的角度看，o1 的意义不是"模型更强了"——那是性能提升。意义在于它开辟了 scaling law 的**第三个轴**。
+---
 
-Kaplan 和 Chinchilla 讨论的是**训练时计算**（training-time compute）：怎么分配算力来训练出最好的权重。o1 讨论的是**推理时计算**（test-time compute）：已经训练好的模型，在回答问题时花多少时间思考。
+## 三、MoE：训练规模和每 token 推理规模开始解绑
 
-这是一个根本性的范式转换。在 o1 之前，模型能力一旦训练完成，就是固定的。同一个模型、同样的问题，问 100 次，100 次的能力上限是一样的——可能因为采样的随机性有波动，但上限不变。o1 之后，同一个模型可以在简单问题上"快想"，在复杂问题上"慢想"。慢想消耗更多的推理算力（生成更长的思维链 token），但产出更准确的答案。**能力变成动态的，取决于你愿意为这次回答分配多少计算预算。**
+Chinchilla 仍然主要讨论 dense model。
 
-AIME 2024 数学竞赛的数字最能说明这个转换的幅度：[^4]
+MoE 带来第二个结构变化：模型总容量可以扩大，而每个 token 只激活一部分专家。
 
-| 模型 | AIME 2024 |
-|------|:--:|
-| GPT-4o（无推理链） | 12.1% |
-| o1（推理链） | 74.4% |
-| 提升 | +62.3 百分点 |
+代表例子：
 
-注意：GPT-4o 和 o1 的基础预训练能力可能相近，甚至 o1 的基座模型不见得比 GPT-4o 强太多。差距主要来自**推理时多花的那几十秒**。GPT-4o 是"直接猜"，o1 是"先想再答"。这 62 个百分点的跃升说明了一件事：在训练时 scaling 已经接近收益递减的情况下，推理时 scaling 仍然有巨大的开放空间。
+- DeepSeek-V2：236B total / 21B active；
+- DeepSeek-V3：671B / 37B；
+- DeepSeek V4-Pro：1.6T / 49B；
+- Kimi K3：2.8T / 104B；
+- Qwen3.8：2.4T / 95B。[^3][^4][^5]
 
-从科学史的角度看，这很像物理学中的"相空间扩展"。经典力学只描述三维空间中的运动；统计力学把相空间扩展到 6N 维后，原来不可描述的现象变得可描述了。类似地，Kaplan-Chinchilla 的 scaling law 只描述"训练"这个二维或三维空间（参数、数据、算力）；o1 把空间扩展到了第四维——**推理时间**。这才是 o1 作为科学事件的意义，而不是它的 benchmark 分数。
+于是 scaling 出现两个不同方向：
 
-## 四、第三次修正还没有落地——但轮廓已经清晰
+1. **capacity scaling**：让模型拥有更多总参数；
+2. **active compute efficiency**：尽量不让每 token 成本同步增长。
 
-如果要把 scaling law 的第三次修正写成一句话，目前只能写成：**推理算力不是免费的——它也有自己的 scaling law，而且我们还没搞清楚它的边界。**
+这使“训练更大的模型”和“运行更贵的模型”不再完全绑定。
 
-有几个关键问题至今没有闭合：
+---
 
-**第一，推理时计算有没有"Chinchilla 时刻"？** 也就是说：在给定的推理算力预算下，有没有一个最优的"思考长度"？直接生成答案（0 思考）、短推理链、长推理链、超长推理链（反复验证和搜索），哪一种是最优的？目前没有系统性研究给出类似 Chinchilla 的"算力—性能最优曲线"。各家公司在自己的产品中做了工程折衷：o1 让模型自由想（但隐藏过程），DeepSeek-R1 让模型自由想（并公开过程），Claude 3.7 Sonnet 让用户选择是否想——但这些是产品设计，不是理论突破。
+## 四、o1：推理阶段也可以 scale
 
-**第二，推理算力的边际递减出现在哪里？** DeepSeek-R1-0528 将平均思考长度从 ~12k token 提升到 ~23k token，AIME 准确率从 70% 跃至 87.5%。[^5] 这说明至少在 ~23k token 以内，推理算力仍在产生显著的正回报。但 50k token 呢？100k token 呢？会不会出现"想得越多、想得越偏"的反噬？会不会模型在长推理链中放大自己的初始偏见而不是修正它？这些问题在数学竞赛的封闭式问题上可能不明显，但在开放式的政策分析、医学诊断、法律推理中可能非常严重。
+**2024-09**，OpenAI o1 把 test-time compute 变成主流产品概念。[^6]
 
-**第三，训练算力和推理算力之间能否互相替代？** 这是最深刻的战略问题。如果可以——也就是说，用贵一点的训练（更大的参数、更多的数据）能显著减少推理时的思考量——那么闭源巨头（OpenAI、Google、Anthropic）仍然有壁垒，因为他们拥有最大的训练算力。如果不能——也就是说，即使用最大的训练算力把基座模型做到极致，它在复杂问题上仍然需要长时间思考——那么推理算力本身会成为新的主战场，而这个战场可能更有利于 DeepSeek 式的效率路线（通过架构创新降低每次推理的成本，使"便宜地慢想"成为可能）。
+模型不再必须即时给出答案，而可以投入额外推理过程来搜索、检查和修正。
 
-这第三个问题实际上是 2025-2026 年大模型竞争的核心轴线。GPT-4.5 的发布（2025-02-27，Sam Altman 称为"最后一个非思维链模型"）是一次公开认输：单纯的训练时 scaling 到头了。[^6] 但没有人知道 test-time compute scaling 能走多远。可能和训练 scaling 一样有尽头，可能比训练 scaling 走得更远——因为推理是一个"可以自我反馈"的过程，而训练是一个"只能向前"的过程。
+这改变了一个长期默认假设：
 
-## 五、Scaling Law 没有死——它只是迁移了
+> 训练结束后，模型能力上限就完全固定。
 
-从 2020 到 2026，Scaling Law 经历了以下演化：
+实际上，同一个训练好的模型系统可以根据任务分配不同 inference compute。
 
-| 阶段 | 时间 | 代表工作 | 核心命题 | 被修正的部分 |
-|------|------|----------|----------|--------------|
-| 第一代 | 2020-01 | Kaplan et al. [^1] | 参数越多 → 性能越好（幂律） | — |
-| 修正一 | 2022-03 | Chinchilla [^3] | 参数和数据要等比增长 | Kaplan 低估了数据的重要性 |
-| 修正二 | 2024-09 | o1 [^4] | 推理时计算也是可 scale 的 | Kaplan/Chinchilla 都只讨论训练 |
-| 修正三（进行中） | 2025- | DeepSeek-R1, Claude 3.7, Qwen3 | 推理算力的最优配比、边际递减、效率路线 | 尚未闭合 |
+简单问题快速答，困难问题多想。
 
-"Scaling Law 的终结"从一开始就是错误的提法。终结的不是 scaling law 本身——幂律关系在训练阶段仍然成立。终结的是"scaling = 堆参数"这个过于狭窄的理解。
+因此“能力”变成一个函数：
 
-现在的局面是三条 scaling 轴同时存在：
+**Capability = f(weights, inference budget, task)。**
 
-1. **参数/数据缩放**（Kaplan → Chinchilla）：训练时决定基座能力；
-2. **推理时间缩放**（o1 → R1 → 混合推理）：回答现场决定表现深度；
-3. **效率缩放**（MLA → MoE → MTP）：用架构创新降低每一步的算力成本，使得更低的成本可以支撑更高的参数量和更长的推理链。
+这并不意味着无限多 reasoning tokens 会无限提高正确率。推理仍有边际递减、错误路径锁定和验证瓶颈。
 
-这三个轴不是独立的。效率缩放（MLA、MoE、蒸馏）使得推理成本降低，进而使得推理时 scaling 在商业上可行；推理时 scaling 的利润又可以投入到下一次参数/数据缩放。三者构成一个正反馈循环——DeepSeek 从 V2 到 V4 的连续迭代是这个循环最干净的实证。
+真正的新变量只是：**计算什么时候花。**
 
-## 六、"算力预算"作为统一框架
+---
 
-如果把这三条轴放在一起看，一个更完整的图景浮现出来。
+## 五、R1：可验证环境改变了 inference scaling 的训练方式
 
-大模型的真正变化不是某一条 scaling law 修正了另一条，而是**算力预算从训练中心扩展到全生命周期**。在 GPT-3 时代，算力预算几乎全部发生在训练阶段。训练完成后，推理成本是一个固定的、不可调度的开销——每个问题只能用固定的算力来回答。
+DeepSeek-R1-Zero 与 R1 把 reasoning scaling 和 reinforcement learning 连接起来。[^7]
 
-o1 之后，这个模型被打破了。你现在拥有的是一笔**可分配的算力预算**，可以在以下维度上调度：
+数学、代码等任务有客观可验证结果，因此模型可以通过大量生成—验证循环学习怎样分配推理过程，而不完全依赖人工写出“标准思维链”。
 
-- **训练时多投**：更大参数、更多数据、更好对齐 → 基座能力更高；
-- **推理时多投**：更长思维链、更多验证、更多搜索 → 单次回答更深；
-- **架构上优化**：MLA 压缩 KV Cache、MoE 稀疏激活、蒸馏转移能力 → 降低每一步的算力消耗。
+这里出现 scaling 的另一种资源：
 
-一个理想的 AI 系统，应该在这三个维度上找到全局最优——而不是像 2020 年那样只问"参数多大？"。对供应商来说，这是定价策略、延迟策略、能力策略的三元博弈。对用户来说，这是"花多少钱、等多久、得到多好的答案"之间的权衡。
+> **可验证反馈。**
 
-从这个角度看，"Scaling Law 的终结"的真正含义是：**以训练为中心的单轴 scaling 时代终结了。** 取而代之的是以计算预算分配为核心的多轴 scaling 时代。这不是 scaling 的结束，而是 scaling 从一个朴素的工程直觉，变成一个复杂的系统科学。
+如果环境能够快速告诉模型“这一步最终成功还是失败”，额外计算就不仅用于生成更多 token，还可以用于：
+
+- sampling；
+- self-consistency；
+- search；
+- verifier；
+- retry；
+- RL rollout。
+
+所以 test-time compute 不是“思维链越长越聪明”这么简单。
+
+它更像一个搜索预算。
+
+---
+
+## 六、2025：reasoning 开始被动态分配，而不是固定型号
+
+Claude 3.7、Qwen3、GPT-5 等模型把“思考 / 不思考”从两个模型变成同一系统内的模式选择。
+
+**GPT-5** 更进一步使用 router，在快速模型与深度推理之间动态分配请求。[^8]
+
+这意味着 scaling 进入**资源路由**阶段。
+
+系统面对的不是：
+
+> “这个模型到底有多强？”
+
+而是：
+
+> “这个任务值得花多少 compute？应该在哪一个模型、哪一个模式、哪一个工具上花？”
+
+这和 Chinchilla 的问题非常相似，只不过 Chinchilla 优化训练预算，router 优化**每个用户任务的运行预算**。
+
+---
+
+## 七、2026：从 test-time compute 到 work-time compute
+
+到了 2026 年，只看一个 Agent 的 reasoning tokens 又不够了。
+
+### 7.1 GPT-5.5 Pro：parallel test-time compute
+
+OpenAI GPT-5.5 System Card 描述 Pro 设置使用更高的**并行 test-time compute**。[^9]
+
+这意味着计算预算不只沿“更长时间”扩展，还可以沿“更多并行尝试”扩展。
+
+一个任务可以同时搜索多个方案，再比较、合成或验证。
+
+### 7.2 GPT-5.6 ultra：多 Agent 并行工作流
+
+GPT-5.6 进一步把高计算设置描述为可协调多个 Agent 并行执行复杂任务。[^10]
+
+此时 scaling 单位已经从一个模型回答一次，变成**一个工作图（work graph）**。
+
+### 7.3 Kimi Agent Swarm：扩展的是协作宽度
+
+Kimi K2.5 / K2.6 的 Agent Swarm 也在探索类似方向：一个 orchestrator 把任务拆给多个 subagents 并行处理，再整合结果。
+
+这不是传统 test-time compute 的简单延长，而是**orchestration scaling**。
+
+### 7.4 Coding agents：环境步骤本身也是 compute
+
+一个 coding Agent 的“计算”包括：
+
+- 读文件；
+- grep；
+- 编辑；
+- 编译；
+- 跑测试；
+- 浏览文档；
+- 重试；
+- 开 subagent。
+
+这些步骤很多根本不是 LLM token，却直接决定最后任务是否成功。
+
+因此到 Agent 时代，真正需要统计的是：
+
+> **完成一个任务消耗的全部模型 + 工具 + 环境计算。**
+
+可以称为 **work-time compute**。
+
+---
+
+## 八、Scaling Law 的第四个对象：环境反馈密度
+
+软件工程 Agent 为什么进步特别快？
+
+因为环境反馈非常密：
+
+- 编译成功 / 失败；
+- 测试通过 / 不通过；
+- git diff；
+- lint；
+- benchmark；
+- 终端退出码。
+
+同样的模型，放在有密集反馈的环境里，比放在“写一篇政策分析”这种难自动验证的环境里更容易通过额外计算提升成功率。
+
+因此 work-time scaling 的效果不仅取决于 compute budget，还取决于：
+
+**feedback density × verifier quality。**
+
+这可能是 Agent 时代比单纯 reasoning token 更重要的 scaling 条件。
+
+---
+
+## 九、Scaling 的经济学：更多计算不等于更贵的成功任务
+
+如果一个便宜模型每次任务要重试十次，而更贵模型一次成功，后者可能总成本更低。
+
+如果两个 subagents 并行工作使总 wall-clock time 减半，虽然 token 使用更多，业务价值可能更高。
+
+所以 2026 年 scaling 的目标函数已经不再只是：
+
+**accuracy per FLOP**
+
+还包括：
+
+- cost per successful task；
+- latency to completion；
+- human intervention rate；
+- rollback cost；
+- reliability under long horizon。
+
+这也是为什么 Flash、Pro、Fast mode、batch、cache、reasoning effort 和 peak/off-peak price 会同时出现。
+
+厂商不再只卖模型，而在卖**不同 compute allocation strategy**。
+
+---
+
+## 十、训练 scaling 并没有结束
+
+“test-time compute 出现，所以预训练 scaling 到头了”也是误解。
+
+2026 年的 Kimi K3、Qwen3.8 等依然扩大到 T 级 total parameters；各公司仍建设越来越大的训练和推理集群。
+
+变化是：预训练 scaling 不再独占全部进步来源。
+
+现在至少有四层 scaling：
+
+| 层 | 扩大的资源 | 代表 |
+|----|------------|------|
+| Pretraining scaling | 参数、数据、训练 FLOPs | GPT-3、PaLM、K3、Qwen3.8 |
+| Sparse scaling | total capacity / active compute 解耦 | DeepSeek、Kimi、Qwen |
+| Inference scaling | reasoning / search / verifier budget | o1、R1、Claude thinking |
+| Orchestration scaling | tools、subagents、parallel workflows | GPT-5.6、Kimi Swarm、coding agents |
+
+这四层不是替代关系，而是叠加关系。
+
+---
+
+## 十一、下一次“Chinchilla 时刻”可能出现在任务级预算
+
+2022 年 Chinchilla 回答：固定 training compute 下，参数和 token 应怎样配比。
+
+Agent 时代还缺一个类似理论：
+
+在固定的任务预算下，应该把计算花在哪里？
+
+例如 10 美元预算可以选择：
+
+- 一个强模型深思；
+- 十个便宜模型并行；
+- 一个模型 + 多次工具验证；
+- 一个大模型规划 + 小模型执行；
+- 多 Agent swarm；
+- 更多 context；
+- 更多检索；
+- 更多测试。
+
+哪个组合最优？
+
+不同任务的答案显然不同。
+
+所以未来的 scaling law 可能不再只是关于神经网络 loss，而是关于**工作流资源分配**。
+
+---
 
 ## 评曰
 
-Scaling Law 从来没有被"推翻"过。它只是从一个信条变成了一系列更细致的提问。
+Scaling Law 真正经历的不是“终结与重生”，而是**研究对象不断扩大**。
 
-Kaplan 说"参数和性能是幂律关系"——这个结论至今没有被否定。但它没说数据应该怎么配比。Chinchilla 补上了："在固定算力下，参数和数据等比增长。"但它没说算力只能投在训练上。o1 说："算力也可以投在推理现场，而且能打开一个新的能力空间。"但它没说推理算力的最优配比是什么。
+Kaplan 说：扩大模型训练，loss 会可预测下降。
 
-每一次修正都让 scaling 从一个简单粗暴的"更多"，变成一个越来越需要经济学和系统思维的"怎么分"。
+Chinchilla 说：别只扩大参数，要正确分配数据和参数。
 
-如果说 Kaplan 是发现了金矿，Chinchilla 是告诉你怎么挖更有效，o1 是告诉你——矿不是只在训练场底下，推理现场地下也有。而第三次修正，还在等待一个能把"三条轴的最优配比"计算出来的人。
+MoE 说：容量和每 token 计算可以拆开。
 
-这可能是大模型科学里最迷人的一个未闭合问题。而它之所以迷人，恰恰因为它已经不只是科学：它同时是工程、是经济学、是系统设计——是一个完整的 AI 文明如何分配它最稀缺资源的问题。
+o1 / R1 说：训练结束后还可以通过推理搜索扩大有效能力。
+
+GPT-5.6 与 Agent Swarm 又说：一次任务可以动员不止一条推理链，而是一支模型、工具和环境组成的执行队伍。
+
+因此到 2026 年，最重要的 scaling 问题已经从：
+
+> “模型应该多大？”
+
+变成：
+
+> **“为了完成这件工作，计算应该在哪个阶段、哪个模型、哪个 Agent、哪个工具上花？”**
+
+这就是从 **scaling model** 到 **scaling work**。
+
+它不是一句营销口号，而是 scaling law 从训练理论走进 Agent 系统之后的自然结果。
 
 ---
 
-*本篇由终末地工业史官团队编纂：符玄（理论框架）。*
+*本篇由终末地工业史官团队编纂。*  
+*2026-08 补订：GPT-5.6 Sol（OpenAI）。*
 
 ---
 
-[^1]: Kaplan et al., "Scaling Laws for Neural Language Models", arXiv:2001.08361, 2020-01-23. https://arxiv.org/abs/2001.08361
-[^2]: Rae et al., "Scaling Language Models: Methods, Analysis & Insights from Training Gopher", arXiv:2112.11446, 2021-12. https://arxiv.org/abs/2112.11446
-[^3]: Hoffmann et al., "Training Compute-Optimal Large Language Models", arXiv:2203.15556, 2022-03-29. https://arxiv.org/abs/2203.15556
-[^4]: OpenAI, "Learning to Reason with LLMs", 2024-09-12. https://openai.com/research/learning-to-reason-with-llms
-[^5]: HuggingFace, "deepseek-ai/DeepSeek-R1-0528", 2025-05-28. https://huggingface.co/deepseek-ai/DeepSeek-R1-0528
-[^6]: OpenAI, "Introducing GPT-4.5", 2025-02-27. https://openai.com/index/introducing-gpt-4-5/
+> 📖 详见《志·参数竞赛》《论·Test-Time Compute》《论·推理经济学》《GPT 世家》《Codex / GitHub Copilot 列传》《志·AI Agent 生态》。
+
+[^1]: Kaplan et al., “Scaling Laws for Neural Language Models”. https://arxiv.org/abs/2001.08361
+[^2]: Hoffmann et al., “Training Compute-Optimal Large Language Models”. https://arxiv.org/abs/2203.15556
+[^3]: DeepSeek-V3 / V4 official materials. https://arxiv.org/abs/2412.19437 ; https://deepseek.com/en/news/v4-preview/
+[^4]: MoonshotAI, Kimi K3. https://github.com/MoonshotAI/Kimi-K3
+[^5]: Qwen3.8. https://github.com/QwenLM/Qwen3.8
+[^6]: OpenAI, “Learning to reason with LLMs”. https://openai.com/index/learning-to-reason-with-llms/
+[^7]: DeepSeek-R1. https://arxiv.org/abs/2501.12948
+[^8]: OpenAI, “Introducing GPT-5”. https://openai.com/index/introducing-gpt-5/
+[^9]: OpenAI, GPT-5.5 System Card. https://openai.com/index/gpt-5-5-system-card/
+[^10]: OpenAI, GPT-5.6. https://openai.com/index/gpt-5-6/

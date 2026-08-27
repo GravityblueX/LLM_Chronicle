@@ -1,0 +1,13 @@
+{
+  "entry": "纪传/列传/DeepSeek-R1",
+  "updated_at": "2026-08-28",
+  "archive_note": "补订重点校正 R1-Zero / R1 训练路线、模型谱系许可与训练成本口径。新增来源待本地 snapshot 流程归档。",
+  "sources": [
+    {"url":"https://openai.com/index/learning-to-reason-with-llms/","title":"Learning to reason with LLMs — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1 official repository","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://arxiv.org/abs/2501.12948","title":"DeepSeek-R1 paper","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://arxiv.org/abs/2412.19437","title":"DeepSeek-V3 Technical Report","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://github.com/deepseek-ai/DeepSeek-V3/blob/main/LICENSE-MODEL","title":"DeepSeek-V3 model license","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://huggingface.co/deepseek-ai/DeepSeek-R1-0528","title":"DeepSeek-R1-0528","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

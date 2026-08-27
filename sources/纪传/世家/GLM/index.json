@@ -1,0 +1,11 @@
+{
+  "collection": "纪传/世家/GLM",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 补订时核验论文、GitHub 与 Z.ai 官方活链；HTML 快照待本地归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2103.10360","title":"GLM: General Language Model Pretraining with Autoregressive Blank Infilling","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://github.com/THUDM/ChatGLM-6B","title":"ChatGLM-6B official repository","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://z.ai/blog/glm-5.3","title":"GLM-5.3: Frontier Coding with Emergent Cyber Capabilities","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://z.ai/blog/glm-5.3-flash","title":"GLM-5.3-Flash: Frontier Intelligence, Flash Cost","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

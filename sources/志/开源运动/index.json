@@ -1,0 +1,24 @@
+{
+  "entry": "志/开源运动",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 补订开放权重、运行权与 2026 部署链。连接器无法运行 HTML snapshot 工具，新增来源暂待归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://opensource.org/ai/open-source-ai-definition","title":"Open Source AI Definition 1.0 — OSI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2302.13971","title":"LLaMA — arXiv","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://ai.meta.com/blog/llama-2/","title":"Llama 2 — Meta","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://ai.meta.com/blog/meta-llama-3-1/","title":"Llama 3.1 — Meta","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://about.fb.com/news/2024/07/open-source-ai-is-the-path-forward/","title":"Open Source AI Is the Path Forward — Meta","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://mistral.ai/news/announcing-mistral-7b","title":"Mistral 7B","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://mistral.ai/news/mixtral-of-experts","title":"Mixtral of experts","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://qwenlm.github.io/blog/qwen2.5/","title":"Qwen2.5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://qwenlm.github.io/blog/qwen3/","title":"Qwen3","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.alibabacloud.com/help/en/model-studio/qwen3-8-2-4t-a95b","title":"Qwen3.8-2.4T-A95B — Alibaba Cloud","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://github.com/deepseek-ai/DeepSeek-V3","title":"DeepSeek-V3","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://opensource.org/blog/the-open-source-initiative-announces-the-release-of-the-industrys-first-open-source-ai-definition","title":"OSAID 1.0 announcement — OSI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://github.com/MoonshotAI/Kimi-K3","title":"Kimi K3 — Moonshot AI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/","title":"Kimi K3 cloud hosting talks — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^16]","url":"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model","title":"Muse Glimmer — Meta AI Research","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://www.anthropic.com/news/position-open-weights-models","title":"Our position on open-weights models — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

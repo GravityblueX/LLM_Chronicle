@@ -1,0 +1,17 @@
+{
+  "entry": "论/中国AI三条路线",
+  "updated_at": "2026-08-28",
+  "archive_note": "补订由静态创始人决定论改为组织制度起点 + 2026 技术收敛；新增 GLM-5.3-Flash 国产芯片 production serving 史料。链接待本地 snapshot。",
+  "sources": [
+    {"url":"https://arxiv.org/abs/2405.04434","title":"DeepSeek-V2","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://arxiv.org/abs/2412.19437","title":"DeepSeek-V3 Technical Report","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://arxiv.org/abs/2501.12948","title":"DeepSeek-R1","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://deepseek.com/en/news/v4-preview/","title":"DeepSeek-V4 Preview","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://github.com/QwenLM/Qwen3.8","title":"Qwen3.8 official repository","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.alibabacloud.com/help/en/model-studio/qwen3-8-2-4t-a95b","title":"Qwen3.8 2.4T-A95B model information","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.zhipuai.cn/en/research","title":"Z.ai / Zhipu research timeline","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://www.zhipuai.cn/zh/research/163","title":"GLM-5.3-Flash — Z.ai / 智谱","snapshot":null,"status":"live_verified_snapshot_pending","additional_url":"https://z.ai/blog/glm-5.3-flash"},
+    {"url":"https://github.com/deepseek-ai/DeepSeek-V3/blob/main/LICENSE-MODEL","title":"DeepSeek-V3 model license","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1 license and model lineage","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

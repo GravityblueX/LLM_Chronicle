@@ -1,165 +1,257 @@
 # 《Gemini 世家》
 
-> Gemini 是 Google DeepMind 自 2023 年起开发的通用多模态模型家族。从一段剪辑 demo 的尴尬开局，到 LMArena 登顶的集体公正——Gemini 的迭代史是 Transformer 发明者从被动仓促到主动反击的全过程。
+> Gemini 是 Google DeepMind 自 2023 年起发展的多模态模型家族。它的早期形象长期被 Bard 的仓促发布和 Gemini 1.0 的演示争议遮住；1.5 Pro 用百万上下文找到差异化，2.x 把工具和 Agent 写进产品路线，2.5 把 thinking 变成默认能力，Gemini 3 又把模型推进生成式界面和复杂行动。到 2026 年下半年，Gemini 最值得记录的变化却不是旗舰更大，而是 **Flash 从“便宜版”变成了生产 Agent 真正的主力层**。
 
 ---
 
-## 一、概述
+## 一、概述：Google 从“证明模型强”走向“让模型无处不在”
 
-Gemini 系列是 Google 对 ChatGPT 时代的系统性回答。它经历了三个阶段：**仓促追赶**（Bard → Gemini 1.0）、**差异化突围**（1.5 Pro 超长上下文）、**推理反击**（2.5 Pro 登顶 LMArena）。
+Gemini 是 Google 对 ChatGPT 时代的系统性回答，但它从来不只是一个聊天模型系列。
 
-Gemini 的演化有一个独特的主线：它从一开始就是**原生多模态**——在文本、图像、音频、视频和代码的联合数据上训练，而非事后加上视觉模块。这个设计选择在 Transformer 发明者手中不是偶然——它意味着 Google 在 2023 年就已经判定：多模态是大模型的默认形态，不是可选项。
+如果把它的演化压成几步，可以看到一条很清楚的路线：
+
+1. **Gemini 1.0：原生多模态**——文本、图像、音频、视频与代码不再被视为互不相干的输入；
+2. **Gemini 1.5：超长上下文**——模型一次能处理的材料规模成为核心能力；
+3. **Gemini 2.x：tool use / agentic era**——模型开始围绕行动而设计；
+4. **Gemini 2.5：thinking**——推理成为模型调用时可以投入的计算资源；
+5. **Gemini 3：生成式界面 + Agent**——输出不再只是文本，而可以是界面、应用与连续行动；
+6. **Gemini 3.5—3.7 Flash：生产 Agent 的成本工程**——速度、token 效率、工具调用和任务完成率开始比“旗舰名号”更重要。
+
+因此 Gemini 世家最深的连续性不是某个 benchmark，而是 **把模型嵌进 Google 已有的软件、搜索、设备、云和开发平台**。
 
 ---
 
 ## 二、代际演进
 
-| 代际 | 发布时间 | 关键能力 | 历史位置 |
-|------|----------|----------|----------|
-| Bard (LaMDA) | 2023-02-06 | 对话 AI，仓促发布 | ChatGPT 恐慌的产物 |
-| Gemini 1.0 | 2023-12-06 | 原生多模态，Ultra/Pro/Nano 三级 | 首次正面迎战 GPT-4 |
-| Gemini 1.5 Pro | 2024-02-15 | 1M token 上下文，MoE 架构 | 开辟"超长上下文"赛道 |
-| Gemini 2.0 Flash | 2024-12-11 | 原生工具调用，Agentic era | 推理速度与成本革命 |
-| Gemini 2.5 Pro | 2025-03-25 | 思考模型，LMArena 登顶 | 推理能力追上并局部超越 |
-| Gemini 3.1 Pro | 2026-05 | 持续迭代 | 前沿竞速中 |
-
-### 2.1 Bard：恐慌的产物
-
-Bard 不是 Gemini，但它是 Gemini 的前传。2023 年 2 月 6 日，Sundar Pichai 在 Google 官方博客宣布 Bard，抢在微软发布 Bing+ChatGPT（2023-02-07）前一天。两天后的巴黎 demo 中，Bard 答错了一个关于 JWST 的问题，Google 股价跌 7.7%，市值蒸发超 $1000 亿。[^1]
-
-Bard 基于 LaMDA，而非 Gemini。它的仓促发布和 demo 翻车，给 Google 的 AI 努力贴上了"追赶者"的标签。但在 Bard 的背后，Google DeepMind 正在开发一个更完整的模型——Gemini。Bard 是烟幕，Gemini 是主菜。2024 年 2 月，Bard 品牌正式放弃，更名为 Gemini。
-
-（详见《编年·2023年3月》）
-
-### 2.2 Gemini 1.0：正面迎战——用 30/32 和一段剪辑
-
-2023 年 12 月 6 日，Google DeepMind 发布 Gemini 1.0，分为 Ultra、Pro、Nano 三个规模。Ultra 在 32 项基准中 30 项超过 GPT-4，MMLU 达到 90.0%——第一个超越人类专家（89.8%）的模型。[^2]
-
-Gemini 1.0 的核心卖点是**原生多模态**：从设计之初就在文本、图像、音频、视频和代码的联合数据上训练。这与 GPT-4V 的"先训练语言模型再加视觉"有根本不同。对 Google 来说，多模态不是附加功能——YouTube、Google Photos、Google Lens 的产品矩阵天然就是多模态的。
-
-但 Gemini 1.0 的发布被一段剪辑 demo 玷污。Bloomberg 调查发现，Google 展示的"实时视频理解"实际上是静态图片 + 文本提示的多次独立交互，被剪辑成了一段"实时对话"的假象。[^3] 社区的反应刻薄但精准："如果 Gemini 真的这么强，为什么需要靠剪辑来证明？"
-
-（详见《编年·2023年12月》）
-
-### 2.3 Gemini 1.5 Pro：在对手不玩的赛道上赢
-
-2024 年 2 月 15 日——与 OpenAI 的 Sora 同一天——Google DeepMind 发布 Gemini 1.5 Pro。1M token 上下文窗口是核心卖点：一次性输入整部《战争与和平》、完整电影剧本、或整个中等规模代码库。[^4]
-
-技术基础是 MoE（混合专家）架构。Gemini 1.5 Pro 在保持与 1.0 Ultra 接近能力的同时大幅降低推理成本。在"大海捞针"测试中，1M token 上下文下准确率达 99%。
-
-Gemini 1.5 Pro 是 Google 在 AI 竞争中的一个精妙策略：不正面交战。GPT-4 已经在推理、编程、多模态交互上占据高地——Google 开辟了一个自己可以称王的新指标：超长上下文。这个赛道的进入壁垒极高——需要的不仅是算法，还有 TPU v5p、Google 自研推理基础设施、以及"把整本书塞进模型而不崩溃"的工程能力。三者都是 Google 独有的。
-
-（详见《编年·2024年2月》）
-
-### 2.4 Gemini 2.0 Flash：Agentic era 的先锋
-
-2024 年 12 月 11 日，Google DeepMind 发布 Gemini 2.0 Flash，定位为"agentic era"的先锋。2.0 Flash 是 Gemini 系列首次明确面向**智能体（agent）**的模型——支持原生工具调用、多步任务规划、与 Google Search/Code Execution 等外部工具的直接集成。[^5]
-
-Flash 的定位是"主力工作马"——不是最强大，而是最快、最便宜、最实用。它在推理速度上大幅超越 1.5 Pro，在成本上低一个数量级，使得大规模 agent 部署成为可能。Google 在发布中明确表示，这是从"AI 模型"到"AI 系统"的过渡——模型不再只是回答问题，而是能在现实世界中调用工具完成多步任务。
-
-### 2.5 Gemini 2.5 Pro：Google 登上 LMArena 之巅
-
-2025 年 3 月 25 日，Google DeepMind 发布 Gemini 2.5 Pro，定位为"thinking model"。1M token 上下文窗口，在 LMArena 排行榜上登顶。[^6]
-
-与 o1 不同，Gemini 2.5 Pro 不隐藏思维链——用户可以看到模型的推理过程。在 AIME 2025 数学基准上达到 86.7%，GPQA Diamond 84.0%，SWE-bench 63.8%（略高于 Claude 3.7 Sonnet 的 62.3%）。
-
-但更重要不是分数，是 LMArena 排名。Chatbot Arena 是一个基于人类偏好的众包盲测平台——用户在不知道模型身份的情况下比较两个回答。Gemini 2.5 Pro 在这里登顶，意味着在普通人类的日常使用体验中，它确实比 GPT-4o 和 Claude 3.5 Sonnet 更受青睐。从 2023 年 12 月的"剪辑 demo 造假"到 2025 年 3 月的"用户投票登顶"，Google 用了 16 个月走完了从被嘲笑到被认可的路。
-
-（详见《编年·2025年3月》）
-
-### 2.6 Gemini 3.x：前沿竞速中
-
-2026 年 5 月，Google 发布 Gemini 3 系列，包括 3.1 Pro、3 Deep Think、3.5 Flash 等变体，延续了 Pro（全能旗舰）+ Flash（速度优先）+ Deep Think（深度推理）的三层产品结构。截至编纂之时（2026 年 6 月），Gemini 3 系列与 GPT-5.5、Claude 4 处于持续竞速状态，尚未拉开决定性差距。
+| 代际 | 时间 | 核心变化 | 历史位置 |
+|------|------|----------|----------|
+| Bard / LaMDA | 2023-02 | 仓促进入对话 AI | Gemini 前传 |
+| Gemini 1.0 | 2023-12 | 原生多模态；Ultra / Pro / Nano | 正面迎战 GPT-4 |
+| Gemini 1.5 Pro | 2024-02 | 1M context、MoE | 长上下文成为前沿赛道 |
+| Gemini 2.0 Flash | 2024-12 | 原生工具调用、Agentic Era | 从回答转向行动 |
+| Gemini 2.5 Pro | 2025-03 | thinking model、1M context | 推理能力进入主线 |
+| Gemini 3 Pro / Deep Think | 2025-11—12 | 更强推理、多模态、生成式界面、Agent | 多能力合流 |
+| Gemini 3.1 Pro | 2026-02 | 核心 reasoning 升级 | 复杂任务旗舰 |
+| Gemini 3.5 Flash | 2026-05 | frontier intelligence with action | Flash 从次旗舰变生产核心 |
+| Gemini 3.6 Flash | 2026-07 | token efficiency、Agent 可靠性 | 高频工作马 |
+| Gemini 3.7 Flash | 2026-08 | 三周再迭代、首发价减半 | 成本 / 迭代速度成为竞争力 |
+| Gemini 3.5 Pro | 截至 2026-08-28 尚未发布 | 原计划 2026-06 | “旗舰延迟、Flash 前进”的反常节点 |
 
 ---
 
-## 三、技术路线变迁
+## 三、前史：Bard 的仓促，Gemini 的反击
 
-### 3.1 架构：从密集模型到 MoE 到"思考引擎"
+### 3.1 Bard：错误答案成为时代开场
 
-Gemini 1.0 Ultra 是密集 Transformer 模型。从 1.5 Pro 开始转向 MoE（混合专家），以在增加能力的同时控制推理成本。2.5 Pro 在 MoE 基础上加入了推理增强——"思考"从产品功能变成架构特性。
+**2023-02-06** — Google 宣布 Bard。两天后的宣传演示中，Bard 对 James Webb Space Telescope 的回答出现事实错误，引发巨大舆论反响。[^1]
 
-Gemini 的架构演变有一个鲜明的"Google 风格"：不是发布论文讲新架构，而是在产品中渐进式改进。和 OpenAI 的"一篇论文定义一个代际"不同，Google 更倾向于"一代产品做三件事：能力提升、成本下降、生态系统集成"。
+Bard 基于 LaMDA，并不是 Gemini。但它给 Gemini 留下了一个非常不利的出场背景：当 ChatGPT 已经形成公众认知时，Google 看起来像那个拥有 Transformer 却被迫追赶的公司。
 
-### 3.2 训练方法：TPU 全栈自主
+这种“技术基础深、产品反应慢”的矛盾，后来几乎贯穿 Gemini 前两年历史。
 
-所有 Gemini 系列均在 Google 自研的 TPU 上训练——从 1.0 的 TPU v5p 到 3.x 的新一代 TPU。这意味着 Google 不受英伟达 GPU 供应限制，也使其推理成本具有结构性优势。
+### 3.2 Gemini 1.0：原生多模态与演示争议
 
-训练数据方面，Gemini 从一开始就包含文本、图像、音频、视频和代码的联合训练数据。Google 拥有 YouTube（视频数据）、Google Search（网页索引）、Google Books（书籍扫描）三大独家数据源——这是 OpenAI 和 Anthropic 无法复制的训练数据优势。
+**2023-12-06** — Google 发布 Gemini 1.0，分为 Ultra、Pro 和 Nano。官方把“从一开始就在多模态数据上训练”作为核心设计之一，并强调模型能够跨文本、图像、音频和视频进行推理。[^2]
 
-### 3.3 对齐策略：从 Bard 的教训中学习
+Gemini 1.0 是 Google 第一次用统一模型家族正面回应 GPT-4。
 
-Bard 的 demo 翻车暴露了 Google 在"快速发布 vs 安全测试"之间的矛盾。Gemini 1.0 的 demo 剪辑争议进一步加深了公众对 Google AI 诚实性的疑虑。
+但发布很快又被演示争议打断：Google 展示的多模态交互视频经过剪辑，并不是视频给人的“实时连续对话”形态。这个事件强化了一个坏印象——Google 总需要先说服公众相信 demo，而不是让产品自己说话。
 
-到 Gemini 2.5 Pro，Google 的对齐策略已大幅成熟。关键变化包括：公开思维链（对 o1 的隐藏策略的反驳）、通过 LMArena 这种第三方平台进行开放评估而非自报 benchmark、在 Google AI Studio 中提供免费试用降低门槛。从"我们告诉你它有多好"到"你自己试试它有多好"——这是 Bard 时代最大的教训。
-
-### 3.4 开源策略：完全闭源，但免费 tier 开源
-
-Gemini 系列的所有模型权重均未开源。但 Google 在分发上采取了"免费 tier + 付费 API"策略——通过 Google AI Studio 提供有限免费额度，降低了开发者的进入门槛。
-
-这与 Meta 的 Llama（完全开源）和 OpenAI 的 GPT（完全闭源 + 纯付费）形成了第三种模式：闭源模型 + 免费入口。其逻辑是：让开发者在免费 tier 上建立使用习惯，当使用量超过阈值时自然转化为付费用户。对 Google 来说，这种模式的额外收益是——大量开发者使用 Gemini API 会生成更多数据，反过来改善 Google 的搜索和广告系统。
+这也解释了后续 Gemini 发布策略为什么越来越强调**直接可用、第三方测试和大规模分发**。
 
 ---
 
-## 四、生态与影响
+## 四、Gemini 1.5：百万上下文把 Google 拉回前沿
 
-### 4.1 品牌整合：Bard → Gemini
+**2024-02-15** — Gemini 1.5 Pro 发布，采用 MoE 架构，并在研究预览中展示 **1M token** 上下文。[^3]
 
-Google 在 AI 品牌上的一条主线是整合。2023 年 2 月推出 Bard，2023 年 12 月升级至 Gemini Pro，2024 年 2 月正式放弃 Bard 品牌，将所有 AI 产品统一在 Gemini 旗下。这种"用一个品牌统领一切"的做法和 OpenAI 的 GPT + o 分立、Anthropic 的 Claude 单品牌形成对比。
+这一代的重要性不是“比 GPT-4 更聪明”，而是 Google 换了一道题：
 
-### 4.2 产品分发：Google 的杀手锏
+> 模型能不能一次看完一部长视频、一个大型代码库、几百页文档，然后仍然找到其中的细节？
 
-Gemini 的分发渠道是 Google 最被低估的资产：
+长上下文后来成为所有前沿模型的标准竞赛方向。Kimi 在中国市场把它产品化，Claude 长期强调大文档工作流，OpenAI 和 DeepSeek 也不断扩展上下文规模；但 Gemini 1.5 是把百万级窗口推到全球前沿模型叙事中心的关键节点之一。
 
-- **Google Workspace**：Gmail、Docs、Sheets 中嵌入 Gemini，覆盖 15 亿+ 用户
-- **Android**：Gemini Live 作为默认 AI 助手，覆盖 30 亿+ 设备
-- **Google Cloud / Vertex AI**：面向企业开发者的 API
-- **Google AI Studio**：个人开发者的免费入口
-- **Google Search**：AI Overviews 由 Gemini 驱动
+这也是 Gemini 第一次明显摆脱“追 GPT”的节奏：不是复制对手已经占领的高地，而是利用 Google 的模型与基础设施能力开辟新指标。
 
-这种分发深度是 OpenAI（仅有 ChatGPT App + API）和 Anthropic（仅有 API + Claude.ai）无法匹敌的。Gemini 不必是"最好的模型"才能被最多人使用——它只需"足够好"，因为 Google 已经把路铺到了每个用户的设备上。
+---
 
-### 4.3 竞品关系
+## 五、Gemini 2：Agentic Era
 
-| 时间段 | OpenAI | Anthropic | Google |
-|--------|--------|-----------|--------|
-| 2023 | ChatGPT 全民化 | Claude 安全叙事 | Bard 仓促追赶 |
-| 2024 初 | GPT-4 最强 | Claude 3 首次超越 | Gemini 1.5 Pro 长上下文突围 |
-| 2024 中 | GPT-4o 多模态 | Claude 3.5 Sonnet 编程称王 | Gemini 跟随 |
-| 2024 末 | o1 推理模型 | — | Gemini 2.0 Flash Agentic |
-| 2025 初 | o3 正式版 | Claude 4 用量定价 | Gemini 2.5 Pro LMArena 登顶 |
-| 2026 | GPT-5.x 系列 | Claude 4 持续迭代 | Gemini 3.x 三层产品结构 |
+### 5.1 2.0 Flash：Flash 不只是缩小版 Pro
 
-Gemini 的独特位置在于：它是唯一一家同时拥有**前沿模型能力**（LMArena #1）、**基础设施自主可控**（TPU）、**超大规模产品分发**（Google Workspace + Android）的竞争者。
+**2024-12-11** — Gemini 2.0 Flash 发布，Google 直接用 **“agentic era”** 描述这一代。模型支持工具使用和面向现实行动的能力，并与 Search、代码执行等外部系统结合。[^4]
 
-### 4.4 行业影响
+Flash 的意义也由此改变。
 
-- **原生多模态成为默认**：Gemini 1.0 的"从设计就是多模态"迫使 GPT-4V 和 Claude 3 跟进。到 2025 年，不再有人发布纯文本的前沿模型。
-- **超长上下文成为标准赛道**：Gemini 1.5 Pro 的 1M token 窗口迫使所有对手在上下文长度上竞争。
-- **"不隐藏思维链"成为竞争差异**：Gemini 2.5 Pro 的公开推理过程，与 o1 的隐藏策略形成鲜明对比，成为推理模型"透明度"竞赛的一部分。
-- **免费 tier 模式**：Google AI Studio 的免费 tier 迫使 OpenAI 在 GPT-4o 上采取类似的免费策略。
+传统模型家族里，“小型号”通常只是旗舰的廉价替代；Google 却逐渐让 Flash 承担另一种角色：**需要被高频调用、反复使用工具、追求低延迟的 Agent 引擎。**
+
+这种定位到 2026 年会成为 Gemini 最重要的产品策略。
+
+### 5.2 Gemini 2.5 Pro：thinking 成为默认前沿能力
+
+**2025-03-25** — Gemini 2.5 Pro 发布。Google 把它定义为 thinking model，面向复杂推理、代码和 1M context 工作。[^5]
+
+Gemini 2.5 Pro 一度在 LMArena 等评测中获得极高位置，使 Google 从 2023 年的“demo 翻车者”真正回到前沿能力中心。
+
+更重要的是，thinking 不再被做成完全独立的产品家族。Gemini 路线越来越倾向于把推理、工具、多模态和长上下文合在同一个模型系统里，而不是让用户在“普通模型”和“推理模型”之间切换世界观。
+
+---
+
+## 六、Gemini 3：多能力合流
+
+### 6.1 Gemini 3 Pro：从回答到“生成界面”
+
+**2025-11-18** — Google 发布 Gemini 3，首先上线 Gemini 3 Pro。官方将其描述为当时最强的 Gemini，在推理、多模态理解、vibe coding 和 agentic tasks 上全面升级。[^6]
+
+Gemini 3 的产品变化尤其值得注意：模型开始输出 **generative interfaces**——不是只给用户一段解释，而是根据问题生成更适合任务的视觉布局和交互结构。
+
+这意味着 Gemini 的输出单位从“答案”向“可操作界面”移动。
+
+同一时期，Gemini Agent 进入产品实验，Google 开始让模型执行更复杂的任务，而不是只作为 Search 或 Workspace 里的生成层。
+
+### 6.2 Deep Think：并行推理成为专门层
+
+**2025-12** — Gemini 3 Deep Think 面向 Ultra 用户推出，强调通过更高推理预算和并行探索多个假设处理数学、科学和逻辑问题。[^7]
+
+**2026-02-12** — Google 又更新 Deep Think，专门面向科学、研究和工程任务，并开始向部分 API 用户提供早期访问。[^8]
+
+Deep Think 的意义与 Flash 几乎相反：一个把推理预算拉高，一个把单位调用成本压低。Gemini 从此明确拥有两条 scaling 方向：
+
+- **纵向 scaling：一次任务投入更多 reasoning**；
+- **横向 scaling：用更便宜的 Flash 支撑更多调用和 Agent 循环**。
+
+### 6.3 Gemini 3.1 Pro：旗舰 reasoning 升级
+
+**2026-02-19** — Gemini 3.1 Pro 发布。Google 称其 ARC-AGI-2 验证分数达到 77.1%，超过 Gemini 3 Pro 两倍以上，并把它推入 Gemini API、Vertex AI、Gemini App、NotebookLM、Antigravity 等产品。[^9]
+
+这时 Gemini 的“模型”和“Google 产品”已经很难分开讨论：一个核心 intelligence 更新，会同时流入开发平台、企业云、消费端应用和知识工具。
+
+---
+
+## 七、2026：Flash 从便宜型号变成生产主线
+
+### 7.1 Gemini 3.5 Flash：frontier intelligence with action
+
+**2026-05-19** — Google I/O 发布 **Gemini 3.5 Flash**，把这一代直接定义为 **“frontier intelligence with action”**。它面向 coding、长程 Agent 和真实工作流，并在 Gemini App、Search AI Mode、Gemini API、Antigravity 和企业产品中同步铺开。[^10]
+
+同日，Google 宣布 Gemini App 月活用户已经超过 **9 亿**。[^11]
+
+这个数字说明 Gemini 的优势不能只用模型榜单衡量。Google 可以把一次模型更新同时送入搜索、Android、Workspace、云平台和开发工具；模型迭代因此天然具有巨大的分发杠杆。
+
+### 7.2 Computer Use 被吸收到主模型
+
+**2026-06-24** — Google 将 **computer use** 作为内置工具加入 Gemini 3.5 Flash。此前独立的 computer-use 能力被并回主力 Flash，让开发者用同一个模型看见浏览器 / 桌面环境、推理并执行操作。[^12]
+
+这与 Claude、GPT 的演化方向相同：computer use 不再是特别演示，而开始成为 Agent 基座的普通能力。
+
+### 7.3 3.6 Flash：优化“每项工作消耗多少 token”
+
+**2026-07-21** — Gemini 3.6 Flash、3.5 Flash-Lite 与 3.5 Flash Cyber 发布。Google 明确强调生产 Agent 需要的 **token efficiency、latency 与 reliability**；3.6 Flash 被称为新的 workhorse。[^13]
+
+官方称 3.6 Flash 相比 3.5 Flash 在 Artificial Analysis Index 测得的输出 token 使用量降低约 17%，部分代码任务中下降更大。[^13]
+
+这里的竞争指标已经不是“模型是否能完成题目”，而是：
+
+**完成同一个任务需要多少轮、多少 token、多少人工重试。**
+
+### 7.4 3.7 Flash：三周一更，首发价减半
+
+**2026-08-13** — Gemini 3.7 Flash 发布，距离 3.6 Flash 只有三周。Google 称它是当时最智能的 workhorse，进一步提升软件工程、知识工作、网页开发和多步 Agent，并以 **$0.75 / 1M input、$3.75 / 1M output** 的年内首发价上线——约为 3.6 Flash 原始价格的一半。[^14]
+
+这次发布表明 Google 已经把 Flash 当成类似基础设施软件的高频版本线，而不是等旗舰一年一更。
+
+---
+
+## 八、Gemini 3.5 Pro 的延迟：一次“没有发布”的重要事件
+
+Gemini 世家在 2026 年还有一个必须记录的节点：**Gemini 3.5 Pro 没有按计划出现。**
+
+Google 在 5 月 I/O 宣布 3.5 Pro 已在内部使用，希望“下个月”推出；但到 7 月，Reuters 报道它已经错过原定 6 月窗口，仍处于合作伙伴测试。[^10][^15]
+
+到 **2026-08-13** 发布 3.7 Flash 时，Google 仍没有给出 3.5 Pro 的发布日期。[^16]
+
+这不是简单延期，而是一个很有解释力的反差：
+
+- 旗舰 Pro 延迟；
+- Flash 却从 3.5 → 3.6 → 3.7 连续迭代；
+- Google 甚至已经公开表示 Gemini 4 的训练工作在推进。[^15]
+
+它说明 Agent 时代的前沿竞争不再保证“最强旗舰必须先走”。生产市场可以由**足够强、足够便宜、足够稳定的工作马**先向前推进。
+
+---
+
+## 九、旁支：Gemini Omni 与“任何输入到任何输出”
+
+Google I/O 2026 还发布了 **Gemini Omni** 家族，首先推出 Omni Flash，从多模态输入生成视频，并强调未来向“any input → any output”推进。[^17]
+
+它不是 Gemini 3.x 文本 / Agent 主线的简单版本号延伸，却代表 Gemini 原生多模态哲学的另一种结果：理解模型与生成媒体模型的边界正在融合。
+
+如果 Gemini 1.0 的命题是“一个模型理解多种模态”，Omni 的命题则进一步变成“一个智能系统可以在多种模态之间自由输入和生成”。
+
+---
+
+## 十、Gemini 的真正护城河：模型 × 基础设施 × 分发
+
+Gemini 与其他模型家族最大的不同，是它天然处在 Google 全栈体系中：
+
+- Gemini API / Google AI Studio 面向开发者；
+- Vertex AI / Gemini Enterprise 面向企业；
+- Gemini App 面向消费用户；
+- Search AI Mode 把模型直接放进搜索入口；
+- Android 与 Workspace 提供系统级和办公分发；
+- Antigravity、Gemini CLI、Android Studio 等承接 Agent / 开发工作流。
+
+因此，Google 不必让每一代 Gemini 都成为绝对 benchmark 第一，才能形成巨大影响。
+
+更准确的公式是：
+
+> **模型能力 × 单位调用成本 × 分发规模 × 工具连接能力。**
+
+Flash 的崛起，本质上就是 Google 在提高这个乘积，而不是只提高第一项。
 
 ---
 
 ## 评曰
 
-Gemini 的迭代史是一个关于**基础设施决定上限**的寓言。
+Gemini 最初的故事很容易写成“Transformer 发明者被 ChatGPT 打醒以后终于追上来”。这句话解释了 Bard，却已经解释不了 2026 年的 Gemini。
 
-从 2023 年 2 月 Bard 的仓促翻车，到 2025 年 3 月 Gemini 2.5 Pro 的 LMArena 登顶——这条弧线跨越了 16 个月。但真正支撑这条弧线的不是某一次算法突破，而是 Google 在 Transformer 时代积累的全面优势：TPU 芯片自主、YouTube 数据、搜索索引、Android 分发、云计算基础设施。当 Bard 翻车时，Google 被嘲笑"连 demo 都要剪辑"；当 Gemini 2.5 Pro 登顶时，同样的公司被重新评估为"唯一拥有全栈自主能力的 AI 巨头"。
+1.5 Pro 以后，Google 不断把不同系统能力吸收到 Gemini：长上下文、thinking、Search grounding、computer use、生成式界面、Agent、开发工具和多模态生成。Gemini 越来越不像一个孤立模型，更像 Google 软件系统里的**通用智能层**。
 
-Gemini 的策略是"不正面争最强"——不在推理上硬拼 o1、不在编程上硬拼 Claude、不在开源上硬拼 Llama——而是在自己独有的长板上建立壁垒：长上下文、原生多模态、Google 生态集成。这种策略的高明之处在于：对手可以在任何一个点追上 Google，但没有对手可以在所有点上同时追上。Google 不必是单项第一——它只需要在"能力×成本×分发"的乘积上无人能及。
+而 2026 年最值得记住的反而是 3.5 Pro 的延期。
 
-这种策略也暗示了大模型竞争的长期走向。随着 GPT-5.x、Claude 4.x、Gemini 3.x 在核心能力上越来越接近——MMLU 从 86% 到 90% 的差距是革命性的，从 90% 到 93% 已经不太感觉得出来——竞争会从"谁的模型更强"转向"谁的系统更完整"。而在这个维度上，Google 至今仍是全世界唯一一个拥有从芯片到模型到产品到操作系统的完整 AI 栈的公司。
+在传统模型竞赛里，旗舰延期意味着整个产品线停滞；但 Gemini 没有停。Flash 三个月里连续迭代，价格继续下降，computer use 被吸进主模型，Search 和 Gemini App 继续扩大分发。Google 用事实证明：**前沿 AI 的进步已经可以与旗舰发布时间解耦。**
+
+这正是 Gemini 世家从 2023 到 2026 最大的变化。
+
+2023 年 Google 忙着证明“我们的模型也很强”；2024 年证明“我们有别人没有的百万上下文”；2025 年证明“我们的 reasoning 也能登顶”；到 2026 年，它开始优化另一个更难被榜单捕捉的问题：
+
+**如何让足够强的智能以极低边际成本进入数亿用户和数十亿次工作流调用。**
+
+所以 Gemini 的长期竞争单位不是某个 Pro 模型，而是 **TPU / Cloud / Search / Android / Workspace / Gemini API / Agent runtime 共同组成的系统**。
+
+这也是为什么 Flash 可能比 Pro 更值得历史记住：旗舰定义能力上限，工作马决定 AI 实际进入世界的速度。
 
 ---
 
-*本篇由终末地工业史官团队编纂：赫默（主笔）。*
+*本篇由终末地工业史官团队编纂：赫默（主笔）。*  
+*2026-08 补订：GPT-5.6 Sol（OpenAI）。*
 
 ---
 
-[^1]: Google Blog, "An important next step on our AI journey", Sundar Pichai, 2023-02-06. https://blog.google/technology/ai/bard-google-ai-search-updates/；The Verge, "Google's AI chatbot Bard makes factual error in first demo", 2023-02-08. https://www.theverge.com/2023/2/8/23590864/google-ai-chatbot-bard-mistake-error-exoplanet-demo
-[^2]: Google DeepMind Blog, "Introducing Gemini: our largest and most capable AI model", 2023-12-06. https://blog.google/technology/ai/google-gemini-ai/
-[^3]: Julia Love & Davey Alba / Bloomberg, "Google's 'Most Capable' AI Model Gemini Has a Catch", 2023-12-07. https://www.bloomberg.com/news/articles/2023-12-07/google-s-most-capable-ai-model-gemini-has-a-catch
-[^4]: Google AI Blog, "Our next-generation model: Gemini 1.5", 2024-02-15. https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/
-[^5]: Google DeepMind Blog, "Introducing Gemini 2.0: our new AI model for the agentic era", 2024-12-11. https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/
-[^6]: Google DeepMind Blog, "Gemini 2.5: Our most intelligent AI model", 2025-03-25. https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/
+[^1]: Google, “An important next step on our AI journey”, 2023-02-06. https://blog.google/technology/ai/bard-google-ai-search-updates/ ; The Verge, “Google's AI chatbot Bard makes factual error in first demo”, 2023-02-08. https://www.theverge.com/2023/2/8/23590864/google-ai-chatbot-bard-mistake-error-exoplanet-demo
+[^2]: Google, “Introducing Gemini: our largest and most capable AI model”, 2023-12-06. https://blog.google/technology/ai/google-gemini-ai/
+[^3]: Google, “Our next-generation model: Gemini 1.5”, 2024-02-15. https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/
+[^4]: Google DeepMind, “Introducing Gemini 2.0: our new AI model for the agentic era”, 2024-12-11. https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/
+[^5]: Google DeepMind, “Gemini 2.5: Our most intelligent AI model”, 2025-03-25. https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/
+[^6]: Google, “A new era of intelligence with Gemini 3”, 2025-11-18. https://blog.google/products-and-platforms/products/gemini/gemini-3/
+[^7]: Google, “Gemini 3 Deep Think is now available”, 2025-12-04. https://blog.google/products-and-platforms/products/gemini/gemini-3-deep-think/
+[^8]: Google, “Gemini 3 Deep Think: Advancing science, research and engineering”, 2026-02-12. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-deep-think/
+[^9]: Google, “Gemini 3.1 Pro: A smarter model for your most complex tasks”, 2026-02-19. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/
+[^10]: Google, “Gemini 3.5: frontier intelligence with action”, 2026-05-19. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/
+[^11]: Google, “The Gemini app becomes more agentic, delivering proactive, 24/7 help”, 2026-05-19. https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/
+[^12]: Google, “Introducing computer use in Gemini 3.5 Flash”, 2026-06-24. https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash/
+[^13]: Google, “Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber”, 2026-07-21. https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/
+[^14]: Google, “Introducing Gemini 3.7 Flash”, 2026-08-13. https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/
+[^15]: Reuters, “Google updates lightweight Gemini models, but flagship still delayed”, 2026-07-21. https://www.reuters.com/business/google-updates-lightweight-gemini-models-flagship-still-delayed-2026-07-21/
+[^16]: Reuters, “Google unveils Gemini 3.7 Flash AI model for coding, agent workflows”, 2026-08-13. Reuters copy: https://www.investing.com/news/stock-market-news/google-unveils-gemini-37-flash-ai-model-for-coding-agent-workflows-4858898
+[^17]: Google I/O, “100 things we announced at Google I/O 2026”, 2026-05-20. https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/
