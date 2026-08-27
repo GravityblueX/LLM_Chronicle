@@ -102,7 +102,7 @@ AI 自己写自己的历史。
     ├── 05.md              Claude Mythos：漏洞武器化与出口管制危机
     ├── 06.md              Gemini 3 Pro；Mythos 5/Fable 5；出口管制撤销
     ├── 07.md              GPT-5.6、Kimi K3、Gemini 3.6、Claude Opus 5 与 DeepSeek V4-Flash
-    └── 08.md              Qwen3.8、Muse Glimmer、DeepSeek V4-Pro 与模型部署的最后一公里
+    └── 08.md              Qwen3.8、GLM-5.3-Flash、V4-Pro 与模型部署的最后一公里
 ```
 
 ## 纪传目录
@@ -110,23 +110,23 @@ AI 自己写自己的历史。
 ```
 纪传/
 ├── 本纪/
-│   ├── Alibaba.md         阿里巴巴：云业务转型中的AI布局
-│   ├── Anthropic.md       Anthropic：安全第一的非营利理想主义者
+│   ├── Alibaba.md         阿里巴巴：从开放模型族到 Max 旗舰与云 Agent
+│   ├── Anthropic.md       Anthropic：从安全品牌到风险分层与能力治理
 │   ├── Apple.md           Apple：沉默的端侧布局者
-│   ├── DeepSeek.md        DeepSeek：开源搅局者
-│   ├── Google.md          Google：从被嘲笑到登顶
+│   ├── DeepSeek.md        DeepSeek：从效率路线到长程 Agent 系统
+│   ├── Google.md          Google：从 Transformer 发明者到全栈 Agent 系统
 │   ├── Meta.md            Meta：开源路线的孤勇者
 │   ├── Microsoft.md       Microsoft：最大押注者与最快整合者
 │   ├── Amazon.md          Amazon：基础设施的帝国
 │   ├── Baidu.md           百度：中国AI的先行者
-│   ├── NVIDIA.md          NVIDIA：AI算力基础设施的事实垄断者
+│   ├── NVIDIA.md          NVIDIA：从 GPU 军火商到 Agentic AI Factory
 │   ├── ByteDance.md       字节跳动：不做最强模型，做最多人用的AI
-│   └── OpenAI.md          OpenAI：从非营利到营利的悖论
+│   └── OpenAI.md          OpenAI：从非营利治理到 Foundation + PBC
 ├── 世家/
 │   ├── Claude.md          Claude：从宪法 AI 到风险分层的前沿谱系
 │   ├── DeepSeek.md        DeepSeek：从成本效率到长程 Agent 系统
 │   ├── Falcon.md          Falcon：海湾国家AI主权的开源尝试
-│   ├── GLM.md             GLM：中文大模型的自主路线
+│   ├── GLM.md             GLM：从中文本地模型到国产 Agent serving
 │   ├── GPT.md             GPT：从预训练王朝到 scaling work
 │   ├── Gemini.md          Gemini：从原生多模态到生产 Agent 工作马
 │   ├── Llama.md           Llama：Meta 的开源赌注
@@ -204,6 +204,8 @@ AI 自己写自己的历史。
 | 核查 | 白面鸮（Ptilopsis） | 数据校验、格式合规 |
 
 首批条目（2022/08 ~ 2023/05 共 4 篇，后扩展至 8 篇）由 **ssg 的 AI 史官·玄墨** 贡献，署名已保留。
+
+**2026 夏季总补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 本轮补齐 2026/07—08 编年，并集中修订模型谱系、本纪、专题史论与关键数据表；原史官署名均保留。
 
 ## 协作
 
