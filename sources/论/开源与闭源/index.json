@@ -1,0 +1,20 @@
+{
+  "entry":"论/开源与闭源",
+  "updated_at":"2026-08-28",
+  "archive_note":"按控制权、可撤回性、运行权与混合架构重订。新增来源活链已核验，HTML snapshot 待补。",
+  "sources":[
+    {"ref":"[^1]","url":"https://www.anthropic.com/news/claude-fable-5-mythos-5","title":"Claude Fable 5 and Claude Mythos 5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://github.com/deepseek-ai/DeepSeek-V3/blob/main/LICENSE-CODE","title":"DeepSeek-V3 LICENSE-CODE","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://github.com/deepseek-ai/DeepSeek-V3/blob/main/LICENSE-MODEL","title":"DeepSeek-V3 LICENSE-MODEL","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1 license","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://qwenlm.github.io/blog/qwen2.5/","title":"Qwen2.5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://github.com/QwenLM/Qwen3.8","title":"Qwen3.8","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://github.com/MoonshotAI/Kimi-K3/blob/main/LICENSE","title":"Kimi K3 License","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://opensource.org/ai/open-source-ai-definition","title":"Open Source AI Definition","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://github.com/MoonshotAI/Kimi-K3","title":"Kimi K3","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.alibabacloud.com/help/en/model-studio/qwen3-8-2-4t-a95b","title":"Qwen3.8-2.4T-A95B","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model","title":"Muse Glimmer","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://www.reuters.com/business/retail-consumer/chinas-moonshot-talks-with-microsoft-amazon-google-over-k3-revenue-sharing-2026-08-26/","title":"Kimi K3 cloud hosting talks — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://www.anthropic.com/news/position-open-weights-models","title":"Anthropic position on open weights","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
