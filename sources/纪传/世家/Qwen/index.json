@@ -1,0 +1,22 @@
+{
+  "entry": "纪传/世家/Qwen",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 补订至 Qwen3.8 并复核历代许可叙事时逐条核验活链。当前 GitHub 连接器无法执行仓库网页快照工具，因此新增来源暂登记为待归档，不伪造 HTML snapshot。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.thepaper.cn/newsDetail_forward_22651605","title":"阿里所有产品都将接入‘通义千问’，平台将开放第三方大模型接入 — 澎湃新闻","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://github.com/QwenLM/Qwen","title":"Qwen original repository and licensing materials — QwenLM","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://github.com/QwenLM/Qwen-VL","title":"Qwen-VL — QwenLM","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending","secondary_url":"https://github.com/QwenLM/Qwen-Audio"},
+    {"ref":"[^4]","url":"https://qwenlm.github.io/blog/qwen1.5/","title":"Introducing Qwen1.5 — Qwen Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://qwenlm.github.io/blog/qwen2/","title":"Hello Qwen2 — Qwen Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://qwenlm.github.io/blog/qwen2.5/","title":"Qwen2.5: A Party of Foundation Models! — Qwen Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://github.com/QwenLM/Qwen3","title":"Qwen3 official repository — QwenLM","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://qwen.ai/blog?id=qwen3-next","title":"Qwen3-Next: Towards Ultimate Training & Inference Efficiency — Qwen Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://qwen.ai/blog?id=qwen3.5","title":"Qwen3.5: Towards Native Multimodal Agents — Qwen Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://qwen.ai/blog?id=qwen3.6-35b-a3b","title":"Qwen3.6-35B-A3B — Qwen Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending","secondary_url":"https://qwen.ai/blog?id=qwen3.6-27b"},
+    {"ref":"[^11]","url":"https://www.alibabacloud.com/help/en/model-studio/vision-model","title":"Qwen3.7 model documentation — Alibaba Cloud Model Studio","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending","secondary_url":"https://www.alibabacloud.com/help/en/model-studio/model-pricing"},
+    {"ref":"[^12]","url":"https://www.alibabagroup.com/en-US/document-2021044032125272064","title":"Alibaba Unveils Qwen3.8-Max: Its Largest and Most Capable Flagship Model to Date — Alibaba Group","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://github.com/QwenLM/Qwen3.8","title":"Qwen3.8 official repository — QwenLM","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://www.alibabacloud.com/help/en/model-studio/qwen3-8-2-4t-a95b","title":"qwen3.8-2.4t-a95b Model Info — Alibaba Cloud Model Studio","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://qwen.ai/blog?id=qwen3.8-flash-next","title":"Qwen3.8-Flash-Next: A New Architecture, Towards Ultimate Cost-Efficiency — Qwen Team","snapshot":null,"archived_at":"2026-08-28","status":"live_verified_snapshot_pending"}
+  ]
+}
