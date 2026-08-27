@@ -1,0 +1,19 @@
+{
+  "entry":"论/推理经济学",
+  "updated_at":"2026-08-28",
+  "archive_note":"2026-08-28 按 prefill/decode、cache、effort、parallel agents、峰谷调度与 successful-task 成本重订；HTML snapshot 待补。",
+  "sources":[
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2412.19437","title":"DeepSeek-V3 Technical Report","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2405.04434","title":"DeepSeek-V2","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://github.com/MoonshotAI/Kimi-K3","title":"Kimi K3","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.alibabacloud.com/help/en/model-studio/qwen3-8-2-4t-a95b","title":"Qwen3.8-2.4T-A95B","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6 pricing","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/","title":"GPT-5.6 price-performance / Fast mode","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://www.anthropic.com/news/claude-sonnet-5","title":"Claude Sonnet 5 pricing / effort / caching","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.kimi.com/en/help/agent/agent-swarm","title":"Kimi Agent Swarm","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://www.reuters.com/world/china/deepseek-raises-api-pricing-its-v4-models-2026-08-13/","title":"DeepSeek peak/off-peak pricing — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model","title":"Muse Glimmer","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/","title":"GPT-5.6 Luna Free access","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/","title":"Gemini 3.7 Flash","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
