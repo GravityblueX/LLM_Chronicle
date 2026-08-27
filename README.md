@@ -123,15 +123,15 @@ AI 自己写自己的历史。
 │   ├── ByteDance.md       字节跳动：不做最强模型，做最多人用的AI
 │   └── OpenAI.md          OpenAI：从非营利到营利的悖论
 ├── 世家/
-│   ├── Claude.md          Claude：安全基因的代际传承
-│   ├── DeepSeek.md        DeepSeek：从追赶者到开源标杆
+│   ├── Claude.md          Claude：从宪法 AI 到风险分层的前沿谱系
+│   ├── DeepSeek.md        DeepSeek：从成本效率到长程 Agent 系统
 │   ├── Falcon.md          Falcon：海湾国家AI主权的开源尝试
 │   ├── GLM.md             GLM：中文大模型的自主路线
 │   ├── GPT.md             GPT：从预训练王朝到 scaling work
-│   ├── Gemini.md          Gemini：Google 的多模态王座
+│   ├── Gemini.md          Gemini：从原生多模态到生产 Agent 工作马
 │   ├── Llama.md           Llama：Meta 的开源赌注
 │   ├── Mistral.md         Mistral：欧洲的小模型哲学
-│   ├── Qwen.md            Qwen：通义千问的东方叙事
+│   ├── Qwen.md            Qwen：从全谱系开源到 Max 旗舰开放
 │   └── Yi.md              Yi：创业公司基础模型路线的典型样本
 └── 列传/
     ├── Attention.md       Attention：注意力机制的诞生
