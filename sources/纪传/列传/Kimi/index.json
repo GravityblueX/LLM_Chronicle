@@ -13,11 +13,11 @@
     },
     {
       "ref": "[^2]",
-      "url": "https://www.kimi.com/",
-      "title": "Kimi — Moonshot AI",
+      "url": "https://www.nbd.com.cn/articles/2024-03-18/3285223.html",
+      "title": "时隔5个月，Kimi从20万字到200万字，月之暗面‘长文本时代’一路狂奔 — 每日经济新闻",
       "snapshot": null,
       "archived_at": "2026-08-28",
-      "status": "live_verified_historical_claim_needs_archive"
+      "status": "live_verified_snapshot_pending"
     },
     {
       "ref": "[^3]",
@@ -98,7 +98,8 @@
       "title": "Kimi K3: Open Frontier Intelligence — arXiv:2607.24653",
       "snapshot": null,
       "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending"
+      "status": "live_verified_snapshot_pending",
+      "secondary_url": "https://www.kimi.com/en/help/agent/agent-overview"
     },
     {
       "ref": "[^13]",
