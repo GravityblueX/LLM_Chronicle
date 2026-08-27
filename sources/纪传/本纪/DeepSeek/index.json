@@ -1,0 +1,16 @@
+{
+  "entry": "纪传/本纪/DeepSeek",
+  "updated_at": "2026-08-28",
+  "archive_note": "本轮补订使用官方论文、官方仓库/文档与 Reuters 交叉校正。GitHub 连接器无法运行 HTML snapshot 工具，新增来源登记为待归档活链。",
+  "sources": [
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2405.04434","title":"DeepSeek-V2","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2412.19437","title":"DeepSeek-V3 Technical Report","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://github.com/deepseek-ai/DeepSeek-V3","title":"DeepSeek-V3 official repository — separate code/model licenses","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://github.com/deepseek-ai/DeepSeek-R1","title":"DeepSeek-R1 official repository — license and distilled models","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.reuters.com/world/china/deepseek-releases-official-v4-pro-model-it-steps-up-expansion-2026-08-13/","title":"DeepSeek releases official V4 Pro model as it steps up expansion — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://arxiv.org/abs/2401.02954","title":"DeepSeek LLM: Scaling Open-Source Language Models with Longtermism","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://arxiv.org/abs/2501.12948","title":"DeepSeek-R1 paper","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://deepseek.com/en/news/v4-preview/","title":"DeepSeek-V4 Preview","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek API Change Log","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
