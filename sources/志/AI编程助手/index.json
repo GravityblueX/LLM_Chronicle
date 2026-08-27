@@ -1,0 +1,22 @@
+{
+  "entry":"志/AI编程助手",
+  "updated_at":"2026-08-28",
+  "archive_note":"2026-08-28 补订到异步 coding agent、多 Agent、Agents tab 与 automations；新增来源活链已核验，HTML snapshot 待补。",
+  "sources":[
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2107.03374","title":"Codex / HumanEval","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer/","title":"Introducing GitHub Copilot","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://github.blog/2022-06-21-github-copilot-is-generally-available-to-all-developers/","title":"GitHub Copilot GA","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/claude-3-5-sonnet","title":"Claude 3.5 Sonnet","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.anthropic.com/news/3-5-models-and-computer-use","title":"Claude computer use","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://github.com/newsroom/press-releases/agent-mode","title":"GitHub Copilot Agent Mode","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://github.blog/changelog/2025-05-19-github-copilot-coding-agent-in-public-preview/","title":"Copilot coding agent public preview","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/","title":"GitHub Copilot coding agent","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://www.anthropic.com/news/claude-3-7-sonnet","title":"Claude 3.7 Sonnet and Claude Code","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.anthropic.com/news/claude-sonnet-5","title":"Claude Sonnet 5","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://openai.com/index/introducing-codex/","title":"Introducing Codex","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://openai.com/index/introducing-the-codex-app/","title":"Introducing the Codex app","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://github.blog/changelog/2026-01-26-introducing-the-agents-tab-in-your-repository/","title":"Agents tab","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://docs.github.com/en/copilot/concepts/agents/about-third-party-coding-agents","title":"Third-party coding agents — GitHub Docs","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://github.blog/changelog/2026-08-03-trigger-copilot-automations-with-comments/","title":"Copilot automations","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
