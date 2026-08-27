@@ -1,0 +1,20 @@
+{
+  "entry": "论/Agent 时代",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 按授权、运行时、协议、多 Agent 与任务经济学重订。新增来源活链已核验，HTML snapshot 待仓库归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://github.com/Significant-Gravitas/AutoGPT","title":"AutoGPT","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://openai.com/index/function-calling-and-other-api-updates/","title":"Function calling — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.anthropic.com/news/3-5-models-and-computer-use","title":"Claude computer use — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://openai.com/index/introducing-codex/","title":"Introducing Codex — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://openai.com/index/the-next-evolution-of-the-agents-sdk/","title":"The next evolution of the Agents SDK — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.anthropic.com/news/model-context-protocol","title":"Model Context Protocol — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/","title":"A2A — Google Developers Blog","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year","title":"A2A adoption update — Linux Foundation","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://blog.modelcontextprotocol.io/posts/2026-07-28/","title":"MCP 2026-07-28 Specification","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.kimi.com/en/help/agent/agent-swarm","title":"Agent Swarm — Kimi Help Center","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://github.blog/changelog/2026-01-26-introducing-the-agents-tab-in-your-repository/","title":"Agents tab — GitHub Changelog","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://github.blog/changelog/2026-08-03-trigger-copilot-automations-with-comments/","title":"Copilot automations — GitHub Changelog","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
