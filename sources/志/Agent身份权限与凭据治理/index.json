@@ -1,0 +1,17 @@
+{
+  "entry": "志/Agent身份权限与凭据治理",
+  "updated_at": "2026-08-29",
+  "archive_note": "Agent 身份、权限、委托与凭据治理专题来源。新增活链待仓库本地 HTML 归档工具补抓；当前连接器不伪造快照。",
+  "sources": [
+    {"ref":"[^1]","url":"https://techcommunity.microsoft.com/blog/microsoft-entra-blog/announcing-microsoft-entra-agent-id-secure-and-manage-your-ai-agents/3827392","title":"Announcing Microsoft Entra Agent ID — Microsoft, 2025-05-19","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://learn.microsoft.com/en-us/entra/id-governance/agent-id-governance-overview","title":"Governing Agent Identities — Microsoft Learn","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://aws.amazon.com/about-aws/whats-new/2026/04/amazon-bedrock-agentcore/","title":"AgentCore Identity On-Behalf-Of token exchange — AWS, 2026-04-30","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://learn.microsoft.com/en-us/entra/agent-id/autonomous-agent-authentication-authorization-flow","title":"Autonomous Agent Authentication / Authorization Flow — Microsoft Learn","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://modelcontextprotocol.io/extensions/auth/oauth-client-credentials","title":"OAuth Client Credentials — Model Context Protocol","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization","title":"MCP Authorization Specification — 2025-06-18","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization","title":"MCP Authorization Specification — 2025-11-25","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://blog.modelcontextprotocol.io/posts/2026-07-28/","title":"MCP 2026-07-28 Specification Update","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://a2a-protocol.org/latest/specification/","title":"A2A Protocol Latest Specification","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://a2a-protocol.org/latest/topics/enterprise-ready/","title":"A2A Enterprise Features / Authorization","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
