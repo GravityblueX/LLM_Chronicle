@@ -1,0 +1,12 @@
+{
+  "month": "2023-06",
+  "updated_at": "2026-08-28",
+  "archive_note": "补录 Function Calling 及其 Agent 前史关系。当前 GitHub 连接器无法执行 HTML snapshot 工具，活链登记待归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://openai.com/index/function-calling-and-other-api-updates/","title":"Function calling and other API updates — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2210.03629","title":"ReAct","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://arxiv.org/abs/2302.04761","title":"Toolformer","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4a]","url":"https://openai.com/index/chatgpt-plugins/","title":"ChatGPT plugins — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4b]","url":"https://github.com/Significant-Gravitas/AutoGPT","title":"AutoGPT — GitHub","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
