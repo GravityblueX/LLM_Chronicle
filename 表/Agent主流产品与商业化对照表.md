@@ -2,6 +2,8 @@
 
 > 更新时间：2026-08-28。价格随地区、合同、促销和用量变化；本表记录公开价格与计量逻辑，不作为采购报价。更重要的是观察**商品单位**怎样从席位迁移到 credits、actions、tasks 与 runtime resources。
 
+## 核心十条商业路线
+
 | 产品 | 厂商 | 主要对象 | Agent 形态 | 公开价格 / 计量方式（2026-08） | 商业化信号 |
 |---|---|---|---|---|---|
 | ChatGPT Agent / Work / Codex | OpenAI | 个人、团队、企业 | research + browser + files + coding + workspace agents | Plus $20/月；高用量 Pro 分层；Business $20/用户/月（年付）；企业 Work / Codex 可走 credits | 从聊天订阅转向 seat + flexible usage |
@@ -15,6 +17,31 @@
 | Gemini Enterprise Agent Platform | Google Cloud | 企业 Agent 与开发平台 | runtime + gateway + memory + sessions + governance | Agent Compute 约 $0.085/vCPU-h；storage / memory / requests / model tokens 分开计 | Agent 被当成独立 cloud workload 做 FinOps |
 | Bedrock AgentCore | AWS | Agent 开发者与企业 | runtime + browser + code interpreter + gateway + identity + memory + policy | Runtime CPU $0.0895/vCPU-h；memory $0.00945/GB-h；search/gateway/memory 等分别计价 | 最接近“Agent 操作系统即云 SKU” |
 
+这十条不是“全球所有 Agent 产品排行榜”，而是十种最具代表性的商业路线：通用订阅、模型厂商工作台、Git 原生 Agent、AI IDE、独立数字工程师、通用任务 Agent、CRM 数字劳工、企业低代码平台以及两种云 Agent 基础设施。
+
+---
+
+## 第二圈：已经商业化、但不必挤进核心十位的主流产品
+
+| 产品 / 平台 | 厂商 | 2026 年商业状态 | 为什么值得写 |
+|---|---|---|---|
+| AI Agents / Otto / AI Agent Orchestrator / AI Control Tower | ServiceNow | 正式产品；按既有产品 tier / license 提供，并建立 partner-built Agent marketplace | IT、客服、HR、CRM 工作流中把多 Agent、control tower、marketplace 做成同一企业平台 |
+| Sana AI Agents + Agent System of Record | Workday | 正式销售；使用 **Workday Flex Credits** 批量购买 Agent / AI 能力 | HR / Finance SaaS 明确把 Agent 作为可治理的“系统记录对象”和持续 upsell |
+| Joule Agents | SAP | Premium AI；官方明确按 **agent actions** 收费 | 与 Salesforce 类似，价格单位开始直接锚定“Agent 做了多少工作” |
+| Fusion Agentic Applications / AI Agent Studio | Oracle | 正式 Fusion Cloud 能力；支持 specialized agent teams、workflow、approval、audit | 传统 ERP 把 Agent 直接嵌进 business objects 与审批链，而不是外置聊天机器人 |
+| watsonx Orchestrate | IBM | 正式企业 Agent 平台；Essentials / Standard、cloud credits、AWS 等购买路径 | 重点不是单一 Agent，而是跨框架 import、gateway、治理、catalog 与 Agent monetization |
+| Comet for Enterprise | Perplexity | 企业版 AI-native browser；Enterprise Pro $40/seat/月、Enterprise Max $325/seat/月 | browser 本身变成 Agent 执行面，并配有企业级 Agent policies / controls / monitoring |
+| Genspark | Genspark | 消费 / 专业订阅；Plus $24.99/月、Pro $249.99/月（另有年付折扣） | 走“多模型 + 多 Agent + Slides/Sheets/Docs/Code 一站式聚合订阅”，与单模型厂商路线不同 |
+
+第二圈最值得注意的是**传统企业软件全面 Agent 化**。Salesforce 之外，ServiceNow、Workday、SAP、Oracle、IBM 都已经不再把 Agent 当未来概念，而是正式写进产品目录、许可、credits、action billing、marketplace 或治理平台。
+
+另一边，Comet 与 Genspark 说明通用 Agent 商业化也不只存在 ChatGPT / Claude / Manus 三条路线：
+
+- **Comet** 把浏览器变成带 Agent policies 的企业工作环境；
+- **Genspark** 则把多个前沿模型和 Agent 打包成一个“AI Costco”式订阅。
+
+这些产品的资料统一见 `sources/志/Agent产品与商业化/index.json` 的第二圈来源（refs 34—40）。
+
 ---
 
 ## 一、个人 / 通用 Agent：订阅仍然重要，但已经不够
@@ -24,10 +51,12 @@
 | ChatGPT | Plus $20/月 | Pro / credits / enterprise flexible usage | 高算力 Agent 无法长期被统一订阅价完全覆盖 |
 | Claude | Pro $20/月 | Max $100/$200 + usage bundles | 同一余额可跨 Chat、Code、Cowork 使用 |
 | Manus | Free / Pro $20 起 | credits、并发任务、scheduled task 配额 | 用户直接购买“能跑多少任务” |
+| Genspark | Plus $24.99/月 | Pro $249.99/月、credit allowance 大幅提升 | 聚合多个模型 / Agent 后，credits 成为跨模型共同货币 |
+| Perplexity Enterprise / Comet | Enterprise Pro $40/seat/月 | Enterprise Max $325/seat/月 | 浏览器 Agent 与企业 seat / policy 管理结合 |
 
 ### 观察
 
-个人 Agent 仍然保留 SaaS 最熟悉的“20 美元/月”心理价位，但真正重度执行已经向更高 plan 或 credits 迁移。
+个人 Agent 仍然保留 SaaS 熟悉的月度订阅心理价位，但真正重度执行已经向更高 plan、credits 或企业 tier 迁移。与此同时，**聚合型 Agent 产品**开始出现：用户购买的不是某一个 checkpoint，而是一套跨模型的工作空间。
 
 ---
 
@@ -58,11 +87,21 @@ Cursor 官方文档给出的典型消费已经把这一点写得很直白：dail
 |---|---|---|---|
 | Salesforce Agentforce | Flex Credits / conversations / add-on seat | action、conversation | CRM 更新、客服解决、销售动作 |
 | Microsoft Copilot Studio | Copilot Credits / PAYG | answer、agent action、grounding、voice | M365 内部流程与外部客户渠道 |
-| Workday 等垂直 SaaS | 通常捆绑产品 / 合同 | workflow / module / seat | HR、payroll、finance |
+| Workday Sana Agents | Flex Credits | agent / platform innovation usage | HR、finance、talent workflows |
+| SAP Joule Agents | Premium AI commercial model | **agent action** | HR、finance、service / ERP workflow |
+| ServiceNow AI Agents | product tier / license | workflow / AI specialist / agentic outcome | ITSM、customer service、HR、CRM |
+| Oracle Fusion Agentic Applications | Fusion Cloud commercial stack | workflow / application entitlement | ERP / HCM / SCM business objects、approvals、audit |
+| IBM watsonx Orchestrate | Essentials / Standard / cloud credits | capacity / orchestration usage | cross-system agent orchestration、catalog、governance |
 
 ### 观察
 
-企业 Agent 厂商试图把价格锚定到“产生了什么业务行为”，而不是“模型生成了多少 token”。这是数字劳工叙事真正进入合同的地方。
+企业 Agent 厂商正在尝试三种锚点：
+
+- **席位 / 产品层级**：沿用 SaaS；
+- **credits / capacity**：覆盖变化巨大的推理和执行成本；
+- **action / conversation / outcome**：尽量接近业务价值。
+
+SAP 明确写“agents are Premium AI capabilities, charged based on agent actions”，Salesforce 同样按 action / conversation 计费。传统企业软件正在把“数字劳工”从营销词推进到 billing meter。
 
 ---
 
@@ -122,10 +161,11 @@ Agent cloud pricing 已经和普通云基础设施非常相似，但增加了模
 - **Devin**：官网宣称 **100 万+用户、4000+ Enterprise customers**。
 - **Microsoft 365 Copilot**：Reuters 2026-07 报道付费席位超过 **3000 万**；这些不等于全部在使用 Agent，但构成企业 Agent 的巨大分发入口。
 - **Workday**：2026 Q2 超过一半新客户购买至少一个 AI offering，说明传统 SaaS 正把 Agent / AI 变成 upsell。
+- **ServiceNow**：2026 年继续扩展 Agent marketplace / partner program，并把 Otto、AI Agent Orchestrator、AI Control Tower 和 Autonomous Workforce 置于同一平台战略。
 - **金融业**：Reuters 2026-07 报道超过一半受访银行正在测试 agentic AI，部分机构已把 Agent 当成有账号、经理和职责的“digital employee”管理。
 - **保险业**：2026-08 网络保险公司开始修改 policy wording 应对 Agent 在合法授权下自主造成网络损害的责任问题。
 
-这些信号共同说明：Agent 已经进入采购、预算、组织设计和保险，而不只是技术演示。
+这些信号共同说明：Agent 已经进入采购、预算、合作伙伴市场、组织设计和保险，而不只是技术演示。
 
 ---
 
@@ -147,6 +187,6 @@ Meta Project OT 的波折提醒行业：把 Agent 直接写进组织裁员计划
 
 ## 资料来源
 
-详见《志·Agent 产品与商业化》脚注及 `sources/志/Agent产品与商业化/index.json`。
+详见《志·Agent 产品与商业化》脚注及 `sources/志/Agent产品与商业化/index.json`。本表的“第二圈”来源对应 source bank refs 34—40。
 
 *2026-08 补订：GPT-5.6 Sol（OpenAI）。*
