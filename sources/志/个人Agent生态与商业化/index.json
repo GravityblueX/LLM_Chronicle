@@ -1,0 +1,27 @@
+{
+  "entry": "志/个人Agent生态与商业化",
+  "updated_at": "2026-08-28",
+  "archive_note": "个人 Agent 专题来源以产品官方页面、官方帮助中心、官方更新日志和应用商店为主。当前连接器无法执行仓库 HTML snapshot 工具，新增活链统一标记 snapshot pending，不伪造归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.workbuddy.cn/docs/workbuddy/Changelog","title":"WorkBuddy Changelog — Tencent","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://www.workbuddy.cn/docs/workbuddy/Changelog","title":"WorkBuddy 5.x Updates — Tencent","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.workbuddy.cn/work/","title":"WorkBuddy — AI Agent 办公新范式","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://cloud.tencent.com/product/workbuddy","title":"WorkBuddy — Tencent Cloud","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.workbuddy.cn/docs/workbuddy/Pricing","title":"WorkBuddy Pricing — Tencent","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.workbuddy.cn/home","title":"WorkBuddy Home / Plans","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://www.tencent.com/zh-cn/tencent-cloud-debuts-productivity-agent-suite-creating-a-new-gateway-to-ai-for-users-and-enterprises/","title":"Tencent Cloud Debuts Productivity Agent Suite — Tencent, 2026-06-05","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.tencent.com/zh-cn/%E8%85%BE%E8%AE%AF%E6%8E%A8%E5%87%BAqclaw%E6%B5%B7%E5%A4%96%E7%89%88%EF%BC%8C%E9%99%8D%E4%BD%8Eai%E6%99%BA%E8%83%BD%E4%BD%93%E9%83%A8%E7%BD%B2%E9%97%A8%E6%A7%9B/","title":"Tencent Launches QClaw International Beta — Tencent, 2026-04-21","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://intl.cloud.tencent.com/zh/document/product/1300/81043","title":"QClaw — Tencent Cloud Docs","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://cloud.tencent.com/developer/techpedia/2613/20569","title":"ima 知识 Agent copilot — Tencent Cloud Developer","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://cloud.tencent.com/developer/article/2709666","title":"IMA Copilot 与 WorkBuddy 联用实战 — Tencent Cloud Developer Community","snapshot":null,"status":"community_example"},
+    {"ref":"[^12]","url":"https://www.kimi.com/help/membership/membership-pricing","title":"Kimi 会员收费与套餐介绍","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://www.kimi.com/en/help/agent/agent-quota-and-billing","title":"Kimi Agent Credits and Billing","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://docs.coze.cn/guides_edition","title":"扣子订阅套餐 — Coze Docs","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://apps.apple.com/cn/app/minimax-%E9%80%9A%E7%94%A8ai-agent/id6446482834","title":"MiniMax - 通用AI Agent — Apple App Store China","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^16]","url":"https://agent.minimax.io/doc/en/credit-rules.html","title":"MiniMax Agent Subscription / Credit Rules","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://help.manus.im/en/articles/11711111-what-is-the-current-membership-pricing-for-manus","title":"Manus Membership Pricing — Help Center","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^18]","url":"https://help.manus.im/en/articles/15392078-understanding-cloud-computer-plans-and-billing","title":"Manus Cloud Computer Plans and Billing","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^19]","url":"https://www.genspark.ai/zh-cn/membership-benefits-lp","title":"Genspark Membership Benefits","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^20]","url":"https://www.genspark.ai/helpcenter/membership-plans","title":"Genspark Membership Plans — Help Center","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
