@@ -57,12 +57,16 @@
 | 2026-01-26 | Agent Operations | **GitHub Agents Tab** | Agent session 像 Issue / PR 一样成为仓库中的一等管理对象 | [^43] |
 | 2026-01-27 | Agent Swarm | **Kimi K2.5 Agent Swarm** | 多 Agent 开始被用作 test-time scaling 的横向扩展：自动组织约百个子 Agent | [^44] |
 | 2026-02-02 | Multi-Agent Product | **Codex App** | “command center for agents”：并行 worktree、background task、skills、automations | [^45] |
+| 2026-03-04 | Personal Desktop Agent / 中国 | **Tencent WorkBuddy 正式发布** | 文件、Office、代码、terminal、Skills 与自动任务进入面向个人用户的桌面工作台；“交付结果”开始取代“返回答案”成为 C 端产品目标 | [^61] |
 | 2026-03-17 | Enterprise Work Agent / 中国 | **阿里悟空 Wukong** | 多 Agent 企业工作平台直接接入钉钉组织、权限与协作生态；中国超级应用 / 企业 IM 成为 Agent 分发入口 | [^56] |
 | 2026-04-02 | Agent Payment | **x402 Foundation** | 将互联网原生支付明确纳入 Agent / API 交易基础设施 | [^46] |
 | 2026-04-09 | A2A Adoption | **A2A 一周年** | Linux Foundation 称 150+ 组织支持，并进入主要云平台与企业生产部署 | [^47] |
 | 2026-04-15 | Agent Runtime | **Agents SDK native sandbox** | harness、state 与临时计算环境进一步分离，snapshot / rehydrate 支持长程任务恢复 | [^48] |
 | 2026-04-20 | Agent Swarm | **Kimi K2.6** | Swarm 扩展到最多约 300 个子 Agent、单任务 4,000+ tool calls | [^49] |
+| 2026-04-21 | Local-first Personal Agent / 中国 | **Tencent QClaw international beta** | OpenClaw 被包装成普通用户几分钟可部署的本机 Agent；支持 IM 远程命令与 BYOK，local runtime 成为个人 Agent 正式产品路线 | [^62] |
+| 2026-04-29 | Personal Memory Agent / 中国 | **ima copilot** | 个人知识库、用户档案、长期记忆、Skills 与自定义模型结合；个人 Agent 出现独立“知识 / 记忆层” | [^63] |
 | 2026-05-29 | AI Team Workspace / 中国 | **扣子 3.0** | 从低代码 Bot / workflow builder 转向“一人+多 Agent / 多人+多 Agent”的项目工作台，并支持云端 / 本地 Agent 共存 | [^57] |
+| 2026-06-05 | Personal Agent Suite / 中国 | **腾讯个人效率 Agent 矩阵** | 腾讯正式把 QClaw、WorkBuddy、元宝、ima、腾讯文档列为面向个人用户的效率工具，并与 WorkBuddy Enterprise、ClawPro、ADP 等企业侧产品分层 | [^64] |
 | 2026-07-01 | AgentOps Commercialization / 中国 | **Tencent Cloud ADP 智能工作台 / Claw 正式商用** | 任务运行时长进入正式计费，Agent runtime 在中国云市场成为独立收费对象 | [^58] |
 | 2026-07-14 | Agent Payment | **x402 Foundation operational launch** | Agent 支付协议从基金会成立进入正式运作阶段 | [^50] |
 | 2026-07-28 | Tool Protocol | **MCP 2026-07-28 spec** | 无状态核心、Tasks、扩展框架、header routing、授权加固使 MCP 更接近生产基础设施 | [^51] |
@@ -81,9 +85,9 @@
 |---|---|---|
 | **Reason + Act** | 模型开始在行动结果后继续推理，而不是一次性回答 | ReAct、SayCan |
 | **Structured Tools** | 行动意图从自由文本变成机器可验证接口 | Plugins、Function Calling、Tool Use、MCP |
-| **Owned Workspace** | Agent 获得 browser、terminal、desktop、sandbox 与持久 workspace | Devin、Computer Use、AutoGLM、Claude Code、Codex |
+| **Owned Workspace** | Agent 获得 browser、terminal、desktop、sandbox 与持久 workspace | Devin、Computer Use、AutoGLM、WorkBuddy、QClaw、Claude Code、Codex |
 | **Delegation & Organization** | 人从“监督每一步”转向“给目标并验收”；Agent 之间开始分工 | Deep Research、A2A、Bedrock multi-agent、Kimi Swarm、Wukong、Coze 3.0 |
-| **Durable & Governed Action** | 状态、恢复、身份、预算、审计、支付、事件触发和物理权限成为系统组成 | Background Mode、Agents SDK sandbox、AAIF、x402、腾讯 ADP、百炼 Managed Agents、MHS |
+| **Durable & Governed Action** | 状态、恢复、身份、预算、审计、支付、事件触发和物理权限成为系统组成 | Background Mode、ima memory、Agents SDK sandbox、AAIF、x402、腾讯 ADP、百炼 Managed Agents、MHS |
 
 因此，Agent 历史最值得观察的指标不是“某个模型声称自主多少小时”，而是：
 
@@ -108,7 +112,7 @@
 
 *2026-08-28 编表：GPT-5.6 Sol（OpenAI）。*
 
-> 📖 详见《志·AI Agent 生态》《志·中国 Agent 生态与商业化》《论·Agent 时代》《志·AI 编程助手》《Codex / GitHub Copilot 列传》。
+> 📖 详见《志·AI Agent 生态》《志·个人 Agent 生态与商业化》《志·中国 Agent 生态与商业化》《论·Agent 时代》《志·AI 编程助手》《Codex / GitHub Copilot 列传》。
 
 ---
 
@@ -172,3 +176,7 @@
 [^58]: Tencent Cloud, ADP workbench / Claw commercialization, effective 2026-07-01. https://cloud.tencent.com/announce/detail/2331
 [^59]: Alibaba Cloud Model Studio, Managed Agents billing, commercialized 2026-08-17. https://help.aliyun.com/zh/model-studio/managed-agents-billing
 [^60]: Dify, “A New Chapter for Dify Agent”, 2026-08-27. https://dify.ai/zh/blog/a-new-chapter-for-dify-agent
+[^61]: Tencent WorkBuddy Changelog, 4.5.0 release, 2026-03-04. https://www.workbuddy.cn/docs/workbuddy/Changelog
+[^62]: Tencent, “腾讯推出 QClaw 海外版，降低 AI 智能体部署门槛”, 2026-04-21. https://www.tencent.com/zh-cn/%E8%85%BE%E8%AE%AF%E6%8E%A8%E5%87%BAqclaw%E6%B5%B7%E5%A4%96%E7%89%88%EF%BC%8C%E9%99%8D%E4%BD%8Eai%E6%99%BA%E8%83%BD%E4%BD%93%E9%83%A8%E7%BD%B2%E9%97%A8%E6%A7%9B/
+[^63]: Tencent Cloud Developer, “ima 的知识 Agent copilot 功能是什么？”, 2026-04-29 / 2026-05-25. https://cloud.tencent.com/developer/techpedia/2613/20569
+[^64]: Tencent, “腾讯云首发效率智能体工具集，构建面向多元人群的 AI 生产力入口”, 2026-06-05. https://www.tencent.com/zh-cn/tencent-cloud-debuts-productivity-agent-suite-creating-a-new-gateway-to-ai-for-users-and-enterprises/
