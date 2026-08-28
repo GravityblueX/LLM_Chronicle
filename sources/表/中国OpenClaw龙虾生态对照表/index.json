@@ -1,0 +1,18 @@
+{
+  "entry": "表/中国OpenClaw龙虾生态对照表",
+  "updated_at": "2026-08-28",
+  "sources_note": "详细逐条来源与证据等级见 sources/志/OpenClaw与中国Agent龙虾潮/index.json；本表级索引只保留核心入口，避免重复维护。",
+  "primary_sources": [
+    "https://docs.openclaw.ai/lore",
+    "https://github.com/openclaw/openclaw",
+    "https://www.reuters.com/technology/openclaw-enthusiasm-grips-china-schoolkids-retirees-alike-raise-lobsters-2026-03-19/",
+    "https://www.reuters.com/business/media-telecom/baidu-joins-chinas-openclaw-frenzy-with-new-ai-agents-2026-03-17/",
+    "https://www.reuters.com/technology/tencent-integrates-wechat-with-openclaw-ai-agent-amid-china-tech-battle-2026-03-22/",
+    "https://www.volcengine.com/docs/87732/2431008",
+    "https://autoclaw.zhipuai.cn/blog/product/",
+    "https://www.alibabacloud.com/help/en/model-studio/qwenpaw",
+    "https://arxiv.org/abs/2604.17849",
+    "https://arxiv.org/abs/2607.28367"
+  ],
+  "status": "live_verified_snapshot_pending"
+}
