@@ -12,8 +12,8 @@ AI 自己写自己的历史。
 
 - **编年**是主线。按年份建文件夹，每月一个文件。哪年哪月发生了什么，清清楚楚，每条带出处。读完编年，就能掌握全貌。
 - **纪传**是补充。重要的人、公司、模型系列，光靠编年写不清楚——那就单独列传，讲来龙去脉。本纪（公司/人物）、世家（模型系列）、列传（单模型/技术），各有模板。
-- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、中国 Agent 生态与商业化、评价基准演化等。
-- **表**备速查——大事年表、版本沿革、Agent 发展大事表、Agent 主流产品与商业化对照表、中国 Agent 产品与平台对照表等。
+- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、中国 Agent 生态与商业化、个人 Agent 生态与商业化、评价基准演化等。
+- **表**备速查——大事年表、版本沿革、Agent 发展大事表、Agent 主流产品与商业化对照表、中国 Agent 产品与平台对照表、个人 Agent 产品对照表等。
 - **评曰**载史识——替代旧体例的“太史公曰”，全白话议论，概括→因果→判断。
 - **模型优先，Agent 为第二主线**——模型发布仍是第一优先，但 Function Calling、Computer Use、MCP/A2A、sandbox、Agent benchmark、multi-agent、支付、商业计量与物理设备接口等“行动权变化”即使没有新模型发布，也应进入正史。
 - 每一条记述必须注明出处——论文链接、官方公告、新闻 URL、PR 编号，能查回去。网页快照在 `sources/` 留档。
@@ -45,15 +45,17 @@ AI 自己写自己的历史。
 
 > **概率模型怎样从信息系统的输出端，移动到信息系统的控制面；行动权怎样被授予、限制、验证、计价、撤回和追责。**
 
-Agent 主线的八个入口：
+Agent 主线的十个入口：
 
 - [`志/AI Agent 生态.md`](志/AI%20Agent%20生态.md) —— 从经典智能体到 2026 物理 Agent 的完整结构史；
 - [`志/Agent产品与商业化.md`](志/Agent产品与商业化.md) —— 全球主流 Agent 产品、收费方式、企业采用与商业模式；
 - [`志/中国Agent生态与商业化.md`](志/中国Agent生态与商业化.md) —— Kimi、悟空、扣子、AutoGLM、腾讯 ADP、百度千帆、MiniMax、Dify 等中国 Agent 路线；
+- [`志/个人Agent生态与商业化.md`](志/个人Agent生态与商业化.md) —— WorkBuddy、QClaw、ima、Kimi、扣子、MiniMax、Manus、Genspark 等个人生产力 Agent；
 - [`论/Agent 时代.md`](论/Agent%20时代.md) —— 行动权、组织、验证与经济学；
 - [`表/Agent发展大事表.md`](表/Agent发展大事表.md) —— 2022—2026 全球关键节点速查；
 - [`表/Agent主流产品与商业化对照表.md`](表/Agent主流产品与商业化对照表.md) —— 全球核心产品、商业模式与成熟度对照；
 - [`表/中国Agent产品与平台对照表.md`](表/中国Agent产品与平台对照表.md) —— 中国市场的产品、AgentOps、Phone Use、云 runtime 与计量方式；
+- [`表/个人Agent产品对照表.md`](表/个人Agent产品对照表.md) —— 桌面、本地常驻、知识记忆、云工作台、Phone Agent 等个人产品横向比较；
 - **编年** —— 把 Function Calling、AutoGLM、MCP、A2A、Seed1.8、悟空、扣子 3.0、腾讯 ADP、ChatGPT Agent、AAIF、x402、百炼 Managed Agents、Dify、FinOps、MHS 等转折放回它们真正发生的年月。
 
 一句话概括这两条线：
@@ -68,6 +70,7 @@ Agent 主线的八个入口：
 
 因此本书单独追踪：
 
+- WorkBuddy、QClaw、ima copilot 等腾讯个人 Agent 产品层；
 - Kimi Agent / Swarm / Claw；
 - 阿里悟空、百炼 Managed Agents、无影 Agentic Computer、Qoder；
 - 字节扣子、Seed、豆包手机助手；
@@ -82,6 +85,23 @@ Agent 主线的八个入口：
 核心问题从“有没有国产模型”进一步变成：
 
 > **模型、工具、Agent runtime、企业数据、身份权限、云、国产芯片 serving 与审计能不能组成一条可持续的自主执行链。**
+
+### 个人 Agent：从“我的 AI 会员”到“我的数字工作层”
+
+个人用户不会购买 Agentforce、ADP 或 Managed Agents 来处理日常生活。真正进入普通人电脑和手机的是另一套产品：
+
+- WorkBuddy：本地文件 / Office / 代码 / 自动任务的桌面执行层；
+- QClaw：local-first、本机常驻、可由 IM 远程调度的个人 runtime；
+- ima copilot：个人知识库与长期记忆层；
+- Kimi / 扣子 / MiniMax：云工作台、多 Agent、scheduled tasks 与 credits；
+- AutoGLM / 豆包手机助手：Phone / GUI 行动层；
+- Manus / Genspark：云电脑与多模型 / 多 Agent 聚合型工作台。
+
+个人 Agent 的商业单位也正在变化：
+
+> **会员 → credits → 自动任务 → 并发 Agent → persistent runtime。**
+
+因此个人 Agent 最终争夺的位置可能不是“另一个聊天 App”，而是**用户与所有软件之间的长期控制层**。
 
 ## 编年目录
 
@@ -237,14 +257,15 @@ Agent 主线的八个入口：
 |------|------|
 | 编年条目 | **69 篇**（2017/06 — 2026/08；新增 2023/06 Function Calling） |
 | 纪传 | **58 篇**（本纪 ×12 + 世家 ×10 + 列传 ×36） |
-| 志 | **22 篇**（新增 **Agent 产品与商业化**、**中国 Agent 生态与商业化**；另含 AI Agent 生态、AI 编程助手、AI 产品化演进等） |
+| 志 | **23 篇**（新增 **Agent 产品与商业化**、**中国 Agent 生态与商业化**、**个人 Agent 生态与商业化**；另含 AI Agent 生态、AI 编程助手、AI 产品化演进等） |
 | 论 | **18 篇**（含 Agent 时代、Test-Time Compute、推理经济学、AI 安全与对齐等） |
-| 表 | **13 篇**（原有 10 篇 + **Agent 发展大事表** + **Agent 主流产品与商业化对照表** + **中国 Agent 产品与平台对照表**） |
-| **总计** | **180 篇**（编年 69 + 纪传 58 + 志 22 + 论 18 + 表 13） |
+| 表 | **14 篇**（原有 10 篇 + **Agent 发展大事表** + **Agent 主流产品与商业化对照表** + **中国 Agent 产品与平台对照表** + **个人 Agent 产品对照表**） |
+| **总计** | **182 篇**（编年 69 + 纪传 58 + 志 23 + 论 18 + 表 14） |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册，待写清单见 `review/audit-06.md` |
 | Agent 主线 | **2022—2026**：ReAct / Toolformer / AutoGPT → Function Calling → Computer / Phone Use / MCP → A2A / coding agents → Swarm / sandbox / x402 / FinOps / MHS |
 | 全球 Agent 商业化 | ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google Agent Platform / AWS AgentCore；重点跟踪 seat → credits → action → task → runtime resource |
-| 中国 Agent 商业化 | Kimi / 悟空 / 百炼 / 扣子 / Seed / AutoGLM / 腾讯 ADP / 百度千帆 / MiniMax / Dify；重点跟踪会员 → credits / 算粒 / PU → 并发 Agent → runtime 时长 → tool / search / MCP |
+| 中国 Agent 商业化 | WorkBuddy / QClaw / ima / Kimi / 悟空 / 百炼 / 扣子 / Seed / AutoGLM / 腾讯 ADP / 百度千帆 / MiniMax / Dify；重点跟踪会员 → credits / 算粒 / PU → 并发 Agent → runtime 时长 → tool / search / MCP |
+| 个人 Agent 商业化 | WorkBuddy / QClaw / ima / Kimi / 扣子 / MiniMax / AutoGLM / Manus / Genspark；重点跟踪会员 → credits → 自动任务 → 并发 worker → persistent runtime |
 | 出处快照 | `sources/` 归档规范已定；无法在当前连接器执行的 HTML 快照均明确标记 pending，不伪造 |
 | 体例版本 | [v2.1](00_体例.md)（白话文 · 模型优先 · Agent 行动权第二主线 · 评曰 · sources/ 归档） |
 | 工具链 | 链接验证 + 格式校验 + 快照归档，纯 Node.js 零依赖 |
@@ -274,6 +295,8 @@ Agent 主线的八个入口：
 **Agent 主线总补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 将 Agent 从散落的产品事件提升为正式第二主线：重写《AI Agent 生态》，新增 Function Calling 编年、《Agent 发展大事表》《Agent 产品与商业化》《Agent 主流产品与商业化对照表》，并把 MCP、Deep Research、Agent Mode、Agents SDK、A2A / ADK、Codex、ChatGPT Agent、AAIF、x402、Agent FinOps 与 MHS 等节点补回对应年月。
 
 **中国 Agent 生态补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《中国 Agent 生态与商业化》《中国 Agent 产品与平台对照表》，并把 AutoGLM、Seed1.8、悟空、扣子 3.0、腾讯 ADP、百炼 Managed Agents、Dify 等节点并入全球 Agent 时间线与月度编年。
+
+**个人 Agent 生态补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《个人 Agent 生态与商业化》《个人 Agent 产品对照表》，补入 WorkBuddy、QClaw、ima copilot、Kimi、扣子、MiniMax、Manus、Genspark 等个人用户产品，并区分知识记忆、桌面执行、本地常驻、云工作台、Phone Agent 与聚合型路线。
 
 ## 协作
 
