@@ -12,11 +12,12 @@ AI 自己写自己的历史。
 
 - **编年**是主线。按年份建文件夹，每月一个文件。哪年哪月发生了什么，清清楚楚，每条带出处。读完编年，就能掌握全貌。
 - **纪传**是补充。重要的人、公司、模型系列，光靠编年写不清楚——那就单独列传，讲来龙去脉。本纪（公司/人物）、世家（模型系列）、列传（单模型/技术），各有模板。
-- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、中国 / 个人 Agent、OpenClaw 龙虾潮、终端 / 垂直 Agent、Agent 可靠性等跨年主题独立成志。
-- **表**备速查——大事年表、版本沿革、Agent 发展大事表、全球 / 中国 / 个人产品表、OpenClaw 生态表、终端 / 垂直 Agent 表、Agent 可靠性观察表等。
+- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、中国 / 个人 Agent、OpenClaw 龙虾潮、终端 / 垂直 Agent、Agent 可靠性，以及“万物 Agent 化”、知识库 / Skills 商业话语等跨年主题独立成志。
+- **表**备速查——大事年表、版本沿革、Agent 发展大事表、全球 / 中国 / 个人产品表、OpenClaw 生态表、终端 / 垂直 Agent 表、Agent 可靠性观察表、知识库 / Skill 宣传—运维现实表等。
 - **评曰**载史识——替代旧体例的“太史公曰”，全白话议论，概括→因果→判断。
 - **模型优先，Agent 为第二主线**——模型发布仍是第一优先，但 Function Calling、Computer / Phone Use、MCP/A2A、sandbox、Agent benchmark、multi-agent、支付、商业计量与物理设备接口等“行动权变化”即使没有新模型发布，也应进入正史。
 - **Agent 宣传与可靠性必须分开**——“厂商称支持”“产品里有这个功能”“有人做成过一次”“重复运行稳定”“已证明生产 ROI”是五种不同强度的证据，不得互相替换。
+- **生态库存不等于用户价值**——知识库文档数、Skill 数、MCP 数、Agent 数、专家数和“场景数”可以作为商业 / 生态规模史料，但不能直接当作生产率、可靠性或用户留存证据。
 - 每一条记述必须注明出处——论文链接、官方公告、新闻 URL、PR 编号，能查回去。网页快照在 `sources/` 留档。
 - 不确定的标注证据等级；**有据则书，无据则阙，不用猜测填空。**
 
@@ -55,6 +56,7 @@ AI 自己写自己的历史。
 - [`志/OpenClaw与中国Agent龙虾潮.md`](志/OpenClaw与中国Agent龙虾潮.md) —— Clawd → OpenClaw → 中国“养龙虾”与大厂产品化；
 - [`志/中国终端与垂直Agent生态.md`](志/中国终端与垂直Agent生态.md) —— MiClaw、天禧、小艺、vivo、360、美图、夸克等 OS / PC / 搜索 / 影像 / 工具层；
 - [`志/Agent宣传、实测与可靠性.md`](志/Agent宣传、实测与可靠性.md) —— 厂商声明、重复实测、人工接管、成本、失败模式与可靠性方法；
+- [`志/万物Agent化与知识库Skill热潮.md`](志/万物Agent化与知识库Skill热潮.md) —— “超级个体 / 数字员工 / 第二大脑 / 7万 Skills”话语，与知识库和 Skills 的真实维护成本；
 - [`论/Agent 时代.md`](论/Agent%20时代.md) —— 行动权、组织、验证与经济学；
 - [`表/Agent发展大事表.md`](表/Agent发展大事表.md) —— 2022—2026 全球关键节点速查；
 - [`表/Agent主流产品与商业化对照表.md`](表/Agent主流产品与商业化对照表.md) —— 全球核心产品、商业模式与成熟度对照；
@@ -63,6 +65,7 @@ AI 自己写自己的历史。
 - [`表/中国OpenClaw龙虾生态对照表.md`](表/中国OpenClaw龙虾生态对照表.md) —— QClaw / DuClaw / ArkClaw / AutoClaw / QwenPaw 等“虾系”关系与边界；
 - [`表/中国终端与垂直Agent对照表.md`](表/中国终端与垂直Agent对照表.md) —— OS、AI PC、手机、搜索、Office、影像与垂直工具 Agent；
 - [`表/Agent产品可靠性观察表.md`](表/Agent产品可靠性观察表.md) —— 产品状态、官方声明、独立证据、已知限制和恢复能力；
+- [`表/知识库与Skill宣传运维现实对照表.md`](表/知识库与Skill宣传运维现实对照表.md) —— 第二大脑、数字员工、Skills / MCP 数量宣传与用户实际运维对象逐项对照；
 - **编年** —— 把 Function Calling、OpenClaw、AutoGLM、MCP、A2A、Seed1.8、悟空、扣子、腾讯 ADP、ChatGPT Agent、AAIF、x402、Managed Agents、Dify、FinOps、MHS 等放回真实年月。
 
 一句话概括这两条线：
@@ -132,6 +135,30 @@ AI 自己写自己的历史。
 > **会员 → credits → 自动任务 → 并发 Agent → persistent runtime。**
 
 最终争夺的位置可能不是“另一个聊天 App”，而是**用户与所有软件之间的长期控制层**。
+
+## 万物都要有 AI：知识库、Skills 与“第二大脑”的商业话语
+
+2026 年互联网已经形成一套很稳定的 Agent 营销语言：
+
+> **超级个体、数字员工、AI 团队、第二大脑、专家市场、7 万+ Skills、全生态打通、一句话完成复杂工作。**
+
+这些词并非虚构；它们背后确实有 Agent、RAG、MCP、Skills、memory、runtime 等技术。
+
+但本书把“营销提供的可能性”和“用户得到的净价值”分开。
+
+尤其是三个最容易被偷换的等式：
+
+> **Skill 数量 ≠ 可稳定使用的能力数量；**  
+> **知识库文档数量 ≠ 有效知识数量；**  
+> **自动化功能数量 ≠ 用户减少的劳动量。**
+
+真实知识库需要 ingestion、解析、去重、版本、时效、chunking、检索、reranking、权限、评测、删除和持续维护；真实 Skill 生态需要 discovery、选择、权限、版本、安全扫描、供应链治理和失效处理。
+
+所以用户体验最终应该看：
+
+> **节省的人工工作 − 配置 − 知识维护 − Skill 管理 − 权限审批 − 验证 − 重试 − 错误返工 − credits/runtime − 风险成本。**
+
+商业宣传本身也会作为史料保存，因为它记录的是厂商希望一个时代怎样理解 AI；但它不会自动变成史官对产品效果的判断。
 
 ## 史料警告：支持某功能，不等于稳定可靠
 
@@ -307,16 +334,17 @@ OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / �
 |------|------|
 | 编年条目 | **69 篇**（2017/06 — 2026/08；新增 2023/06 Function Calling） |
 | 纪传 | **58 篇**（本纪 ×12 + 世家 ×10 + 列传 ×36） |
-| 志 | **26 篇**（本轮新增 / 重订 **AI Agent 生态、Agent 产品与商业化、中国 / 个人 Agent、OpenClaw 龙虾潮、中国终端与垂直 Agent、Agent 宣传/实测/可靠性** 等） |
+| 志 | **27 篇**（本轮新增 / 重订 **AI Agent 生态、Agent 产品与商业化、中国 / 个人 Agent、OpenClaw 龙虾潮、中国终端与垂直 Agent、Agent 宣传/实测/可靠性、万物 Agent 化与知识库 / Skill 热潮** 等） |
 | 论 | **18 篇**（含 Agent 时代、Test-Time Compute、推理经济学、AI 安全与对齐等） |
-| 表 | **17 篇**（加入 **Agent 发展大事表、全球 / 中国 / 个人产品表、中国 OpenClaw 生态表、中国终端与垂直 Agent 表、Agent 产品可靠性观察表** 等） |
-| **总计** | **188 篇**（编年 69 + 纪传 58 + 志 26 + 论 18 + 表 17） |
+| 表 | **18 篇**（加入 **Agent 发展大事表、全球 / 中国 / 个人产品表、中国 OpenClaw 生态表、中国终端与垂直 Agent 表、Agent 产品可靠性观察表、知识库与 Skill 宣传—运维现实对照表** 等） |
+| **总计** | **190 篇**（编年 69 + 纪传 58 + 志 27 + 论 18 + 表 18） |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册，待写清单见 `review/audit-06.md` |
 | Agent 主线 | **2022—2026**：ReAct / Toolformer / AutoGPT → Function Calling → Computer / Phone Use / MCP → OpenClaw personal runtime → A2A / coding agents → Swarm / sandbox / payment / FinOps / MHS |
 | 中国大众 Agent | **早期 AutoGLM / 纳米 AI / 智能体平台已存在；2025-11 Clawd → 2026-01 OpenClaw → 2026-03“养龙虾”构成大众 persistent-personal-agent 断代** |
 | 全球 Agent 商业化 | ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google Agent Platform / AWS AgentCore；重点跟踪 seat → credits → action → task → runtime resource |
 | 中国 Agent 商业化 | OpenClaw 虾系 + WorkBuddy / ima / Kimi / 悟空 / 百炼 / 扣子 / MiClaw / 天禧 / 小艺 / Seed / AutoGLM / ADP / 千帆 / AgentArts / WPS / 美图 / 荣耀 / MiniMax / Dify / 支付宝等；重点跟踪执行层而不是单一 App |
 | 个人 Agent 商业化 | OpenClaw / WorkBuddy / QClaw / ima / MiClaw / 天禧 / 小艺 / Kimi / 扣子 / MiniMax / AutoGLM / WPS / Manus / Genspark；重点跟踪会员 → credits → 自动任务 → 并发 worker → persistent runtime |
+| AI 商业话语 | **“超级个体 / 数字员工 / 第二大脑 / 7万 Skills / 全员智能体”**作为时代话语单独保存；组件数量只记生态库存，不直接当作用户生产力 |
 | Agent 可靠性 | **Claim ≠ Availability ≠ One-shot success ≠ Repeated reliability ≠ Production ROI**；开始保存 pass^k、人工接管、失败恢复与 cost per successful task |
 | 出处快照 | `sources/` 归档规范已定；无法在当前连接器执行的 HTML 快照均明确标记 pending，不伪造 |
 | 体例版本 | [v2.2](00_体例.md)（白话文 · 模型优先 · Agent 第二主线 · 宣传/可靠性分层 · sources/ 归档） |
@@ -351,6 +379,8 @@ OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / �
 **OpenClaw / Agent 可靠性补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《OpenClaw 与中国 Agent“龙虾潮”》《Agent 宣传、实测与可靠性》《中国 OpenClaw“龙虾”生态对照表》《Agent 产品可靠性观察表》，并把“厂商宣称 ≠ 稳定可用”写入凡例 v2.2。
 
 **中国终端 / 垂直 Agent 补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《中国终端与垂直 Agent 生态》《中国终端与垂直 Agent 对照表》，补入 Xiaomi MiClaw、超级小爱、联想天禧 AI / Claw、华为小艺 / HMAF、vivo 蓝心、360 纳米 AI / 龙虾卫士、美图 RoboNeo / Picchi / Agent Teams、夸克扫描王 Agent 接入等非模型公司入口。
+
+**万物 Agent 化 / 知识库 / Skill 商业话语补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《万物 Agent 化：知识库、Skills 与“第二大脑”热潮》《知识库与 Skill 宣传—运维现实对照表》，把“超级个体、数字员工、第二大脑、7万+ Skills”等互联网宣传作为商业史料保存，同时明确知识治理、权限、RAG 时效、Skill 供应链、维护劳动与用户净价值之间的关系。
 
 ## 协作
 
