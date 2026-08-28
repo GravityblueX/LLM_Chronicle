@@ -1,8 +1,8 @@
 {
   "entry": "表/Agent发展大事表",
   "updated_at": "2026-08-28",
-  "archive_note": "本表来源与《志·AI Agent 生态》《志·中国 Agent 生态与商业化》交叉核验，聚焦全球 Agent 历史里程碑。GitHub 连接器无法执行 HTML snapshot 工具，新增活链统一标记 snapshot 待归档；MHS 当前只有 Reuters 单一权威媒体来源。",
-  "sources_note": "详细逐条 URL 与证据状态见 sources/志/AI Agent 生态/index.json 与 sources/志/中国Agent生态与商业化/index.json；本索引只保留表级主来源集合，避免重复维护 60+ 相同 URL。",
+  "archive_note": "本表来源与《志·AI Agent 生态》《志·中国 Agent 生态与商业化》《志·个人 Agent 生态与商业化》交叉核验，聚焦全球 Agent 历史里程碑。GitHub 连接器无法执行 HTML snapshot 工具，新增活链统一标记 snapshot 待归档；MHS 当前只有 Reuters 单一权威媒体来源。",
+  "sources_note": "详细逐条 URL 与证据状态见 sources/志/AI Agent 生态/index.json、sources/志/中国Agent生态与商业化/index.json 与 sources/志/个人Agent生态与商业化/index.json；本索引只保留表级主来源集合，避免重复维护 60+ 相同 URL。",
   "primary_sources": [
     "https://arxiv.org/abs/2210.03629",
     "https://openai.com/index/function-calling-and-other-api-updates/",
@@ -20,6 +20,10 @@
     "https://cloud.tencent.com/announce/detail/2331",
     "https://help.aliyun.com/zh/model-studio/managed-agents-billing",
     "https://dify.ai/zh/blog/a-new-chapter-for-dify-agent",
+    "https://www.workbuddy.cn/docs/workbuddy/Changelog",
+    "https://www.tencent.com/zh-cn/%E8%85%BE%E8%AE%AF%E6%8E%A8%E5%87%BAqclaw%E6%B5%B7%E5%A4%96%E7%89%88%EF%BC%8C%E9%99%8D%E4%BD%8Eai%E6%99%BA%E8%83%BD%E4%BD%93%E9%83%A8%E7%BD%B2%E9%97%A8%E6%A7%9B/",
+    "https://cloud.tencent.com/developer/techpedia/2613/20569",
+    "https://www.tencent.com/zh-cn/tencent-cloud-debuts-productivity-agent-suite-creating-a-new-gateway-to-ai-for-users-and-enterprises/",
     "https://www.reuters.com/technology/anthropic-unveils-new-framework-allowing-ai-agents-operate-physical-devices-2026-08-27/"
   ],
   "status": "live_verified_snapshot_pending"
