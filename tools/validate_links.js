@@ -2,7 +2,7 @@
 /**
  * 链接验证工具 — LLM Chronicle
  * 
- * 批量验证编年条目中所有出处链接的可访问性（HTTP 状态码检查）。
+ * 批量验证中文主书与 README 中所有出处链接的可访问性（HTTP 状态码检查）。
  * 
  * 用法:
  *   node tools/validate_links.js                    # 检查全部链接
@@ -165,8 +165,8 @@ async function main() {
   const root = path.resolve(__dirname, '..');
   const mdFiles = findMdFiles(root, onlyDir).filter(f => {
     const rel = path.relative(root, f).replace(/\\/g, '/');
-    // 只扫描编年条目、纪传和体例
-    return rel.startsWith('编年/') || rel.startsWith('纪传/') || rel.startsWith('志/') || rel.startsWith('论/') || rel === '00_体例.md';
+    // 扫描中文主书、表格、体例和 README；review/ 与 en/ 不纳入主书死链验收
+    return rel.startsWith('编年/') || rel.startsWith('纪传/') || rel.startsWith('志/') || rel.startsWith('论/') || rel.startsWith('表/') || rel === '00_体例.md' || rel === 'README.md';
   });
 
   console.error(`Scanning ${mdFiles.length} markdown files...`);
