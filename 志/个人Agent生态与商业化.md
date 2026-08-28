@@ -1,8 +1,10 @@
 # 《个人 Agent 生态与商业化》
 
-> 企业 Agent 解决的是组织怎样把任务交给机器；个人 Agent 解决的则是另一个更贴近日常的问题：**一个普通人愿意把自己的文件、浏览器、知识库、电脑、手机、日程、邮件和长期任务交给 AI 到什么程度？**
+> 企业 Agent 解决的是组织怎样把任务交给机器；个人 Agent 解决的则是一个更贴近日常的问题：**一个普通人愿意把自己的文件、浏览器、知识库、电脑、手机、日程、邮件和长期任务交给 AI 到什么程度？**
 >
-> 到 2026 年，个人 Agent 已经不再等同于“聊天机器人 Pro 版”。WorkBuddy、QClaw、ima copilot、Kimi、扣子、MiniMax Agent、AutoGLM、Manus、Genspark、ChatGPT Agent 与 Claude Cowork 等产品正在形成不同形态：有的负责记忆，有的负责操作本地电脑，有的拥有云沙箱，有的能同时调度多个子 Agent，有的则把几十种模型和 Agent 包进一个统一订阅。
+> 到 2026 年，个人 Agent 已经不再等同于“聊天机器人 Pro 版”。OpenClaw / QClaw、WorkBuddy、ima copilot、Kimi、扣子、MiniMax Agent、AutoGLM、Manus、Genspark、ChatGPT Agent 与 Claude Cowork 等产品正在形成不同形态：有的负责记忆，有的负责操作本地电脑，有的拥有云沙箱，有的同时调度多个子 Agent，有的则把几十种模型和 Agent 包进统一订阅。
+>
+> 但本篇按《凡例 v2.2》特别提醒：**厂商列出的功能，不等于这些功能在所有真实任务里都稳定可用。** “支持生成 PPT”“可自动操作文件”“全程自主执行”首先是产品能力声明；真正成熟度还要看重复成功率、人工接管、耗时、成本和错误后的恢复。
 
 ---
 
@@ -28,6 +30,10 @@
 
 > **它能替你改变多少现实的软件状态。**
 
+而个人 Agent 的真正成熟度也不是“功能页写了多少”，而是：
+
+> **这些状态变化能不能稳定、可控、低成本地重复完成。**
+
 ---
 
 ## 二、2026 年个人 Agent 已经分成六种形态
@@ -35,59 +41,96 @@
 | 形态 | 代表产品 | 用户真正买的东西 |
 |---|---|---|
 | 桌面执行 Agent | WorkBuddy、Claude Cowork | 本地文件、Office、网页、代码与交付物的执行能力 |
-| 本地常驻 Agent | QClaw、Kimi Claw（本地形态） | 一台始终属于自己的 Agent runtime，可通过 IM 远程下令 |
+| 本地常驻 Agent | OpenClaw / QClaw、Kimi Claw（本地形态） | 一台始终属于自己的 Agent runtime，可通过 IM 远程下令 |
 | 个人知识 / 记忆 Agent | ima copilot | 长期记忆、个人知识库、偏好与持续上下文 |
 | 云工作台 / 多 Agent | Kimi、MiniMax Agent、Manus、ChatGPT Agent | 云 sandbox、研究、浏览器、项目、并行任务与自动化 |
-| Agent Builder / 创作工作台 | 扣子、Genspark | 自己组 Agent、云设备、内容/代码/网页等多类制品 |
+| Agent Builder / 创作工作台 | 扣子、Genspark | 自己组 Agent、云设备、内容 / 代码 / 网页等多类制品 |
 | Phone / GUI Agent | AutoGLM、豆包手机助手 | 直接操作没有标准 API 的手机 App 与人类界面 |
 
-这六类经常重叠，但它们解决的问题不同。
+这六类经常重叠，但解决的问题不同。
 
-因此“哪个个人 Agent 最强”本身就是一个不太好的问题。更有意义的是问：
+因此“哪个个人 Agent 最强”本身不是一个好问题。更有意义的是问：
 
-> **你的工作状态放在哪里？Agent 的手伸到哪里？它是否常驻？失败以后能不能恢复？**
+> **你的工作状态放在哪里？Agent 的手伸到哪里？它是否常驻？失败以后能不能恢复？同一任务重做一次还会成功吗？**
 
 ---
 
-## 三、WorkBuddy：个人 Agent 从“回答”变成桌面工作台
+## 三、OpenClaw / QClaw：个人 Agent 的大众想象先从“我的机器”开始
 
-### 3.1 2026-03-04：WorkBuddy 正式发布
+OpenClaw 的技术前史并不晚于 ReAct、AutoGPT、Devin 或 Computer Use；但它在 2026 年中国的特殊意义，是把个人 Agent 的形态浓缩成一句非常直观的话：
 
-腾讯 WorkBuddy 官方更新日志记录，**2026-03-04** WorkBuddy 4.5.0 正式上线。[^1]
+> **Your assistant. Your machine. Your rules.**[^21]
 
-首发已经不是一个普通聊天框，而包含：
+用户自己决定模型、API Key、workspace、消息入口和长期运行机器。到了 2026 年 3 月，中国“养龙虾”热潮把这种极客结构大众化；QClaw、DuClaw、ArkClaw 等产品又进一步把安装、托管和消息连接变成消费产品。
+
+QClaw 的商业价值因此未必是创造了新 Agent 算法，而是：
+
+> **让普通用户不必理解 Node、gateway、Skill 配置，也能拥有一个可从微信 / IM 远程下令的本机 Agent。**
+
+这条路线的优势是用户更容易控制文件位置和机器；风险则来自 OpenClaw 本身的高权限结构：shell、文件、credentials、Skills 与长期 daemon 一旦配置不当，错误会直接改变用户电脑状态。
+
+所以“本地运行”不能和“天然安全”画等号。
+
+> 📖 OpenClaw 在中国的完整扩散史见《志·OpenClaw 与中国 Agent“龙虾潮”》。
+
+---
+
+## 四、WorkBuddy：个人 Agent 从“回答”变成桌面工作台
+
+### 4.1 日期要分两个口径：3 月 4 日版本记录，3 月 9 日公开发布
+
+WorkBuddy 早先很容易被写成“2026-03-04 正式发布”，但更严谨的史料口径应拆开：
+
+- **2026-03-04**：腾讯官方更新日志出现 WorkBuddy 4.5.0 的首个公开版本记录；[^1]
+- **2026-03-09**：腾讯云 Techpedia、同期报道把这一天作为对外正式 / 公测发布节点。[^22]
+
+因此本书以后统一写：
+
+> **3 月 4 日已有公开版本记录；3 月 9 日进入对外正式 / 公测发布。**
+
+这也说明产品“第一次有版本”“媒体发布日”“GA 商业化日”并不总是同一个日期。
+
+### 4.2 WorkBuddy 不是简单的 OpenClaw fork
+
+WorkBuddy 经常被媒体简称为“腾讯版 OpenClaw”。如果只描述市场位置，这个比喻可以理解；如果描述代码 / 产品来源，则不够准确。
+
+腾讯开发者资料把 QClaw 与 WorkBuddy 分开：QClaw 更接近 OpenClaw 产品化；WorkBuddy 则来自 CodeBuddy 系列自研 Agent 架构，同时兼容 OpenClaw Skills / MCP / Claw 的一部分使用习惯。[^23]
+
+因此更准确的是：
+
+> **WorkBuddy 是 OpenClaw 浪潮里的自研办公 Agent，而不是 OpenClaw 套壳。**
+
+### 4.3 官方能力：文件、Office、代码、terminal、自动任务与交付物
+
+WorkBuddy 官方版本与产品资料列出：[^1][^2][^3][^4]
 
 - 多模型切换；
-- 工作空间 / 项目；
-- Skill 扩展；
+- workspace / project；
+- Skills；
 - 文件读写；
 - terminal command execution；
-- 产物管理与文件预览；
-- macOS / Windows；
-- 持续对话模式。
-
-到 2026 年夏季，WorkBuddy 又进一步加入：
-
+- Office / 文档 / 表格 / PPT；
+- 产物管理；
 - 长期记忆；
 - 自动任务；
-- 多专家 / 多模型协同；
-- MCP、Skills、Plugins、Connectors；
-- 腾讯文档深度集成；
-- 项目计划、资产库、团队协作；
+- MCP / Plugins / Connectors；
+- 腾讯文档集成；
 - 子 Agent sandbox；
-- 桌面、移动端、小程序与主流 IM 入口。[^2][^3]
+- 桌面、移动端、小程序与 IM 入口。
 
-腾讯把它描述为：用户只需要一句自然语言指令，系统自主拆解、规划、执行，最后交付 Word、Excel、PPT、图表等可以验收的工作结果。[^4]
+腾讯把它描述为：用户给自然语言目标，系统自主拆解、规划、执行，最终交付 Word、Excel、PPT、图表等工作结果。[^4]
 
-这说明 WorkBuddy 的商品单位已经从：
+按 v2.2 凡例，这里应写成：
 
-> **“给我一个答案”**
+> **“官方称支持上述工作流与制品交付。”**
 
-转成：
+而不是未经验证就写：
 
-> **“给我一个完成后的工作产物”。**
+> “WorkBuddy 可以稳定无人值守完成这些任务。”
 
-### 3.2 价格：个人 Agent 形成“免费 → 高频 → 重度”梯度
+真实体验会受文件结构、权限、网络、Office 格式、外部服务、模型随机性和任务本身歧义影响。腾讯社区的用户实测也呈现明显场景差异：有人认为 QClaw 更适合简单个人办公，有人更看重 OpenClaw 自定义自由度，WorkBuddy 则偏标准化办公 / 团队工作；这些经验只能作为**有限样本的社区实测**，不能变成总体胜负结论。[^23][^24]
+
+### 4.4 价格：个人 Agent 形成“免费 → 高频 → 重度”梯度
 
 WorkBuddy 当前国内个人版公开价格为：[^5]
 
@@ -98,425 +141,264 @@ WorkBuddy 当前国内个人版公开价格为：[^5]
 | 高级版 | ¥199 | ¥140 | 4,000 | 个人进阶用户 |
 | 旗舰版 | ¥999 | ¥700 | 20,000 | 重度个人 Agent 用户 |
 
-官方还明确说明：**WorkBuddy 与 CodeBuddy 共用同一账号积分池，不需要分别订阅。**[^5]
+官方说明 WorkBuddy 与 CodeBuddy 共用账号积分池。[^5]
 
-这是一个很有代表性的商业化信号。
+套餐还以自动任务数量分层。[^6]
 
-个人用户购买的已经不是单独一个“聊天会员”，而是一池可以被：
+这说明消费者买的已经不只是“聊天会员”，而是：
 
-- 文档；
-- 代码；
-- 自动任务；
-- 多模型；
-- 多专家；
-- Agent 执行
-
-共同消耗的**个人智能预算**。
-
-### 3.3 自动任务比聊天次数更像 Agent 指标
-
-WorkBuddy 套餐还限制 / 分层自动任务数量。官方产品页目前给出的典型额度包括体验版约 3 个、标准版 15 个、高级版 30 个、旗舰版 99 个自动任务。[^6]
-
-这比“每月能发多少消息”更值得记录。
-
-因为用户购买的正在变成：
-
-> **有多少工作可以不需要我实时守在聊天框前。**
+> **智能 credits + 自动任务额度 + 文件 / 代码 / 制品执行预算。**
 
 ---
 
-## 四、腾讯个人 Agent 矩阵：WorkBuddy、QClaw 与 ima 并不是同一个产品
+## 五、腾讯个人 Agent 矩阵：ima 是记忆，WorkBuddy 是执行，QClaw 是常驻 runtime
 
-**2026-06-05**，腾讯云在 AI 产业应用大会明确把 **QClaw、WorkBuddy、元宝、ima、腾讯文档**列为面向个人用户升级的“开箱即用 AI 工具”，同时另行推出 WorkBuddy 企业版、ClawPro 与 ADP 等企业产品。[^7]
+**2026-06-05**，腾讯在 AI 产业应用大会把 **QClaw、WorkBuddy、元宝、ima、腾讯文档**列为面向个人用户的 AI 生产力工具集，同时另行推出 WorkBuddy 企业版、ClawPro 与 ADP 等企业产品。[^7]
 
-这说明腾讯自己已经在区分个人侧与企业侧 Agent。
+这说明腾讯自己也没有把“个人 Agent”收敛成一个超级 App。
 
-其中最有历史解释力的是 WorkBuddy、QClaw 与 ima 三者的分工。
+### 5.1 WorkBuddy：手脚 / 交付层
 
-### 4.1 WorkBuddy：手脚——替用户执行并交付
+中心是文件、Office、网页、code、project、artifact、自动任务。
 
-WorkBuddy 的中心是：
-
-- 文件；
-- Office；
-- 网页；
-- code；
-- project；
-- artifact；
-- 自动任务。
-
-它更像一个**桌面工作执行器**。
-
-### 4.2 QClaw：常驻本机——把个人电脑变成可远程调度的 Agent runtime
+### 5.2 QClaw：常驻本机 runtime
 
 腾讯 **2026-04-21** 推出 QClaw 国际 beta。[^8]
 
-QClaw 基于 OpenClaw，强调：
+QClaw 强调 Windows / macOS 本地部署、模型切换 / BYOK、从手机 IM 远程下令，以及在用户自己的机器完成文件 / 软件任务。[^8][^9]
 
-- Windows / macOS 本地部署；
-- 不需要复杂环境配置；
-- 可接不同模型，也可 BYOK；
-- 可以从 WhatsApp / Telegram 等手机端远程下指令；
-- 国内文档还强调微信直连；
-- 文件传输、文档处理、报表等动作在本机完成。[^8][^9]
+产品意义是：
 
-这一形态和云 Agent 非常不同。
+> **把自己的电脑变成一个长期在线、可以远程召唤的 Agent node。**
 
-云 Agent 的典型路径是：
+### 5.3 ima copilot：脑子 / 长期记忆层
 
-> 用户任务 → 厂商 cloud sandbox → 结果返回
+腾讯 ima 在 **2026-04-29** 推出知识 Agent `copilot`，并于 **2026-05-25**全面开放。[^10]
 
-QClaw 更接近：
+其重点是用户档案、长期记忆、个人知识库、偏好与 Skills，而不是高权限电脑操作。
 
-> 手机 / IM 指令 → **自己的电脑** → 本地文件 / 软件 → 结果
+腾讯云社区用户用一句很形象的话概括二者：ima 负责“想”，WorkBuddy 负责“做”。[^11]
 
-所以用户购买 / 配置的核心不是“云端有一个更聪明的机器人”，而是：
+这是社区经验，不是官方架构定义，但确实揭示了一种可能的个人 Agent 分层：
 
-> **把自己的电脑变成一个长期在线、可以远程召唤的执行节点。**
-
-这也是“个人 Agent”非常重要的一条路线：**Local-first personal runtime。**
-
-### 4.3 ima copilot：脑子——个人知识和长期记忆层
-
-腾讯 ima 在 **2026-04-29**推出知识 Agent `copilot`，并于 **2026-05-25**全面开放。[^10]
-
-其关键能力不是电脑操作，而是：
-
-- 用户档案；
-- 长期记忆；
-- 经验技巧；
-- copilot 设定；
-- 个人知识库直接参与任务；
-- Skills 扩展；
-- 自定义模型 API Key。
-
-因此 ima 更像个人 Agent 系统里的**知识与记忆层**。
-
-腾讯云社区甚至出现了一个很形象的用户总结：
-
-> ima 负责“想”，WorkBuddy 负责“做”。[^11]
-
-虽然这是社区用户经验而不是腾讯正式产品定义，但它非常准确地说明了个人 Agent 为什么可能不会收敛成一个超级 App：
-
-> **长期知识记忆和高权限执行，可能天然需要不同的产品边界。**
+> **memory / knowledge 与 execution / permissions 未必应该由同一个产品无限合并。**
 
 ---
 
-## 五、Kimi：把个人 Agent 的“工作量”直接写进会员权益
+## 六、Kimi：把个人 Agent 的“工作量”直接写进会员权益
 
-Kimi 是目前个人 Agent 商业化里最有史料价值的产品之一。
+Kimi 当前会员公开把 Agent / Swarm / 并发能力直接商品化：[^12][^13]
 
-当前公开会员：[^12]
-
-| 套餐 | 月费 | Agent 相关权益 |
+| 套餐 | 月费 | Agent 相关权益（官方口径） |
 |---|---:|---|
-| Andante | ¥49 | 约 30 次 Agent；scheduled / widget tasks；Kimi Code |
-| Moderato | ¥99 | 约 60 次 Agent；2 个并行任务；25 次 Agent Swarm |
-| Allegretto | ¥199 | 约 150 次 Agent；50 次 Swarm；Goal Mode；Kimi Claw |
-| Allegro | ¥699 | 约 360 次 Agent；4 个并行任务；120 次 Swarm；8 个并行子任务 |
+| Andante | ¥49 | 约 30 次 Agent；scheduled tasks；Kimi Code |
+| Moderato | ¥99 | 约 60 次 Agent；并行任务；Agent Swarm 配额 |
+| Allegretto | ¥199 | 更高 Agent / Swarm 配额；Goal Mode；Kimi Claw |
+| Allegro | ¥699 | 更高并行 Agent / 子任务、长期项目和存储额度 |
 
-Agent、Deep Research、PPT、Docs、Sheets、Kimi Code、Kimi Work、Kimi Claw、K3 / Swarm 等共享一个 credit pool，并按真实 token 消耗扣减。[^12][^13]
+Agent、Deep Research、PPT、Docs、Sheets、Code、Work、Claw 等共享 credit pool，Kimi Claw 的持续在线云主机也会消耗 credits。[^12][^13]
 
-Kimi Claw 的云主机还会因为持续在线占用 sandbox / runtime 而持续扣除 credits。[^12]
+因此用户购买的是：
 
-所以 Kimi 的个人订阅其实已经同时售卖：
+> **任务数量 + 并发工作 + 模型计算 + persistent runtime。**
 
-> **任务数量 + 并发任务 + 并发 Agent + 模型计算 + persistent runtime。**
-
-这比传统“会员多几次消息”更接近真正的 Agent 商品。
+但“更多 Swarm”不自动等于更高 ROI。Multi-Agent 会提高总 token / runtime，只有任务可并行且协调成本足够低时，wall-clock 优势才可能转化为真实价值。
 
 ---
 
-## 六、扣子：个人用户也可以买“云设备 + Agent + 创作环境”
+## 七、扣子：Agent Builder + 云设备 + 个人创作环境
 
-扣子 3.0 虽然同时覆盖团队与企业，但个人套餐本身已经非常 Agent 化。
+扣子 3.0 的个人套餐同时出售 points、云设备、云端 / 本地 Agent、项目与创作工具。[^14]
 
-官方 2026 年 8 月套餐：[^14]
+它更接近：
 
-| 个人档位 | 月费 | 月积分 | Agent / 云设备特征 |
-|---|---:|---:|---|
-| 免费 | ¥0 | — | 可连接 1 个本地 Agent（限时免费） |
-| 进阶 | ¥39.9 | 30,000 | 个人创作 / 基础能力 |
-| 高阶 | ¥99 | 99,000 | 云设备、云端 Agent、项目协作开始进入 |
-| 旗舰 | ¥199 | 199,000 | 更多云设备 / Agent / 项目能力 |
-| 尊享 | ¥999 | 999,000 | 前沿模型与最高个人资源档 |
+> **AI 创作软件 + Agent Builder + cloud device + credits。**
 
-扣子还允许：
+云手机 / 云电脑尤其说明，个人 Agent 的成本开始包含“保持一台执行环境在线”的费用，而不是只有模型 token。
 
-- 云手机 / 云电脑；
-- 创建云端 Agent / 职业模板；
-- 连接多个本地 Agent；
-- 项目协作；
-- Skills / CLI / code；
-- 按积分消耗生成与执行资源。[^14]
-
-因此扣子的个人商业模式更像：
-
-> **AI 创作软件 + Agent Builder + 云设备租用 + credits。**
-
-它不是单纯“一个 Agent 替我做完所有事情”，而是让个人用户自己组装一支可调用的 AI 工具队伍。
+这类功能同样需要看真实限制：网络、第三方 App 登录、验证码、云设备时延和运行时资源，都可能让“支持云设备”与“稳定完成任务”产生差距。
 
 ---
 
-## 七、MiniMax Agent：并发 Agent 也进入 App Store 订阅
+## 八、MiniMax Agent：订阅 + credits + 并发执行
 
-MiniMax 在中国 App Store 直接把产品命名为 **“MiniMax - 通用 AI Agent”**。[^15]
+MiniMax 在中国 App Store 直接以 **“通用 AI Agent”**定位产品，并提供 Plus / Max / Ultra 等会员和额外 credits。[^15][^16]
 
-截至 2026-08，其 iOS 端公开内购包括：
+这说明个人 Agent 正在复制成熟互联网产品的商业结构：
 
-- Plus：¥49/月；
-- Max：¥119/月；
-- Ultra：¥469/月；
-- 另有 credit / 增强包。[^15]
+> **月卡 + 资源包 + 更高并发 / 高峰优先级 + 高级功能。**
 
-MiniMax Agent 的官方订阅规则同样采用 credit 体系，月度会员 credits、额外购买 credits、奖励 credits 分开管理。[^16]
-
-这一类产品说明个人 Agent 正在复制手游 / 创作 SaaS 很熟悉的结构：
-
-> **月卡 + 资源包 + 高峰优先级 + 高级功能提前体验。**
-
-区别只是被消费的资源从图片次数、存储空间变成了 Agent 执行计算。
+不过会员收入或 MiniMax 公司总收入不能全部归因于 Agent；语音、视频、模型 API 等业务必须分开理解。
 
 ---
 
-## 八、Phone Agent：个人 Agent 最接近“真正替你操作生活”的路线
+## 九、Phone Agent：最接近生活，也最需要人工边界
 
-AutoGLM、豆包手机助手等 Phone Agent 的特殊性在于：
+AutoGLM、豆包手机助手等 Phone Agent 面对的是微信、淘宝、美团、12306、滴滴、小红书、银行和生活服务 App。
 
-它们面对的不是企业 API，而是普通用户手机里已经存在的 App。
-
-中国用户大量真实行动封装在：
-
-- 微信；
-- 淘宝 / 京东；
-- 美团 / 饿了么；
-- 携程 / 12306；
-- 滴滴；
-- 小红书 / 抖音；
-- 银行与生活服务 App。
-
-因此 Phone Agent 如果成熟，理论上可以直接触及：
+它们如果成熟，理论上能把：
 
 > 搜索 → 选择 → 填表 → 下单 → 支付前确认 → 状态追踪
 
-这比文件 Agent 更接近“个人数字代理人”。
+串起来。
 
-但也因为如此，权限风险最高。
+但 Phone Agent 的可靠性不能由一次演示证明。现实边界包括：
 
-个人 Phone Agent 的终点不能只是“识别按钮更准”，还必须解决：
+- 登录 / 二次认证；
+- 验证码 / 扫码；
+- App UI 更新；
+- 弹窗与广告；
+- 支付确认；
+- 风控；
+- 错误订单或消息撤回。
 
-- 哪些动作可以自动做；
-- 哪些动作必须确认；
-- 金钱与身份动作怎样二次授权；
-- App 更新后如何保持可靠；
-- prompt injection / 恶意页面怎样隔离；
-- 错误订单、误发消息怎样撤销。
-
-因此本书仍把 Phone Agent 标记为**高潜力、但高风险且尚未完全成熟**的一层。
-
----
-
-## 九、Manus 与 Genspark：个人 Agent 也出现“云电脑”和“AI Costco”两种全球化路线
-
-### 9.1 Manus：用户购买 cloud task capacity
-
-Manus 当前个人方案从 Free 到 Pro。官方帮助中心给出的典型结构为：[^17]
-
-- Free：$0，1 个并发任务、2 个 scheduled tasks；
-- Pro：$20/月起，约 4,000 credits 起；
-- 更高 Pro 档：$40/月起，约 8,000 credits；
-- Pro 支持最多约 20 个并发任务和 20 个 scheduled tasks。
-
-Manus 还单独出售 / 管理 persistent **Cloud Computer**，即长期在线 Ubuntu 环境。[^18]
-
-这意味着个人用户可以购买的不只是“Agent 次数”，还包括一台长期存在的云计算环境。
-
-### 9.2 Genspark：从 Agent 产品变成“所有模型与 Agent 一个订阅”
-
-Genspark 的定位更像个人 AI 聚合层。
-
-当前官方宣传直接称自己为 **“AI Costco”**：一个订阅中聚合多个前沿模型和 Agent。[^19]
-
-典型个人价格：
-
-- Plus：$24.99/月，10,000 credits；
-- Pro：$249.99/月，125,000 credits；
-- 包含 Slides、Sheets、Docs、Code、Super Agent、Deep Research、Image / Video / Audio 等工作台。[^19][^20]
-
-这一形态意味着个人 Agent 市场可能出现另一种商业角色：
-
-> **用户不再忠于某一个底层模型，而订阅一个负责替自己选择和编排模型 / Agent 的“AI 总包商”。**
+所以本书仍将 Phone Agent 写成**高潜力、高权限、可靠性尚需长期证明**的路线，而不是“手机已经可以完全交给 AI”。
 
 ---
 
-## 十、个人 Agent 的真正竞争变量不是 benchmark
+## 十、Manus 与 Genspark：Cloud Computer 和“AI Costco”
 
-对于个人用户，决定产品是否真的留下来的指标越来越像：
+### Manus
 
-| 指标 | 为什么重要 |
+Manus 的个人商业模式从 Free 到 Pro，用 credits、并发任务、scheduled tasks 与 persistent **Cloud Computer** 分层。[^17][^18]
+
+用户购买的不是一个回答，而是一段可以长期存在的云端任务容量。
+
+### Genspark
+
+Genspark 把自己宣传为 **“AI Costco”**：一个订阅聚合前沿模型、Super Agent、Deep Research、Slides、Sheets、Docs、Code 与多媒体工具。[^19][^20]
+
+这种模式说明个人 Agent 市场还可能出现“AI 总包商”：用户不关心底层到底是哪家模型，而购买一个负责路由与组合多个模型 / Agent 的工作层。
+
+同样，聚合“几十个 Agent / 模型”只是供给广度；是否省时间还要看任务路由、结果质量和 credit 消耗。
+
+---
+
+## 十一、宣传页和真实使用之间，个人 Agent 特别容易出现落差
+
+个人 Agent 的 demo 往往非常漂亮：一句话生成 PPT、整理整个文件夹、自动发邮件、跨 App 完成流程。
+
+但真实世界需要的是：
+
+> **同一件事重复做，仍然大致成功。**
+
+2026 年 Computer-Use Agent 研究显示，同一 task / model 在重复执行时可能一次成功、下一次失败；可靠性受随机性、任务歧义和行为变化影响。[^25]
+
+OpenClaw 在中国的真实用户采访也出现过**token 成本高、执行结果不理想、投入回报偏低**的抱怨。[^26]
+
+因此个人 Agent 至少应同时记录：
+
+| 维度 | 需要问什么 |
 |---|---|
-| Time-to-result | 从下指令到真正拿到可用文件 / 完成动作需要多久 |
-| Intervention rate | 中间需要用户救场多少次 |
-| Permission radius | Agent 能触及多少文件、网页、App、账号与设备 |
-| Memory quality | 多久以后还记得用户的项目、偏好与历史 |
-| Recovery | 中断、失败、重启后能否继续 |
-| Locality | 文件和 credentials 留在本地还是进入厂商云 |
-| Automation capacity | 能同时跑多少任务、多少 scheduled jobs |
-| Cost per completed task | 真正做完一件事一共花多少钱 |
-| Trust | 用户是否敢把邮件、日历、文件、支付前流程交出去 |
+| Claimed capability | 厂商说支持什么？ |
+| Availability | GA / beta / 邀测 / demo？ |
+| Repeat reliability | 同一任务重复十次怎样？ |
+| Intervention | 登录、验证码、确认、失败时要救几次？ |
+| Latency | Agent 完成到底多久？ |
+| Cost | token + runtime + tool + cloud device 总成本？ |
+| Recovery | 中断 / 做错以后能否 resume / rollback？ |
+| Trust | 用户是否敢把邮件、文件、账号和支付前流程交出去？ |
 
-所以个人 Agent 竞争最终可能不是：
-
-> “谁在某个 benchmark 高 3 分？”
-
-而是：
-
-> **“谁可以连续半年活在我的数字生活里，而不会让我每天重新配置、纠错和收拾残局？”**
+这比一个静态 benchmark 更接近普通人的实际体验。
 
 ---
 
-## 十一、个人 Agent 的四种商业单位
+## 十二、个人 Agent 的商业单位：从会员走向 persistent runtime
 
-2026 年已经可以看到四层商品同时存在。
+2026 年已经能看到四层商品：
 
-### 1. Seat / 月度会员
-
-最熟悉的入口：
-
-- WorkBuddy；
-- Kimi；
-- 扣子；
-- MiniMax；
-- Manus；
-- Genspark。
-
-### 2. Credits / 积分
-
-真正控制高成本任务：
-
-- WorkBuddy credits；
-- Kimi unified credits；
-- Coze points；
-- MiniMax credits；
-- Manus credits；
-- Genspark credits。
-
-### 3. Task / automation / concurrency
-
-最能体现 Agent 与聊天不同：
-
-- WorkBuddy 自动任务数；
-- Kimi Agent / Swarm 次数与并发；
-- Manus concurrent / scheduled tasks；
-- Coze local / cloud agents；
-- MiniMax concurrent agents。
-
-### 4. Runtime
-
-Agent 真正变成“常驻进程”以后出现：
-
-- Kimi Claw cloud host；
-- Manus Cloud Computer；
-- QClaw 本机 runtime；
-- Coze cloud devices；
-- WorkBuddy 本机 workspace / sandbox。
+1. **Seat / 月度会员**：WorkBuddy、Kimi、扣子、MiniMax、Manus、Genspark；
+2. **Credits / 积分**：控制高成本模型、Agent 与制品生成；
+3. **Task / automation / concurrency**：自动任务、Swarm、并发 worker、scheduled jobs；
+4. **Runtime**：QClaw 本机 daemon、Kimi Claw、Manus Cloud Computer、Coze cloud devices。
 
 因此个人 Agent 的商业演化可以写成：
 
-> **聊天会员 → 智能额度 → 任务额度 → 并发 worker → persistent runtime。**
+> **聊天会员 → 智能额度 → 自动任务 → 并发 worker → persistent runtime。**
+
+这也意味着用户未来买的可能不是“一个 AI App”，而是一段属于自己的持续计算 / 执行能力。
 
 ---
 
-## 十二、为什么个人 Agent 可能比企业 Agent 更难
+## 十三、为什么个人 Agent 可能比企业 Agent 更难
 
-企业工作虽然复杂，但组织通常能定义：
+企业至少常有 IT 管理员、组织账号、权限体系、SOP、审批和日志。
 
-- 权限；
-- 数据边界；
-- SOP；
-- 审批；
-- 日志；
-- 责任人。
-
-个人数字生活反而更加混乱。
-
-同一台电脑里可能同时有：
+个人电脑却混着：
 
 - 私人照片；
 - 工作文件；
-- 浏览器 cookies；
+- cookies；
 - SSH key；
-- 银行网页；
-- 微信聊天；
-- 学习笔记；
 - 邮件；
-- 云盘；
-- 游戏；
+- 微信；
+- 网盘；
+- 银行网页；
 - 家庭资料。
 
-所以个人 Agent 的长期难题不是“有没有电脑控制能力”，而是：
+所以个人 Agent 最难的问题不是“有没有 shell”，而是：
 
-> **怎样在没有 IT 管理员替你划边界的情况下，仍然给 Agent 足够能力去做事。**
+> **在没有管理员替用户划权限边界的情况下，怎样既让 Agent 真能做事，又不让它拥有一把万能钥匙。**
 
-这也是 WorkBuddy 的授权文件夹、QClaw 的 local-first、ima 的知识层、Phone Agent 的确认边界为什么都很重要。
+这正是 local-first、授权文件夹、credential isolation、sandbox、确认边界和 audit 为什么会成为 C 端竞争核心。
 
 ---
 
-## 十三、评曰：个人 Agent 正在变成“第二个操作系统层”
+## 十四、评曰：个人 Agent 争夺的是用户和所有软件之间的控制层
 
-个人电脑过去的基本抽象是应用程序。
+传统 OS 管：
 
-用户自己决定：
+> 进程、文件、窗口、硬件。
 
-> 打开 Word → 找文件 → 搜资料 → 复制 → 修改 → 发邮件。
+个人 Agent 开始试图管：
 
-个人 Agent 试图把这一串操作翻转：
+> **目标、上下文、记忆、工具选择、任务生命周期和自动执行。**
 
-> **用户描述目标 → Agent 选择应用 / 工具 → 执行 → 交付结果。**
-
-如果这一模式成立，那么 Agent 在用户和应用之间增加了一个新的控制层。
-
-这并不意味着 Windows、macOS、Android、iOS 会消失。
-
-更可能发生的是：
-
-> **传统 OS 管进程和文件；个人 Agent 管目标、上下文、工具选择与任务生命周期。**
-
-WorkBuddy、QClaw、ima、Kimi、扣子、MiniMax、Manus、Genspark 看起来差异巨大，但它们都在争夺同一个位置：
+WorkBuddy、QClaw、ima、Kimi、扣子、MiniMax、Manus、Genspark 看起来差异很大，但都在争同一个位置：
 
 > **谁成为用户数字生活里那个长期存在、知道你要做什么、并能替你跨应用推进工作的中间层。**
 
-所以个人 Agent 的历史，最后很可能不会被某个模型版本定义。
+OpenClaw 的“养龙虾”浪潮让这个想象第一次在普通用户中大规模传播，但它也把另一半问题同时摆出来：
 
-它会被一个更日常的问题定义：
+> **一个 Agent 声称会做多少事，并不重要；重要的是它能否以可接受的成本和风险，长期、重复地把用户真正需要的事情做完。**
 
-> **人从什么时候开始，不再自己打开每一个软件，而是直接告诉一个 Agent：“这件事帮我做完。”**
+如果未来个人 Agent 真成为“第二操作系统层”，决定胜负的不会只是模型 benchmark。
+
+更可能是：
+
+> **可靠性 × 权限设计 × 记忆 × 任务成本 × 用户信任。**
 
 ---
 
 *2026-08 补订：GPT-5.6 Sol（OpenAI）。*
 
-> 📖 详见《志·AI Agent 生态》《志·Agent 产品与商业化》《志·中国 Agent 生态与商业化》《表·个人 Agent 产品对照表》《表·中国 Agent 产品与平台对照表》。
+> 📖 详见《志·OpenClaw 与中国 Agent“龙虾潮”》《志·AI Agent 生态》《志·Agent 产品与商业化》《志·中国 Agent 生态与商业化》《表·个人 Agent 产品对照表》。
 
 ---
 
-[^1]: Tencent WorkBuddy Changelog, 4.5.0 release, 2026-03-04. https://www.workbuddy.cn/docs/workbuddy/Changelog
-[^2]: Tencent WorkBuddy Changelog, 5.x updates. https://www.workbuddy.cn/docs/workbuddy/Changelog
+[^1]: Tencent WorkBuddy release notes / changelog, first public 4.5.0 record, 2026-03-04. https://cloud.tencent.com/document/product/1831/134324
+[^2]: Tencent WorkBuddy Changelog / later updates. https://www.workbuddy.cn/docs/workbuddy/Changelog
 [^3]: WorkBuddy, “AI Agent 办公新范式”. https://www.workbuddy.cn/work/
 [^4]: Tencent Cloud, WorkBuddy product page. https://cloud.tencent.com/product/workbuddy
-[^5]: Tencent WorkBuddy Docs, “定价”. https://www.workbuddy.cn/docs/workbuddy/Pricing
+[^5]: Tencent WorkBuddy Docs, Pricing. https://www.workbuddy.cn/docs/workbuddy/Pricing
 [^6]: WorkBuddy home / pricing. https://www.workbuddy.cn/home
 [^7]: Tencent, “腾讯云首发效率智能体工具集，构建面向多元人群的AI生产力入口”, 2026-06-05. https://www.tencent.com/zh-cn/tencent-cloud-debuts-productivity-agent-suite-creating-a-new-gateway-to-ai-for-users-and-enterprises/
-[^8]: Tencent, “腾讯推出QClaw海外版，降低AI智能体部署门槛”, 2026-04-21. https://www.tencent.com/zh-cn/%E8%85%BE%E8%AE%AF%E6%8E%A8%E5%87%BAqclaw%E6%B5%B7%E5%A4%96%E7%89%88%EF%BC%8C%E9%99%8D%E4%BD%8Eai%E6%99%BA%E8%83%BD%E4%BD%93%E9%83%A8%E7%BD%B2%E9%97%A8%E6%A7%9B/
+[^8]: Tencent, QClaw international beta, 2026-04-21. https://www.tencent.com/zh-cn/%E8%85%BE%E8%AE%AF%E6%8E%A8%E5%87%BAqclaw%E6%B5%B7%E5%A4%96%E7%89%88%EF%BC%8C%E9%99%8D%E4%BD%8Eai%E6%99%BA%E8%83%BD%E4%BD%93%E9%83%A8%E7%BD%B2%E9%97%A8%E6%A7%9B/
 [^9]: Tencent Cloud Docs, QClaw. https://intl.cloud.tencent.com/zh/document/product/1300/81043
-[^10]: Tencent Cloud Developer, “ima 的知识 Agent copilot 功能是什么？”. https://cloud.tencent.com/developer/techpedia/2613/20569
+[^10]: Tencent Cloud Developer, ima copilot knowledge Agent. https://cloud.tencent.com/developer/techpedia/2613/20569
 [^11]: Tencent Cloud Developer Community, “左手脑子，右手手脚——我的 IMA Copilot 与 WorkBuddy 联用实战”, 2026-07-15. https://cloud.tencent.com/developer/article/2709666
-[^12]: Kimi Help Center, “会员收费与套餐介绍”. https://www.kimi.com/help/membership/membership-pricing
-[^13]: Kimi Help Center, “Agent Credits and Billing Rules”. https://www.kimi.com/en/help/agent/agent-quota-and-billing
-[^14]: Coze Docs, “订阅套餐”. https://docs.coze.cn/guides_edition
+[^12]: Kimi Help Center, membership pricing. https://www.kimi.com/help/membership/membership-pricing
+[^13]: Kimi Help Center, Agent Credits and Billing Rules. https://www.kimi.com/en/help/agent/agent-quota-and-billing
+[^14]: Coze Docs, subscription plans. https://docs.coze.cn/guides_edition
 [^15]: Apple App Store China, “MiniMax - 通用AI Agent”. https://apps.apple.com/cn/app/minimax-%E9%80%9A%E7%94%A8ai-agent/id6446482834
-[^16]: MiniMax Agent, “Subscription Service Terms / Credit Rules”. https://agent.minimax.io/doc/en/credit-rules.html
-[^17]: Manus Help Center, “What is the current membership pricing for Manus?”, 2026-03-16. https://help.manus.im/en/articles/11711111-what-is-the-current-membership-pricing-for-manus
-[^18]: Manus Help Center, “Understanding Cloud Computer Plans and Billing”, 2026-06-05. https://help.manus.im/en/articles/15392078-understanding-cloud-computer-plans-and-billing
+[^16]: MiniMax Agent, subscription / credit rules. https://agent.minimax.io/doc/en/credit-rules.html
+[^17]: Manus Help Center, membership pricing, 2026-03-16. https://help.manus.im/en/articles/11711111-what-is-the-current-membership-pricing-for-manus
+[^18]: Manus Help Center, Cloud Computer plans, 2026-06-05. https://help.manus.im/en/articles/15392078-understanding-cloud-computer-plans-and-billing
 [^19]: Genspark, Membership Benefits. https://www.genspark.ai/zh-cn/membership-benefits-lp
 [^20]: Genspark Help Center, Membership Plans. https://www.genspark.ai/helpcenter/membership-plans
+[^21]: OpenClaw official lore. https://docs.openclaw.ai/lore
+[^22]: Tencent Cloud Techpedia, WorkBuddy public launch record, 2026-03-09. https://cloud.tencent.com/developer/techpedia/2610
+[^23]: Tencent Cloud Developer Community, QClaw / WorkBuddy architecture and positioning. https://developer.cloud.tencent.com/article/2646434
+[^24]: Tencent Cloud Developer Community, multi-day QClaw / WorkBuddy user test. https://developer.cloud.tencent.com/article/2687513
+[^25]: Gonzalez-Pumariega et al., “On the Reliability of Computer Use Agents”, arXiv:2604.17849. https://arxiv.org/abs/2604.17849
+[^26]: Reuters, “As OpenClaw enthusiasm grips China, schoolkids and retirees alike raise ‘lobsters’”, 2026-03-19. https://www.reuters.com/technology/openclaw-enthusiasm-grips-china-schoolkids-retirees-alike-raise-lobsters-2026-03-19/
