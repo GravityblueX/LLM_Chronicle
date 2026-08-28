@@ -1,0 +1,12 @@
+{
+  "month": "2026-02",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 Agent 主线重订：新增 Codex App / GPT-5.3-Codex / Sonnet 4.6 / distillation-attack 一手资料。HTML snapshot 待仓库归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://openai.com/index/introducing-the-codex-app/","title":"Introducing the Codex app — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://openai.com/index/introducing-gpt-5-3-codex/","title":"Introducing GPT-5.3-Codex — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://openai.com/index/gpt-5-3-codex-system-card/","title":"GPT-5.3-Codex System Card — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/claude-sonnet-4-6","title":"Introducing Sonnet 4.6 — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks","title":"Detecting and preventing distillation attacks — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
