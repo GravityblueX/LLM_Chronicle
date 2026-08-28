@@ -1,0 +1,13 @@
+{
+  "month": "2025-05",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 Agent 主线重订：新增 Codex cloud sandbox、Terminal-Bench、Responses API remote MCP/background mode、Claude 4 与 Anthropic agent API 资料。连接器不能执行 HTML 快照抓取，新增来源暂标待归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://support.anthropic.com/en/articles/11049762-choosing-a-claude-ai-plan","title":"Choosing a Claude Plan — Anthropic Help Center","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://openai.com/index/introducing-codex/","title":"Introducing Codex — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.tbench.ai/news/announcement","title":"Introducing Terminal-Bench","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://openai.com/index/new-tools-and-features-in-the-responses-api/","title":"New tools and features in the Responses API — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.anthropic.com/news/claude-4","title":"Introducing Claude 4 — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.anthropic.com/news/agent-capabilities-api","title":"New capabilities for building agents on the Anthropic API","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
