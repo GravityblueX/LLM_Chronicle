@@ -12,8 +12,8 @@ AI 自己写自己的历史。
 
 - **编年**是主线。按年份建文件夹，每月一个文件。哪年哪月发生了什么，清清楚楚，每条带出处。读完编年，就能掌握全貌。
 - **纪传**是补充。重要的人、公司、模型系列，光靠编年写不清楚——那就单独列传，讲来龙去脉。本纪（公司/人物）、世家（模型系列）、列传（单模型/技术），各有模板。
-- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、评价基准演化，跨越年份的主题独立成志。
-- **表**备速查——大事年表、版本沿革、Agent 发展大事表、Agent 主流产品与商业化对照表等。
+- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、中国 Agent 生态与商业化、评价基准演化等。
+- **表**备速查——大事年表、版本沿革、Agent 发展大事表、Agent 主流产品与商业化对照表、中国 Agent 产品与平台对照表等。
 - **评曰**载史识——替代旧体例的“太史公曰”，全白话议论，概括→因果→判断。
 - **模型优先，Agent 为第二主线**——模型发布仍是第一优先，但 Function Calling、Computer Use、MCP/A2A、sandbox、Agent benchmark、multi-agent、支付、商业计量与物理设备接口等“行动权变化”即使没有新模型发布，也应进入正史。
 - 每一条记述必须注明出处——论文链接、官方公告、新闻 URL、PR 编号，能查回去。网页快照在 `sources/` 留档。
@@ -39,24 +39,49 @@ AI 自己写自己的历史。
 
 ### 第二主线：模型怎样获得行动权
 
-从 MRKL、SayCan、ReAct，到 Plugins、Function Calling、AutoGPT；再到 Devin、Computer Use、MCP、A2A、Claude Code、Codex、Agent Swarm、event-driven automations、x402 与 MHS。
+从 MRKL、SayCan、ReAct，到 Plugins、Function Calling、AutoGPT；再到 Devin、Computer Use、AutoGLM、MCP、A2A、Claude Code、Codex、Agent Swarm、event-driven automations、x402 与 MHS。
 
 核心问题是：
 
 > **概率模型怎样从信息系统的输出端，移动到信息系统的控制面；行动权怎样被授予、限制、验证、计价、撤回和追责。**
 
-Agent 主线的六个入口：
+Agent 主线的八个入口：
 
 - [`志/AI Agent 生态.md`](志/AI%20Agent%20生态.md) —— 从经典智能体到 2026 物理 Agent 的完整结构史；
-- [`志/Agent产品与商业化.md`](志/Agent产品与商业化.md) —— 主流 Agent 产品、收费方式、企业采用与商业模式；
+- [`志/Agent产品与商业化.md`](志/Agent产品与商业化.md) —— 全球主流 Agent 产品、收费方式、企业采用与商业模式；
+- [`志/中国Agent生态与商业化.md`](志/中国Agent生态与商业化.md) —— Kimi、悟空、扣子、AutoGLM、腾讯 ADP、百度千帆、MiniMax、Dify 等中国 Agent 路线；
 - [`论/Agent 时代.md`](论/Agent%20时代.md) —— 行动权、组织、验证与经济学；
-- [`表/Agent发展大事表.md`](表/Agent发展大事表.md) —— 2022—2026 关键节点速查；
-- [`表/Agent主流产品与商业化对照表.md`](表/Agent主流产品与商业化对照表.md) —— ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google / AWS 对照；
-- **编年** —— 把 Function Calling、MCP、A2A、ChatGPT Agent、AAIF、x402、FinOps、MHS 等转折放回它们真正发生的年月。
+- [`表/Agent发展大事表.md`](表/Agent发展大事表.md) —— 2022—2026 全球关键节点速查；
+- [`表/Agent主流产品与商业化对照表.md`](表/Agent主流产品与商业化对照表.md) —— 全球核心产品、商业模式与成熟度对照；
+- [`表/中国Agent产品与平台对照表.md`](表/中国Agent产品与平台对照表.md) —— 中国市场的产品、AgentOps、Phone Use、云 runtime 与计量方式；
+- **编年** —— 把 Function Calling、AutoGLM、MCP、A2A、Seed1.8、悟空、扣子 3.0、腾讯 ADP、ChatGPT Agent、AAIF、x402、百炼 Managed Agents、Dify、FinOps、MHS 等转折放回它们真正发生的年月。
 
 一句话概括这两条线：
 
 > **前半部大模型史主要在扩大能力上限；Agent 史开始扩大模型能够安全触及、持续执行并被商业化的世界范围。**
+
+### 中国 Agent：不是一个产品，而是一条执行链
+
+中国 Agent 生态不宜简单写成“谁做了中国版 ChatGPT Agent”。到 2026 年更清晰的结构是：
+
+> **模型公司提供大脑，云厂商提供机器，超级应用提供身份和工作入口，Agent 平台提供编排，Phone / GUI Agent 提供最后一公里，开源平台提供迁移与私有部署。**
+
+因此本书单独追踪：
+
+- Kimi Agent / Swarm / Claw；
+- 阿里悟空、百炼 Managed Agents、无影 Agentic Computer、Qoder；
+- 字节扣子、Seed、豆包手机助手；
+- 智谱 AutoGLM / GLM Agent API；
+- 腾讯 ADP；
+- 百度千帆 Agent；
+- MiniMax Agent；
+- Dify；
+- 中国团队起源、后全球化的 Manus；
+- DeepSeek 这类“强 Agent 模型底座但不等于完整第一方 Agent 产品”的路线。
+
+核心问题从“有没有国产模型”进一步变成：
+
+> **模型、工具、Agent runtime、企业数据、身份权限、云、国产芯片 serving 与审计能不能组成一条可持续的自主执行链。**
 
 ## 编年目录
 
@@ -112,7 +137,7 @@ Agent 主线的六个入口：
 │   ├── 07.md              Llama 3.1 405B：开放权重叫板前沿
 │   ├── 08.md              FLUX.1：SD3 的真正继承者
 │   ├── 09.md              o1：推理模型的新品类
-│   ├── 10.md              诺贝尔奖；Claude Computer Use
+│   ├── 10.md              Claude Computer Use 与 AutoGLM Phone Use
 │   ├── 11.md              R1-Lite、Qwen2.5-Coder 与 MCP
 │   └── 12.md              DeepSeek-V3；Gemini 2.0；Sora Turbo；Llama 3.3
 ├── 2025/
@@ -127,16 +152,16 @@ Agent 主线的六个入口：
 │   ├── 09.md              Anthropic 将中国列为受限地区
 │   ├── 10.md              Claude Haiku 4.5；Claude Code 网页版
 │   ├── 11.md              Grok 4.1 Fast；Claude Code 间谍攻击事件
-│   └── 12.md              AAIF、GPT-5.2 与长程 Agent 基础设施
+│   └── 12.md              AAIF、GPT-5.2、Seed1.8 与长程 Agent 基础设施
 └── 2026/
     ├── 01.md              Cowork、MCP Apps、Agents Tab 与 Kimi Swarm
     ├── 02.md              Codex App：多 Agent 指挥中心
-    ├── 03.md              蒸馏攻击、「318 事变」与国模崛起；LeWorldModel
+    ├── 03.md              访问制度争议、阿里悟空与国产执行链
     ├── 04.md              DeepSeek V4；x402、A2A、Agent Swarm 与 sandbox
-    ├── 05.md              Claude Mythos：漏洞武器化与出口管制危机
+    ├── 05.md              Claude Mythos；扣子 3.0 AI 团队工作台
     ├── 06.md              Gemini 3 Pro；Mythos 5/Fable 5；出口管制撤销
-    ├── 07.md              GPT-5.6、Kimi K3、x402、MCP 新规范与 V4-Flash
-    └── 08.md              Qwen3.8、Agent Automations、FinOps、MHS 与商业化最后一公里
+    ├── 07.md              腾讯 ADP 商用；GPT-5.6、Kimi K3、x402 与 MCP
+    └── 08.md              百炼 Managed Agents、Dify、FinOps、MHS 与部署最后一公里
 ```
 
 > 注：README 的月度短描述是导航，不等于该月只发生了这些事件；完整内容以对应编年文件为准。
@@ -212,13 +237,14 @@ Agent 主线的六个入口：
 |------|------|
 | 编年条目 | **69 篇**（2017/06 — 2026/08；新增 2023/06 Function Calling） |
 | 纪传 | **58 篇**（本纪 ×12 + 世家 ×10 + 列传 ×36） |
-| 志 | **21 篇**（新增 **Agent 产品与商业化**；另含 AI Agent 生态、AI 编程助手、AI 产品化演进、长上下文、模型对齐技术演进等） |
+| 志 | **22 篇**（新增 **Agent 产品与商业化**、**中国 Agent 生态与商业化**；另含 AI Agent 生态、AI 编程助手、AI 产品化演进等） |
 | 论 | **18 篇**（含 Agent 时代、Test-Time Compute、推理经济学、AI 安全与对齐等） |
-| 表 | **12 篇**（原有 10 篇 + **Agent 发展大事表** + **Agent 主流产品与商业化对照表**） |
-| **总计** | **178 篇**（编年 69 + 纪传 58 + 志 21 + 论 18 + 表 12） |
+| 表 | **13 篇**（原有 10 篇 + **Agent 发展大事表** + **Agent 主流产品与商业化对照表** + **中国 Agent 产品与平台对照表**） |
+| **总计** | **180 篇**（编年 69 + 纪传 58 + 志 22 + 论 18 + 表 13） |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册，待写清单见 `review/audit-06.md` |
-| Agent 主线 | **2022—2026**：ReAct / Toolformer / AutoGPT → Function Calling → Computer Use / MCP → A2A / coding agents → Swarm / sandbox / x402 / FinOps / MHS |
-| Agent 商业化 | ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google Agent Platform / AWS AgentCore；重点跟踪 seat → credits → action → task → runtime resource |
+| Agent 主线 | **2022—2026**：ReAct / Toolformer / AutoGPT → Function Calling → Computer / Phone Use / MCP → A2A / coding agents → Swarm / sandbox / x402 / FinOps / MHS |
+| 全球 Agent 商业化 | ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google Agent Platform / AWS AgentCore；重点跟踪 seat → credits → action → task → runtime resource |
+| 中国 Agent 商业化 | Kimi / 悟空 / 百炼 / 扣子 / Seed / AutoGLM / 腾讯 ADP / 百度千帆 / MiniMax / Dify；重点跟踪会员 → credits / 算粒 / PU → 并发 Agent → runtime 时长 → tool / search / MCP |
 | 出处快照 | `sources/` 归档规范已定；无法在当前连接器执行的 HTML 快照均明确标记 pending，不伪造 |
 | 体例版本 | [v2.1](00_体例.md)（白话文 · 模型优先 · Agent 行动权第二主线 · 评曰 · sources/ 归档） |
 | 工具链 | 链接验证 + 格式校验 + 快照归档，纯 Node.js 零依赖 |
@@ -246,6 +272,8 @@ Agent 主线的六个入口：
 **2026 夏季总补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 本轮补齐 2026/07—08 编年，并集中修订模型谱系、本纪、专题史论与关键数据表；原史官署名均保留。
 
 **Agent 主线总补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 将 Agent 从散落的产品事件提升为正式第二主线：重写《AI Agent 生态》，新增 Function Calling 编年、《Agent 发展大事表》《Agent 产品与商业化》《Agent 主流产品与商业化对照表》，并把 MCP、Deep Research、Agent Mode、Agents SDK、A2A / ADK、Codex、ChatGPT Agent、AAIF、x402、Agent FinOps 与 MHS 等节点补回对应年月。
+
+**中国 Agent 生态补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《中国 Agent 生态与商业化》《中国 Agent 产品与平台对照表》，并把 AutoGLM、Seed1.8、悟空、扣子 3.0、腾讯 ADP、百炼 Managed Agents、Dify 等节点并入全球 Agent 时间线与月度编年。
 
 ## 协作
 
