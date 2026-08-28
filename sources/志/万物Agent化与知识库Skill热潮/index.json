@@ -1,0 +1,27 @@
+{
+  "entry": "志/万物Agent化与知识库Skill热潮",
+  "updated_at": "2026-08-28",
+  "archive_note": "本专题把营销材料本身作为时代话语史料，同时用产品文档、权限/计费文档、独立研究和安全研究校正‘功能存在=稳定价值’的偷换。当前连接器不能执行 HTML snapshot 抓取，新增活链统一标记 snapshot pending。",
+  "sources": [
+    {"ref":"[^1]","url":"https://cloud.tencent.com.cn/product/workbuddy","title":"WorkBuddy — ‘真正能干活的超级个体’ / 7万+ Skills","snapshot":null,"status":"vendor_marketing_and_product_page_snapshot_pending"},
+    {"ref":"[^2]","url":"https://www.feishu.cn/content/article/7631864469689240764","title":"飞书 aily 自定义智能体 — ‘AI数字员工’","snapshot":null,"status":"vendor_product_page_snapshot_pending"},
+    {"ref":"[^3]","url":"https://dev.mi.com/xiaomihyperos/announcement/detail?id=41","title":"小米 Agent 生态平台公测通知","snapshot":null,"status":"vendor_official_snapshot_pending"},
+    {"ref":"[^4]","url":"https://dev.mi.com/xiaomihyperos/documentation/detail?pId=2302","title":"小米 Agent 平台服务协议","snapshot":null,"status":"vendor_official_snapshot_pending"},
+    {"ref":"[^5]","url":"https://app.xinhuanet.com/news/article.html?articleId=20260530c47c37ca9692429fac2cb74191870db8","title":"‘让每个人都有可养成的数字搭档’ — 新华网客户端企业专题传播样本","snapshot":null,"status":"sponsored_or_enterprise_feature_rhetoric_sample_snapshot_pending"},
+    {"ref":"[^6]","url":"https://dev.mi.com/xiaomihyperos/documentation/detail?pId=2300","title":"小米 Skills 发布标准及规范","snapshot":null,"status":"vendor_official_snapshot_pending"},
+    {"ref":"[^7]","url":"https://dev.mi.com/xiaomihyperos/documentation/detail?pId=2301","title":"小米 MCP 发布标准及规范","snapshot":null,"status":"vendor_official_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.vance.xin/2026/06/27/202606271110/","title":"‘第二大脑’个人知识库传播样本","snapshot":null,"status":"community_rhetoric_sample_snapshot_pending"},
+    {"ref":"[^9]","url":"https://arxiv.org/abs/2606.26511","title":"Temporal Validity in Retrieval Memory","snapshot":null,"status":"research_source_snapshot_pending"},
+    {"ref":"[^10]","url":"https://cloud.baidu.com/doc/qianfan/s/Zmlj32okw","title":"百度千帆知识库计费 / 高级解析","snapshot":null,"status":"vendor_product_docs_snapshot_pending"},
+    {"ref":"[^11]","url":"https://arxiv.org/abs/2410.12812","title":"Optimizing and Evaluating Enterprise RAG — content design perspective","snapshot":null,"status":"research_source_snapshot_pending"},
+    {"ref":"[^12]","url":"https://www.feishu.cn/content/ehksl0lb","title":"飞书 Aily 角色 / 数据 / 知识库权限配置","snapshot":null,"status":"vendor_product_docs_snapshot_pending"},
+    {"ref":"[^13]","url":"https://matrix.tencent.com/zh/2026/06/29/agent-security-drill-skill","title":"腾讯朱雀实验室 Agent 安全演习 SKILL","snapshot":null,"status":"vendor_security_research_snapshot_pending"},
+    {"ref":"[^14]","url":"https://arxiv.org/abs/2608.26385","title":"Why RAGs Hallucinate — knowledge-gap canaries","snapshot":null,"status":"research_source_snapshot_pending"},
+    {"ref":"[^15]","url":"https://cloud.tencent.com/document/product/1831/134432","title":"WorkBuddy Enterprise 技能说明","snapshot":null,"status":"vendor_product_docs_snapshot_pending"},
+    {"ref":"[^16]","url":"https://arxiv.org/abs/2605.11418","title":"Under the Hood of SKILL.md","snapshot":null,"status":"research_source_snapshot_pending"},
+    {"ref":"[^17]","url":"https://github.com/openclaw/openclaw/blob/main/docs/security/THREAT-MODEL-ATLAS.md","title":"OpenClaw ATLAS threat model","snapshot":null,"status":"official_security_model_snapshot_pending"},
+    {"ref":"[^18]","url":"https://blog.virustotal.com/2026/02/from-automation-to-infection-how.html","title":"VirusTotal — weaponized OpenClaw Skills","snapshot":null,"status":"independent_security_research_snapshot_pending"},
+    {"ref":"[^19]","url":"https://unit42.paloaltonetworks.com/openclaw-ai-supply-chain-risk/","title":"Palo Alto Unit 42 — OpenClaw Skill marketplace supply-chain risk","snapshot":null,"status":"independent_security_research_snapshot_pending"},
+    {"ref":"[^20]","url":"https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/","title":"Snyk ToxicSkills audit","snapshot":null,"status":"independent_security_research_snapshot_pending"}
+  ]
+}
