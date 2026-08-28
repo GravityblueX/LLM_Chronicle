@@ -1,46 +1,39 @@
 {
   "month": "2026-03",
-  "_review_notes": {
-    "date": "2026-08-28",
-    "reviewer": "GPT-5.6 Sol（Agent 主线补订）",
-    "issues_found": [
-      "P0: 80aj.com snapshot 错位 — 80aj-com-AI-20260306.html 实际内容与正文引用不符，需重新归档。",
-      "P0: [^3] 知乎源 snapshot 缺失（MANUAL_NEEDED）；旧稿曾依赖该单源推导多项争议性事实，2026-08 重订已将相关动机与同步封禁结论降级处理。",
-      "P1: 新增阿里悟空 2026-03-17 官方一手来源。",
-      "P2: 旧索引中若干 2026/04 前置归档仍保留，后续本地归档整理时可迁移。"
-    ]
-  },
-  "sources": [
-    {
-      "ref":"[^1]","url":"https://gitcode.csdn.net/69c880230a2f6a37c59b424c.html","title":"幕后黑手曝光：2.4万马甲、1600万次对话，他们把Claude的路走窄了","snapshot":"gitcode-csdn-net-69c880230a2f6a37c59b424c.html","archived_at":"2026-05-25","status":"archived_secondary_source"
-    },
-    {
-      "ref":"[^2]","url":"https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks","title":"Detecting and preventing distillation attacks — Anthropic","snapshot":"anthropic-com-news-detecting-and-preventing-distillation-attacks.html","archived_at":"2026-05-25","status":"archived_official_source"
-    },
-    {
-      "ref":"[^3]","url":"https://zhuanlan.zhihu.com/p/2010041136933250897","title":"Anthropic控告中国AI蒸馏，马斯克和整个互联网都笑了","snapshot":null,"screenshot_status":"MANUAL_NEEDED","archived_at":"2026-05-25","status":"single_secondary_source_caution"
-    },
-    {
-      "ref":"[^4]","url":"https://www.80aj.com/AI/20260306/","title":"Anthropic 2026 封号潮深度解析：风控升级与社区进化","snapshot":"80aj-com-AI-20260306.html","archived_at":"2026-05-25","status":"snapshot_mismatch_do_not_rely","note":"现有 snapshot 内容错位，需重新归档。"
-    },
-    {
-      "ref":"[^5]","url":"https://arxiv.org/abs/1503.02531","title":"Distilling the Knowledge in a Neural Network","snapshot":null,"status":"live_verified_snapshot_pending"
-    },
-    {
-      "ref":"[^6]","url":"https://arxiv.org/abs/2603.19312","title":"LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels","snapshot":"arxiv-org-abs-2603.html","archived_at":"2026-05-25","status":"archived"
-    },
-    {
-      "ref":"[^7]","url":"https://techcrunch.com/2026/03/05/openai-launches-gpt-5-4-with-pro-and-thinking-versions/","title":"OpenAI launches GPT-5.4 with Pro and Thinking versions — TechCrunch","snapshot":null,"status":"live_verified_snapshot_pending"
-    },
-    {
-      "ref":"[^8]","url":"https://www.alibabagroup.com/en-US/document-1971078136456019968","title":"Alibaba Launches Wukong: An AI-Native Agentic Platform for Enterprises","snapshot":null,"status":"live_verified_snapshot_pending"
-    },
-    {
-      "ref":"?","url":"https://cloud.tencent.com/developer/article/20260409","title":"2026/04 前置归档，正文未引用","snapshot":null,"status":"unreferenced_possible_2026_04"
-    },
-    {
-      "ref":"?","url":"https://news.qq.com/rain/20260424","title":"2026/04 前置归档，正文未引用","snapshot":"news-qq-com-rain-20260424.html","status":"unreferenced_possible_2026_04"
-    }
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 OpenClaw / 中国 Agent 主线重订：保留旧蒸馏 / 访问制度归档，同时新增养龙虾、WorkBuddy/QClaw、DuClaw、ArkClaw、Wukong、AutoClaw、QwenPaw、真实用户成本与 Agent reliability 资料。新增活链 snapshot 待本地归档工具补抓。",
+  "review_notes": [
+    "旧 80aj snapshot 内容错位，正文不再依赖其承担关键事实。",
+    "旧知乎源只保留为社区舆论线索，不承担关键事实。",
+    "Agent 厂商能力声明与真实可靠性已按 v2.2 凡例分层记录。"
   ],
-  "updated_at": "2026-08-28"
+  "sources": [
+    {"ref":"[^1]","url":"https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks","title":"Detecting and preventing distillation attacks — Anthropic","snapshot":"anthropic-com-news-detecting-and-preventing-distillation-attacks.html","archived_at":"2026-05-25","status":"archived_official_source"},
+    {"ref":"[^2]","url":"https://gitcode.csdn.net/69c880230a2f6a37c59b424c.html","title":"幕后黑手曝光：2.4万马甲、1600万次对话，他们把Claude的路走窄了 — AtomGit","snapshot":"gitcode-csdn-net-69c880230a2f6a37c59b424c.html","archived_at":"2026-05-25","status":"archived_secondary_source"},
+    {"ref":"[^3]","url":"https://www.80aj.com/AI/20260306/","title":"旧 Claude 封号潮社区线索","snapshot":"80aj-com-AI-20260306.html","archived_at":"2026-05-25","status":"snapshot_mismatch_do_not_rely"},
+    {"ref":"[^4]","url":"https://arxiv.org/abs/1503.02531","title":"Distilling the Knowledge in a Neural Network","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://zhuanlan.zhihu.com/p/2010041136933250897","title":"旧社区舆论讨论","snapshot":null,"status":"secondary_lead_only"},
+    {"ref":"[^6]","url":"https://arxiv.org/abs/2603.19312","title":"LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels","snapshot":"arxiv-org-abs-2603.html","archived_at":"2026-05-25","status":"archived"},
+    {"ref":"[^7]","url":"https://techcrunch.com/2026/03/05/openai-launches-gpt-5-4-with-pro-and-thinking-versions/","title":"OpenAI launches GPT-5.4 with Pro and Thinking versions — TechCrunch","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.alibabagroup.com/en-US/document-1971078136456019968","title":"Alibaba Launches Wukong: An AI-Native Agentic Platform for Enterprises","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://www.reuters.com/world/asia-pacific/chinas-shenzhen-backs-openclaw-ai-with-subsidies-despite-beijings-security-2026-03-09/","title":"Chinese tech hubs promote OpenClaw AI agent despite security warnings — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.reuters.com/technology/china-moves-curb-use-openclaw-ai-banks-state-agencies-bloomberg-news-reports-2026-03-11/","title":"China warns state-owned firms and government agencies against OpenClaw AI, sources say — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://cloud.tencent.com/document/product/1831/134324","title":"WorkBuddy release notes — Tencent Cloud","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://cloud.tencent.com/developer/techpedia/2610","title":"WorkBuddy product record — Tencent Cloud Techpedia","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://developer.cloud.tencent.com/article/2646434","title":"QClaw / WorkBuddy usage and architecture comparison — Tencent Cloud Developer Community","snapshot":null,"status":"community_test_vendor_hosted_caution"},
+    {"ref":"[^14]","url":"https://www.reuters.com/technology/tencent-integrates-wechat-with-openclaw-ai-agent-amid-china-tech-battle-2026-03-22/","title":"Tencent integrates WeChat with OpenClaw AI agent — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://www.prnewswire.com/news-releases/baidu-launches-duclaw-enables-zero-deployment-access-to-openclaw-302710924.html","title":"Baidu Launches DuClaw, Enables Zero-Deployment Access to OpenClaw","snapshot":null,"status":"official_press_release_snapshot_pending"},
+    {"ref":"[^16]","url":"https://www.reuters.com/business/media-telecom/baidu-joins-chinas-openclaw-frenzy-with-new-ai-agents-2026-03-17/","title":"Baidu joins China's OpenClaw frenzy with new AI agents — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://www.volcengine.com/docs/87732/2279754","title":"ArkClaw release notes — Volcengine","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^18]","url":"https://www.volcengine.com/docs/87732/2431032","title":"Migrate OpenClaw to ArkClaw — Volcengine","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^19]","url":"https://www.volcengine.com/docs/87732/2431008","title":"ArkClaw cloud-computer usage limitations — Volcengine","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^20]","url":"https://autoclaw.zhipuai.cn/blog/product/","title":"AutoClaw product updates — Zhipu","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^21]","url":"https://www.reuters.com/world/asia-pacific/alibaba-launches-new-ai-agent-platform-enterprises-2026-03-17/","title":"Alibaba launches AI platform for enterprises as agent craze sweeps China — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^22]","url":"https://www.alibabacloud.com/help/en/model-studio/qwenpaw","title":"QwenPaw / CoPaw — Alibaba Cloud","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^23]","url":"https://www.alibabacloud.com/blog/alibaba-open-sources-hiclaw-%2526-copaw-low-memory-ai-agents-for-local-automation_602950","title":"HiClaw & CoPaw — Alibaba Cloud Native Community","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^24]","url":"https://www.reuters.com/technology/openclaw-enthusiasm-grips-china-schoolkids-retirees-alike-raise-lobsters-2026-03-19/","title":"As OpenClaw enthusiasm grips China, schoolkids and retirees alike raise lobsters — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^25]","url":"https://arxiv.org/abs/2604.17849","title":"On the Reliability of Computer Use Agents","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^26]","url":"https://arxiv.org/abs/2607.28367","title":"How Benchmarks Mis-Score Computer-Use Agents","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"?","url":"https://news.qq.com/rain/20260424","title":"2026/04 前置旧归档，正文未引用","snapshot":"news-qq-com-rain-20260424.html","status":"unreferenced_possible_2026_04"}
+  ]
 }
