@@ -1,0 +1,6 @@
+{
+  "entry": "表/Agent主流产品与商业化对照表",
+  "updated_at": "2026-08-28",
+  "source_bank": "sources/志/Agent产品与商业化/index.json",
+  "note": "本表与《志/Agent 产品与商业化》使用同一组 2026-08-28 核验的官方价格页、厂商文档与 Reuters 商业采用资料。价格是编纂时快照，不保证未来不变；HTML snapshot 由仓库本地归档工具后续补抓。"
+}
