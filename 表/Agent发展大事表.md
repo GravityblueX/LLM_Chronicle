@@ -34,6 +34,7 @@
 | 2024-09-12 | Enterprise Agent | **Salesforce Agentforce** | autonomous agents 进入 CRM、销售、客服、营销和企业权限体系 | [^22] |
 | 2024-10-21 | Enterprise Agent | **Microsoft Copilot Studio autonomous agents** | 企业 Agent 从对话 Copilot 转向可自主运行的业务流程执行者 | [^23] |
 | 2024-10-22 | Computer Use | **Claude Computer Use** | 模型通过截图、鼠标、键盘直接操作 GUI；桌面成为通用兼容层 | [^24] |
+| 2024-10-25 | Phone Use / 中国 | **智谱 AutoGLM** | 中国团队把 GUI Agent 推进到真实 Android App：看屏幕、跨 App、执行点击/输入/滑动，Phone Use 成为独立产品路线 | [^54] |
 | 2024-11-25 | Tool Protocol | **Model Context Protocol (MCP)** | 工具、数据源、应用连接从一次性集成走向开放协议 | [^25] |
 | 2024-12-03 | Managed Multi-Agent | **Amazon Bedrock multi-agent preview** | supervisor / specialist 多 Agent 进入云平台托管服务 | [^26] |
 | 2024-12-18 | Workplace Benchmark | **TheAgentCompany** | 用模拟数字公司衡量 Agent 浏览内部网站、编码与“同事”协作能力 | [^27] |
@@ -51,17 +52,23 @@
 | 2025-06-23 | Protocol Governance | **A2A 进入 Linux Foundation** | Agent-to-Agent 协议从单厂商规范转向中立治理 | [^39] |
 | 2025-07-17 | General Consumer Agent | **ChatGPT Agent** | Operator 的行动、Deep Research 的研究与 ChatGPT 对话合流，Research 与 Action 不再分家 | [^40] |
 | 2025-12-09 | Open Governance | **Agentic AI Foundation (AAIF)** | MCP、goose、AGENTS.md 等 Agent 基础设施进入 Linux Foundation 下的中立治理 | [^41] |
+| 2025-12-18 | Agent-native Model / 中国 | **ByteDance Seed1.8** | Search、Code、GUI 与复杂 workflow 合并进“generalized agentic model”；模型层开始直接以真实任务执行定义能力 | [^55] |
 | 2026-01-26 | Tool UI | **MCP Apps** | MCP 工具可返回会话内交互式 UI，工具与应用边界进一步模糊 | [^42] |
 | 2026-01-26 | Agent Operations | **GitHub Agents Tab** | Agent session 像 Issue / PR 一样成为仓库中的一等管理对象 | [^43] |
 | 2026-01-27 | Agent Swarm | **Kimi K2.5 Agent Swarm** | 多 Agent 开始被用作 test-time scaling 的横向扩展：自动组织约百个子 Agent | [^44] |
 | 2026-02-02 | Multi-Agent Product | **Codex App** | “command center for agents”：并行 worktree、background task、skills、automations | [^45] |
+| 2026-03-17 | Enterprise Work Agent / 中国 | **阿里悟空 Wukong** | 多 Agent 企业工作平台直接接入钉钉组织、权限与协作生态；中国超级应用 / 企业 IM 成为 Agent 分发入口 | [^56] |
 | 2026-04-02 | Agent Payment | **x402 Foundation** | 将互联网原生支付明确纳入 Agent / API 交易基础设施 | [^46] |
 | 2026-04-09 | A2A Adoption | **A2A 一周年** | Linux Foundation 称 150+ 组织支持，并进入主要云平台与企业生产部署 | [^47] |
 | 2026-04-15 | Agent Runtime | **Agents SDK native sandbox** | harness、state 与临时计算环境进一步分离，snapshot / rehydrate 支持长程任务恢复 | [^48] |
 | 2026-04-20 | Agent Swarm | **Kimi K2.6** | Swarm 扩展到最多约 300 个子 Agent、单任务 4,000+ tool calls | [^49] |
+| 2026-05-29 | AI Team Workspace / 中国 | **扣子 3.0** | 从低代码 Bot / workflow builder 转向“一人+多 Agent / 多人+多 Agent”的项目工作台，并支持云端 / 本地 Agent 共存 | [^57] |
+| 2026-07-01 | AgentOps Commercialization / 中国 | **Tencent Cloud ADP 智能工作台 / Claw 正式商用** | 任务运行时长进入正式计费，Agent runtime 在中国云市场成为独立收费对象 | [^58] |
 | 2026-07-14 | Agent Payment | **x402 Foundation operational launch** | Agent 支付协议从基金会成立进入正式运作阶段 | [^50] |
 | 2026-07-28 | Tool Protocol | **MCP 2026-07-28 spec** | 无状态核心、Tasks、扩展框架、header routing、授权加固使 MCP 更接近生产基础设施 | [^51] |
 | 2026-08-03 | Event-driven Agent | **Copilot Automations comments trigger** | Agent 不再必须由聊天启动，Issue / PR 等系统事件可以直接触发后台工作 | [^52] |
+| 2026-08-17 | Managed Agent Runtime / 中国 | **阿里云百炼 Managed Agents 正式商业化** | 0.5 元/小时会话 runtime + 模型 token + 工具 / MCP 独立计费，中国云厂商开始显式出售 Agent runtime | [^59] |
+| 2026-08-27 | Open Agent Platform / 中国团队 | **Dify 重构 Agent** | workflow-first 平台把 Agent 从临时节点升级为可独立运行、可复用并能进入其他流程协作的长期主体 | [^60] |
 | 2026-08-27 | Physical Agent | **Anthropic MHS research preview** | Agent 标准接口从数字工具延伸到显微镜、机械臂等物理设备；当前按 Reuters 单一权威来源记录 | [^53] |
 
 ---
@@ -74,9 +81,9 @@
 |---|---|---|
 | **Reason + Act** | 模型开始在行动结果后继续推理，而不是一次性回答 | ReAct、SayCan |
 | **Structured Tools** | 行动意图从自由文本变成机器可验证接口 | Plugins、Function Calling、Tool Use、MCP |
-| **Owned Workspace** | Agent 获得 browser、terminal、desktop、sandbox 与持久 workspace | Devin、Computer Use、Claude Code、Codex |
-| **Delegation & Organization** | 人从“监督每一步”转向“给目标并验收”；Agent 之间开始分工 | Deep Research、A2A、Bedrock multi-agent、Kimi Swarm |
-| **Durable & Governed Action** | 状态、恢复、身份、预算、审计、支付、事件触发和物理权限成为系统组成 | Background Mode、Agents SDK sandbox、AAIF、x402、MHS |
+| **Owned Workspace** | Agent 获得 browser、terminal、desktop、sandbox 与持久 workspace | Devin、Computer Use、AutoGLM、Claude Code、Codex |
+| **Delegation & Organization** | 人从“监督每一步”转向“给目标并验收”；Agent 之间开始分工 | Deep Research、A2A、Bedrock multi-agent、Kimi Swarm、Wukong、Coze 3.0 |
+| **Durable & Governed Action** | 状态、恢复、身份、预算、审计、支付、事件触发和物理权限成为系统组成 | Background Mode、Agents SDK sandbox、AAIF、x402、腾讯 ADP、百炼 Managed Agents、MHS |
 
 因此，Agent 历史最值得观察的指标不是“某个模型声称自主多少小时”，而是：
 
@@ -101,7 +108,7 @@
 
 *2026-08-28 编表：GPT-5.6 Sol（OpenAI）。*
 
-> 📖 详见《志·AI Agent 生态》《论·Agent 时代》《志·AI 编程助手》《Codex / GitHub Copilot 列传》。
+> 📖 详见《志·AI Agent 生态》《志·中国 Agent 生态与商业化》《论·Agent 时代》《志·AI 编程助手》《Codex / GitHub Copilot 列传》。
 
 ---
 
@@ -158,3 +165,10 @@
 [^51]: MCP Blog, 2026-07-28 specification. https://blog.modelcontextprotocol.io/posts/2026-07-28/
 [^52]: GitHub, Copilot automations comments trigger, 2026-08-03. https://github.blog/changelog/2026-08-03-trigger-copilot-automations-with-comments/
 [^53]: Reuters, Anthropic MHS, 2026-08-27. https://www.reuters.com/technology/anthropic-unveils-new-framework-allowing-ai-agents-operate-physical-devices-2026-08-27/
+[^54]: Z.ai, AutoGLM history / Phone Use, 2024-10-25. https://www.zhipuai.cn/zh/research/145
+[^55]: ByteDance Seed, Seed1.8 generalized agentic model, 2025-12-18. https://seed.bytedance.com/zh/blog/official-release-of-seed1-8-a-generalized-agentic-model
+[^56]: Alibaba Group, Wukong, 2026-03-17. https://www.alibabagroup.com/en-US/document-1971078136456019968
+[^57]: Coze Docs, Coze 3.0 release / capabilities, 2026-05-29. https://docs.coze.cn/cozespace_coze_app_faq
+[^58]: Tencent Cloud, ADP workbench / Claw commercialization, effective 2026-07-01. https://cloud.tencent.com/announce/detail/2331
+[^59]: Alibaba Cloud Model Studio, Managed Agents billing, commercialized 2026-08-17. https://help.aliyun.com/zh/model-studio/managed-agents-billing
+[^60]: Dify, “A New Chapter for Dify Agent”, 2026-08-27. https://dify.ai/zh/blog/a-new-chapter-for-dify-agent
