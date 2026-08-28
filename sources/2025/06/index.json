@@ -1,34 +1,13 @@
 {
   "month": "2025-06",
+  "updated_at": "2026-08-28",
+  "archive_note": "保留原 2026-05 对线性注意力社区争议的截图归档，并在 2026-08 Agent 主线补订中加入 A2A/ACP 协议治理来源。新增活链暂待 HTML 快照。",
   "sources": [
-    {
-      "url": "https://zhuanlan.zhihu.com/p/1916067576737400654",
-      "title": null,
-      "snapshot": null,
-      "screenshot": "zhuanlan-zhihu-com-p-1916067576737400654.png",
-      "screenshot_status": "MANUAL_NEEDED",
-      "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 0,
-      "file_size_human": "N/A",
-      "curl_status": "unknown",
-      "screenshot_size": 8718,
-      "screenshot_size_human": "8.5 KB"
-    },
-    {
-      "url": "https://zhuanlan.zhihu.com/p/1915601328211759191",
-      "title": null,
-      "snapshot": null,
-      "screenshot": "zhuanlan-zhihu-com-p-1915601328211759191.png",
-      "screenshot_status": "MANUAL_NEEDED",
-      "archived_at": "2026-05-25",
-      "wayback_url": null,
-      "file_size": 0,
-      "file_size_human": "N/A",
-      "curl_status": "unknown",
-      "screenshot_size": 8644,
-      "screenshot_size_human": "8.4 KB"
-    }
-  ],
-  "updated_at": "2026-05-25"
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2305.13048","title":"RWKV: Reinventing RNNs for the Transformer Era","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2312.06635","title":"Gated Linear Attention Transformers with Hardware-Efficient Training","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://zhuanlan.zhihu.com/p/1916067576737400654","title":"线性注意力社区争议记录 — 知乎","snapshot":null,"screenshot":"zhuanlan-zhihu-com-p-1916067576737400654.png","screenshot_status":"MANUAL_NEEDED","archived_at":"2026-05-25","status":"community_source"},
+    {"url":"https://zhuanlan.zhihu.com/p/1915601328211759191","title":"线性注意力社区争议补充 — 知乎","snapshot":null,"screenshot":"zhuanlan-zhihu-com-p-1915601328211759191.png","screenshot_status":"MANUAL_NEEDED","archived_at":"2026-05-25","status":"community_source"},
+    {"ref":"[^4]","url":"https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents","title":"Linux Foundation launches the Agent2Agent Protocol Project","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://research.ibm.com/projects/agent-communication-protocol","title":"Agent Communication Protocol (ACP) — IBM Research","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
 }
