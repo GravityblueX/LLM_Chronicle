@@ -1,0 +1,10 @@
+{
+  "month": "2025-07",
+  "updated_at": "2026-08-28",
+  "archive_note": "重写本月为 ChatGPT Agent 主线，并校正旧稿将 Mistral Large 2 错记为 2025-07-24 的问题；官方实际发布日期为 2024-07-24。HTML snapshot 待本地归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://openai.com/index/introducing-chatgpt-agent/","title":"Introducing ChatGPT agent — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://help.openai.com/en/articles/11794368","title":"ChatGPT agent release notes — OpenAI Help Center","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://mistral.ai/news/mistral-large-2407/","title":"Large Enough / Mistral Large 2 — Mistral AI, 2024-07-24","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
