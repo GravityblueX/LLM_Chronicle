@@ -1,0 +1,12 @@
+{
+  "month": "2024-10",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 Agent 主线补订增加 AutoGLM Phone Use。当前连接器无法执行 HTML snapshot 抓取，新增来源暂登记待归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.nobelprize.org/prizes/physics/2024/summary/","title":"The Nobel Prize in Physics 2024","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.anthropic.com/news/3-5-models-and-computer-use","title":"Claude 3.5 Sonnet and Computer Use — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://docs.anthropic.com/en/docs/agents-and-tools/computer-use","title":"Computer Use — Anthropic Docs","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://docs.x.ai/","title":"xAI API Docs","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.zhipuai.cn/zh/research/145","title":"AutoGLM technology / product history — Z.ai","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
