@@ -1,0 +1,19 @@
+{
+  "entry": "表/Agent发展大事表",
+  "updated_at": "2026-08-28",
+  "archive_note": "本表来源与《志·AI Agent 生态》交叉核验，聚焦 Agent 历史里程碑。GitHub 连接器无法执行 HTML snapshot 工具，新增活链统一标记 snapshot 待归档；MHS 当前只有 Reuters 单一权威媒体来源。",
+  "sources_note": "详细逐条 URL 与证据状态见 sources/志/AI Agent 生态/index.json；本索引保留表级主来源集合，避免重复维护 50+ 相同 URL。",
+  "primary_sources": [
+    "https://arxiv.org/abs/2210.03629",
+    "https://openai.com/index/function-calling-and-other-api-updates/",
+    "https://www.anthropic.com/news/model-context-protocol",
+    "https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/",
+    "https://openai.com/index/new-tools-for-building-agents/",
+    "https://openai.com/index/introducing-codex/",
+    "https://www.kimi.com/en/help/agent/agent-swarm",
+    "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+    "https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation",
+    "https://www.reuters.com/technology/anthropic-unveils-new-framework-allowing-ai-agents-operate-physical-devices-2026-08-27/"
+  ],
+  "status": "live_verified_snapshot_pending"
+}
