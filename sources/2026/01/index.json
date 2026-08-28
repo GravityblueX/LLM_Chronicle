@@ -1,0 +1,14 @@
+{
+  "month": "2026-01",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 Agent 主线重订：用 Anthropic / MCP / GitHub / Moonshot / OpenClaw 一手资料核验 Cowork、MCP Apps、Agents Tab、Kimi Swarm 与 OpenClaw 定名。新增活链 HTML snapshot 待归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.anthropic.com/news/introducing-anthropic-labs","title":"Introducing Labs — Anthropic; confirms Cowork research preview launched 2026-01-12","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://www.anthropic.com/webinars/future-of-ai-at-work-introducing-cowork","title":"The Future of AI at Work: Introducing Cowork — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/","title":"MCP Apps — Model Context Protocol","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://github.blog/changelog/2026-01-26-introducing-the-agents-tab-in-your-repository/","title":"Introducing the Agents tab in your repository — GitHub Changelog","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.kimi.com/en/blog/kimi-k2-5","title":"Kimi K2.5: Visual Agentic Intelligence — Moonshot AI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://github.com/openclaw/openclaw.ai/blob/main/src/content/blog/introducing-openclaw.md","title":"Introducing OpenClaw — Peter Steinberger, 2026-01-29","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://docs.openclaw.ai/lore","title":"OpenClaw lore — Clawd / Moltbot / OpenClaw naming history","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

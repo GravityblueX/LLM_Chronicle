@@ -1,0 +1,11 @@
+{
+  "month": "2025-11",
+  "updated_at": "2026-08-28",
+  "archive_note": "Agent 主线补订时新增 OpenClaw 前身 Clawd 来源。旧 Grok / Claude Code 条目仍需后续用一手来源重新归档；当前连接器不能执行 HTML snapshot 抓取，不伪造快照。",
+  "sources": [
+    {"ref":"[^1]","url":null,"title":"Grok 4.1 Fast — 旧稿来源待一手重归档","snapshot":null,"status":"source_upgrade_pending"},
+    {"ref":"[^2]","url":null,"title":"Anthropic GTG-2002 / Claude Code cyber-espionage disclosure — 旧稿来源待一手重归档","snapshot":null,"status":"source_upgrade_pending"},
+    {"ref":"[^3]","url":"https://docs.openclaw.ai/lore","title":"OpenClaw lore — Clawd Nov 25, 2025 - Jan 27, 2026","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://github.com/openclaw/openclaw.ai/blob/main/src/content/blog/introducing-openclaw.md","title":"Introducing OpenClaw — Peter Steinberger, 2026-01-29","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "month": "2025-12",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 Agent 主线重订：新增 AAIF / MCP donation / GPT-5.2 long-running agents / Seed1.8 generalized agentic model / GPT-5.2-Codex 资料。新增来源均为活链核验，HTML snapshot 待仓库归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation","title":"Formation of the Agentic AI Foundation — Linux Foundation","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation","title":"Donating MCP and establishing AAIF — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://openai.com/index/introducing-gpt-5-2/","title":"Introducing GPT-5.2 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://openai.com/index/introducing-gpt-5-2-codex/","title":"Introducing GPT-5.2-Codex — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://openai.com/index/gpt-5-2-codex-system-card/","title":"GPT-5.2-Codex System Card — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://seed.bytedance.com/zh/blog/official-release-of-seed1-8-a-generalized-agentic-model","title":"通用 Agent 模型 Seed1.8 正式发布 — ByteDance Seed","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

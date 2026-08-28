@@ -1,0 +1,15 @@
+{
+  "entry": "表/中国终端与垂直Agent对照表",
+  "updated_at": "2026-08-28",
+  "sources_note": "本表复用《志·中国终端与垂直 Agent 生态》证据库；详细 URL、厂商披露/公测/限制状态见 sources/志/中国终端与垂直Agent生态/index.json。",
+  "primary_sources": [
+    "https://dev.mi.com/xiaomihyperos/announcement/detail?id=41",
+    "https://brand.lenovo.com.cn/brand/ppn03698.html",
+    "https://consumer.huawei.com/cn/mobileservices/celia/",
+    "https://developers.vivo.com/product/ai/blueSmartPL",
+    "https://bbs.360.cn/thread-16162567-1-1.html",
+    "https://www.meitu.com/zh/media/438",
+    "https://scan.quark.cn/business/news-detail/26070801.html"
+  ],
+  "status": "live_verified_snapshot_pending"
+}

@@ -1,0 +1,14 @@
+{
+  "month": "2025-04",
+  "updated_at": "2026-08-28",
+  "archive_note": "补入 A2A / ADK，并保留 Llama 4、o3、Qwen3 主线。HTML snapshot 待本地归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://ai.meta.com/blog/llama-4-multimodal-intelligence/","title":"Llama 4 — Meta","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/","title":"A2A — Google Developers Blog","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://developers.googleblog.com/agent-development-kit-easy-to-build-multi-agent-applications/","title":"Agent Development Kit — Google","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents","title":"A2A joins Linux Foundation","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year","title":"A2A one-year adoption update","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://openai.com/index/introducing-o3-and-o4-mini/","title":"OpenAI o3 and o4-mini","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://github.com/QwenLM/Qwen3","title":"Qwen3 — GitHub","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

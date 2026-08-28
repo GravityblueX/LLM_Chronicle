@@ -1,66 +1,14 @@
 {
   "month": "2026-05",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 Agent 主线补订加入扣子 3.0 官方来源。旧 Mythos / GPT-5.5 / Qwen / Dreaming 部分仍有 Wikipedia 聚合或二手链，正文已明确降低这些材料的证据权重，后续应继续补官方一手来源。",
   "sources": [
-    {
-      "ref": "[^1]",
-      "url": "https://en.wikipedia.org/wiki/Claude_Mythos",
-      "title": "Claude Mythos — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-Claude-Mythos.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^2]",
-      "url": "https://en.wikipedia.org/wiki/Gemini_3_(AI)",
-      "title": "Gemini 3 (AI) — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-Gemini-3.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^3]",
-      "url": "https://en.wikipedia.org/wiki/Claude_Mythos",
-      "title": "Claude Mythos — Wikipedia（同 [^1]，Thomas Fraise 引用来源）",
-      "snapshot": "en-wikipedia-org-wiki-Claude-Mythos.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "note": "与 [^1] 共用同一快照文件",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^4]",
-      "url": "https://en.wikipedia.org/wiki/GPT-5.5",
-      "title": "GPT-5.5 — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-GPT-5.5.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^5]",
-      "url": "https://en.wikipedia.org/wiki/Qwen",
-      "title": "Qwen — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-Qwen.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^6]",
-      "url": "https://en.wikipedia.org/wiki/Claude_(language_model)",
-      "title": "Claude (language model) — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-Claude-language-model.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    }
+    {"ref":"[^1]","url":"https://en.wikipedia.org/wiki/Claude_Mythos","title":"Claude Mythos — Wikipedia","snapshot":"en-wikipedia-org-wiki-Claude-Mythos.html","archived_at":"2026-06-20","status":"archived_secondary_aggregation_caution"},
+    {"ref":"[^2]","url":"https://blog.google/technology/google-deepmind/","title":"Google DeepMind official blog — Gemini releases","snapshot":null,"status":"official_source_family_exact_page_pending"},
+    {"ref":"[^3]","url":null,"title":"Thomas Fraise / The Conversation claim from legacy citation chain","snapshot":null,"status":"legacy_secondary_claim_pending_independent_verification"},
+    {"ref":"[^4]","url":"https://openai.com/","title":"OpenAI official release family — GPT-5.5 updates","snapshot":null,"status":"official_exact_release_page_pending"},
+    {"ref":"[^5]","url":"https://qwenlm.github.io/","title":"Qwen official release materials","snapshot":null,"status":"official_exact_release_page_pending"},
+    {"ref":"[^6]","url":null,"title":"Claude Managed Agents memory / Dreaming legacy secondary claim","snapshot":null,"status":"legacy_claim_official_source_pending"},
+    {"ref":"[^7]","url":"https://docs.coze.cn/cozespace_coze_app_faq","title":"扣子 3.0 都有哪些特色能力？ — Coze Docs","snapshot":null,"status":"live_verified_snapshot_pending"}
   ]
 }

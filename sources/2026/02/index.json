@@ -1,0 +1,14 @@
+{
+  "month": "2026-02",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08 Agent / OpenClaw 主线重订：新增 Codex App、OpenClaw 安全个案、中国监管警告、GPT-5.3-Codex、Sonnet 4.6 与蒸馏攻击资料。HTML snapshot 待仓库归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://openai.com/index/introducing-the-codex-app/","title":"Introducing the Codex app — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://openai.com/index/introducing-gpt-5-3-codex/","title":"Introducing GPT-5.3-Codex — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://openai.com/index/gpt-5-3-codex-system-card/","title":"GPT-5.3-Codex System Card — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/claude-sonnet-4-6","title":"Introducing Sonnet 4.6 — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks","title":"Detecting and preventing distillation attacks — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.bloomberg.com/news/articles/2026-02-04/openclaw-s-an-ai-sensation-but-its-security-a-work-in-progress","title":"OpenClaw’s an AI Sensation, But Its Security a Work in Progress — Bloomberg","snapshot":null,"status":"live_verified_snapshot_pending","note":"OpenClaw runaway-messaging incident is a single reported user case; not generalized to all users."},
+    {"ref":"[^7]","url":"https://www.reuters.com/world/china/china-warns-security-risks-linked-openclaw-open-source-ai-agent-2026-02-05/","title":"China warns of security risks linked to OpenClaw open-source AI agent — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

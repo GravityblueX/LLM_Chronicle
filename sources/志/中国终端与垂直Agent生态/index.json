@@ -1,0 +1,28 @@
+{
+  "entry": "志/中国终端与垂直Agent生态",
+  "updated_at": "2026-08-28",
+  "archive_note": "本篇优先使用终端/软件厂商官方产品页、开发者平台、支持文档与投资者材料。厂商 MAU/ARR/benchmark/效率数字均按 vendor-reported 处理。当前连接器不能执行 HTML snapshot，新增活链标 pending。",
+  "sources": [
+    {"ref":"[^1]","url":"https://bbs.360.cn/thread-16162567-1-1.html","title":"纳米AI超级搜索智能体发布 — 360厂商社区","snapshot":null,"status":"vendor_community_claim_snapshot_pending"},
+    {"ref":"[^2]","url":"https://developers.vivo.com/product/ai/blueSmartPL","title":"蓝心智能体平台 — vivo开放平台","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://dev.mi.com/xiaomihyperos/announcement/detail?id=41","title":"Agent生态平台小范围公测 / MiClaw封测时间 — 小米澎湃OS开发者平台","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://ir.mi.com/system/files-encrypted/nasdaq_kms/assets/2026/03/24/5-35-52/25Q4%20CN%20AC%20Xiaomi.pdf","title":"Xiaomi investor material — MiClaw / Miloco","snapshot":null,"status":"official_pdf_snapshot_pending"},
+    {"ref":"[^5]","url":"https://dev.mi.com/xiaomihyperos/documentation/detail?pId=2305","title":"Agent应用发布操作指南 — 小米澎湃OS","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://dev.mi.com/xiaomihyperos/documentation/detail?pId=2302","title":"Agent平台服务协议 — 小米澎湃OS","snapshot":null,"status":"live_verified_snapshot_pending","additional_url":"https://dev.mi.com/xiaomihyperos/documentation/detail?pId=2299"},
+    {"ref":"[^7]","url":"https://os.mi.com/","title":"Xiaomi HyperOS 4 — 超级小爱2.0专家模式与限制","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://brand.lenovo.com.cn/brand/ppn03670.html","title":"天禧AI 3.5 — 联想官网","snapshot":null,"status":"vendor_claim_snapshot_pending"},
+    {"ref":"[^9]","url":"https://brand.lenovo.com.cn/brand/ppn03698.html","title":"联想发布天禧AI Claw 内测将启动 — 2026-03-18","snapshot":null,"status":"vendor_claim_snapshot_pending"},
+    {"ref":"[^10]","url":"https://brand.lenovo.com.cn/brand/ppn03709.html","title":"联想 Project Kubit / OpenClaw / OSWorld 记录","snapshot":null,"status":"vendor_benchmark_snapshot_pending"},
+    {"ref":"[^11]","url":"https://brand.lenovo.com.cn/brand/ppn03769.html","title":"天禧AI 4.0 — 联想官网","snapshot":null,"status":"vendor_claim_snapshot_pending"},
+    {"ref":"[^12]","url":"https://consumer.huawei.com/cn/mobileservices/celia/","title":"小艺 / 鸿蒙智能体框架 HMAF / A2A — 华为","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://consumer.huawei.com/cn/support/content/zh-cn16073021/","title":"小艺帮帮忙应用操控服务 — 华为","snapshot":null,"status":"public_test_vendor_docs_snapshot_pending"},
+    {"ref":"[^14]","url":"https://consumer.huawei.com/cn/support/content/zh-cn16065931/","title":"玩机助手智能体 FAQ — 华为；明确生成结果可能错误","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://agents.vivo.com.cn/documents/gpts?id=2007","title":"蓝心智能体平台手机端真机调试","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^16]","url":"https://developers.vivo.com/product/blueOS","title":"BlueOS / 蓝心小V第三方应用控制 — vivo","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://bbs.360.cn/thread-16178836-1-1.html","title":"360龙虾卫士 — 360厂商社区","snapshot":null,"status":"vendor_security_claim_snapshot_pending"},
+    {"ref":"[^18]","url":"https://info.meitu.com/zh","title":"RoboNeo上线首月MAU — 美图公司披露","snapshot":null,"status":"vendor_reported_metric_snapshot_pending"},
+    {"ref":"[^19]","url":"https://www.meitu.com/zh/media/438","title":"2026美图影像节 Agent产品线","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^20]","url":"https://www.meitu.com/zh/media/439","title":"美图生产力应用 MAU / ARR / ARPPU — 公司披露","snapshot":null,"status":"vendor_reported_metric_snapshot_pending"},
+    {"ref":"[^21]","url":"https://scan.quark.cn/business/news-detail/26070801.html","title":"夸克扫描王开放平台 Agent/API/MCP/CLI/Hermes 接入","snapshot":null,"status":"vendor_claim_snapshot_pending"}
+  ]
+}

@@ -1,96 +1,17 @@
 {
   "month": "2026-04",
+  "updated_at": "2026-08-28",
+  "archive_note": "保留此前 DeepSeek V4 等已归档来源的事实背景；2026-08 Agent 主线再补订新增 x402、A2A、Agents SDK sandbox、Kimi Agent Swarm 等一手资料。新增活链 HTML snapshot 待补。",
   "sources": [
-    {
-      "ref": "[^1]",
-      "url": "https://api-docs.deepseek.com/news/news260424",
-      "title": "DeepSeek V4 Preview Release — DeepSeek API Docs, 2026-04-24",
-      "snapshot": "api-docs-deepseek-com-news-news260424.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^2]",
-      "url": "https://news.qq.com/rain/20260424",
-      "title": "腾讯新闻 — DeepSeek V4 发布（链接已失效）",
-      "snapshot": "news-qq-com-rain-20260424.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "dead_link",
-      "note": "链接已失效（404）。腾讯新闻返回公益 404 页面。快照保存了 404 页面本身作为证据。",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^3]",
-      "url": null,
-      "title": "价格对比为第三方换算说明（无 URL，脚注为文字说明）",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": null,
-      "status": "no_url",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^4]",
-      "url": "https://cloud.tencent.com/developer/article/20260409",
-      "title": "腾讯云 — Claude 彻底断供中国，2026-04-09",
-      "snapshot": "cloud-tencent-com-article-20260409.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^5]",
-      "url": "https://www.80aj.com/2026/04/09/glm-5-modal-free-trial/",
-      "title": "80aj — 智谱 GLM-5.1 登陆 Modal 平台，2026-04-09",
-      "snapshot": "80aj-com-glm-5-modal-free-trial.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^6]",
-      "url": "https://ai-coding.wiselychen.com/archive",
-      "title": "AI Coding 实战分享 — 中国 AI 出海正在发生质变",
-      "snapshot": "ai-coding-wiselychen-com-archive.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^7]",
-      "url": "https://en.wikipedia.org/wiki/Claude_(language_model)",
-      "title": "Claude (language model) — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-Claude-language-model.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^8]",
-      "url": "https://en.wikipedia.org/wiki/Grok_(chatbot)",
-      "title": "Grok (chatbot) — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-Grok-chatbot.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^9]",
-      "url": "https://en.wikipedia.org/wiki/GPT-5.5",
-      "title": "GPT-5.5 — Wikipedia",
-      "snapshot": "en-wikipedia-org-wiki-GPT-5.5.html",
-      "screenshot": null,
-      "archived_at": "2026-06-20",
-      "status": "ok",
-      "wayback_url": null
-    }
+    {"ref":"[^1]","url":"https://deepseek.com/en/news/v4-preview/","title":"DeepSeek-V4 Preview: Entering the Era of Affordable Million-Token Context — DeepSeek","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek API Change Log — 2026-04-24","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.anthropic.com/news/claude-opus-4-7","title":"Introducing Claude Opus 4.7 — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/claude-design-anthropic-labs","title":"Introducing Claude Design by Anthropic Labs","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://openai.com/index/introducing-gpt-5-5/","title":"Introducing GPT-5.5 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://openai.com/index/gpt-5-5-system-card/","title":"GPT-5.5 System Card — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://www.linuxfoundation.org/press/linux-foundation-is-launching-the-x402-foundation-and-welcoming-the-contribution-of-the-x402-protocol","title":"Launching the x402 Foundation — Linux Foundation","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year","title":"A2A Protocol Surpasses 150 Organizations — Linux Foundation","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://openai.com/index/the-next-evolution-of-the-agents-sdk/","title":"The next evolution of the Agents SDK — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.kimi.com/en/help/agent/agent-swarm","title":"Agent Swarm Capabilities — Kimi Help Center","snapshot":null,"status":"live_verified_snapshot_pending"}
   ]
 }

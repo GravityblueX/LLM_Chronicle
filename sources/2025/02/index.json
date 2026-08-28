@@ -1,0 +1,11 @@
+{
+  "month": "2025-02",
+  "updated_at": "2026-08-28",
+  "archive_note": "补入 Deep Research、Copilot Agent Mode、Claude Code，并校正思维链表述。HTML snapshot 待本地归档工具补抓。",
+  "sources": [
+    {"ref":"[^1]","url":"https://openai.com/index/deep-research/","title":"Introducing deep research — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://github.blog/news-insights/product-news/github-copilot-the-agent-awakens/","title":"GitHub Copilot: The agent awakens","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://www.anthropic.com/news/claude-3-7-sonnet","title":"Claude 3.7 Sonnet and Claude Code — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://openai.com/index/introducing-gpt-4-5/","title":"Introducing GPT-4.5 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

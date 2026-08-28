@@ -1,0 +1,20 @@
+{
+  "entry": "表/知识库与Skill宣传运维现实对照表",
+  "updated_at": "2026-08-28",
+  "archive_note": "表级来源复用《志·万物Agent化与知识库Skill热潮》与《志·Agent宣传、实测与可靠性》的证据池；这里保留主来源入口，新增活链 snapshot 待归档。",
+  "primary_sources": [
+    "https://cloud.tencent.com.cn/product/workbuddy",
+    "https://www.feishu.cn/content/article/7631864469689240764",
+    "https://dev.mi.com/xiaomihyperos/documentation/detail?pId=2300",
+    "https://cloud.baidu.com/doc/qianfan/s/Zmlj32okw",
+    "https://www.feishu.cn/content/ehksl0lb",
+    "https://matrix.tencent.com/zh/2026/06/29/agent-security-drill-skill",
+    "https://arxiv.org/abs/2606.26511",
+    "https://arxiv.org/abs/2608.26385",
+    "https://arxiv.org/abs/2605.11418",
+    "https://github.com/openclaw/openclaw/blob/main/docs/security/THREAT-MODEL-ATLAS.md",
+    "https://blog.virustotal.com/2026/02/from-automation-to-infection-how.html",
+    "https://unit42.paloaltonetworks.com/openclaw-ai-supply-chain-risk/"
+  ],
+  "status": "live_verified_snapshot_pending"
+}

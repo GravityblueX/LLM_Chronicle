@@ -1,0 +1,21 @@
+{
+  "entry": "志/Agent宣传、实测与可靠性",
+  "updated_at": "2026-08-28",
+  "archive_note": "本篇刻意同时收厂商材料、独立研究、Reuters 与官方用户社区，以区分功能声明、产品状态、重复可靠性和真实使用反馈。当前连接器无法执行 HTML snapshot 工具，新增活链均显式标记 pending，不伪造归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://arxiv.org/abs/2601.06112","title":"ReliabilityBench: Evaluating LLM Agent Reliability Under Production-Like Stress Conditions","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://arxiv.org/abs/2604.17849","title":"On the Reliability of Computer Use Agents","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://arxiv.org/abs/2608.14711","title":"Beyond Pass@k: Measuring Reliability and Security of Agentic Code Generation","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.reuters.com/technology/openclaw-enthusiasm-grips-china-schoolkids-retirees-alike-raise-lobsters-2026-03-19/","title":"As OpenClaw enthusiasm grips China, schoolkids and retirees alike raise 'lobsters' — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://www.reuters.com/world/china/china-warns-security-risks-linked-openclaw-open-source-ai-agent-2026-02-05/","title":"China warns of security risks linked to OpenClaw — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.volcengine.com/docs/87732/2431008","title":"ArkClaw 云电脑使用限制 — 火山引擎","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://www.workbuddy.cn/docs/workbuddy/Changelog","title":"WorkBuddy Changelog — Tencent","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://bbs.wps.cn/topics/node/8?child=89","title":"WPS AI 官方社区 — 用户关于会员/AI智能体权益的个案反馈","snapshot":null,"status":"community_user_case_snapshot_pending"},
+    {"ref":"[^9]","url":"https://bbs.wps.cn/topics/node/8?child=58","title":"WPS AI 官方社区 — 运行失败、连接和成本等用户反馈汇总入口","snapshot":null,"status":"community_user_cases_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.huawei.com/cn/news/2026/6/inspire-agenticera-agenticinfra","title":"华为云发布 Agentic AI 系列新品 — Huawei","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://support.huaweicloud.com/productdesc-agentarts/agentarts_03_0002.html","title":"AgentArts 产品介绍 — 华为云","snapshot":null,"status":"live_verified_snapshot_pending","additional_url":"https://support.huaweicloud.com/wtsnew-agentarts/index.html"},
+    {"ref":"[^12]","url":"https://aipay.alipay.com/docs/ai-receive/MACHINE_PAY.html","title":"AI按量付费产品接入指南 — 支付宝 Agent支付","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://aipay.alipay.com/docs/ai-receive/api-list/alipay-aipay-agent-payment-verify.html","title":"Agent支付凭证验证接口 — 支付宝 Agent支付","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://aipay.alipay.com/developers/Changelog","title":"AIPay Benchmark / Agent支付 Changelog — 支付宝","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

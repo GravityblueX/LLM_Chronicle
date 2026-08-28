@@ -1,0 +1,15 @@
+{
+  "entry": "志/Agent记忆状态与可恢复性",
+  "updated_at": "2026-08-29",
+  "archive_note": "Agent session、long-term memory、checkpoint、workspace 与 recovery 专题来源。新增活链 snapshot 待本地归档，不伪造 HTML。",
+  "sources": [
+    {"ref":"[^1]","url":"https://openai.github.io/openai-agents-js/guides/sessions/","title":"Sessions — OpenAI Agents SDK (TypeScript)","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://openai.github.io/openai-agents-python/sessions/","title":"Sessions — OpenAI Agents SDK (Python)","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://openai.github.io/openai-agents-js/guides/running-agents/","title":"Running Agents — State and Conversation Management","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-memory.html","title":"Memory — Amazon Bedrock AgentCore","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory-create-a-memory-store.html","title":"Create a Memory Store — Amazon Bedrock AgentCore","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://docs.langchain.com/oss/python/langgraph/persistence","title":"Persistence — LangGraph","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://docs.langchain.com/oss/python/langchain/human-in-the-loop","title":"Human-in-the-loop — LangChain","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://openai.github.io/openai-agents-js/guides/sandbox-agents/memory/","title":"Sandbox Agents Memory — OpenAI Agents SDK","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}

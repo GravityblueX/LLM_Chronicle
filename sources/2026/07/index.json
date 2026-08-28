@@ -3,155 +3,23 @@
   "archived_at": "2026-08-28",
   "archive_note": "本次补录通过联网检索逐条核验活链与关键事实。受当前 GitHub 连接器能力限制，未伪造 curl HTML 快照；snapshot 为 null 的条目应后续用仓库归档工具补抓。",
   "sources": [
-    {
-      "ref": "[^1]",
-      "url": "https://www.anthropic.com/news/redeploying-fable-5",
-      "title": "Redeploying Claude Fable 5 — Anthropic",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^2]",
-      "url": "https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/",
-      "title": "Anthropic Claude Fable 5 on AWS — AWS News Blog",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^3]",
-      "url": "https://openai.com/index/gpt-5-6/",
-      "title": "GPT-5.6: Frontier intelligence that scales with your ambition — OpenAI",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^4]",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/963464/openai-gpt-5-6-codex-chatgpt-work",
-      "title": "OpenAI rolls out GPT-5.6 after government greenlight — and announces ChatGPT Work — The Verge",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^5]",
-      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes-whats-new",
-      "title": "ChatGPT — Release Notes — OpenAI Help Center",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^6]",
-      "url": "https://github.com/MoonshotAI/Kimi-K3",
-      "title": "MoonshotAI/Kimi-K3 — GitHub",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^7]",
-      "url": "https://www.reuters.com/world/china/chinas-moonshot-unveils-worlds-largest-open-ai-model-closing-us-rivals-2026-07-17/",
-      "title": "China's Moonshot unveils world's largest open AI model, closing in on US rivals — Reuters",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^8]",
-      "url": "https://arxiv.org/abs/2607.24653",
-      "title": "Kimi K3: Open Frontier Intelligence — arXiv:2607.24653",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^9]",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
-      "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber — Google",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^10]",
-      "url": "https://www.reuters.com/business/google-updates-lightweight-gemini-models-flagship-still-delayed-2026-07-21/",
-      "title": "Google updates lightweight Gemini models, but flagship still delayed — Reuters",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^11]",
-      "url": "https://www.anthropic.com/news/claude-opus-5",
-      "title": "Introducing Claude Opus 5 — Anthropic",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^12]",
-      "url": "https://support.claude.com/en/articles/12138966-release-notes",
-      "title": "Release notes — Anthropic Help Center",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^13]",
-      "url": "https://www.investing.com/news/stock-market-news/anthropic-rolls-out-opus-5-ai-model-in-efficiency-upgrade-4812323",
-      "title": "Anthropic rolls out Opus 5 AI model in efficiency upgrade — Reuters syndicated copy",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^14]",
-      "url": "https://api-docs.deepseek.com/updates/",
-      "title": "Change Log — DeepSeek API Docs",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    },
-    {
-      "ref": "[^15]",
-      "url": "https://www.reuters.com/business/retail-consumer/deepseeks-new-ai-model-is-by-far-cheapest-well-known-models-run-research-firm-2026-08-03/",
-      "title": "DeepSeek's new AI model is by far the cheapest of well-known models to run, research firm says — Reuters",
-      "snapshot": null,
-      "screenshot": null,
-      "archived_at": "2026-08-28",
-      "status": "live_verified_snapshot_pending",
-      "wayback_url": null
-    }
+    {"ref":"[^1]","url":"https://www.anthropic.com/news/redeploying-fable-5","title":"Redeploying Claude Fable 5 — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://aws.amazon.com/blogs/aws/anthropic-claude-fable-5-on-aws-mythos-class-capabilities-with-built-in-safeguards-now-available/","title":"Anthropic Claude Fable 5 on AWS — AWS News Blog","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://openai.com/index/gpt-5-6/","title":"GPT-5.6 — OpenAI","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.theverge.com/ai-artificial-intelligence/963464/openai-gpt-5-6-codex-chatgpt-work","title":"OpenAI rolls out GPT-5.6 and ChatGPT Work — The Verge","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://help.openai.com/en/articles/6825453-chatgpt-release-notes-whats-new","title":"ChatGPT Release Notes — OpenAI Help Center","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://github.com/MoonshotAI/Kimi-K3","title":"MoonshotAI/Kimi-K3 — GitHub","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://www.reuters.com/world/china/chinas-moonshot-unveils-worlds-largest-open-ai-model-closing-us-rivals-2026-07-17/","title":"Moonshot unveils Kimi K3 — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://arxiv.org/abs/2607.24653","title":"Kimi K3: Open Frontier Intelligence — arXiv","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^9]","url":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/","title":"Gemini 3.6 Flash family — Google","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^10]","url":"https://www.reuters.com/business/google-updates-lightweight-gemini-models-flagship-still-delayed-2026-07-21/","title":"Google updates lightweight Gemini models — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^11]","url":"https://www.anthropic.com/news/claude-opus-5","title":"Introducing Claude Opus 5 — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^12]","url":"https://support.claude.com/en/articles/12138966-release-notes","title":"Anthropic Release Notes","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^13]","url":"https://www.investing.com/news/stock-market-news/anthropic-rolls-out-opus-5-ai-model-in-efficiency-upgrade-4812323","title":"Anthropic rolls out Opus 5 — Reuters syndicated copy","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^14]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek API Change Log","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^15]","url":"https://www.reuters.com/business/retail-consumer/deepseeks-new-ai-model-is-by-far-cheapest-well-known-models-run-research-firm-2026-08-03/","title":"DeepSeek V4-Flash cost comparison — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^16]","url":"https://www.linuxfoundation.org/press/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications","title":"Operational Launch of x402 Foundation — Linux Foundation","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^17]","url":"https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-07-28-spec-ga/index.md","title":"The 2026-07-28 MCP Specification — Model Context Protocol","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^18]","url":"https://cloud.tencent.com/announce/detail/2331","title":"智能工作台及 Claw 模式应用正式商业化 — 腾讯云","snapshot":null,"status":"live_verified_snapshot_pending"}
   ]
 }
