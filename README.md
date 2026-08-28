@@ -12,8 +12,8 @@ AI 自己写自己的历史。
 
 - **编年**是主线。按年份建文件夹，每月一个文件。哪年哪月发生了什么，清清楚楚，每条带出处。读完编年，就能掌握全貌。
 - **纪传**是补充。重要的人、公司、模型系列，光靠编年写不清楚——那就单独列传，讲来龙去脉。本纪（公司/人物）、世家（模型系列）、列传（单模型/技术），各有模板。
-- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、中国 / 个人 Agent、OpenClaw 龙虾潮、Agent 可靠性等跨年主题独立成志。
-- **表**备速查——大事年表、版本沿革、Agent 发展大事表、全球 / 中国 / 个人产品表、OpenClaw 生态表、Agent 可靠性观察表等。
+- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、中国 / 个人 Agent、OpenClaw 龙虾潮、终端 / 垂直 Agent、Agent 可靠性等跨年主题独立成志。
+- **表**备速查——大事年表、版本沿革、Agent 发展大事表、全球 / 中国 / 个人产品表、OpenClaw 生态表、终端 / 垂直 Agent 表、Agent 可靠性观察表等。
 - **评曰**载史识——替代旧体例的“太史公曰”，全白话议论，概括→因果→判断。
 - **模型优先，Agent 为第二主线**——模型发布仍是第一优先，但 Function Calling、Computer / Phone Use、MCP/A2A、sandbox、Agent benchmark、multi-agent、支付、商业计量与物理设备接口等“行动权变化”即使没有新模型发布，也应进入正史。
 - **Agent 宣传与可靠性必须分开**——“厂商称支持”“产品里有这个功能”“有人做成过一次”“重复运行稳定”“已证明生产 ROI”是五种不同强度的证据，不得互相替换。
@@ -53,6 +53,7 @@ AI 自己写自己的历史。
 - [`志/中国Agent生态与商业化.md`](志/中国Agent生态与商业化.md) —— 中国从模型、云、超级应用、Phone Use 到支付 / runtime 的完整执行层；
 - [`志/个人Agent生态与商业化.md`](志/个人Agent生态与商业化.md) —— WorkBuddy、QClaw、ima、Kimi、扣子、MiniMax、Manus、Genspark 等个人生产力 Agent；
 - [`志/OpenClaw与中国Agent龙虾潮.md`](志/OpenClaw与中国Agent龙虾潮.md) —— Clawd → OpenClaw → 中国“养龙虾”与大厂产品化；
+- [`志/中国终端与垂直Agent生态.md`](志/中国终端与垂直Agent生态.md) —— MiClaw、天禧、小艺、vivo、360、美图、夸克等 OS / PC / 搜索 / 影像 / 工具层；
 - [`志/Agent宣传、实测与可靠性.md`](志/Agent宣传、实测与可靠性.md) —— 厂商声明、重复实测、人工接管、成本、失败模式与可靠性方法；
 - [`论/Agent 时代.md`](论/Agent%20时代.md) —— 行动权、组织、验证与经济学；
 - [`表/Agent发展大事表.md`](表/Agent发展大事表.md) —— 2022—2026 全球关键节点速查；
@@ -60,6 +61,7 @@ AI 自己写自己的历史。
 - [`表/中国Agent产品与平台对照表.md`](表/中国Agent产品与平台对照表.md) —— 中国市场产品、OpenClaw 关系、AgentOps、Phone Use、runtime 与支付；
 - [`表/个人Agent产品对照表.md`](表/个人Agent产品对照表.md) —— 桌面、本地常驻、知识记忆、云工作台、Phone Agent 等个人产品横向比较；
 - [`表/中国OpenClaw龙虾生态对照表.md`](表/中国OpenClaw龙虾生态对照表.md) —— QClaw / DuClaw / ArkClaw / AutoClaw / QwenPaw 等“虾系”关系与边界；
+- [`表/中国终端与垂直Agent对照表.md`](表/中国终端与垂直Agent对照表.md) —— OS、AI PC、手机、搜索、Office、影像与垂直工具 Agent；
 - [`表/Agent产品可靠性观察表.md`](表/Agent产品可靠性观察表.md) —— 产品状态、官方声明、独立证据、已知限制和恢复能力；
 - **编年** —— 把 Function Calling、OpenClaw、AutoGLM、MCP、A2A、Seed1.8、悟空、扣子、腾讯 ADP、ChatGPT Agent、AAIF、x402、Managed Agents、Dify、FinOps、MHS 等放回真实年月。
 
@@ -71,13 +73,15 @@ AI 自己写自己的历史。
 
 如果把全球 Agent 史从 OpenClaw 写起，会遗漏 ReAct、AutoGPT、Devin、Computer Use、MCP 等更早的技术脉络。
 
+如果把中国所有 Agent 产品也都说成“从 OpenClaw 开始”，同样不准确：AutoGLM 在 2024 年已经进入 Phone Use，360 在 2025 年 6 月已经发布“超级搜索智能体”，vivo 等终端厂商也已有 Agent Builder / 智能体平台。
+
 但中国普通用户真正大规模把 Agent 理解成“**一只长期在线、能碰电脑和文件、能从微信接任务、可以自己装 Skills 的数字执行者**”，确实是在 OpenClaw 爆红以后。
 
 本书因此同时保留两条时间线：
 
 > **全球工程史：ReAct → AutoGPT → Devin → Computer Use → MCP → coding / research agents → durable runtime。**
 >
-> **中国大众产品史：2025-11-25 Clawd → 2026-01 OpenClaw → 2026-02 安全警告 → 2026-03“养龙虾” → QClaw / DuClaw / ArkClaw / AutoClaw / ClawBot / QwenPaw 等密集产品化。**
+> **中国大众 personal-execution 产品史：2025-11-25 Clawd → 2026-01 OpenClaw → 2026-02 安全警告 → 2026-03“养龙虾” → QClaw / DuClaw / ArkClaw / AutoClaw / ClawBot / QwenPaw 等密集产品化。**
 
 并明确区分：
 
@@ -96,17 +100,19 @@ AI 自己写自己的历史。
 
 - **OpenClaw / local harness**：OpenClaw、QClaw、DuClaw、ArkClaw、AutoClaw、QwenPaw / CoPaw、HiClaw；
 - **个人桌面 / 知识 Agent**：WorkBuddy、ima、Kimi、MiniMax、WPS 灵犀；
-- **Phone / GUI / OS Agent**：AutoGLM、豆包手机助手、RedClaw、荣耀 YOYO / YOYO Claw / Robot Phone；
+- **OS / 终端 Agent**：Xiaomi MiClaw / 超级小爱、联想天禧 AI / Claw、华为小艺 / HMAF、荣耀 YOYO / YOYO Claw、vivo 蓝心智能体平台；
+- **Phone / GUI Agent**：AutoGLM、豆包手机助手、小艺帮帮忙、MiClaw、RedClaw、Robot Phone；
 - **超级应用 / 协作 Agent**：悟空 / 钉钉、飞书 OpenClaw / aily / Team Agent、扣子 3.0、WPS；
 - **企业 AgentOps**：腾讯 ADP、百度千帆、华为 AgentArts / openJiuwen、Dify Enterprise；
 - **Cloud runtime / Agent computer**：百炼 Managed Agents、ArkClaw、无影 Agentic Computer、扣子云设备；
+- **垂直 Agent / Agent 外设**：360 纳米 AI、美图 RoboNeo / Picchi / Agent Teams、夸克扫描王 Skills / MCP；
 - **Coding Agent**：Qoder、Kimi Code、GLM Coding Plan、MiniMax Code、WorkBuddy / CodeBuddy；
 - **商业与支付基础设施**：支付宝 Agent 支付 / AI 按量付费；
 - **模型底座**：Kimi、Seed、GLM、DeepSeek、Qwen 等 Agent-native / tool-use 模型。
 
 因此所谓“执行层国产化”更接近：
 
-> **模型 + tools / MCP + Agent runtime + 企业数据 + identity / permission + 国内云 + 国产芯片 serving + observability / audit + FinOps + payment。**
+> **模型 + tools / MCP + Agent runtime + 企业数据 + identity / permission + OS / device + 国内云 + 国产芯片 serving + observability / audit + FinOps + payment。**
 
 ## 个人 Agent：从“我的 AI 会员”到“我的数字工作层”
 
@@ -115,9 +121,10 @@ AI 自己写自己的历史。
 - **OpenClaw / QClaw**：local-first、本机常驻、IM 远程调度；
 - **WorkBuddy**：本地文件 / Office / code / 自动任务的桌面执行层；
 - **ima copilot**：个人知识库与长期记忆层；
+- **MiClaw / 天禧 / 小艺 / YOYO**：操作系统和终端原生 Agent；
 - **Kimi / 扣子 / MiniMax**：云工作台、多 Agent、scheduled tasks 与 credits；
 - **AutoGLM / 豆包手机助手**：Phone / GUI 行动层；
-- **WPS 灵犀**：Office-native personal Agent；
+- **WPS 灵犀 / 美图 Agent**：Office / 创作软件原生 Agent；
 - **Manus / Genspark**：云电脑与多模型 / 多 Agent 聚合型工作台。
 
 个人 Agent 的商业单位正在变化：
@@ -144,7 +151,7 @@ Agent 史尤其不能照抄厂商发布会。
 
 > **repeated success / pass^k、human intervention rate、cost per successful task、failure mode、resume / rollback、permission radius。**
 
-OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / 云电脑限制、WorkBuddy changelog 的队列 / sandbox / 历史恢复问题、WPS 官方社区的用户个案等，都作为“真实产品如何失败”的史料保留；**个案不会被扩写成全体用户结论。**
+OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / 云电脑限制、WorkBuddy changelog 的队列 / sandbox / 历史恢复问题、WPS 官方社区的用户个案、小米 HyperOS 的机型/权限限制、华为对众测与生成式不确定性的官方说明等，都作为“真实产品边界”的史料保留；**个案不会被扩写成全体用户结论，厂商自报指标也不会自动当第三方事实。**
 
 ## 编年目录
 
@@ -219,10 +226,10 @@ OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / �
 └── 2026/
     ├── 01.md              Cowork、MCP Apps、Agents Tab、Kimi Swarm 与 **OpenClaw 定名**
     ├── 02.md              Codex App；**OpenClaw 安全风险进入监管视野**
-    ├── 03.md              **“养龙虾”：OpenClaw 引爆中国大众 Agent 产品潮**；WorkBuddy、悟空
+    ├── 03.md              **“养龙虾”：OpenClaw 引爆中国大众 Agent 产品潮**；MiClaw、天禧、WorkBuddy、悟空
     ├── 04.md              DeepSeek V4；x402、A2A、Agent Swarm 与 sandbox
     ├── 05.md              Claude Mythos；扣子 3.0 AI 团队工作台
-    ├── 06.md              Gemini 3 Pro；腾讯个人 Agent 矩阵；AgentArts
+    ├── 06.md              Gemini 3 Pro；腾讯个人 Agent 矩阵；AgentArts；美图垂直 Agent
     ├── 07.md              腾讯 ADP 商用；GPT-5.6、Kimi K3、x402 与 MCP
     └── 08.md              百炼 Managed Agents、Dify、Agent 支付、FinOps、MHS 与可靠性工程
 ```
@@ -300,16 +307,16 @@ OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / �
 |------|------|
 | 编年条目 | **69 篇**（2017/06 — 2026/08；新增 2023/06 Function Calling） |
 | 纪传 | **58 篇**（本纪 ×12 + 世家 ×10 + 列传 ×36） |
-| 志 | **25 篇**（本轮新增 / 重订 **AI Agent 生态、Agent 产品与商业化、中国 Agent、个人 Agent、OpenClaw 龙虾潮、Agent 宣传/实测/可靠性** 等） |
+| 志 | **26 篇**（本轮新增 / 重订 **AI Agent 生态、Agent 产品与商业化、中国 / 个人 Agent、OpenClaw 龙虾潮、中国终端与垂直 Agent、Agent 宣传/实测/可靠性** 等） |
 | 论 | **18 篇**（含 Agent 时代、Test-Time Compute、推理经济学、AI 安全与对齐等） |
-| 表 | **16 篇**（加入 **Agent 发展大事表、全球 / 中国 / 个人产品表、中国 OpenClaw 生态表、Agent 产品可靠性观察表** 等） |
-| **总计** | **186 篇**（编年 69 + 纪传 58 + 志 25 + 论 18 + 表 16） |
+| 表 | **17 篇**（加入 **Agent 发展大事表、全球 / 中国 / 个人产品表、中国 OpenClaw 生态表、中国终端与垂直 Agent 表、Agent 产品可靠性观察表** 等） |
+| **总计** | **188 篇**（编年 69 + 纪传 58 + 志 26 + 论 18 + 表 17） |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册，待写清单见 `review/audit-06.md` |
 | Agent 主线 | **2022—2026**：ReAct / Toolformer / AutoGPT → Function Calling → Computer / Phone Use / MCP → OpenClaw personal runtime → A2A / coding agents → Swarm / sandbox / payment / FinOps / MHS |
-| 中国大众 Agent | **2025-11 Clawd → 2026-01 OpenClaw → 2026-03 养龙虾**；随后 QClaw / DuClaw / ArkClaw / AutoClaw / ClawBot / QwenPaw 等迅速产品化 |
+| 中国大众 Agent | **早期 AutoGLM / 纳米 AI / 智能体平台已存在；2025-11 Clawd → 2026-01 OpenClaw → 2026-03“养龙虾”构成大众 persistent-personal-agent 断代** |
 | 全球 Agent 商业化 | ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google Agent Platform / AWS AgentCore；重点跟踪 seat → credits → action → task → runtime resource |
-| 中国 Agent 商业化 | OpenClaw 虾系 + WorkBuddy / ima / Kimi / 悟空 / 百炼 / 扣子 / Seed / AutoGLM / ADP / 千帆 / AgentArts / WPS / 荣耀 / MiniMax / Dify / 支付宝等；重点跟踪执行层而不是单一 App |
-| 个人 Agent 商业化 | OpenClaw / WorkBuddy / QClaw / ima / Kimi / 扣子 / MiniMax / AutoGLM / WPS / Manus / Genspark；重点跟踪会员 → credits → 自动任务 → 并发 worker → persistent runtime |
+| 中国 Agent 商业化 | OpenClaw 虾系 + WorkBuddy / ima / Kimi / 悟空 / 百炼 / 扣子 / MiClaw / 天禧 / 小艺 / Seed / AutoGLM / ADP / 千帆 / AgentArts / WPS / 美图 / 荣耀 / MiniMax / Dify / 支付宝等；重点跟踪执行层而不是单一 App |
+| 个人 Agent 商业化 | OpenClaw / WorkBuddy / QClaw / ima / MiClaw / 天禧 / 小艺 / Kimi / 扣子 / MiniMax / AutoGLM / WPS / Manus / Genspark；重点跟踪会员 → credits → 自动任务 → 并发 worker → persistent runtime |
 | Agent 可靠性 | **Claim ≠ Availability ≠ One-shot success ≠ Repeated reliability ≠ Production ROI**；开始保存 pass^k、人工接管、失败恢复与 cost per successful task |
 | 出处快照 | `sources/` 归档规范已定；无法在当前连接器执行的 HTML 快照均明确标记 pending，不伪造 |
 | 体例版本 | [v2.2](00_体例.md)（白话文 · 模型优先 · Agent 第二主线 · 宣传/可靠性分层 · sources/ 归档） |
@@ -342,6 +349,8 @@ OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / �
 **中国 / 个人 Agent 生态补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《中国 Agent 生态与商业化》《个人 Agent 生态与商业化》及对照表，补入 WorkBuddy、QClaw、ima、Kimi、悟空、扣子、AutoGLM、腾讯 ADP、百炼、Dify、WPS、华为、京东、荣耀、支付宝等执行层。
 
 **OpenClaw / Agent 可靠性补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《OpenClaw 与中国 Agent“龙虾潮”》《Agent 宣传、实测与可靠性》《中国 OpenClaw“龙虾”生态对照表》《Agent 产品可靠性观察表》，并把“厂商宣称 ≠ 稳定可用”写入凡例 v2.2。
+
+**中国终端 / 垂直 Agent 补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 新增《中国终端与垂直 Agent 生态》《中国终端与垂直 Agent 对照表》，补入 Xiaomi MiClaw、超级小爱、联想天禧 AI / Claw、华为小艺 / HMAF、vivo 蓝心、360 纳米 AI / 龙虾卫士、美图 RoboNeo / Picchi / Agent Teams、夸克扫描王 Agent 接入等非模型公司入口。
 
 ## 协作
 
