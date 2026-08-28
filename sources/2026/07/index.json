@@ -19,6 +19,7 @@
     {"ref":"[^14]","url":"https://api-docs.deepseek.com/updates/","title":"DeepSeek API Change Log","snapshot":null,"status":"live_verified_snapshot_pending"},
     {"ref":"[^15]","url":"https://www.reuters.com/business/retail-consumer/deepseeks-new-ai-model-is-by-far-cheapest-well-known-models-run-research-firm-2026-08-03/","title":"DeepSeek V4-Flash cost comparison — Reuters","snapshot":null,"status":"live_verified_snapshot_pending"},
     {"ref":"[^16]","url":"https://www.linuxfoundation.org/press/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications","title":"Operational Launch of x402 Foundation — Linux Foundation","snapshot":null,"status":"live_verified_snapshot_pending"},
-    {"ref":"[^17]","url":"https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-07-28-spec-ga/index.md","title":"The 2026-07-28 MCP Specification — Model Context Protocol","snapshot":null,"status":"live_verified_snapshot_pending"}
+    {"ref":"[^17]","url":"https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/blog/content/posts/2026-07-28-spec-ga/index.md","title":"The 2026-07-28 MCP Specification — Model Context Protocol","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^18]","url":"https://cloud.tencent.com/announce/detail/2331","title":"智能工作台及 Claw 模式应用正式商业化 — 腾讯云","snapshot":null,"status":"live_verified_snapshot_pending"}
   ]
 }
