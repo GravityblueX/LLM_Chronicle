@@ -12,10 +12,10 @@ AI 自己写自己的历史。
 
 - **编年**是主线。按年份建文件夹，每月一个文件。哪年哪月发生了什么，清清楚楚，每条带出处。读完编年，就能掌握全貌。
 - **纪传**是补充。重要的人、公司、模型系列，光靠编年写不清楚——那就单独列传，讲来龙去脉。本纪（公司/人物）、世家（模型系列）、列传（单模型/技术），各有模板。
-- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、评价基准演化，跨越年份的主题独立成志。
-- **表**备速查——大事年表、版本沿革、Agent 发展大事表等。
-- **评曰**载史识——替代旧体例的"太史公曰"，全白话议论，概括→因果→判断。
-- **模型优先，Agent 为第二主线**——模型发布仍是第一优先，但 Function Calling、Computer Use、MCP/A2A、sandbox、Agent benchmark、multi-agent、支付与物理设备接口等“行动权变化”即使没有新模型发布，也应进入正史。
+- **志**记专题——算力变迁、数据之争、开源运动、AI Agent 生态、Agent 产品与商业化、评价基准演化，跨越年份的主题独立成志。
+- **表**备速查——大事年表、版本沿革、Agent 发展大事表、Agent 主流产品与商业化对照表等。
+- **评曰**载史识——替代旧体例的“太史公曰”，全白话议论，概括→因果→判断。
+- **模型优先，Agent 为第二主线**——模型发布仍是第一优先，但 Function Calling、Computer Use、MCP/A2A、sandbox、Agent benchmark、multi-agent、支付、商业计量与物理设备接口等“行动权变化”即使没有新模型发布，也应进入正史。
 - 每一条记述必须注明出处——论文链接、官方公告、新闻 URL、PR 编号，能查回去。网页快照在 `sources/` 留档。
 - 不确定的标注证据等级；**有据则书，无据则阙，不用猜测填空。**
 
@@ -27,7 +27,7 @@ AI 自己写自己的历史。
 
 ## 两条主线：能力与行动权
 
-这部纪事现在明确追踪两条彼此缠绕的历史：
+这部纪事现在明确追踪两条彼此缠绕的历史。
 
 ### 第一主线：模型怎样变聪明
 
@@ -39,22 +39,24 @@ AI 自己写自己的历史。
 
 ### 第二主线：模型怎样获得行动权
 
-从 MRKL、SayCan、ReAct，到 Plugins、Function Calling、AutoGPT；再到 Devin、Computer Use、MCP、A2A、Claude Code、Codex、Agent Swarm、event-driven automations 与 MHS。
+从 MRKL、SayCan、ReAct，到 Plugins、Function Calling、AutoGPT；再到 Devin、Computer Use、MCP、A2A、Claude Code、Codex、Agent Swarm、event-driven automations、x402 与 MHS。
 
 核心问题是：
 
-> **概率模型怎样从信息系统的输出端，移动到信息系统的控制面；行动权怎样被授予、限制、验证、撤回和追责。**
+> **概率模型怎样从信息系统的输出端，移动到信息系统的控制面；行动权怎样被授予、限制、验证、计价、撤回和追责。**
 
-Agent 主线的四个入口：
+Agent 主线的六个入口：
 
 - [`志/AI Agent 生态.md`](志/AI%20Agent%20生态.md) —— 从经典智能体到 2026 物理 Agent 的完整结构史；
+- [`志/Agent产品与商业化.md`](志/Agent产品与商业化.md) —— 主流 Agent 产品、收费方式、企业采用与商业模式；
 - [`论/Agent 时代.md`](论/Agent%20时代.md) —— 行动权、组织、验证与经济学；
 - [`表/Agent发展大事表.md`](表/Agent发展大事表.md) —— 2022—2026 关键节点速查；
-- **编年** —— 把 Function Calling、MCP、A2A、ChatGPT Agent 等转折放回它们真正发生的年月。
+- [`表/Agent主流产品与商业化对照表.md`](表/Agent主流产品与商业化对照表.md) —— ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google / AWS 对照；
+- **编年** —— 把 Function Calling、MCP、A2A、ChatGPT Agent、AAIF、x402、FinOps、MHS 等转折放回它们真正发生的年月。
 
 一句话概括这两条线：
 
-> **前半部大模型史主要在扩大能力上限；Agent 史开始扩大模型能够安全触及的世界范围。**
+> **前半部大模型史主要在扩大能力上限；Agent 史开始扩大模型能够安全触及、持续执行并被商业化的世界范围。**
 
 ## 编年目录
 
@@ -118,23 +120,23 @@ Agent 主线的四个入口：
 │   ├── 02.md              Deep Research、Copilot Agent Mode、Claude Code 与 GPT-4.5
 │   ├── 03.md              Bedrock Multi-Agent、Responses / Agents SDK 与 Gemini 2.5 Pro
 │   ├── 04.md              Llama 4、A2A / ADK、o3 与 Qwen3
-│   ├── 05.md              Claude 4：从订阅到用量
-│   ├── 06.md              「Linear Transformer 世子之争」
+│   ├── 05.md              Codex、Terminal-Bench、Remote MCP 与 Claude 4
+│   ├── 06.md              A2A 进入 Linux Foundation；线性注意力争议
 │   ├── 07.md              ChatGPT Agent：Research 与 Action 合流
 │   ├── 08.md              GPT-5
 │   ├── 09.md              Anthropic 将中国列为受限地区
 │   ├── 10.md              Claude Haiku 4.5；Claude Code 网页版
 │   ├── 11.md              Grok 4.1 Fast；Claude Code 间谍攻击事件
-│   └── 12.md              GPT-5.2；Agentic AI Foundation
+│   └── 12.md              AAIF、GPT-5.2 与长程 Agent 基础设施
 └── 2026/
-    ├── 01.md              Claude Cowork；Anthropic–DoD 争端；Agent runtime 加速产品化
-    ├── 02.md              Anthropic 蒸馏攻击指控；Codex App
+    ├── 01.md              Cowork、MCP Apps、Agents Tab 与 Kimi Swarm
+    ├── 02.md              Codex App：多 Agent 指挥中心
     ├── 03.md              蒸馏攻击、「318 事变」与国模崛起；LeWorldModel
-    ├── 04.md              DeepSeek V4；A2A、Agent Swarm 与 sandbox 运行时
+    ├── 04.md              DeepSeek V4；x402、A2A、Agent Swarm 与 sandbox
     ├── 05.md              Claude Mythos：漏洞武器化与出口管制危机
     ├── 06.md              Gemini 3 Pro；Mythos 5/Fable 5；出口管制撤销
-    ├── 07.md              GPT-5.6、Kimi K3、MCP 新规范与 DeepSeek V4-Flash
-    └── 08.md              Qwen3.8、GLM-5.3-Flash、V4-Pro、MHS 与部署最后一公里
+    ├── 07.md              GPT-5.6、Kimi K3、x402、MCP 新规范与 V4-Flash
+    └── 08.md              Qwen3.8、Agent Automations、FinOps、MHS 与商业化最后一公里
 ```
 
 > 注：README 的月度短描述是导航，不等于该月只发生了这些事件；完整内容以对应编年文件为准。
@@ -210,12 +212,13 @@ Agent 主线的四个入口：
 |------|------|
 | 编年条目 | **69 篇**（2017/06 — 2026/08；新增 2023/06 Function Calling） |
 | 纪传 | **58 篇**（本纪 ×12 + 世家 ×10 + 列传 ×36） |
-| 志 | **20 篇**（含 AI Agent 生态、AI 编程助手、AI 产品化演进、长上下文、模型对齐技术演进等） |
+| 志 | **21 篇**（新增 **Agent 产品与商业化**；另含 AI Agent 生态、AI 编程助手、AI 产品化演进、长上下文、模型对齐技术演进等） |
 | 论 | **18 篇**（含 Agent 时代、Test-Time Compute、推理经济学、AI 安全与对齐等） |
-| 表 | **11 篇**（大事年表、大模型价格沿革表、开源模型许可证对照表、模型版本沿革表、主要融资与估值表、Benchmark 速查表、人物谱系、前沿模型对比、训练成本对比、开源模型影响力排行、**Agent 发展大事表**） |
-| **总计** | **176 篇**（编年 69 + 纪传 58 + 志 20 + 论 18 + 表 11） |
+| 表 | **12 篇**（原有 10 篇 + **Agent 发展大事表** + **Agent 主流产品与商业化对照表**） |
+| **总计** | **178 篇**（编年 69 + 纪传 58 + 志 21 + 论 18 + 表 12） |
 | 模型收录 | **100 个模型**（72 个 LLM + 文生图/视频/语音/多模态）记录在册，待写清单见 `review/audit-06.md` |
-| Agent 主线 | **2022—2026**：ReAct / Toolformer / AutoGPT → Function Calling → Computer Use / MCP → A2A / coding agents → Swarm / sandbox / x402 / MHS |
+| Agent 主线 | **2022—2026**：ReAct / Toolformer / AutoGPT → Function Calling → Computer Use / MCP → A2A / coding agents → Swarm / sandbox / x402 / FinOps / MHS |
+| Agent 商业化 | ChatGPT / Claude / Copilot / Cursor / Devin / Manus / Agentforce / Copilot Studio / Google Agent Platform / AWS AgentCore；重点跟踪 seat → credits → action → task → runtime resource |
 | 出处快照 | `sources/` 归档规范已定；无法在当前连接器执行的 HTML 快照均明确标记 pending，不伪造 |
 | 体例版本 | [v2.1](00_体例.md)（白话文 · 模型优先 · Agent 行动权第二主线 · 评曰 · sources/ 归档） |
 | 工具链 | 链接验证 + 格式校验 + 快照归档，纯 Node.js 零依赖 |
@@ -242,7 +245,7 @@ Agent 主线的四个入口：
 
 **2026 夏季总补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 本轮补齐 2026/07—08 编年，并集中修订模型谱系、本纪、专题史论与关键数据表；原史官署名均保留。
 
-**Agent 主线总补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 将 Agent 从散落的产品事件提升为正式第二主线：重写《AI Agent 生态》，新增 Function Calling 编年与《Agent 发展大事表》，并把 MCP、Deep Research、Agent Mode、Agents SDK、A2A / ADK、ChatGPT Agent 等节点补回对应年月。
+**Agent 主线总补订（2026-08-28）：GPT-5.6 Sol（OpenAI）。** 将 Agent 从散落的产品事件提升为正式第二主线：重写《AI Agent 生态》，新增 Function Calling 编年、《Agent 发展大事表》《Agent 产品与商业化》《Agent 主流产品与商业化对照表》，并把 MCP、Deep Research、Agent Mode、Agents SDK、A2A / ADK、Codex、ChatGPT Agent、AAIF、x402、Agent FinOps 与 MHS 等节点补回对应年月。
 
 ## 协作
 
