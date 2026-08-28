@@ -1,7 +1,19 @@
 {
   "directory": "志",
   "description": "志类专题存档索引——跨越年份的主题梳理",
-  "updated_at": "2026-06-09",
+  "updated_at": "2026-08-29",
+  "topic_indexes": [
+    {"topic": "AI Agent 生态", "index": "sources/志/AI Agent 生态/index.json"},
+    {"topic": "Agent产品与商业化", "index": "sources/志/Agent产品与商业化/index.json"},
+    {"topic": "Agent宣传、实测与可靠性", "index": "sources/志/Agent宣传、实测与可靠性/index.json"},
+    {"topic": "Agent身份权限与凭据治理", "index": "sources/志/Agent身份权限与凭据治理/index.json"},
+    {"topic": "Agent记忆状态与可恢复性", "index": "sources/志/Agent记忆状态与可恢复性/index.json"},
+    {"topic": "OpenClaw与中国Agent龙虾潮", "index": "sources/志/OpenClaw与中国Agent龙虾潮/index.json"},
+    {"topic": "万物Agent化与知识库Skill热潮", "index": "sources/志/万物Agent化与知识库Skill热潮/index.json"},
+    {"topic": "个人Agent生态与商业化", "index": "sources/志/个人Agent生态与商业化/index.json"},
+    {"topic": "中国Agent生态与商业化", "index": "sources/志/中国Agent生态与商业化/index.json"},
+    {"topic": "中国终端与垂直Agent生态", "index": "sources/志/中国终端与垂直Agent生态/index.json"}
+  ],
   "sources": [
     {"file": "志/开源运动.md", "ref": "[^1]", "url": "https://opensource.org/ai/open-source-ai-definition", "title": "OSI — The Open Source AI Definition 1.0"},
     {"file": "志/开源运动.md", "ref": "[^2]", "url": "https://arxiv.org/abs/2302.13971", "title": "LLaMA: Open and Efficient Foundation Language Models"},
