@@ -1,0 +1,15 @@
+{
+  "month": "2024-11",
+  "updated_at": "2026-08-28",
+  "archive_note": "2026-08-28 Agent 主线补订，校正 Computer Use 日期并加入 MCP。GitHub 连接器无法执行 HTML snapshot 工具，活链登记待归档。",
+  "sources": [
+    {"ref":"[^1]","url":"https://www.deepseek.com/","title":"DeepSeek — R1-Lite-Preview historical service notice","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^2]","url":"https://qwenlm.github.io/blog/qwen2.5-coder/","title":"Qwen2.5-Coder","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^3]","url":"https://qwenlm.github.io/blog/qwen2.5-turbo/","title":"Qwen2.5-Turbo 1M context","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^4]","url":"https://www.anthropic.com/news/model-context-protocol","title":"Introducing the Model Context Protocol — Anthropic","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^5]","url":"https://blog.modelcontextprotocol.io/posts/2026-07-28/","title":"MCP 2026-07-28 Specification","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^6]","url":"https://www.anthropic.com/news/3-5-models-and-computer-use","title":"Claude computer use announcement — 2024-10-22","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^7]","url":"https://huggingface.co/tencent/Hunyuan-Large","title":"Tencent Hunyuan-Large","snapshot":null,"status":"live_verified_snapshot_pending"},
+    {"ref":"[^8]","url":"https://mistral.ai/news/","title":"Mistral news archive","snapshot":null,"status":"live_verified_snapshot_pending"}
+  ]
+}
