@@ -5,7 +5,13 @@ const os = require('node:os');
 const path = require('node:path');
 const { after, before, test } = require('node:test');
 
-const { checkUrl, findMdFiles, parsePositiveInteger } = require('./validate_links');
+const {
+  checkUrl,
+  findMdFiles,
+  findScopedMdFiles,
+  parseCliOptions,
+  parsePositiveInteger,
+} = require('./validate_links');
 
 let server;
 let baseUrl;
@@ -83,6 +89,15 @@ test('parses positive integer options and falls back for invalid values', () => 
   assert.equal(parsePositiveInteger('2500', 1000), 2500);
   assert.equal(parsePositiveInteger('0', 1000), 1000);
   assert.equal(parsePositiveInteger('not-a-number', 1000), 1000);
+  assert.equal(parsePositiveInteger('2500ms', 1000), 1000);
+  assert.equal(parsePositiveInteger('1.5', 1000), 1000);
+});
+
+test('rejects missing, malformed, duplicate, and unknown CLI options', () => {
+  assert.throws(() => parseCliOptions(['--only']), /--only requires a value/);
+  assert.throws(() => parseCliOptions(['--timeout', '2500ms']), /positive integer/);
+  assert.throws(() => parseCliOptions(['--json', '--json']), /Duplicate option/);
+  assert.throws(() => parseCliOptions(['--onyl', '志']), /Unknown option/);
 });
 
 test('--only filtering is relative to the repository root at every directory depth', () => {
@@ -97,6 +112,10 @@ test('--only filtering is relative to the repository root at every directory dep
     assert.deepEqual(findMdFiles(root, 'README.md'), [path.join(root, 'README.md')]);
     assert.deepEqual(findMdFiles(root, '志'), [path.join(root, '志', 'topic.md')]);
     assert.deepEqual(findMdFiles(root, '编年/2025'), [path.join(root, '编年', '2025', '01.md')]);
+    assert.throws(
+      () => findScopedMdFiles(root, '编年/2099'),
+      /--only matched no in-scope Markdown files/,
+    );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

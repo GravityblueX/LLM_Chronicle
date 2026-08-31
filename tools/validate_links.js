@@ -32,8 +32,54 @@ const CF_DOMAINS = [
 ];
 
 function parsePositiveInteger(value, fallback) {
-  const parsed = Number.parseInt(value, 10);
+  const text = String(value ?? '').trim();
+  if (!/^[0-9]+$/.test(text)) return fallback;
+  const parsed = Number(text);
   return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function parseCliOptions(args) {
+  const options = {
+    useJson: false,
+    onlyDir: null,
+    timeout: DEFAULT_TIMEOUT,
+    maxRedirects: DEFAULT_MAX_REDIRECTS,
+  };
+  const seen = new Set();
+
+  for (let index = 0; index < args.length; index += 1) {
+    const option = args[index];
+    if (!['--json', '--only', '--timeout', '--max-redirects'].includes(option)) {
+      throw new Error(`Unknown option: ${option}`);
+    }
+    if (seen.has(option)) throw new Error(`Duplicate option: ${option}`);
+    seen.add(option);
+
+    if (option === '--json') {
+      options.useJson = true;
+      continue;
+    }
+
+    const value = args[index + 1];
+    if (!value || value.startsWith('--')) {
+      throw new Error(`${option} requires a value`);
+    }
+    index += 1;
+
+    if (option === '--only') {
+      options.onlyDir = value;
+      continue;
+    }
+
+    const parsed = parsePositiveInteger(value, null);
+    if (parsed === null) {
+      throw new Error(`${option} requires a positive integer`);
+    }
+    if (option === '--timeout') options.timeout = parsed;
+    else options.maxRedirects = parsed;
+  }
+
+  return options;
 }
 
 // ============================================================
@@ -56,6 +102,18 @@ function findMdFiles(dir, filter, root = dir) {
         results.push(full);
       }
     }
+  }
+  return results;
+}
+
+function findScopedMdFiles(root, filter) {
+  const results = findMdFiles(root, filter).filter(file => {
+    const rel = path.relative(root, file).replace(/\\/g, '/');
+    // 扫描中文主书、表格、体例和 README；review/ 与 en/ 不纳入主书死链验收
+    return rel.startsWith('编年/') || rel.startsWith('纪传/') || rel.startsWith('志/') || rel.startsWith('论/') || rel.startsWith('表/') || rel === '00_体例.md' || rel === 'README.md';
+  });
+  if (filter !== null && results.length === 0) {
+    throw new Error(`--only matched no in-scope Markdown files: ${filter}`);
   }
   return results;
 }
@@ -217,22 +275,15 @@ function checkUrl(url, timeout, options = {}) {
 // ============================================================
 
 async function main() {
-  const args = process.argv.slice(2);
-  const useJson = args.includes('--json');
-  const onlyDir = args.indexOf('--only') >= 0 ? args[args.indexOf('--only') + 1] : null;
-  const timeoutIdx = args.indexOf('--timeout');
-  const timeout = timeoutIdx >= 0 ? parsePositiveInteger(args[timeoutIdx + 1], DEFAULT_TIMEOUT) : DEFAULT_TIMEOUT;
-  const redirectsIdx = args.indexOf('--max-redirects');
-  const maxRedirects = redirectsIdx >= 0
-    ? parsePositiveInteger(args[redirectsIdx + 1], DEFAULT_MAX_REDIRECTS)
-    : DEFAULT_MAX_REDIRECTS;
+  const {
+    useJson,
+    onlyDir,
+    timeout,
+    maxRedirects,
+  } = parseCliOptions(process.argv.slice(2));
 
   const root = path.resolve(__dirname, '..');
-  const mdFiles = findMdFiles(root, onlyDir).filter(f => {
-    const rel = path.relative(root, f).replace(/\\/g, '/');
-    // 扫描中文主书、表格、体例和 README；review/ 与 en/ 不纳入主书死链验收
-    return rel.startsWith('编年/') || rel.startsWith('纪传/') || rel.startsWith('志/') || rel.startsWith('论/') || rel.startsWith('表/') || rel === '00_体例.md' || rel === 'README.md';
-  });
+  const mdFiles = findScopedMdFiles(root, onlyDir);
 
   console.error(`Scanning ${mdFiles.length} markdown files...`);
 
@@ -338,6 +389,8 @@ module.exports = {
   checkUrl,
   extractUrls,
   findMdFiles,
+  findScopedMdFiles,
   isCloudflareDomain,
+  parseCliOptions,
   parsePositiveInteger,
 };

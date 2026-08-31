@@ -29,6 +29,10 @@ node tools/validate_links.js --timeout 15000
 node tools/validate_links.js --max-redirects 5
 ```
 
+参数会严格校验：未知/重复参数、缺失参数值、非正整数的超时或重定向
+上限都会以退出码 2 失败；`--only` 没有匹配到主书范围内的 Markdown
+文件时也会失败，避免过滤路径拼错后产生空扫描的假绿结果。
+
 **输出**：
 - 终端彩色报告（实时进度 + 汇总统计）
 - `tools/link_report.csv` — CSV 格式完整结果
