@@ -40,16 +40,19 @@ function parsePositiveInteger(value, fallback) {
 // URL 提取
 // ============================================================
 
-function findMdFiles(dir, filter) {
+function findMdFiles(dir, filter, root = dir) {
   const results = [];
+  const normalizedFilter = filter
+    ? filter.replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/$/, '')
+    : null;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'tools') continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      results.push(...findMdFiles(full, filter));
+      results.push(...findMdFiles(full, normalizedFilter, root));
     } else if (entry.name.endsWith('.md')) {
-      const rel = path.relative(path.join(dir, '..', '..'), full).replace(/\\/g, '/');
-      if (!filter || rel.startsWith(filter)) {
+      const rel = path.relative(root, full).replace(/\\/g, '/');
+      if (!normalizedFilter || rel === normalizedFilter || rel.startsWith(`${normalizedFilter}/`)) {
         results.push(full);
       }
     }

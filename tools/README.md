@@ -15,6 +15,10 @@ node tools/validate_links.js
 # 只检查指定目录
 node tools/validate_links.js --only 编年/2025
 
+# 也可以只检查单个文件或一级目录
+node tools/validate_links.js --only README.md
+node tools/validate_links.js --only 志
+
 # 输出 JSON（适合 CI）
 node tools/validate_links.js --json
 

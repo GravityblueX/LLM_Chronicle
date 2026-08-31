@@ -1,8 +1,11 @@
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const http = require('node:http');
+const os = require('node:os');
+const path = require('node:path');
 const { after, before, test } = require('node:test');
 
-const { checkUrl, parsePositiveInteger } = require('./validate_links');
+const { checkUrl, findMdFiles, parsePositiveInteger } = require('./validate_links');
 
 let server;
 let baseUrl;
@@ -80,4 +83,21 @@ test('parses positive integer options and falls back for invalid values', () => 
   assert.equal(parsePositiveInteger('2500', 1000), 2500);
   assert.equal(parsePositiveInteger('0', 1000), 1000);
   assert.equal(parsePositiveInteger('not-a-number', 1000), 1000);
+});
+
+test('--only filtering is relative to the repository root at every directory depth', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'chronicle-links-'));
+  try {
+    fs.mkdirSync(path.join(root, '志'));
+    fs.mkdirSync(path.join(root, '编年', '2025'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'README.md'), '# readme');
+    fs.writeFileSync(path.join(root, '志', 'topic.md'), '# topic');
+    fs.writeFileSync(path.join(root, '编年', '2025', '01.md'), '# month');
+
+    assert.deepEqual(findMdFiles(root, 'README.md'), [path.join(root, 'README.md')]);
+    assert.deepEqual(findMdFiles(root, '志'), [path.join(root, '志', 'topic.md')]);
+    assert.deepEqual(findMdFiles(root, '编年/2025'), [path.join(root, '编年', '2025', '01.md')]);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
