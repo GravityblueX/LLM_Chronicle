@@ -20,14 +20,21 @@ const http = require('http');
 // 配置
 // ============================================================
 
-const TIMEOUT = parseInt(process.env.LINK_TIMEOUT) || 10000;
+const DEFAULT_TIMEOUT = parsePositiveInteger(process.env.LINK_TIMEOUT, 10000);
+const DEFAULT_MAX_REDIRECTS = parsePositiveInteger(process.env.LINK_MAX_REDIRECTS, 10);
 const CONCURRENCY = 5;
 const USER_AGENT = 'LLM_Chronicle_LinkChecker/1.0 (historiography project; contact: github.com/tmzncty/LLM_Chronicle)';
+const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308]);
 
 // Cloudflare-protected domains — skip curl, verify via Internet Archive instead
 const CF_DOMAINS = [
   'openai.com',
 ];
+
+function parsePositiveInteger(value, fallback) {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 // ============================================================
 // URL 提取
@@ -106,47 +113,98 @@ function isCloudflareDomain(url) {
 // HTTP 检查
 // ============================================================
 
-function checkUrl(url, timeout) {
-  return new Promise((resolve) => {
-    const transport = url.startsWith('https') ? https : http;
-    const start = Date.now();
+function checkUrl(url, timeout, options = {}) {
+  const maxRedirects = options.maxRedirects ?? DEFAULT_MAX_REDIRECTS;
+  const redirectCount = options.redirectCount ?? 0;
+  const startedAt = options.startedAt ?? Date.now();
+  const visited = options.visited ?? new Set();
 
-    const req = transport.get(url, {
+  return new Promise((resolve) => {
+    let parsedUrl;
+    try {
+      parsedUrl = new URL(url);
+    } catch {
+      resolve({ status: null, latency: Date.now() - startedAt, error: 'Invalid URL', ok: false, redirectCount });
+      return;
+    }
+
+    if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+      resolve({ status: null, latency: Date.now() - startedAt, error: `Unsupported protocol: ${parsedUrl.protocol}`, ok: false, redirectCount });
+      return;
+    }
+
+    const normalizedUrl = parsedUrl.href;
+    if (visited.has(normalizedUrl)) {
+      resolve({ status: null, latency: Date.now() - startedAt, error: 'Redirect loop detected', ok: false, redirectCount });
+      return;
+    }
+    visited.add(normalizedUrl);
+
+    const transport = parsedUrl.protocol === 'https:' ? https : http;
+    let settled = false;
+    const finish = (result) => {
+      if (settled) return;
+      settled = true;
+      resolve(result);
+    };
+
+    const req = transport.get(parsedUrl, {
       timeout,
       headers: { 'User-Agent': USER_AGENT },
-      rejectUnauthorized: false, // 不拒自签名证书
     }, (res) => {
       // 处理重定向
-      if ([301, 302, 307, 308].includes(res.statusCode)) {
+      if (REDIRECT_STATUSES.has(res.statusCode)) {
         const loc = res.headers.location;
         res.resume();
-        if (loc) {
-          // 验证重定向 URL 合法
-          try { new URL(loc); } catch {
-            resolve({ status: res.statusCode, redirected: true, latency: Date.now() - start, error: 'Invalid redirect URL', ok: false });
-            return;
-          }
-          checkUrl(loc, timeout).then(resolve);
-        } else {
-          resolve({ status: res.statusCode, redirected: true, latency: Date.now() - start, error: 'Redirect without Location header', ok: false });
+        if (!loc) {
+          finish({ status: res.statusCode, redirected: true, latency: Date.now() - startedAt, error: 'Redirect without Location header', ok: false, redirectCount });
+          return;
         }
+
+        if (redirectCount >= maxRedirects) {
+          finish({ status: res.statusCode, redirected: true, latency: Date.now() - startedAt, error: `Too many redirects (limit: ${maxRedirects})`, ok: false, redirectCount });
+          return;
+        }
+
+        let targetUrl;
+        try {
+          // Location may be relative (the common case for same-site redirects).
+          targetUrl = new URL(loc, parsedUrl).href;
+        } catch {
+          finish({ status: res.statusCode, redirected: true, latency: Date.now() - startedAt, error: 'Invalid redirect URL', ok: false, redirectCount });
+          return;
+        }
+
+        checkUrl(targetUrl, timeout, {
+          maxRedirects,
+          redirectCount: redirectCount + 1,
+          startedAt,
+          visited,
+        }).then(result => finish({ ...result, redirected: true }));
         return;
       }
 
       // 消费掉响应体
       res.resume();
       res.on('end', () => {
-        resolve({ status: res.statusCode, redirected: false, latency: Date.now() - start, ok: res.statusCode >= 200 && res.statusCode < 400 });
+        finish({
+          status: res.statusCode,
+          redirected: redirectCount > 0,
+          redirectCount,
+          finalUrl: normalizedUrl,
+          latency: Date.now() - startedAt,
+          ok: res.statusCode >= 200 && res.statusCode < 400,
+        });
       });
     });
 
     req.on('timeout', () => {
       req.destroy();
-      resolve({ status: null, latency: Date.now() - start, error: `Timeout (${timeout}ms)`, ok: false });
+      finish({ status: null, latency: Date.now() - startedAt, error: `Timeout (${timeout}ms)`, ok: false, redirectCount });
     });
 
     req.on('error', (err) => {
-      resolve({ status: null, latency: Date.now() - start, error: err.code || err.message, ok: false });
+      finish({ status: null, latency: Date.now() - startedAt, error: err.code || err.message, ok: false, redirectCount });
     });
   });
 }
@@ -160,7 +218,11 @@ async function main() {
   const useJson = args.includes('--json');
   const onlyDir = args.indexOf('--only') >= 0 ? args[args.indexOf('--only') + 1] : null;
   const timeoutIdx = args.indexOf('--timeout');
-  const timeout = timeoutIdx >= 0 ? parseInt(args[timeoutIdx + 1]) : TIMEOUT;
+  const timeout = timeoutIdx >= 0 ? parsePositiveInteger(args[timeoutIdx + 1], DEFAULT_TIMEOUT) : DEFAULT_TIMEOUT;
+  const redirectsIdx = args.indexOf('--max-redirects');
+  const maxRedirects = redirectsIdx >= 0
+    ? parsePositiveInteger(args[redirectsIdx + 1], DEFAULT_MAX_REDIRECTS)
+    : DEFAULT_MAX_REDIRECTS;
 
   const root = path.resolve(__dirname, '..');
   const mdFiles = findMdFiles(root, onlyDir).filter(f => {
@@ -177,36 +239,39 @@ async function main() {
     allUrls.push(...extractUrls(f, root));
   }
 
-  console.error(`Found ${allUrls.length} URLs. Checking with ${CONCURRENCY} concurrent connections (timeout: ${timeout}ms)...\n`);
+  const uniqueUrls = [...new Set(allUrls.map(entry => entry.url))];
+  console.error(`Found ${allUrls.length} URL references (${uniqueUrls.length} unique). Checking with ${CONCURRENCY} concurrent connections (timeout: ${timeout}ms, redirects: ${maxRedirects})...\n`);
 
-  // 并发池检查
-  const results = [];
-  const queue = [...allUrls];
+  // 并发池按 URL 去重检查，最后再展开到原始文件位置。
+  const checks = new Map();
+  const queue = [...uniqueUrls];
 
   async function worker() {
     while (queue.length > 0) {
-      const entry = queue.shift();
+      const url = queue.shift();
       let result;
 
-      if (isCloudflareDomain(entry.url)) {
+      if (isCloudflareDomain(url)) {
         // Cloudflare-protected domain → verify via Internet Archive
-        result = await checkWayback(entry.url);
+        result = await checkWayback(url);
         const icon = result.ok ? '\x1b[32m✓\x1b[0m' : '\x1b[31m✗\x1b[0m';
         const detail = result.ok ? `IA snapshot (${result.ia_timestamp})` : result.error;
-        console.error(`  ${icon} ${entry.url}  → ${detail} [cloudflare: IA check]`);
+        console.error(`  ${icon} ${url}  → ${detail} [cloudflare: IA check]`);
       } else {
-        result = await checkUrl(entry.url, timeout);
+        result = await checkUrl(url, timeout, { maxRedirects });
         const icon = result.ok ? '\x1b[32m✓\x1b[0m' : (result.error ? '\x1b[31m✗\x1b[0m' : '\x1b[33m?\x1b[0m');
         const detail = result.ok ? `HTTP ${result.status}` : (result.error || `HTTP ${result.status}`);
-        console.error(`  ${icon} ${entry.url}  → ${detail} (${result.latency}ms)`);
+        console.error(`  ${icon} ${url}  → ${detail} (${result.latency}ms)`);
       }
 
-      results.push({ ...entry, ...result });
+      checks.set(url, result);
     }
   }
 
   const workers = Array.from({ length: CONCURRENCY }, () => worker());
   await Promise.all(workers);
+
+  const results = allUrls.map(entry => ({ ...entry, ...checks.get(entry.url) }));
 
   // 统计
   const ok = results.filter(r => r.ok);
@@ -259,7 +324,17 @@ async function main() {
   process.exit(failed.length > 0 ? 1 : 0);
 }
 
-main().catch(err => {
-  console.error('Fatal error:', err);
-  process.exit(2);
-});
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Fatal error:', err);
+    process.exit(2);
+  });
+}
+
+module.exports = {
+  checkUrl,
+  extractUrls,
+  findMdFiles,
+  isCloudflareDomain,
+  parsePositiveInteger,
+};

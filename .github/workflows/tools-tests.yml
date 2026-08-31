@@ -1,0 +1,29 @@
+name: Tools tests
+
+on:
+  push:
+    paths:
+      - '.github/workflows/tools-tests.yml'
+      - 'package.json'
+      - 'tools/**'
+  pull_request:
+    paths:
+      - '.github/workflows/tools-tests.yml'
+      - 'package.json'
+      - 'tools/**'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm test
