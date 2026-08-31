@@ -1,0 +1,38 @@
+name: Snapshot index tests
+
+on:
+  push:
+    paths:
+      - tools/snapshot.js
+      - tools/snapshot.test.js
+      - package.json
+      - sources/**/index.json
+      - .github/workflows/snapshot-index-tests.yml
+  pull_request:
+    paths:
+      - tools/snapshot.js
+      - tools/snapshot.test.js
+      - package.json
+      - sources/**/index.json
+      - .github/workflows/snapshot-index-tests.yml
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot-index:
+    name: Node ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm run test:snapshot
+      - run: node --check tools/snapshot.js
+      - run: node --check tools/snapshot.test.js

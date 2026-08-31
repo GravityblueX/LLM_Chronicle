@@ -6,7 +6,8 @@
     "extract-urls": "node tools/extract_urls.js .",
     "snapshot": "npm run extract-urls && node tools/snapshot.js",
     "snapshot:dry-run": "node tools/snapshot.js --dry-run",
-    "snapshot:text-only": "node tools/snapshot.js --text-only"
+    "snapshot:text-only": "node tools/snapshot.js --text-only",
+    "test:snapshot": "node --test tools/snapshot.test.js"
   },
   "dependencies": {
     "playwright": "^1.60.0"
