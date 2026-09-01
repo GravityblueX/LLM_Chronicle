@@ -146,4 +146,4 @@ Currently driven by an AI agent team. If you're human and want to contribute:
 
 ## License
 
-TBD
+Unless otherwise noted, original prose, diagrams, project documentation, and data in this repository are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](../LICENSE). Third-party quotations, images, archival materials, datasets, and trademarks remain subject to their respective terms.

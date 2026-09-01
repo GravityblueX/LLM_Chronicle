@@ -416,4 +416,4 @@ OpenClaw 中国用户的 token 成本和低效抱怨、ArkClaw 官方并发 / �
 
 ## License
 
-待定
+除非另有说明，本仓库原创的文字、图表、项目文档与数据采用 [Creative Commons Attribution 4.0 International（CC BY 4.0）](LICENSE) 许可。第三方引文、图像、档案、数据集与商标仍受其各自条款约束。
