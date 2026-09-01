@@ -18,7 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const crypto = require('crypto');
 
 // ============================================================
@@ -112,13 +112,23 @@ function extractUrlsFromFile(filePath) {
 // A 路：HTML 文本快照（curl）
 // ============================================================
 
-function fetchSnapshot(url, outputPath, timeout) {
-  const cmd = `curl -L -s -S -A "${USER_AGENT}" --max-time ${timeout} -o "${outputPath}" -w "%{http_code}|%{size_download}|%{time_total}" "${url}"`;
+function fetchSnapshot(url, outputPath, timeout, executeFile = execFileSync) {
+  const args = [
+    '-L',
+    '-s',
+    '-S',
+    '-A', USER_AGENT,
+    '--max-time', String(timeout),
+    '-o', outputPath,
+    '-w', '%{http_code}|%{size_download}|%{time_total}',
+    '--', url,
+  ];
   try {
-    const stdout = execSync(cmd, {
+    const stdout = executeFile('curl', args, {
       encoding: 'utf8',
       timeout: (timeout + 5) * 1000,
       stdio: ['pipe', 'pipe', 'pipe'],
+      shell: false,
     });
     const parts = stdout.trim().split('|');
     const status = parseInt(parts[0]) || 0;
@@ -598,4 +608,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { loadIndex, saveIndex, upsertSource };
+module.exports = { fetchSnapshot, loadIndex, saveIndex, upsertSource };
