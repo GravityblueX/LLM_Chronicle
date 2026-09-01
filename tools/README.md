@@ -67,8 +67,8 @@ node tools/validate_format.js --json
 
 | 编号 | 级别 | 检查内容 |
 |------|------|----------|
-| E001 | error | 文件名格式（MM.md 或 MM-slug.md） |
-| E002 | warning | 一级标题格式（# YYYY年M月） |
+| E001 | error | 文件路径仅允许 `YYYY/MM.md`（禁止 `MM-slug.md` 拆分） |
+| E002 | error | `YYYY/MM.md` 首行须精确为 `# YYYY年M月` 或 `# YYYY年M月（续）` |
 | E003 | error/info | 条目日期格式（**YYYY-MM-DD** —） |
 | E004 | warning | 脚注格式（[^N]: 来源, "标题", 日期. URL） |
 | E005 | warning/error | 脚注引用完整性（正文引用⇔尾注定义） |

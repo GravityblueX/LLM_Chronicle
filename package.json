@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "node --test tools/validate_links.test.js",
+    "test": "node --test tools/validate_links.test.js tools/validate_format.test.js",
     "validate": "npm run validate:format && npm run validate:links",
     "validate:format": "node tools/validate_format.js",
     "validate:links": "node tools/validate_links.js",
