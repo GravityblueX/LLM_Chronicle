@@ -244,18 +244,70 @@ async function screenshotPage(url, outputPath, timeout) {
 // index.json 管理
 // ============================================================
 
-function loadIndex(monthDir) {
+function loadIndex(monthDir, fileSystem = fs) {
   const indexPath = path.join(monthDir, 'index.json');
-  if (fs.existsSync(indexPath)) {
-    try { return JSON.parse(fs.readFileSync(indexPath, 'utf8')); } catch {}
+  let content;
+  try {
+    content = fileSystem.readFileSync(indexPath, 'utf8');
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return { month: path.basename(monthDir), sources: [] };
+    }
+    throw err;
   }
-  return { month: path.basename(monthDir), sources: [] };
+
+  const normalizedPath = path.resolve(indexPath).replace(/\\/g, '/');
+  let index;
+  try {
+    index = JSON.parse(content);
+  } catch {
+    throw new Error(`Invalid JSON in source index: ${normalizedPath}`);
+  }
+  if (!index || typeof index !== 'object' || Array.isArray(index) || !Array.isArray(index.sources)) {
+    throw new Error(`Invalid source index schema (expected "sources" array): ${normalizedPath}`);
+  }
+  if (index.sources.some(source => !source || typeof source !== 'object' || Array.isArray(source))) {
+    throw new Error(`Invalid source index schema (expected source objects): ${normalizedPath}`);
+  }
+  return index;
 }
 
-function saveIndex(monthDir, index) {
+function saveIndex(monthDir, index, fileSystem = fs) {
   const indexPath = path.join(monthDir, 'index.json');
-  fs.mkdirSync(monthDir, { recursive: true });
-  fs.writeFileSync(indexPath, JSON.stringify(index, null, 2) + '\n', 'utf8');
+  const tempPath = path.join(
+    monthDir,
+    `.index.json.${process.pid}.${crypto.randomBytes(8).toString('hex')}.tmp`,
+  );
+  const content = JSON.stringify(index, null, 2) + '\n';
+  fileSystem.mkdirSync(monthDir, { recursive: true });
+
+  let fd = null;
+  let ownsTemp = false;
+  let operationError = null;
+  try {
+    fd = fileSystem.openSync(tempPath, 'wx', 0o666);
+    ownsTemp = true;
+    fileSystem.writeFileSync(fd, content, 'utf8');
+    fileSystem.fsyncSync(fd);
+    fileSystem.closeSync(fd);
+    fd = null;
+    fileSystem.renameSync(tempPath, indexPath);
+    ownsTemp = false;
+  } catch (err) {
+    operationError = err;
+    throw err;
+  } finally {
+    if (fd !== null) {
+      try { fileSystem.closeSync(fd); } catch {}
+    }
+    if (ownsTemp) {
+      try {
+        fileSystem.unlinkSync(tempPath);
+      } catch (err) {
+        if (!operationError && err.code !== 'ENOENT') throw err;
+      }
+    }
+  }
 }
 
 function upsertSource(index, source) {
@@ -539,7 +591,11 @@ async function main() {
   }
 }
 
-main().catch(err => {
-  console.error('Fatal:', err);
-  process.exit(2);
-});
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Fatal:', err);
+    process.exit(2);
+  });
+}
+
+module.exports = { loadIndex, saveIndex, upsertSource };

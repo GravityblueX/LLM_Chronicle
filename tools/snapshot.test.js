@@ -1,0 +1,304 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const { spawnSync } = require('node:child_process');
+
+const { loadIndex, saveIndex, upsertSource } = require('./snapshot');
+
+function makeTempDir(t) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'llm-chronicle-snapshot-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  return dir;
+}
+
+function findIndexFiles(dir) {
+  const results = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      results.push(...findIndexFiles(entryPath));
+    } else if (entry.name === 'index.json') {
+      results.push(entryPath);
+    }
+  }
+  return results;
+}
+
+function writeIndex(monthDir, index) {
+  fs.mkdirSync(monthDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(monthDir, 'index.json'),
+    `${JSON.stringify(index, null, 2)}\n`,
+    'utf8',
+  );
+}
+
+function fingerprint(filePath) {
+  const content = fs.readFileSync(filePath);
+  return {
+    content,
+    hash: crypto.createHash('sha256').update(content).digest('hex'),
+  };
+}
+
+function assertUnchanged(filePath, before) {
+  const after = fingerprint(filePath);
+  assert.deepEqual(after.content, before.content);
+  assert.equal(after.hash, before.hash);
+}
+
+function assertNoTempIndex(monthDir) {
+  const tempFiles = fs.readdirSync(monthDir)
+    .filter(name => name.startsWith('.index.json.') && name.endsWith('.tmp'));
+  assert.deepEqual(tempFiles, []);
+}
+
+function withFsFault(method, implementation) {
+  return new Proxy(fs, {
+    get(target, property) {
+      return property === method ? implementation : target[property];
+    },
+  });
+}
+
+function normalized(filePath) {
+  return path.resolve(filePath).replace(/\\/g, '/');
+}
+
+test('all checked-in source indexes contain valid JSON', () => {
+  const root = path.resolve(__dirname, '..');
+  const indexFiles = findIndexFiles(path.join(root, 'sources'));
+
+  assert.ok(indexFiles.length > 0, 'expected at least one source index');
+  for (const indexPath of indexFiles) {
+    let valid = true;
+    try {
+      JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+    } catch {
+      valid = false;
+    }
+    assert.ok(valid, `invalid JSON in ${path.relative(root, indexPath)}`);
+  }
+});
+
+test('loadIndex initializes an index only when index.json is absent', t => {
+  const monthDir = path.join(makeTempDir(t), '06');
+
+  assert.deepEqual(loadIndex(monthDir), { month: '06', sources: [] });
+});
+
+test('loadIndex rethrows index read errors other than ENOENT', t => {
+  const monthDir = makeTempDir(t);
+  const readFailureFs = withFsFault('readFileSync', () => {
+    const error = new Error('simulated read failure');
+    error.code = 'EIO';
+    throw error;
+  });
+
+  assert.throws(
+    () => loadIndex(monthDir, readFailureFs),
+    error => error.code === 'EIO',
+  );
+});
+
+test('a valid index can be updated without dropping sibling sources', t => {
+  const monthDir = makeTempDir(t);
+  const index = {
+    month: '2025-01',
+    archive_note: 'preserve this top-level metadata',
+    sources: [
+      {
+        url: 'https://example.test/source',
+        title: 'Original title',
+        snapshot: 'source.html',
+        custom_metadata: { preserve: true },
+      },
+      {
+        url: 'https://example.test/sibling',
+        title: 'Sibling source',
+        snapshot: 'sibling.html',
+      },
+    ],
+  };
+  writeIndex(monthDir, index);
+
+  const loaded = loadIndex(monthDir);
+  upsertSource(loaded, {
+    url: 'https://example.test/source',
+    snapshot: 'source-updated.html',
+  });
+  saveIndex(monthDir, loaded);
+
+  const saved = loadIndex(monthDir);
+  assert.equal(saved.archive_note, 'preserve this top-level metadata');
+  assert.deepEqual(saved.sources[0], {
+    url: 'https://example.test/source',
+    title: 'Original title',
+    snapshot: 'source-updated.html',
+    custom_metadata: { preserve: true },
+  });
+  assert.deepEqual(saved.sources[1], index.sources[1]);
+  assertNoTempIndex(monthDir);
+});
+
+test('loadIndex rejects malformed and whitespace-only JSON without echoing content', t => {
+  const root = makeTempDir(t);
+  const secret = 'sk-QA7x9';
+  const urlToken = 'https://example.test/?token=URL-DO-NOT-ECHO';
+  const fixtures = [
+    `{"credential": ${secret}, "url": "${urlToken}"}\n`,
+    '  \r\n\t',
+  ];
+
+  for (const [i, content] of fixtures.entries()) {
+    const monthDir = path.join(root, String(i));
+    fs.mkdirSync(monthDir, { recursive: true });
+    const indexPath = path.join(monthDir, 'index.json');
+    fs.writeFileSync(indexPath, content, 'utf8');
+
+    assert.throws(
+      () => loadIndex(monthDir),
+      error => {
+        assert.equal(
+          error.message,
+          `Invalid JSON in source index: ${normalized(indexPath)}`,
+        );
+        assert.doesNotMatch(error.message, new RegExp(secret));
+        assert.doesNotMatch(error.message, /example\.test|URL-DO-NOT-ECHO/);
+        return true;
+      },
+    );
+  }
+});
+
+test('loadIndex rejects a valid JSON document whose sources value is not an array', t => {
+  const monthDir = makeTempDir(t);
+  const indexPath = path.join(monthDir, 'index.json');
+  const secret = 'https://example.test/?token=DO-NOT-ECHO';
+  fs.writeFileSync(
+    indexPath,
+    JSON.stringify({ month: '2025-01', sources: { secret } }),
+    'utf8',
+  );
+
+  assert.throws(
+    () => loadIndex(monthDir),
+    error => {
+      assert.equal(
+        error.message,
+        `Invalid source index schema (expected "sources" array): ${normalized(indexPath)}`,
+      );
+      assert.doesNotMatch(error.message, /example\.test|DO-NOT-ECHO/);
+      return true;
+    },
+  );
+});
+
+test('loadIndex rejects non-object entries in a sources array', t => {
+  const monthDir = makeTempDir(t);
+  const indexPath = path.join(monthDir, 'index.json');
+  fs.writeFileSync(
+    indexPath,
+    JSON.stringify({ month: '2025-01', sources: [null] }),
+    'utf8',
+  );
+
+  assert.throws(
+    () => loadIndex(monthDir),
+    error => {
+      assert.equal(
+        error.message,
+        `Invalid source index schema (expected source objects): ${normalized(indexPath)}`,
+      );
+      return true;
+    },
+  );
+});
+
+test('the CLI exits nonzero before replacing a malformed existing index', t => {
+  const root = makeTempDir(t);
+  const toolsDir = path.join(root, 'tools');
+  const monthDir = path.join(root, 'sources', '2025', '01');
+  fs.mkdirSync(toolsDir, { recursive: true });
+  fs.mkdirSync(monthDir, { recursive: true });
+  const scriptPath = path.join(toolsDir, 'snapshot.js');
+  fs.copyFileSync(path.join(__dirname, 'snapshot.js'), scriptPath);
+
+  const indexPath = path.join(monthDir, 'index.json');
+  const secret = 'sk-QA7x9';
+  const urlToken = 'https://example.test/?token=CLI-URL-DO-NOT-ECHO';
+  const malformed = `{"credential": ${secret}, "url": "${urlToken}"}\n`;
+  fs.writeFileSync(indexPath, malformed, 'utf8');
+  const before = fingerprint(indexPath);
+
+  const result = spawnSync(
+    process.execPath,
+    [
+      scriptPath,
+      '--update-only',
+      '--url',
+      'https://example.test/archive/source',
+      '--month',
+      '2025-01',
+    ],
+    {
+      encoding: 'utf8',
+    },
+  );
+
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /Invalid JSON in source index/);
+  assert.match(result.stderr, /index\.json/);
+  assert.doesNotMatch(result.stderr, new RegExp(secret));
+  assert.doesNotMatch(result.stderr, /example\.test|CLI-URL-DO-NOT-ECHO/);
+  assertUnchanged(indexPath, before);
+  assertNoTempIndex(monthDir);
+});
+
+test('saveIndex preserves the original index when a write fails after partial output', t => {
+  const monthDir = makeTempDir(t);
+  const indexPath = path.join(monthDir, 'index.json');
+  writeIndex(monthDir, {
+    month: '2025-01',
+    sources: [{ url: 'https://example.test/original' }],
+  });
+  const before = fingerprint(indexPath);
+  const partialWriteFs = withFsFault('writeFileSync', fd => {
+    fs.writeFileSync(fd, '{"partial":', 'utf8');
+    const error = new Error('simulated disk full');
+    error.code = 'ENOSPC';
+    throw error;
+  });
+
+  assert.throws(
+    () => saveIndex(monthDir, { month: '2025-01', sources: [] }, partialWriteFs),
+    error => error.code === 'ENOSPC',
+  );
+  assertUnchanged(indexPath, before);
+  assertNoTempIndex(monthDir);
+});
+
+test('saveIndex preserves the original index when atomic rename fails', t => {
+  const monthDir = makeTempDir(t);
+  const indexPath = path.join(monthDir, 'index.json');
+  writeIndex(monthDir, {
+    month: '2025-01',
+    sources: [{ url: 'https://example.test/original' }],
+  });
+  const before = fingerprint(indexPath);
+  const renameFailureFs = withFsFault('renameSync', () => {
+    const error = new Error('simulated rename failure');
+    error.code = 'EACCES';
+    throw error;
+  });
+
+  assert.throws(
+    () => saveIndex(monthDir, { month: '2025-01', sources: [] }, renameFailureFs),
+    error => error.code === 'EACCES',
+  );
+  assertUnchanged(indexPath, before);
+  assertNoTempIndex(monthDir);
+});
