@@ -15,12 +15,23 @@ node tools/validate_links.js
 # 只检查指定目录
 node tools/validate_links.js --only 编年/2025
 
+# 也可以只检查单个文件或一级目录
+node tools/validate_links.js --only README.md
+node tools/validate_links.js --only 志
+
 # 输出 JSON（适合 CI）
 node tools/validate_links.js --json
 
 # 自定义超时（毫秒）
 node tools/validate_links.js --timeout 15000
+
+# 限制重定向次数（默认 10，防止循环重定向）
+node tools/validate_links.js --max-redirects 5
 ```
+
+参数会严格校验：未知/重复参数、缺失参数值、非正整数的超时或重定向
+上限都会以退出码 2 失败；`--only` 没有匹配到主书范围内的 Markdown
+文件时也会失败，避免过滤路径拼错后产生空扫描的假绿结果。
 
 **输出**：
 - 终端彩色报告（实时进度 + 汇总统计）
@@ -29,9 +40,10 @@ node tools/validate_links.js --timeout 15000
 
 **检查项**：
 - HTTP 状态码（200-399 为通过）
-- 重定向跟踪（自动跟随 301/302/307/308）
+- 重定向跟踪（自动跟随绝对或相对的 301/302/303/307/308，检测循环并限制跳数）
 - 响应延迟
 - 可疑 URL 警告（基域名无路径，可能链接不完整）
+- 同一 URL 只请求一次，再映射回全部引用位置，减少限流与重复请求
 
 ### `validate_format.js` — 格式校验
 
@@ -78,6 +90,12 @@ node tools/extract_urls.js .
 ## 依赖
 
 纯 Node.js，无外部依赖。需要 Node.js ≥ 18。
+
+链接检查器的重定向、循环和参数边界测试使用 Node.js 内置测试运行器：
+
+```bash
+npm test
+```
 
 ## CI 集成（建议）
 
