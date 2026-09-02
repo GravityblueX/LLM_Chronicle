@@ -22,7 +22,7 @@ node tools/validate_links.js --only 志
 # 输出 JSON（适合 CI）
 node tools/validate_links.js --json
 
-# 自定义超时（毫秒）
+# 自定义整个请求（包括响应体、重定向或 Wayback 回退）的总墙钟超时（1-2147483647 毫秒）
 node tools/validate_links.js --timeout 15000
 
 # 限制重定向次数（默认 10，防止循环重定向）

@@ -6,6 +6,8 @@ const path = require('node:path');
 const { after, before, test } = require('node:test');
 
 const {
+  MAX_TIMEOUT_MS,
+  checkWayback,
   checkUrl,
   findMdFiles,
   findScopedMdFiles,
@@ -18,6 +20,35 @@ let baseUrl;
 
 before(async () => {
   server = http.createServer((req, res) => {
+    if (req.url === '/slow-drip') {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      const interval = setInterval(() => res.write('still alive\n'), 20);
+      const stop = setTimeout(() => {
+        clearInterval(interval);
+        res.end('done\n');
+      }, 320);
+      res.on('close', () => {
+        clearInterval(interval);
+        clearTimeout(stop);
+      });
+      return;
+    }
+
+    if (req.url === '/slow-chain-1') {
+      res.writeHead(302, { Location: '/slow-chain-2' });
+      res.end();
+      return;
+    }
+
+    if (req.url === '/slow-chain-2') {
+      const timer = setTimeout(() => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('ok');
+      }, 650);
+      res.on('close', () => clearTimeout(timer));
+      return;
+    }
+
     const routes = {
       '/ok': [200, {}, 'ok'],
       '/relative': [302, { Location: '/ok' }, ''],
@@ -78,6 +109,76 @@ test('stops redirect chains at the configured limit', async () => {
   assert.equal(result.redirectCount, 2);
 });
 
+test('enforces timeout as a total deadline for a slow-drip response', async () => {
+  const result = await checkUrl(`${baseUrl}/slow-drip`, 75);
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'Timeout (75ms)');
+  assert.ok(result.latency < 250, `timeout resolved after ${result.latency}ms`);
+});
+
+test('shares the total timeout deadline across redirect hops', async () => {
+  const timeout = 1000;
+  const result = await checkUrl(`${baseUrl}/slow-chain-1`, timeout, {
+    // Leave enough real time for a loaded CI runner to follow the first hop,
+    // while proving that the second hop cannot reset the original deadline.
+    startedAt: Date.now() - 600,
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error, `Timeout (${timeout}ms)`);
+  assert.equal(result.redirectCount, 1);
+});
+
+test('applies the configured timeout to the complete Wayback lookup', async () => {
+  let observedAbort = false;
+  const fetchImpl = async (_url, { signal }) => ({
+    json: () => new Promise((resolve, reject) => {
+      signal.addEventListener('abort', () => {
+        observedAbort = true;
+        reject(signal.reason);
+      }, { once: true });
+    }),
+  });
+
+  const result = await checkWayback('https://openai.com/research/', 25, { fetch: fetchImpl });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error, 'Timeout (25ms)');
+  assert.equal(observedAbort, true);
+  assert.ok(result.latency < 250, `timeout resolved after ${result.latency}ms`);
+});
+
+test('settles at the Wayback deadline when fetch or body parsing ignores abort', async () => {
+  const neverSettles = () => new Promise(() => {});
+  const cases = [
+    { fetch: neverSettles },
+    { fetch: async () => ({ json: neverSettles }) },
+  ];
+
+  for (const options of cases) {
+    const result = await checkWayback('https://openai.com/research/', 25, options);
+    assert.equal(result.ok, false);
+    assert.equal(result.error, 'Timeout (25ms)');
+    assert.ok(result.latency < 250, `timeout resolved after ${result.latency}ms`);
+  }
+});
+
+test('rejects timeout values outside the Node timer domain without throwing', async () => {
+  for (const timeout of [0, -1, 1.5, NaN, Infinity, MAX_TIMEOUT_MS + 1, Number.MAX_SAFE_INTEGER]) {
+    const result = await checkUrl(`${baseUrl}/ok`, timeout);
+    assert.equal(result.ok, false, `timeout ${timeout}`);
+    assert.equal(result.error, `Invalid timeout (expected 1-${MAX_TIMEOUT_MS}ms)`, `timeout ${timeout}`);
+
+    const waybackResult = await checkWayback('https://openai.com/research/', timeout);
+    assert.equal(waybackResult.ok, false, `Wayback timeout ${timeout}`);
+    assert.equal(waybackResult.error, `Invalid timeout (expected 1-${MAX_TIMEOUT_MS}ms)`, `Wayback timeout ${timeout}`);
+  }
+
+  const boundaryResult = await checkUrl(`${baseUrl}/ok`, MAX_TIMEOUT_MS);
+  assert.equal(boundaryResult.ok, true);
+});
+
 test('rejects unsupported protocols without making a request', async () => {
   const result = await checkUrl('ftp://example.com/archive', 1000);
 
@@ -91,11 +192,17 @@ test('parses positive integer options and falls back for invalid values', () => 
   assert.equal(parsePositiveInteger('not-a-number', 1000), 1000);
   assert.equal(parsePositiveInteger('2500ms', 1000), 1000);
   assert.equal(parsePositiveInteger('1.5', 1000), 1000);
+  assert.equal(parsePositiveInteger(String(MAX_TIMEOUT_MS), 1000, MAX_TIMEOUT_MS), MAX_TIMEOUT_MS);
+  assert.equal(parsePositiveInteger(String(MAX_TIMEOUT_MS + 1), 1000, MAX_TIMEOUT_MS), 1000);
 });
 
 test('rejects missing, malformed, duplicate, and unknown CLI options', () => {
   assert.throws(() => parseCliOptions(['--only']), /--only requires a value/);
   assert.throws(() => parseCliOptions(['--timeout', '2500ms']), /positive integer/);
+  assert.throws(
+    () => parseCliOptions(['--timeout', String(MAX_TIMEOUT_MS + 1)]),
+    new RegExp(`positive integer no greater than ${MAX_TIMEOUT_MS}`),
+  );
   assert.throws(() => parseCliOptions(['--json', '--json']), /Duplicate option/);
   assert.throws(() => parseCliOptions(['--onyl', '志']), /Unknown option/);
 });

@@ -20,7 +20,8 @@ const http = require('http');
 // 配置
 // ============================================================
 
-const DEFAULT_TIMEOUT = parsePositiveInteger(process.env.LINK_TIMEOUT, 10000);
+const MAX_TIMEOUT_MS = 2 ** 31 - 1;
+const DEFAULT_TIMEOUT = parsePositiveInteger(process.env.LINK_TIMEOUT, 10000, MAX_TIMEOUT_MS);
 const DEFAULT_MAX_REDIRECTS = parsePositiveInteger(process.env.LINK_MAX_REDIRECTS, 10);
 const CONCURRENCY = 5;
 const USER_AGENT = 'LLM_Chronicle_LinkChecker/1.0 (historiography project; contact: github.com/tmzncty/LLM_Chronicle)';
@@ -31,11 +32,15 @@ const CF_DOMAINS = [
   'openai.com',
 ];
 
-function parsePositiveInteger(value, fallback) {
+function parsePositiveInteger(value, fallback, maximum = Number.MAX_SAFE_INTEGER) {
   const text = String(value ?? '').trim();
   if (!/^[0-9]+$/.test(text)) return fallback;
   const parsed = Number(text);
-  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : fallback;
+  return Number.isSafeInteger(parsed) && parsed > 0 && parsed <= maximum ? parsed : fallback;
+}
+
+function isValidTimeout(timeout) {
+  return Number.isInteger(timeout) && timeout > 0 && timeout <= MAX_TIMEOUT_MS;
 }
 
 function parseCliOptions(args) {
@@ -71,9 +76,11 @@ function parseCliOptions(args) {
       continue;
     }
 
-    const parsed = parsePositiveInteger(value, null);
+    const maximum = option === '--timeout' ? MAX_TIMEOUT_MS : Number.MAX_SAFE_INTEGER;
+    const parsed = parsePositiveInteger(value, null, maximum);
     if (parsed === null) {
-      throw new Error(`${option} requires a positive integer`);
+      const upperBound = option === '--timeout' ? ` no greater than ${MAX_TIMEOUT_MS}` : '';
+      throw new Error(`${option} requires a positive integer${upperBound}`);
     }
     if (option === '--timeout') options.timeout = parsed;
     else options.maxRedirects = parsed;
@@ -142,24 +149,60 @@ function extractUrls(filePath, root) {
 // Internet Archive 可用性检查
 // ============================================================
 
-async function checkWayback(url) {
-  try {
-    const resp = await fetch(`https://archive.org/wayback/available?url=${encodeURIComponent(url)}`, {
-      signal: AbortSignal.timeout(10000),
-    });
-    const data = await resp.json();
-    if (data.archived_snapshots?.closest?.available) {
-      return {
-        ok: true,
-        status: 200,
-        latency: 0,
-        ia_snapshot: data.archived_snapshots.closest.url,
-        ia_timestamp: data.archived_snapshots.closest.timestamp,
-      };
+async function checkWayback(url, timeout, options = {}) {
+  const startedAt = Date.now();
+  if (!isValidTimeout(timeout)) {
+    return {
+      ok: false,
+      status: null,
+      latency: 0,
+      error: `Invalid timeout (expected 1-${MAX_TIMEOUT_MS}ms)`,
+    };
+  }
+
+  const controller = new AbortController();
+  let deadlineTimer;
+  const deadline = new Promise(resolve => {
+    deadlineTimer = setTimeout(() => {
+      controller.abort();
+      resolve({
+        ok: false,
+        status: null,
+        latency: Date.now() - startedAt,
+        error: `Timeout (${timeout}ms)`,
+      });
+    }, timeout);
+  });
+  const lookup = (async () => {
+    try {
+      const fetchImpl = options.fetch ?? fetch;
+      const resp = await fetchImpl(`https://archive.org/wayback/available?url=${encodeURIComponent(url)}`, {
+        signal: controller.signal,
+      });
+      const data = await resp.json();
+      if (data.archived_snapshots?.closest?.available) {
+        return {
+          ok: true,
+          status: 200,
+          latency: Date.now() - startedAt,
+          ia_snapshot: data.archived_snapshots.closest.url,
+          ia_timestamp: data.archived_snapshots.closest.timestamp,
+        };
+      }
+      return { ok: false, status: null, latency: Date.now() - startedAt, error: 'No Wayback Machine archive' };
+    } catch (err) {
+      const latency = Date.now() - startedAt;
+      if (controller.signal.aborted) {
+        return { ok: false, status: null, latency, error: `Timeout (${timeout}ms)` };
+      }
+      return { ok: false, status: null, latency, error: `IA check failed: ${err.message}` };
     }
-    return { ok: false, status: null, error: 'No Wayback Machine archive' };
-  } catch (err) {
-    return { ok: false, status: null, error: `IA check failed: ${err.message}` };
+  })();
+
+  try {
+    return await Promise.race([lookup, deadline]);
+  } finally {
+    clearTimeout(deadlineTimer);
   }
 }
 
@@ -179,6 +222,16 @@ function checkUrl(url, timeout, options = {}) {
   const redirectCount = options.redirectCount ?? 0;
   const startedAt = options.startedAt ?? Date.now();
   const visited = options.visited ?? new Set();
+
+  if (!isValidTimeout(timeout)) {
+    return Promise.resolve({
+      status: null,
+      latency: Math.max(0, Date.now() - startedAt),
+      error: `Invalid timeout (expected 1-${MAX_TIMEOUT_MS}ms)`,
+      ok: false,
+      redirectCount,
+    });
+  }
 
   return new Promise((resolve) => {
     let parsedUrl;
@@ -201,22 +254,30 @@ function checkUrl(url, timeout, options = {}) {
     }
     visited.add(normalizedUrl);
 
+    const remaining = timeout - (Date.now() - startedAt);
+    if (remaining <= 0) {
+      resolve({ status: null, latency: Date.now() - startedAt, error: `Timeout (${timeout}ms)`, ok: false, redirectCount });
+      return;
+    }
+
     const transport = parsedUrl.protocol === 'https:' ? https : http;
     let settled = false;
+    let deadlineTimer;
     const finish = (result) => {
       if (settled) return;
       settled = true;
+      clearTimeout(deadlineTimer);
       resolve(result);
     };
 
     const req = transport.get(parsedUrl, {
-      timeout,
+      timeout: remaining,
       headers: { 'User-Agent': USER_AGENT },
     }, (res) => {
       // 处理重定向
       if (REDIRECT_STATUSES.has(res.statusCode)) {
         const loc = res.headers.location;
-        res.resume();
+        res.destroy();
         if (!loc) {
           finish({ status: res.statusCode, redirected: true, latency: Date.now() - startedAt, error: 'Redirect without Location header', ok: false, redirectCount });
           return;
@@ -236,6 +297,8 @@ function checkUrl(url, timeout, options = {}) {
           return;
         }
 
+        clearTimeout(deadlineTimer);
+        deadlineTimer = undefined;
         checkUrl(targetUrl, timeout, {
           maxRedirects,
           redirectCount: redirectCount + 1,
@@ -258,6 +321,11 @@ function checkUrl(url, timeout, options = {}) {
         });
       });
     });
+
+    deadlineTimer = setTimeout(() => {
+      req.destroy();
+      finish({ status: null, latency: Date.now() - startedAt, error: `Timeout (${timeout}ms)`, ok: false, redirectCount });
+    }, remaining);
 
     req.on('timeout', () => {
       req.destroy();
@@ -307,7 +375,7 @@ async function main() {
 
       if (isCloudflareDomain(url)) {
         // Cloudflare-protected domain → verify via Internet Archive
-        result = await checkWayback(url);
+        result = await checkWayback(url, timeout);
         const icon = result.ok ? '\x1b[32m✓\x1b[0m' : '\x1b[31m✗\x1b[0m';
         const detail = result.ok ? `IA snapshot (${result.ia_timestamp})` : result.error;
         console.error(`  ${icon} ${url}  → ${detail} [cloudflare: IA check]`);
@@ -386,6 +454,8 @@ if (require.main === module) {
 }
 
 module.exports = {
+  MAX_TIMEOUT_MS,
+  checkWayback,
   checkUrl,
   extractUrls,
   findMdFiles,
