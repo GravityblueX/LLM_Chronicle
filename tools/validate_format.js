@@ -20,6 +20,200 @@
 const fs = require('fs');
 const path = require('path');
 
+function isLeapYear(year) {
+  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+function calendarMonthFailure(year, month) {
+  if (year < 1) return 'invalid-year';
+  if (month < 1 || month > 12) return 'invalid-month';
+  return null;
+}
+
+function calendarFailure(year, month, day) {
+  const monthFailure = calendarMonthFailure(year, month);
+  if (monthFailure) return monthFailure;
+
+  const daysInMonth = [
+    31,
+    isLeapYear(year) ? 29 : 28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31,
+  ];
+  if (day < 1 || day > daysInMonth[month - 1]) return 'invalid-day';
+  return null;
+}
+
+function validChronicleDate(kind) {
+  return { valid: true, kind };
+}
+
+function invalidChronicleDate(reason) {
+  return { valid: false, reason };
+}
+
+/**
+ * Parse the date label inside a chronicle entry's leading **...** marker.
+ *
+ * The grammar preserves the formats used by the corpus and documented in
+ * 00_体例.md: year, month, day, approximate month/day, month-position labels,
+ * and a same-month day range with a shortened end day.
+ */
+function parseChronicleDate(dateStr) {
+  const rawValue = String(dateStr);
+  if (/[\r\n]/.test(rawValue)) return invalidChronicleDate('syntax');
+
+  const value = rawValue.trim();
+  let match;
+
+  match = value.match(/^(\d{4})-(\d{2})-(\d{2})(?:—|–|-|至)(\d{1,2})$/);
+  if (match) {
+    const [, yearText, monthText, startDayText, endDayText] = match;
+    const year = Number(yearText);
+    const month = Number(monthText);
+    const startDay = Number(startDayText);
+    const endDay = Number(endDayText);
+    const startFailure = calendarFailure(year, month, startDay);
+    if (startFailure) return invalidChronicleDate(startFailure);
+    const endFailure = calendarFailure(year, month, endDay);
+    if (endFailure) return invalidChronicleDate(endFailure);
+    if (endDay < startDay) return invalidChronicleDate('reversed-range');
+    return validChronicleDate('day-range');
+  }
+
+  match = value.match(/^约(\d{4})-(\d{2})-(\d{2})$/);
+  if (match) {
+    const [, yearText, monthText, dayText] = match;
+    const failure = calendarFailure(
+      Number(yearText),
+      Number(monthText),
+      Number(dayText),
+    );
+    return failure
+      ? invalidChronicleDate(failure)
+      : validChronicleDate('approximate-day');
+  }
+
+  match = value.match(/^(\d{4})-(\d{2})-(\d{2})[ \t]*前后$/);
+  if (match) {
+    const [, yearText, monthText, dayText] = match;
+    const failure = calendarFailure(
+      Number(yearText),
+      Number(monthText),
+      Number(dayText),
+    );
+    return failure
+      ? invalidChronicleDate(failure)
+      : validChronicleDate('approximate-day');
+  }
+
+  match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (match) {
+    const [, yearText, monthText, dayText] = match;
+    const failure = calendarFailure(
+      Number(yearText),
+      Number(monthText),
+      Number(dayText),
+    );
+    return failure
+      ? invalidChronicleDate(failure)
+      : validChronicleDate('day');
+  }
+
+  match = value.match(/^(\d{4})-(\d{2})[ \t]*(?:初|中|中旬|下旬|末)$/);
+  if (match) {
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const failure = calendarMonthFailure(year, month);
+    return failure
+      ? invalidChronicleDate(failure)
+      : validChronicleDate('approximate-month-position');
+  }
+
+  match = value.match(/^(\d{4})-(\d{2})$/);
+  if (match) {
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const failure = calendarMonthFailure(year, month);
+    return failure
+      ? invalidChronicleDate(failure)
+      : validChronicleDate('month');
+  }
+
+  match = value.match(/^约(\d{4})年(\d{1,2})月$/);
+  if (match) {
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const failure = calendarMonthFailure(year, month);
+    return failure
+      ? invalidChronicleDate(failure)
+      : validChronicleDate('approximate-month');
+  }
+
+  match = value.match(/^(\d{4})年(\d{1,2})月$/);
+  if (match) {
+    const year = Number(match[1]);
+    const month = Number(match[2]);
+    const failure = calendarMonthFailure(year, month);
+    return failure
+      ? invalidChronicleDate(failure)
+      : validChronicleDate('month');
+  }
+
+  match = value.match(/^(\d{4})年$/);
+  if (match) {
+    return Number(match[1]) < 1
+      ? invalidChronicleDate('invalid-year')
+      : validChronicleDate('year');
+  }
+  return invalidChronicleDate('syntax');
+}
+
+function dateValidationMessage(dateStr, result) {
+  if (result.reason === 'invalid-year') {
+    return `年份无效: "${dateStr}"（公元纪年不得使用 0000 年）`;
+  }
+  if (result.reason === 'invalid-month') {
+    return `月份无效: "${dateStr}"（月份应为 1-12）`;
+  }
+  if (result.reason === 'invalid-day') {
+    return `日期无效: "${dateStr}"（日期超出该月的日历范围）`;
+  }
+  if (result.reason === 'reversed-range') {
+    return `日期范围倒序: "${dateStr}"（结束日不得早于开始日）`;
+  }
+  return `日期格式不符合规范: "${dateStr}"。期望: YYYY年 / YYYY-MM / YYYY年M月 / YYYY-MM-DD / 约YYYY年M月 / 约YYYY-MM-DD / YYYY-MM-DD 前后 / YYYY-MM[初|中|中旬|下旬|末] / YYYY-MM-DD—DD`;
+}
+
+/**
+ * Extract leading chronicle event markers without allowing a marker to span
+ * lines. A parenthetical note may sit between the closing bold marker and the
+ * event dash, as it does in the shipped corpus.
+ */
+function extractChronicleEntries(content) {
+  const entries = [];
+  const entryRe = /^\*\*([^\r\n*]+)\*\*[ \t]*(?:（[^\r\n）]*）[ \t]*)?[—–-]/gm;
+  let match;
+
+  while ((match = entryRe.exec(content)) !== null) {
+    entries.push({
+      dateStr: match[1].trim(),
+      index: match.index,
+      line: content.substring(0, match.index).split(/\r\n|\n|\r/).length,
+    });
+  }
+
+  return entries;
+}
+
 // ============================================================
 // 规则定义
 // ============================================================
@@ -33,8 +227,12 @@ const RULES = {
     desc: '文件名应为 YYYY/MM.md（v2.0 禁 MM-slug.md 多文件拆分）',
     check(fileRel) {
       const parts = fileRel.replace(/\\/g, '/').split('/');
-      const year = parseInt(parts[parts.length - 2]);
+      const yearText = parts[parts.length - 2];
       const filename = parts[parts.length - 1];
+      if (!/^\d{4}$/.test(yearText || '')) {
+        return [{ level: 'error', rule: 'E001', msg: `年份目录不符合规范: ${yearText || '(缺失)'}，期望 YYYY（四位 ASCII 数字）` }];
+      }
+      const year = Number(yearText);
       // v2.0: 只允许 MM.md，禁止 MM-slug.md（同月多专题用 ## 标题分隔）
       const match = filename.match(/^(\d{2})\.md$/);
       const slugMatch = filename.match(/^(\d{2})-[\w-]+\.md$/);
@@ -44,11 +242,11 @@ const RULES = {
       if (!match) {
         return [{ level: 'error', rule: 'E001', msg: `文件名不符合规范: ${filename}，期望格式 MM.md（如 03.md）` }];
       }
-      const month = parseInt(match[1]);
+      const month = Number(match[1]);
       if (month < 1 || month > 12) {
         return [{ level: 'error', rule: 'E001', msg: `月份超出范围: ${filename}` }];
       }
-      if (isNaN(year) || year < 2017 || year > 2030) {
+      if (year < 2017 || year > 2030) {
         return [{ level: 'warning', rule: 'E001', msg: `年份不在预期范围 2017-2030: ${year}` }];
       }
       return [];
@@ -60,18 +258,33 @@ const RULES = {
   title_format: {
     id: 'E002',
     level: 'error',
-    desc: '一级标题须为 # YYYY年M月 或 # YYYY年M月（续）',
+    desc: '文件首行须为 # YYYY年M月 或 # YYYY年M月（续）',
     check(content, fileRel) {
       const parts = fileRel.replace(/\\/g, '/').split('/');
       const year = parts[parts.length - 2];
-      const firstH1 = content.match(/^# (.+)$/m);
-      if (!firstH1) {
-        return [{ level: 'error', rule: 'E002', msg: '缺少一级标题 (# YYYY年M月)' }];
+      const filename = parts[parts.length - 1];
+      const monthMatch = filename.match(/^(0[1-9]|1[0-2])\.md$/);
+
+      // E001 owns non-canonical paths, including the legacy slug files that
+      // still exist in the corpus. Avoid emitting a second, misleading title
+      // issue when there is no canonical YYYY/MM.md path to compare against.
+      if (!/^\d{4}$/.test(year) || !monthMatch) {
+        return [];
       }
-      const title = firstH1[1].trim();
-      const expected = new RegExp(`^${year}年\\d{1,2}月`);
-      if (!expected.test(title)) {
-        return [{ level: 'warning', rule: 'E002', msg: `标题格式异常: "${title}"，期望以 "${year}年X月" 开头` }];
+
+      const firstLine = String(content).split(/\r\n|\n|\r/, 1)[0];
+      if (!firstLine) {
+        return [{ level: 'error', rule: 'E002', msg: '文件首行缺少一级标题 (# YYYY年M月)' }];
+      }
+      const expected = `${year}年${Number(monthMatch[1])}月`;
+      if (
+        firstLine !== `# ${expected}`
+        && firstLine !== `# ${expected}（续）`
+      ) {
+        if (!firstLine.startsWith('# ')) {
+          return [{ level: 'error', rule: 'E002', msg: '一级标题格式不正确，文件首行须从行首以 "# " 开始' }];
+        }
+        return [{ level: 'error', rule: 'E002', msg: `标题与文件路径不一致: "${firstLine.slice(2)}"，期望 "${expected}" 或 "${expected}（续）"` }];
       }
       return [];
     }
@@ -82,48 +295,32 @@ const RULES = {
   entry_date_format: {
     id: 'E003',
     level: 'error',
-    desc: '编年条目的日期格式应为 **YYYY-MM-DD** — 或 **约YYYY年M月** —',
+    desc: '编年条目的日期须使用受支持的年、月、日、近似或同月范围格式',
     check(content) {
       const issues = [];
-      const entryRe = /^\*\*([^*]+)\*\*\s*[—–-]/gm;
-      let match;
-      while ((match = entryRe.exec(content)) !== null) {
-        const dateStr = match[1].trim();
-        const lineNum = content.substring(0, match.index).split('\n').length;
+      for (const entry of extractChronicleEntries(content)) {
+        const { dateStr, line: lineNum } = entry;
 
-        // 允许的日期格式
-        // v2.0 §1.3: 日期明确到日；仅有月份的写到月；仅有年份的写到年
-        const validDate = /^\d{4}-\d{2}-\d{2}$/;
-        const validDateRange = /^\d{4}-\d{2}-\d{2}[—–-]\d{1,2}$/;
-        const validMonthApprox = /^\d{4}-\d{2}\s*[初中下旬末]/;
-        const validMonth = /^\d{4}-\d{2}$/;
-        const validApprox = /^约\d{4}年\d{1,2}月/;
-        const validMonthOnly = /^\d{4}年\d{1,2}月/;
-        const validYearOnly = /^\d{4}年$/;
-        const looksLikeDate = /^\d/.test(dateStr);
+        // v2.0: 禁波浪号 ~ 用于日期范围，应改用 em-dash（—）或"至"
+        if (/~/.test(dateStr)) {
+          issues.push({
+            level: 'warning',
+            rule: 'E003',
+            line: lineNum,
+            msg: `日期范围使用了波浪号(~): "${dateStr}"。v2.0 规定日期范围用 em-dash（—），如 2023-02-14—15，或"至"`
+          });
+        }
 
-        if (looksLikeDate) {
-          // v2.0: 禁波浪号 ~ 用于日期范围，应改用 em-dash（—）或"至"
-          if (/~/.test(dateStr)) {
-            issues.push({
-              level: 'warning',
-              rule: 'E003',
-              line: lineNum,
-              msg: `日期范围使用了波浪号(~): "${dateStr}"。v2.0 规定日期范围用 em-dash（—），如 2023-02-14—15，或"至"`
-            });
-          }
-
-          // 尝试写日期但格式错误 → error
-          if (!validDate.test(dateStr) && !validDateRange.test(dateStr) && !validMonthApprox.test(dateStr) && !validMonth.test(dateStr) && !validApprox.test(dateStr)
-              && !validMonthOnly.test(dateStr) && !validYearOnly.test(dateStr)) {
-            issues.push({
-              level: 'error',
-              rule: 'E003',
-              line: lineNum,
-              msg: `日期格式不符合规范: "${dateStr}"。期望: YYYY-MM-DD / 约YYYY年M月 / YYYY年M月。常见错误: 用了波浪号(~)替代短横(-)、漏写日`
-            });
-          }
-        } else {
+        const parsedDate = parseChronicleDate(dateStr);
+        const looksLikeDate = /^\d/.test(dateStr) || /^约\s*\d/.test(dateStr);
+        if (!parsedDate.valid && looksLikeDate) {
+          issues.push({
+            level: 'error',
+            rule: 'E003',
+            line: lineNum,
+            msg: dateValidationMessage(dateStr, parsedDate),
+          });
+        } else if (!parsedDate.valid) {
           // 不以数字开头 → 可能是叙述性标签（如"随后""冲突升级"），仅 info
           issues.push({
             level: 'info',
@@ -131,20 +328,6 @@ const RULES = {
             line: lineNum,
             msg: `「${dateStr}」使用了 **...** — 格式但不是日期。如果是事件内的叙述标记则忽略；如果是独立事件请补日期`
           });
-        }
-
-        // 如果是 YYYY-MM-DD，验证日期合法性
-        if (validDate.test(dateStr)) {
-          const [y, m, d] = dateStr.split('-').map(Number);
-          const dt = new Date(y, m - 1, d);
-          if (dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d) {
-            issues.push({
-              level: 'error',
-              rule: 'E003',
-              line: lineNum,
-              msg: `日期无效: ${dateStr}（该月没有这一天）`
-            });
-          }
         }
       }
       return issues;
@@ -454,4 +637,12 @@ function main() {
   process.exit(hasErrors ? 1 : (hasWarnings && strict ? 1 : 0));
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  RULES,
+  extractChronicleEntries,
+  parseChronicleDate,
+};
