@@ -6,7 +6,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { spawnSync } = require('node:child_process');
 
-const { loadIndex, saveIndex, upsertSource } = require('./snapshot');
+const { fetchSnapshot, loadIndex, saveIndex, upsertSource } = require('./snapshot');
 
 function makeTempDir(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'llm-chronicle-snapshot-'));
@@ -67,6 +67,31 @@ function withFsFault(method, implementation) {
 function normalized(filePath) {
   return path.resolve(filePath).replace(/\\/g, '/');
 }
+
+test('fetchSnapshot passes untrusted values to curl as literal arguments', () => {
+  const url = 'https://example.test/archive?name="$(echo injected)"&next=;touch marker';
+  const outputPath = 'snapshot "quoted"; $(touch marker).html';
+  let invocation;
+  const executeFile = (file, args, options) => {
+    invocation = { file, args, options };
+    return '200|42|0.125';
+  };
+
+  const result = fetchSnapshot(url, outputPath, 7, executeFile);
+
+  assert.equal(invocation.file, 'curl');
+  assert.equal(invocation.options.shell, false);
+  assert.equal(invocation.args[invocation.args.indexOf('--max-time') + 1], '7');
+  assert.equal(invocation.args[invocation.args.indexOf('-o') + 1], outputPath);
+  assert.deepEqual(invocation.args.slice(-2), ['--', url]);
+  assert.deepEqual(result, {
+    ok: true,
+    status: 200,
+    size: 42,
+    latency_sec: 0.125,
+    too_large: false,
+  });
+});
 
 test('all checked-in source indexes contain valid JSON', () => {
   const root = path.resolve(__dirname, '..');
