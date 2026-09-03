@@ -15,6 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
+const { extractUrls: extractUrlsFromContent } = require('./extract_urls');
 
 // ============================================================
 // 配置
@@ -127,22 +128,8 @@ function findScopedMdFiles(root, filter) {
 
 function extractUrls(filePath, root) {
   const content = fs.readFileSync(filePath, 'utf8');
-  const lines = content.split('\n');
-  const urlRe = /https?:\/\/[^\s\)\]\u4e00-\u9fff]+/g;
-  const urls = [];
-
-  for (const m of content.matchAll(urlRe)) {
-    let url = m[0].replace(/[.,;:!?)>\]]+$/, '');
-    // 跳过明显不是真实 URL 的（含模板标记 { }）
-    if (/[{}\\]/.test(url)) continue;
-    // 验证 URL 可解析
-    try { new URL(url); } catch { continue; }
-    const lineNum = content.substring(0, m.index).split('\n').length;
-    const rel = path.relative(root, filePath).replace(/\\/g, '/');
-    urls.push({ file: rel, line: lineNum, url });
-  }
-
-  return urls;
+  const file = path.relative(root, filePath).replace(/\\/g, '/');
+  return extractUrlsFromContent(content).map(entry => ({ file, line: entry.line, url: entry.url }));
 }
 
 // ============================================================

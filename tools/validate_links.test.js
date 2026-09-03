@@ -9,6 +9,7 @@ const {
   MAX_TIMEOUT_MS,
   checkWayback,
   checkUrl,
+  extractUrls,
   findMdFiles,
   findScopedMdFiles,
   parseCliOptions,
@@ -184,6 +185,35 @@ test('rejects unsupported protocols without making a request', async () => {
 
   assert.equal(result.ok, false);
   assert.equal(result.error, 'Unsupported protocol: ftp:');
+});
+
+test('extracts link-check URLs with shared Markdown and Unicode boundaries', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'chronicle-link-urls-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const fixtureDir = path.join(root, '志');
+  const fixture = path.join(fixtureDir, 'parser-fixture.md');
+  fs.mkdirSync(fixtureDir);
+  fs.writeFileSync(fixture, [
+    'Quoted: "https://example.test/release"',
+    '中文分号：https://example.test/article；',
+    '注释：https://arxiv.org/abs/2303.15343（SigLIP）',
+    '全角右括号：https://example.test/archive）',
+    '[Wiki](https://en.wikipedia.org/wiki/Llama_(language_model)).',
+    '[IPv6](http://[2001:db8::1]/path).',
+    '中文路径：https://www.80aj.com/前沿/20260409/。',
+    '中文查询：https://www.baidu.com/s?wd=百度深度学习研究院；',
+  ].join('\n'));
+
+  assert.deepEqual(extractUrls(fixture, root), [
+    { file: '志/parser-fixture.md', url: 'https://example.test/release', line: 1 },
+    { file: '志/parser-fixture.md', url: 'https://example.test/article', line: 2 },
+    { file: '志/parser-fixture.md', url: 'https://arxiv.org/abs/2303.15343', line: 3 },
+    { file: '志/parser-fixture.md', url: 'https://example.test/archive', line: 4 },
+    { file: '志/parser-fixture.md', url: 'https://en.wikipedia.org/wiki/Llama_(language_model)', line: 5 },
+    { file: '志/parser-fixture.md', url: 'http://[2001:db8::1]/path', line: 6 },
+    { file: '志/parser-fixture.md', url: 'https://www.80aj.com/前沿/20260409/', line: 7 },
+    { file: '志/parser-fixture.md', url: 'https://www.baidu.com/s?wd=百度深度学习研究院', line: 8 },
+  ]);
 });
 
 test('parses positive integer options and falls back for invalid values', () => {
