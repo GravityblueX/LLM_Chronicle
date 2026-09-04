@@ -11,8 +11,8 @@
  *   node tools/snapshot.js --text-only 编年/2023/02.md  # 仅 A 路（HTML 快照）
  *   node tools/snapshot.js --ia 编年/2023/02.md           # 仅 B 路（IA 存档）
  *   node tools/snapshot.js --screenshot                # 仅截图模式（社交媒体页面 PNG）
- *   node tools/snapshot.js                           # 归档 urls.json 中所有编年链接
- *   node tools/snapshot.js --dry-run                  # 试运行
+ *   node tools/snapshot.js                           # 实时扫描并归档编年/中的链接
+ *   node tools/snapshot.js --dry-run                  # 实时扫描编年/并试运行
  *   node tools/snapshot.js --update-only              # 仅更新 index.json
  */
 
@@ -20,6 +20,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const crypto = require('crypto');
+const { collectUrls, findMd } = require('./extract_urls');
 
 // ============================================================
 // 配置
@@ -27,7 +28,6 @@ const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const SOURCES_DIR = path.join(ROOT, 'sources');
-const URLS_JSON = path.join(ROOT, 'tools', 'urls.json');
 const USER_AGENT = 'LLM_Chronicle_Snapshot/1.0 (historiography project; contact: github.com/tmzncty/LLM_Chronicle)';
 const CURL_TIMEOUT = 30; // 秒
 const IA_TIMEOUT = 60; // 秒（IA 归档较慢）
@@ -331,6 +331,15 @@ function upsertSource(index, source) {
   }
 }
 
+function discoverChronicleUrls(root = ROOT) {
+  const chronicleRoot = path.join(root, '编年');
+  const files = findMd(chronicleRoot);
+  return {
+    entries: collectUrls(root, files),
+    files,
+  };
+}
+
 // ============================================================
 // 主逻辑
 // ============================================================
@@ -369,14 +378,12 @@ async function main() {
     entries = extractUrlsFromFile(fullPath);
     console.error(`Extracted ${entries.length} URLs from ${fileArg}`);
   } else {
-    // 从 urls.json 加载
-    if (!fs.existsSync(URLS_JSON)) {
-      console.error(`urls.json not found. Run first: node tools/extract_urls.js`);
-      process.exit(1);
-    }
-    const allUrls = JSON.parse(fs.readFileSync(URLS_JSON, 'utf8'));
-    entries = allUrls.filter(u => u.file.startsWith('编年/'));
-    console.error(`Loaded ${entries.length} URLs from urls.json (chronicle entries only)`);
+    // 实时扫描编年目录；tools/urls.json 只是可选的辅助清单，不是运行时输入。
+    const discovered = discoverChronicleUrls();
+    entries = discovered.entries;
+    console.error(
+      `Discovered ${entries.length} URLs from ${discovered.files.length} chronicle Markdown file(s)`,
+    );
   }
 
   // ---------- 按月份分组 ----------
@@ -608,4 +615,10 @@ if (require.main === module) {
   });
 }
 
-module.exports = { fetchSnapshot, loadIndex, saveIndex, upsertSource };
+module.exports = {
+  discoverChronicleUrls,
+  fetchSnapshot,
+  loadIndex,
+  saveIndex,
+  upsertSource,
+};

@@ -251,6 +251,10 @@ test('the CLI exits nonzero before replacing a malformed existing index', t => {
   fs.mkdirSync(monthDir, { recursive: true });
   const scriptPath = path.join(toolsDir, 'snapshot.js');
   fs.copyFileSync(path.join(__dirname, 'snapshot.js'), scriptPath);
+  fs.copyFileSync(
+    path.join(__dirname, 'extract_urls.js'),
+    path.join(toolsDir, 'extract_urls.js'),
+  );
 
   const indexPath = path.join(monthDir, 'index.json');
   const secret = 'sk-QA7x9';
@@ -281,6 +285,67 @@ test('the CLI exits nonzero before replacing a malformed existing index', t => {
   assert.doesNotMatch(result.stderr, /example\.test|CLI-URL-DO-NOT-ECHO/);
   assertUnchanged(indexPath, before);
   assertNoTempIndex(monthDir);
+});
+
+test('the no-file CLI discovers live chronicle URLs without using a cache', t => {
+  const root = makeTempDir(t);
+  const toolsDir = path.join(root, 'tools');
+  const chronicleDir = path.join(root, '编年', '2026');
+  const docsDir = path.join(root, 'docs');
+  fs.mkdirSync(toolsDir, { recursive: true });
+  fs.mkdirSync(chronicleDir, { recursive: true });
+  fs.mkdirSync(docsDir, { recursive: true });
+
+  const scriptPath = path.join(toolsDir, 'snapshot.js');
+  fs.copyFileSync(path.join(__dirname, 'snapshot.js'), scriptPath);
+  fs.copyFileSync(
+    path.join(__dirname, 'extract_urls.js'),
+    path.join(toolsDir, 'extract_urls.js'),
+  );
+  fs.writeFileSync(
+    path.join(chronicleDir, '09.md'),
+    'current: https://chronicle.example.test/current\n',
+    'utf8',
+  );
+  fs.writeFileSync(
+    path.join(docsDir, 'notes.md'),
+    'docs only: https://docs.example.test/excluded\n',
+    'utf8',
+  );
+
+  const cachePath = path.join(toolsDir, 'urls.json');
+  fs.writeFileSync(
+    cachePath,
+    JSON.stringify([
+      {
+        file: '编年/2020/01.md',
+        line: 1,
+        url: 'https://cache.example.test/stale',
+      },
+    ]),
+    'utf8',
+  );
+
+  const runDry = () => spawnSync(
+    process.execPath,
+    [scriptPath, '--dry-run'],
+    { encoding: 'utf8' },
+  );
+
+  const withStaleCache = runDry();
+  assert.equal(withStaleCache.status, 0, withStaleCache.stderr);
+  assert.match(
+    withStaleCache.stderr,
+    /Discovered 1 URLs from 1 chronicle Markdown file\(s\)/,
+  );
+  assert.match(withStaleCache.stderr, /https:\/\/chronicle\.example\.test\/current/);
+  assert.doesNotMatch(withStaleCache.stderr, /docs\.example\.test/);
+  assert.doesNotMatch(withStaleCache.stderr, /cache\.example\.test/);
+
+  fs.unlinkSync(cachePath);
+  const withoutCache = runDry();
+  assert.equal(withoutCache.status, 0, withoutCache.stderr);
+  assert.equal(withoutCache.stderr, withStaleCache.stderr);
 });
 
 test('saveIndex preserves the original index when a write fails after partial output', t => {
