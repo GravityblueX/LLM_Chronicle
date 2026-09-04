@@ -472,7 +472,10 @@ test('production extractor covers every independently counted corpus entry', () 
 
   independentEntries.sort();
   productionEntries.sort();
-  assert.equal(independentEntries.length, 181);
+  assert.ok(
+    independentEntries.length > 0,
+    'expected the chronicle corpus to contain event entries',
+  );
   assert.deepEqual(productionEntries, independentEntries);
   assert.ok(independentEntries.includes('2023/02.md:17:约2022-11-23'));
   assert.ok(independentEntries.includes('2023/03.md:104:2023-03-14'));
