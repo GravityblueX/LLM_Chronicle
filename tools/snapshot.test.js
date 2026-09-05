@@ -500,3 +500,83 @@ test('fetchSnapshot preserves an existing snapshot when publication fails', t =>
   assert.deepEqual(fs.readFileSync(outputPath), original);
   assertNoTempSnapshot(outputPath);
 });
+
+test('a failed CLI refresh preserves metadata for the last known-good snapshot', t => {
+  const root = makeTempDir(t);
+  const toolsDir = path.join(root, 'tools');
+  const monthDir = path.join(root, 'sources', '2025', '01');
+  fs.mkdirSync(toolsDir, { recursive: true });
+  fs.mkdirSync(monthDir, { recursive: true });
+
+  for (const file of ['snapshot.js', 'extract_urls.js']) {
+    fs.copyFileSync(path.join(__dirname, file), path.join(toolsDir, file));
+  }
+
+  const url = 'https://example.test/archive/source';
+  const snapshot = 'example-test-archive-source.html';
+  const snapshotPath = path.join(monthDir, snapshot);
+  const snapshotBody = Buffer.from('<html>known-good snapshot</html>\n');
+  const source = {
+    ref: '[^7]',
+    url,
+    title: 'Known-good source',
+    snapshot,
+    archived_at: '2026-08-31',
+    file_size: snapshotBody.length,
+    file_size_human: `${snapshotBody.length} B`,
+    curl_status: 200,
+  };
+  writeIndex(monthDir, { month: '2025-01', sources: [source] });
+  fs.writeFileSync(snapshotPath, snapshotBody);
+  const beforeSnapshot = fingerprint(snapshotPath);
+
+  const guardPath = path.join(root, 'fail-curl.cjs');
+  fs.writeFileSync(guardPath, [
+    "const fs = require('node:fs');",
+    "const childProcess = require('node:child_process');",
+    "childProcess.execFileSync = (_file, args) => {",
+    "  fs.writeFileSync(args[args.indexOf('-o') + 1], 'partial response');",
+    "  const error = new Error('NETWORK_CALL_FORBIDDEN');",
+    "  error.stderr = Buffer.from('curl: simulated refresh failure');",
+    "  throw error;",
+    "};",
+    '',
+  ].join('\n'));
+
+  const result = spawnSync(
+    process.execPath,
+    [
+      path.join(toolsDir, 'snapshot.js'),
+      '--text-only',
+      '--url',
+      url,
+      '--month',
+      '2025-01',
+    ],
+    {
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        NODE_OPTIONS: `--require=${guardPath}`,
+      },
+    },
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stderr, /simulated refresh failure/);
+  assert.doesNotMatch(result.stderr, /NETWORK_CALL_FORBIDDEN/);
+  assertUnchanged(snapshotPath, beforeSnapshot);
+
+  const saved = loadIndex(monthDir);
+  assert.equal(saved.sources.length, 1);
+  assert.equal(saved.sources[0].snapshot, source.snapshot);
+  assert.equal(saved.sources[0].archived_at, source.archived_at);
+  assert.equal(saved.sources[0].file_size, source.file_size);
+  assert.equal(saved.sources[0].file_size_human, source.file_size_human);
+  assert.match(saved.sources[0].curl_status, /simulated refresh failure/);
+  assert.equal(
+    fs.existsSync(path.join(monthDir, 'example-test-archive-source-02.html')),
+    false,
+  );
+  assertNoTempIndex(monthDir);
+});

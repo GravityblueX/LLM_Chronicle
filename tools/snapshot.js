@@ -349,10 +349,14 @@ function saveIndex(monthDir, index, fileSystem = fs) {
   }
 }
 
-function upsertSource(index, source) {
-  const existing = index.sources.find(s =>
+function findSource(index, source) {
+  return index.sources.find(s =>
     (source.ref && s.ref === source.ref) || s.url === source.url
   );
+}
+
+function upsertSource(index, source) {
+  const existing = findSource(index, source);
   if (existing) {
     Object.assign(existing, source);
   } else {
@@ -595,19 +599,26 @@ async function main() {
       }
 
       // ---- 更新 index.json ----
-      upsertSource(index, {
+      const sourceUpdate = {
         ref: entry.ref,
         url: entry.url,
         title: null,
-        snapshot: aResult.ok ? filename : null,
         screenshot: null,
         screenshot_status: screenshotStatus,
-        archived_at: now,
         wayback_url: waybackUrl,
-        file_size: aResult.ok ? aResult.size : 0,
-        file_size_human: aResult.ok ? formatBytes(aResult.size) : 'N/A',
-        curl_status: aResult.ok ? aResult.status : (aResult.error || 'unknown'),
-      });
+        curl_status: aResult.ok ? aResult.status : (aResult.error || aResult.status || 'unknown'),
+      };
+      const existingSource = findSource(index, sourceUpdate);
+      const preserveSnapshotMetadata = !aResult.ok && existingSource?.url === entry.url;
+      if (!preserveSnapshotMetadata) {
+        Object.assign(sourceUpdate, {
+          snapshot: aResult.ok ? filename : null,
+          archived_at: now,
+          file_size: aResult.ok ? aResult.size : 0,
+          file_size_human: aResult.ok ? formatBytes(aResult.size) : 'N/A',
+        });
+      }
+      upsertSource(index, sourceUpdate);
     }
 
     // 保存 index.json
