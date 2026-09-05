@@ -66,6 +66,15 @@ test('CLI rejects extra target files instead of silently ignoring them', () => {
   assert.match(result.stderr, /Usage:/);
 });
 
+test('CLI rejects an empty target instead of scanning the whole corpus', () => {
+  const result = runValidateFormatCli(['']);
+
+  assert.equal(result.status, 2, 'empty target must fail during CLI parsing');
+  assert.match(result.stderr, /Unexpected empty file argument/);
+  assert.match(result.stderr, /Usage:/);
+  assert.doesNotMatch(result.stderr, /Validating|No chronicle files found/);
+});
+
 test('CLI keeps supported options order-independent', (t) => {
   const warningOnlyChronicle = makeWarningOnlyChronicle(t);
   const result = runValidateFormatCli([

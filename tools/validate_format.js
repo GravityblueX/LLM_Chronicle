@@ -630,6 +630,8 @@ function parseCliArgs(args) {
       strict = true;
     } else if (!positionalOnly && arg.startsWith('-')) {
       throw new Error(`Unknown option: ${arg}`);
+    } else if (arg.length === 0) {
+      throw new Error('Unexpected empty file argument');
     } else if (targetFile !== undefined) {
       throw new Error(`Unexpected argument: ${arg}`);
     } else {
