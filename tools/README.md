@@ -79,10 +79,21 @@ node tools/validate_format.js --json
 
 ### `extract_urls.js` — URL 提取（辅助）
 
-提取项目中所有 markdown 文件的 URL，输出 `tools/urls.json`。
+提取项目中所有 markdown 文件的 URL，输出被 gitignore 的辅助清单
+`tools/urls.json`。快照命令不依赖这份生成文件。
 
 ```bash
-node tools/extract_urls.js .
+npm run extract-urls
+```
+
+### `snapshot.js` — 来源快照
+
+不带文件参数时实时扫描 `编年/`，不会读取 `tools/urls.json`。可先用 dry-run
+核对当下会处理的链接：
+
+```bash
+npm run snapshot:dry-run
+npm run snapshot
 ```
 
 ---
