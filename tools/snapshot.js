@@ -112,18 +112,30 @@ function extractUrlsFromFile(filePath) {
 // A 路：HTML 文本快照（curl）
 // ============================================================
 
-function fetchSnapshot(url, outputPath, timeout, executeFile = execFileSync) {
+function fetchSnapshot(url, outputPath, timeout, executeFile = execFileSync, fileSystem = fs) {
+  const tempPath = path.join(
+    path.dirname(outputPath),
+    `.${path.basename(outputPath)}.${process.pid}.${crypto.randomBytes(8).toString('hex')}.tmp`,
+  );
   const args = [
     '-L',
     '-s',
     '-S',
     '-A', USER_AGENT,
     '--max-time', String(timeout),
-    '-o', outputPath,
+    '-o', tempPath,
     '-w', '%{http_code}|%{size_download}|%{time_total}',
     '--', url,
   ];
+  let fd = null;
+  let ownsTemp = false;
+  let operationError = null;
   try {
+    fd = fileSystem.openSync(tempPath, 'wx', 0o666);
+    ownsTemp = true;
+    fileSystem.closeSync(fd);
+    fd = null;
+
     const stdout = executeFile('curl', args, {
       encoding: 'utf8',
       timeout: (timeout + 5) * 1000,
@@ -134,14 +146,20 @@ function fetchSnapshot(url, outputPath, timeout, executeFile = execFileSync) {
     const status = parseInt(parts[0]) || 0;
     const size = parseInt(parts[1]) || 0;
     const latency = parseFloat(parts[2]) || 0;
-    return {
+    const result = {
       ok: status >= 200 && status < 400,
       status,
       size,
       latency_sec: latency,
       too_large: size > MAX_FILE_SIZE_MB * 1024 * 1024,
     };
+    if (result.ok) {
+      fileSystem.renameSync(tempPath, outputPath);
+      ownsTemp = false;
+    }
+    return result;
   } catch (err) {
+    operationError = err;
     return {
       ok: false,
       status: null,
@@ -150,6 +168,17 @@ function fetchSnapshot(url, outputPath, timeout, executeFile = execFileSync) {
       error: err.stderr ? err.stderr.toString().substring(0, 200) : (err.message || 'Unknown curl error'),
       too_large: false,
     };
+  } finally {
+    if (fd !== null) {
+      try { fileSystem.closeSync(fd); } catch {}
+    }
+    if (ownsTemp) {
+      try {
+        fileSystem.unlinkSync(tempPath);
+      } catch (err) {
+        if (!operationError && err.code !== 'ENOENT') throw err;
+      }
+    }
   }
 }
 
@@ -533,7 +562,6 @@ async function main() {
           totalOkA++;
         } else {
           console.error(`    [A] ❌ ${aResult.error || ('HTTP ' + aResult.status)}`);
-          try { if (fs.existsSync(outputPath) && fs.statSync(outputPath).size < 100) fs.unlinkSync(outputPath); } catch {}
           totalFailA++;
         }
       } else {
